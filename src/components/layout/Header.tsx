@@ -27,7 +27,7 @@ export default function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img 
-              src="/SoAI_logo.svg" 
+              src={`${import.meta.env.BASE_URL}SoAI_logo.svg`} 
               alt="SoAI - Society of Algorithmic Intelligence" 
               className="h-12"
               onError={(e) => {

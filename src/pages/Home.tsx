@@ -11,7 +11,7 @@ export default function Home() {
   const galleryImages = (() => {
     // Prefer build-time imported assets from src/assets/gallery via Vite glob
     const imported = import.meta.glob(
-      "/src/assets/gallery/*.{jpg,jpeg,png,webp,avif,gif}",
+      `/src/assets/gallery/*.{jpg,jpeg,png,webp,avif,gif}`,
       { eager: true }
     ) as Record<string, any>;
 
@@ -25,16 +25,16 @@ export default function Home() {
 
     // Fallback to public/gallery for now (runtime-served assets)
     const fallback = [
-      "/gallery/pexels-jibarofoto-2774556.jpg",
-      "/gallery/pexels-divinetechygirl-1181396.jpg",
-      "/gallery/waiting-room-with-monitors.jpg",
+      `${import.meta.env.BASE_URL}gallery/pexels-jibarofoto-2774556.jpg`,
+      `${import.meta.env.BASE_URL}gallery/pexels-divinetechygirl-1181396.jpg`,
+      `${import.meta.env.BASE_URL}gallery/waiting-room-with-monitors.jpg`,
     ];
     return fallback.map((u) => ({ src: u }));
   })();
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url(/banner.jpg)'}}>
+      <section className="relative py-20 bg-cover bg-center bg-no-repeat" style={{backgroundImage: `url(${import.meta.env.BASE_URL}banner.jpg)`}}>
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-[#003d7b]/80"></div>
         <div className="container mx-auto px-6 relative z-10">

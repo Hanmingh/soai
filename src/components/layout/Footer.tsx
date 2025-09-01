@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="md:col-span-2">
             <div className="flex items-center mb-4">
               <img 
-                src="/SoAI_logo.svg" 
+                src={`${import.meta.env.BASE_URL}SoAI_logo.svg`} 
                 alt="SoAI - Society of Algorithmic Intelligence" 
                 className="h-12 filter brightness-0 invert"
                 onError={(e) => {
@@ -91,8 +91,8 @@ export default function Footer() {
             <p>&copy; 2025 Society of Algorithmic Intelligence (SoAI). All rights reserved.</p>
           </div>
           <div className="flex items-center space-x-6 text-sm text-gray-400">
-            <a href="/Constitution_SAI_20250419.pdf" download className="hover:text-white transition-colors">Constitution</a>
-            <a href="/By-Laws_SAI_20250419.pdf" download className="hover:text-white transition-colors">By-Laws</a>
+            <a href={`${import.meta.env.BASE_URL}Constitution_SAI_20250419.pdf`} download className="hover:text-white transition-colors">Constitution</a>
+            <a href={`${import.meta.env.BASE_URL}By-Laws_SAI_20250419.pdf`} download className="hover:text-white transition-colors">By-Laws</a>
           </div>
         </div>
       </div>
