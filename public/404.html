@@ -4,17 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SoAI</title>
-    <meta http-equiv="refresh" content="0; url=/" />
     <script>
-      // GitHub Pages SPA fallback
-      // If served from a subpath (project site), adjust base in vite.config.ts
+      // GitHub Pages SPA fallback for both user and project sites
       (function () {
         var l = window.location;
-        // Try to preserve the path by rewriting to the root with a redirect hash
-        var redirect = '/?redirect=' + encodeURIComponent(l.pathname + l.search + l.hash);
-        document.addEventListener('DOMContentLoaded', function(){
-          window.location.replace(redirect);
-        });
+        var segments = l.pathname.split('/').filter(Boolean);
+        // If project site, first segment is the repo name; else empty for user site
+        var base = segments.length > 0 ? '/' + segments[0] + '/' : '/';
+        var redirect = base + '?redirect=' + encodeURIComponent(l.pathname + l.search + l.hash);
+        window.location.replace(redirect);
       })();
     </script>
   </head>
