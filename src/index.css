@@ -118,3 +118,22 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ---- SoAI custom utilities ---- */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee {
+  width: max-content;
+  animation: marquee-scroll linear infinite;
+}
+
+/* Edge fade masks for the gallery */
+.mask-fade-left {
+  background: linear-gradient(90deg, rgba(0,0,0,0.6), rgba(0,0,0,0));
+}
+.mask-fade-right {
+  background: linear-gradient(270deg, rgba(0,0,0,0.6), rgba(0,0,0,0));
+}
