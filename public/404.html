@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SoAI</title>
+    <meta http-equiv="refresh" content="0; url=/" />
+    <script>
+      // GitHub Pages SPA fallback
+      // If served from a subpath (project site), adjust base in vite.config.ts
+      (function () {
+        var l = window.location;
+        // Try to preserve the path by rewriting to the root with a redirect hash
+        var redirect = '/?redirect=' + encodeURIComponent(l.pathname + l.search + l.hash);
+        document.addEventListener('DOMContentLoaded', function(){
+          window.location.replace(redirect);
+        });
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>Redirecting…</noscript>
+  </body>
+  </html>
+
+
