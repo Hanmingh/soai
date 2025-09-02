@@ -36,7 +36,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center text-sm text-gray-300">
                 <Globe className="h-4 w-4 mr-2" />
-                <span>www.soai.org</span>
+                <span>www.soc-ai.org</span>
               </div>
             </div>
           </div>
