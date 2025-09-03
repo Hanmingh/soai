@@ -72,7 +72,7 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-8 min-w-0">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Inside SoAI</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">Inside Soc-AI</h2>
               <p className="text-gray-600 mb-6">Glimpses from recent conferences, workshops, and labs.</p>
               <div className="-mx-6 sm:mx-0" onMouseEnter={(e) => ((e.currentTarget.firstChild as HTMLElement).style.animationPlayState = 'paused')} onMouseLeave={(e) => ((e.currentTarget.firstChild as HTMLElement).style.animationPlayState = 'running')}>
                 <Gallery images={galleryImages} />

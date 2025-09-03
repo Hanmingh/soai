@@ -12,7 +12,7 @@ export default function Footer() {
             <div className="flex items-center mb-4">
               <img 
                 src={`${import.meta.env.BASE_URL}SoAI_logo.svg`} 
-                alt="SoAI - Society of Algorithmic Intelligence" 
+                alt="Soc-AI - Society of Algorithmic Intelligence" 
                 className="h-12 filter brightness-0 invert"
                 onError={(e) => {
                   // Fallback to text logo if image fails to load
@@ -88,7 +88,7 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="text-sm text-gray-400 mb-4 md:mb-0">
-            <p>&copy; 2025 Society of Algorithmic Intelligence (SoAI). All rights reserved.</p>
+            <p>&copy; 2025 Society of Algorithmic Intelligence (Soc-AI). All rights reserved.</p>
           </div>
           <div className="flex items-center space-x-6 text-sm text-gray-400">
             <a href={`${import.meta.env.BASE_URL}Constitution_SAI_20250419.pdf`} download className="hover:text-white transition-colors">Constitution</a>
