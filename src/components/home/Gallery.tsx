@@ -68,7 +68,7 @@ export default function Gallery({ images, speedMs = 30000 }: GalleryProps) {
         {sequence.map((item, idx) => (
           <figure
             key={`${item.src}-${idx}`}
-            className="shrink-0 w-[340px] h-[200px] rounded-xl overflow-hidden border bg-white/5 backdrop-blur-sm cursor-pointer"
+            className="shrink-0 w-[280px] h-[170px] sm:w-[340px] sm:h-[200px] rounded-xl overflow-hidden border bg-white/5 backdrop-blur-sm cursor-pointer"
             onClick={() => openLightbox(idx)}
             role="button"
             aria-label="Open image"

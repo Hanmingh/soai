@@ -38,7 +38,7 @@ export default function Contact() {
                 <Button className="w-full bg-[#003d7b] hover:bg-[#002a5c]">
                   <Mail className="h-4 w-4 mr-2" /> Send
                 </Button>
-                <p className="text-xs text-gray-500 text-center">Or email us directly at <span className="text-[#003d7b]">info@soai.org</span></p>
+                <p className="text-xs text-gray-500 text-center">Or email us directly at <span className="text-[#003d7b]">info@soc-ai.org</span></p>
               </CardContent>
             </Card>
           </div>

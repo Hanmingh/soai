@@ -204,6 +204,44 @@ export default function Membership() {
           </div>
         </div>
       </section>
+      
+      {/* Privacy Disclaimer */}
+      <section id="privacy-disclaimer" className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">Privacy Disclaimer for Membership Registration</h2>
+            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              By registering for membership, you acknowledge and agree that your personal data will be collected, used, and stored for the purposes of processing your membership application, managing your membership, communicating with you regarding society activities, and fulfilling any related legal or regulatory obligations.
+            </p>
+            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              We are committed to protecting your personal data in accordance with applicable data protection laws, including the Singapore Personal Data Protection Act (PDPA).
+            </p>
+            <ul className="list-disc pl-6 space-y-3 text-gray-800">
+              <li>
+                <span className="font-semibold">Data Collected:</span> Information provided in your registration form, including your name, contact details, institutional affiliation, and any other information necessary for membership administration.
+              </li>
+              <li>
+                <span className="font-semibold">Use of Data:</span> Your data will be used strictly for membership management, communication (including newsletters, event invitations, and administrative notices), and statistical or reporting purposes in anonymized form.
+              </li>
+              <li>
+                <span className="font-semibold">Data Sharing:</span> We do not sell your data. Your information may be shared only with trusted service providers or partners as required to administer membership benefits, and only under appropriate confidentiality and data protection safeguards.
+              </li>
+              <li>
+                <span className="font-semibold">Data Retention:</span> Your personal data will be retained only for as long as necessary to fulfil the purposes stated above, or as required by law.
+              </li>
+              <li>
+                <span className="font-semibold">Your Rights:</span> You have the right to request access to, correction of, or deletion of your personal data, and to withdraw your consent to the use of your data at any time, subject to applicable legal and contractual restrictions.
+              </li>
+              <li>
+                <span className="font-semibold">Contact:</span> For any questions or to exercise your rights, please contact us at <a href="mailto:info@soc-ai.org" className="text-[#003d7b] underline">info@soc-ai.org</a>.
+              </li>
+            </ul>
+            <p className="text-lg text-gray-700 leading-relaxed mt-6">
+              By submitting your registration, you confirm that you have read and understood this Privacy Disclaimer and consent to the collection, use, and disclosure of your personal data as described above.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

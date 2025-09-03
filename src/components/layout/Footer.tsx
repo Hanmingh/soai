@@ -32,7 +32,7 @@ export default function Footer() {
             <div className="space-y-2">
               <div className="flex items-center text-sm text-gray-300">
                 <Mail className="h-4 w-4 mr-2" />
-                <span>info@soai.org</span>
+                <span>info@soc-ai.org</span>
               </div>
               <div className="flex items-center text-sm text-gray-300">
                 <Globe className="h-4 w-4 mr-2" />

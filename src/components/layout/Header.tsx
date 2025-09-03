@@ -77,9 +77,6 @@ export default function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="outline" size="sm">
-              Login
-            </Button>
             <Button size="sm" className="bg-[#003d7b] hover:bg-[#002a5c]" asChild>
               <Link to="/membership">Join Now</Link>
             </Button>
@@ -134,9 +131,6 @@ export default function Header() {
                 </div>
               )}
               <div className="flex flex-col space-y-2 pt-4 border-t">
-                <Button variant="outline" size="sm">
-                  Login
-                </Button>
                 <Button size="sm" className="bg-[#003d7b] hover:bg-[#002a5c]" asChild>
                   <Link to="/membership">Join Now</Link>
                 </Button>

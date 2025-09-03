@@ -68,19 +68,19 @@ export default function Home() {
       </section>
 
       {/* Gallery + Events */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-24 bg-gray-50 overflow-x-hidden">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-8 items-start">
-            <div className="lg:col-span-8">
+            <div className="lg:col-span-8 min-w-0">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Inside SoAI</h2>
               <p className="text-gray-600 mb-6">Glimpses from recent conferences, workshops, and labs.</p>
-              <div onMouseEnter={(e) => ((e.currentTarget.firstChild as HTMLElement).style.animationPlayState = 'paused')} onMouseLeave={(e) => ((e.currentTarget.firstChild as HTMLElement).style.animationPlayState = 'running')}>
+              <div className="-mx-6 sm:mx-0" onMouseEnter={(e) => ((e.currentTarget.firstChild as HTMLElement).style.animationPlayState = 'paused')} onMouseLeave={(e) => ((e.currentTarget.firstChild as HTMLElement).style.animationPlayState = 'running')}>
                 <Gallery images={galleryImages} />
               </div>
               {/* News under gallery */}
               <div className="mt-12">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">News</h2>
-                <div className="grid sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {newsItems.slice(0, 4).map((n) => (
                     <Card key={n.id} className="border-0 shadow-lg">
                       <CardHeader>
@@ -100,7 +100,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <aside className="lg:col-span-4">
+            <aside className="lg:col-span-4 min-w-0">
               <div className="sticky top-24">
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">Recent Events</h3>
                 <ul className="space-y-4">
