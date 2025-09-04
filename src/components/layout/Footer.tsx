@@ -3,6 +3,8 @@ import { Separator } from '@/components/ui/separator';
 import { Mail, Globe } from 'lucide-react';
 
 export default function Footer() {
+  const logoImports = import.meta.glob('/src/assets/SoAI_logo.svg', { eager: true }) as Record<string, { default: string }>;
+  const logoUrl = logoImports['/src/assets/SoAI_logo.svg']?.default ?? `${import.meta.env.BASE_URL}SoAI_logo.svg`;
   return (
     <footer className="bg-gray-900 text-white">
       <div className="container mx-auto px-6 py-12">
@@ -11,7 +13,7 @@ export default function Footer() {
           <div className="md:col-span-2">
             <div className="flex items-center mb-4">
               <img 
-                src={`${import.meta.env.BASE_URL}SoAI_logo.svg`} 
+                src={logoUrl} 
                 alt="Soc-AI - Society of Algorithmic Intelligence" 
                 className="h-12 filter brightness-0 invert"
                 onError={(e) => {
@@ -56,6 +58,12 @@ export default function Footer() {
                 className="block text-sm text-gray-300 hover:text-white transition-colors"
               >
                 About Us
+              </Link>
+              <Link
+                to="/leadership"
+                className="block text-sm text-gray-300 hover:text-white transition-colors"
+              >
+                Leadership
               </Link>
               <Link
                 to="/membership"

@@ -8,10 +8,13 @@ export default function Header() {
   const [isResourcesOpen, setIsResourcesOpen] = useState(false);
   const [isResourcesOpenMobile, setIsResourcesOpenMobile] = useState(false);
   const location = useLocation();
+  const logoImports = import.meta.glob('/src/assets/SoAI_logo.svg', { eager: true }) as Record<string, { default: string }>;
+  const logoUrl = logoImports['/src/assets/SoAI_logo.svg']?.default ?? `${import.meta.env.BASE_URL}SoAI_logo.svg`;
 
   const navigation = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
+    { name: 'Leadership', href: '/leadership' },
     { name: 'Membership', href: '/membership' },
     { name: 'Contact', href: '/contact' },
   ];
@@ -27,7 +30,7 @@ export default function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img 
-              src={`${import.meta.env.BASE_URL}SoAI_logo.svg`} 
+              src={logoUrl} 
               alt="Soc-AI - Society of Algorithmic Intelligence" 
               className="h-12"
               onError={(e) => {

@@ -31,10 +31,12 @@ export default function Home() {
     ];
     return fallback.map((u) => ({ src: u }));
   })();
+  const bannerImports = import.meta.glob('/src/assets/banner.jpg', { eager: true }) as Record<string, { default: string }>;
+  const bannerUrl = bannerImports['/src/assets/banner.jpg']?.default ?? `${import.meta.env.BASE_URL}banner.jpg`;
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 bg-cover bg-center bg-no-repeat" style={{backgroundImage: `url(${import.meta.env.BASE_URL}banner.jpg)`}}>
+      <section className="relative py-20 bg-cover bg-center bg-no-repeat" style={{backgroundImage: `url(${bannerUrl})`}}>
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-[#003d7b]/80"></div>
         <div className="container mx-auto px-6 relative z-10">

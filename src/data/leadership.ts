@@ -1,0 +1,40 @@
+export type Person = {
+  name: string;
+  role: string;
+  photoFileName?: string; // stored in public/leadership or src/assets/leadership
+  github?: string;
+  linkedin?: string;
+  dribbble?: string;
+};
+
+export type LeadershipSection = {
+  id: string; // anchor id
+  title: string;
+  people?: Person[];
+  description?: string;
+};
+
+export const executiveCommittee: Person[] = [
+  { name: "Ying Chen", role: "President", photoFileName: "chenying.jpg", github: "", linkedin: "https://www.linkedin.com/in/ying-chen-940a9969/", dribbble: "www.yingchen.org" },
+  { name: "Thorsten Koch", role: "President-Elect", photoFileName: "Thorsten.png", github: "", linkedin: "https://www.linkedin.com/in/thorsten-koch-5b288352/", dribbble: "https://www.zib.de/userpage/koch/" },
+  { name: "TBA", role: "Vice President", github: "", linkedin: "", dribbble: "" },
+  { name: "TBA", role: "Vice President", github: "", linkedin: "", dribbble: "" },
+  { name: "Jianlong Lu", role: "Secretary", photoFileName: "jianlong.jpg", github: "", linkedin: "https://www.linkedin.com/in/jianlong-lu-1662a9167/", dribbble: "" },
+  { name: "Qiang He", role: "Treasurer", photoFileName: "qiang.jpg", github: "", linkedin: "https://www.linkedin.com/in/qiang-he-nus/", dribbble: "" },
+  { name: "TBA", role: "Committee Member", github: "", linkedin: "", dribbble: "" },
+];
+
+export const leadershipSections: LeadershipSection[] = [
+  { id: "ec", title: "Executive Committee (EC)", people: executiveCommittee },
+  { id: "steering-council", title: "Steering Council", description: "Details TBA." },
+  { id: "ab", title: "Advisory Board (IAB)", description: "Details TBA." },
+  { id: "ial", title: "Industry–Academic Liaison Committee", description: "Details TBA." },
+  { id: "regional", title: "Regional Representatives / Ambassadors", description: "Details TBA." },
+  { id: "operational", title: "Operational Committees (non-EC)", description: "Details TBA." },
+  { id: "fellows", title: "Honorary & Distinguished Fellows", description: "Details TBA." },
+  { id: "founding-fellows", title: "Founding Fellows", description: "Details TBA." },
+  { id: "students", title: "Student Chapter Coordinators", description: "Details TBA." },
+  { id: "task-forces", title: "Innovation Task Forces (ad hoc)", description: "Details TBA." },
+];
+
+

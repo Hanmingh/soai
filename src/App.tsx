@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
+import ScrollToTop from './components/layout/ScrollToTop';
 import Home from './pages/Home';
 import About from './pages/About';
 import Membership from './pages/Membership';
@@ -8,15 +9,20 @@ import Conferences from './pages/resources/Conferences';
 import Workshops from './pages/resources/Workshops';
 import ResearchPapers from './pages/resources/ResearchPapers';
 import CommunityForum from './pages/resources/CommunityForum';
+import MembershipCheckout from './pages/MembershipCheckout';
+import Leadership from './pages/Leadership';
 
 function App() {
   return (
     <Router basename={import.meta.env.BASE_URL}>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="membership" element={<Membership />} />
+          <Route path="membership/checkout" element={<MembershipCheckout />} />
+          <Route path="leadership" element={<Leadership />} />
           <Route path="contact" element={<Contact />} />
           <Route path="resources/conferences" element={<Conferences />} />
           <Route path="resources/workshops" element={<Workshops />} />
