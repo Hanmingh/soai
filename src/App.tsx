@@ -10,7 +10,6 @@ import Workshops from './pages/resources/Workshops';
 import ResearchPapers from './pages/resources/ResearchPapers';
 import CommunityForum from './pages/resources/CommunityForum';
 import MembershipCheckout from './pages/MembershipCheckout';
-import Leadership from './pages/Leadership';
 
 function App() {
   return (
@@ -22,7 +21,6 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="membership" element={<Membership />} />
           <Route path="membership/checkout" element={<MembershipCheckout />} />
-          <Route path="leadership" element={<Leadership />} />
           <Route path="contact" element={<Contact />} />
           <Route path="resources/conferences" element={<Conferences />} />
           <Route path="resources/workshops" element={<Workshops />} />

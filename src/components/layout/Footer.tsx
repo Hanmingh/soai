@@ -60,12 +60,6 @@ export default function Footer() {
                 About Us
               </Link>
               <Link
-                to="/leadership"
-                className="block text-sm text-gray-300 hover:text-white transition-colors"
-              >
-                Leadership
-              </Link>
-              <Link
                 to="/membership"
                 className="block text-sm text-gray-300 hover:text-white transition-colors"
               >
