@@ -58,6 +58,29 @@ export default function About() {
           ))}
         </div>
       </section>
+
+      {/* Governing Documents */}
+      <section className="py-8 bg-gray-50">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <h3 className="text-2xl font-bold text-gray-900 mb-4">Governing Documents</h3>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={`${import.meta.env.BASE_URL}Constitution_SoAI.pdf`}
+              download
+              className="inline-flex items-center rounded-md border px-3 py-2 text-sm font-medium text-[#003d7b] hover:bg-gray-100"
+            >
+              Constitution (PDF)
+            </a>
+            <a
+              href={`${import.meta.env.BASE_URL}By-Laws_SoAI.pdf`}
+              download
+              className="inline-flex items-center rounded-md border px-3 py-2 text-sm font-medium text-[#003d7b] hover:bg-gray-100"
+            >
+              By-Laws (PDF)
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
@@ -83,7 +106,7 @@ function CoreTeamGrid() {
         <div key={`${p.name}-${i}`} className="rounded-xl p-6 hover:bg-gray-100 transition-colors">
           <div className="flex flex-col items-center text-center">
             <div className="mb-4">
-              <div className="h-20 w-20 sm:h-24 sm:w-24 rounded-full overflow-hidden ring-2 ring-white shadow bg-gray-100">
+              <div className="h-24 w-24 sm:h-28 sm:w-28 rounded-full overflow-hidden ring-2 ring-white shadow bg-gray-100">
                 <img
                   src={resolvePhotoUrl(p.photoFileName)}
                   alt={`${p.name} photo`}
