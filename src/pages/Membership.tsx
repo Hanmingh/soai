@@ -4,78 +4,87 @@ import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Check, Star } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function Membership() {
   // Ordered to match the requested listing
   const membershipTypes = [
     {
       name: "Regular Member",
-      price: "USD 100",
+      price: "SGD 128",
       period: "/ year",
       description: "Ideal for professionals and researchers in the field",
       popular: true,
       features: [
-        "Full access to Soc-AI lectures",
-        "Complimentary Coursera Plus subscription",
         "Conference discounts",
-        "Priority networking access",
+        "Certificate programs discounts",
         "Academic-industry project opportunities",
-        "Official Soc-AI Certificate eligibility",
+        "Complimentary Coursera Plus subscription",
+        "Priority networking access",
         "Premium support"
       ]
     },
     {
       name: "Permanent Member",
-      price: "USD 1,000",
+      price: "SGD 1280",
       period: "one-time",
       description: "Lifetime membership with exclusive benefits",
       popular: false,
       features: [
-        "Lifetime access to all Soc-AI content",
-        "Premium Coursera Plus subscription",
-        "Maximum conference discounts",
+        "Lifetime access to all So-AI content",
+        "Conference discounts",
+        "Certificate programs",
+        "Academic-industry project opportunities",
+        "Complimentary Coursera Plus subscription",
+        "Priority networking access",
         "VIP networking privileges",
         "Advisory board consideration",
         "Exclusive member events",
-        "Priority project access",
         "Dedicated support"
       ]
     },
     {
       name: "Developing Countries",
-      price: "USD 50",
+      price: "SGD 60",
       period: "/ year",
-      description: "Special pricing for developing countries",
+      description: "Special support for developing countries",
       popular: false,
       features: [
-        "Full access to Soc-AI lectures",
-        "Complimentary Coursera Plus subscription",
         "Conference discounts",
-        "Global collaboration opportunities",
-        "Regional networking events",
-        "Certificate programs"
+        "Certificate programs discounts",
+        "Academic-industry project opportunities",
+        "Complimentary Coursera Plus subscription",
+        "Priority networking access"
       ]
     },
     {
       name: "Student Member",
-      price: "USD 30",
+      price: "SGD 30",
       period: "/ year",
       description: "Perfect for students pursuing algorithmic intelligence studies",
       popular: false,
       features: [
-        "Access to Soc-AI lectures",
         "Student discounts on events",
-        "Basic networking access",
-        "Student resources library",
+        "Networking access",
+        "Certificate programs discounts",
+        "Academic-industry project opportunities",
+        "Complimentary Coursera Plus subscription",
         "Email support"
       ]
     }
   ];
-
   
-
-  const membershipBannerImports = import.meta.glob('/src/assets/Membership_banner.jpg', { eager: true }) as Record<string, { default: string }>;
-  const membershipBannerUrl = membershipBannerImports['/src/assets/Membership_banner.jpg']?.default ?? `${import.meta.env.BASE_URL}Membership_banner.jpg`;
+  // Prefer importing the banner from src if present; otherwise fall back to public/
+  const [membershipBannerUrl, setMembershipBannerUrl] = useState<string>(`${import.meta.env.BASE_URL}Membership_banner.jpg`);
+  useEffect(() => {
+    import("@/assets/Membership_banner.jpg")
+      .then((mod) => {
+        if (mod?.default) setMembershipBannerUrl(mod.default);
+      })
+      .catch(() => {
+        // keep fallback to public path
+      });
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -88,7 +97,7 @@ export default function Membership() {
               Join Us
             </Badge>
             <h1 className="text-4xl font-bold text-white mb-6">
-              Become a Member of Soc-AI
+              Become a Member of SoAI
             </h1>
             <p className="text-xl text-white/90 leading-relaxed">
               Joining the Society of Algorithmic Intelligence connects you to a vibrant international 
@@ -106,13 +115,13 @@ export default function Membership() {
             <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">Member Benefits</h2>
             <ul className="space-y-4 text-gray-800 text-lg">
               <li><span className="font-semibold">Global Exchange:</span> Collaborate with scholars, professionals, and innovators worldwide.</li>
-              <li><span className="font-semibold">Free Access to Knowledge:</span> Enjoy free access to selected Soc-AI lectures and a complimentary Coursera Plus subscription.</li>
-              <li><span className="font-semibold">Exclusive Discounts:</span> Reduced registration fees for Soc-AI conferences, workshops, and events.</li>
-              <li><span className="font-semibold">Real-World Experience:</span> Valuable opportunity to join academic-industry collaborative projects, gaining hands-on experience and an official Soc-AI Certificate.</li>
+              <li><span className="font-semibold">Free Access to Knowledge:</span> Enjoy free access to selected SoAI lectures and a complimentary Coursera Plus subscription.</li>
+              <li><span className="font-semibold">Exclusive Discounts:</span> Reduced registration fees for SoAI conferences, workshops, and events.</li>
+              <li><span className="font-semibold">Real-World Experience:</span> Valuable opportunity to join academic-industry collaborative projects, gaining hands-on experience and an official SoAI Certificate.</li>
               <li><span className="font-semibold">Networking Opportunities:</span> Meet and interact with leading experts shaping the future of algorithmic intelligence.</li>
             </ul>
             <p className="text-lg text-gray-700 leading-relaxed mt-8">
-              Membership in Soc-AI is not just a subscription — it is your gateway to learning, recognition, and contribution in an international community committed to excellence.
+              Membership in SoAI is not just a subscription — it is your gateway to learning, recognition, and contribution in an international community committed to excellence.
             </p>
           </div>
         </div>
@@ -186,13 +195,13 @@ export default function Membership() {
               <AccordionItem value="item-2">
                 <AccordionTrigger>2. Email Verification</AccordionTrigger>
                 <AccordionContent>
-                  Registration requires email verification before activation. Only verified accounts can proceed with log in.
+                  Registration requires email verification before activation. Only verified accounts can proceed with Registration.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">
                 <AccordionTrigger>3. Payments & Receipts</AccordionTrigger>
                 <AccordionContent>
-                  Acceptable payment methods: Telegraphic Transfer, Credit Card, PayPal, PayNow. Automatic receipt issued upon successful payment. Credit card option must support auto-renewal, with an “opt-out” toggle.
+                  Acceptable payment methods: Telegraphic Transfer, Credit Card, PayPal, PayNow. Automatic receipt issued upon successful payment.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-4">
@@ -204,7 +213,7 @@ export default function Membership() {
               <AccordionItem value="item-5">
                 <AccordionTrigger>5. Permanent Members</AccordionTrigger>
                 <AccordionContent>
-                  Once payment is confirmed, system should tag the member as Permanent (no renewal reminders).
+                  Once payment is confirmed, system will tag the member as Permanent.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>

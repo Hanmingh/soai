@@ -6,33 +6,60 @@ import { ArrowRight } from "lucide-react";
 import Gallery from "@/components/home/Gallery";
 import { recentEvents } from "@/data/events";
 import { newsItems } from "@/data/news";
+import bannerUrl from "@/assets/banner.jpg";
 
 export default function Home() {
+  const formatEventDate = (ev: { date?: string; startDate?: string; endDate?: string }): string => {
+    const fmtFull = (date: Date) => date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+    const monthShort = (date: Date) => date.toLocaleString(undefined, { month: 'short' });
+    const day = (date: Date) => date.getDate();
+    const year = (date: Date) => date.getFullYear();
+
+    if (ev.date) return fmtFull(new Date(ev.date));
+
+    if (ev.startDate && ev.endDate) {
+      const s = new Date(ev.startDate);
+      const e = new Date(ev.endDate);
+      const sameYear = year(s) === year(e);
+      const sameMonth = sameYear && s.getMonth() === e.getMonth();
+
+      if (sameMonth) {
+        // Oct 5–9, 2025
+        return `${monthShort(s)} ${day(s)}–${day(e)}, ${year(s)}`;
+      }
+      if (sameYear) {
+        // Sep 24 – Oct 2, 2025
+        return `${monthShort(s)} ${day(s)} – ${monthShort(e)} ${day(e)}, ${year(s)}`;
+      }
+      // Dec 30, 2025 – Jan 2, 2026
+      return `${fmtFull(s)} – ${fmtFull(e)}`;
+    }
+
+    if (ev.startDate) return fmtFull(new Date(ev.startDate));
+    if (ev.endDate) return fmtFull(new Date(ev.endDate));
+    return '';
+  };
+  // Prefer build-time imported assets from src/assets/gallery via Vite glob
   const galleryImages = (() => {
-    // Prefer build-time imported assets from src/assets/gallery via Vite glob
     const imported = import.meta.glob(
-      `/src/assets/gallery/*.{jpg,jpeg,png,webp,avif,gif}`,
+      "/src/assets/gallery/*.{jpg,jpeg,png,webp,avif,gif}",
       { eager: true }
-    ) as Record<string, any>;
+    ) as Record<string, { default: string }>
 
     const urls = Object.values(imported)
-      .map((m: any) => m?.default as string)
-      .filter(Boolean);
+      .map((m) => m?.default)
+      .filter(Boolean)
 
     if (urls.length > 0) {
-      return urls.map((u) => ({ src: u }));
+      return urls.map((u) => ({ src: u }))
     }
 
     // Fallback to public/gallery for now (runtime-served assets)
     const fallback = [
-      `${import.meta.env.BASE_URL}gallery/pexels-jibarofoto-2774556.jpg`,
-      `${import.meta.env.BASE_URL}gallery/pexels-divinetechygirl-1181396.jpg`,
-      `${import.meta.env.BASE_URL}gallery/waiting-room-with-monitors.jpg`,
-    ];
-    return fallback.map((u) => ({ src: u }));
-  })();
-  const bannerImports = import.meta.glob('/src/assets/banner.jpg', { eager: true }) as Record<string, { default: string }>;
-  const bannerUrl = bannerImports['/src/assets/banner.jpg']?.default ?? `${import.meta.env.BASE_URL}banner.jpg`;
+      `${import.meta.env.BASE_URL}gallery/The-3rd-Quantum-Computing-Workshop.png`,
+    ]
+    return fallback.map((u) => ({ src: u }))
+  })()
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -41,8 +68,8 @@ export default function Home() {
         <div className="absolute inset-0 bg-[#003d7b]/80"></div>
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-4 bg-[#ee7c01] text-white">
-              Leading AI Research Society
+            <Badge className="mb-4 bg-[#ee7c01] text-white text-sm md:text-base px-3 py-1 md:px-4 md:py-1.5">
+              Leading Emerging Technology & Algorithms Research Society
             </Badge>
             <h1 className="text-5xl font-bold text-white mb-6">
               Society of Algorithmic Intelligence
@@ -74,8 +101,7 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-8 min-w-0">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Inside Soc-AI</h2>
-              <p className="text-gray-600 mb-6">Glimpses from recent conferences, workshops, and labs.</p>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">Inside SoAI</h2>
               <div className="-mx-6 sm:mx-0" onMouseEnter={(e) => ((e.currentTarget.firstChild as HTMLElement).style.animationPlayState = 'paused')} onMouseLeave={(e) => ((e.currentTarget.firstChild as HTMLElement).style.animationPlayState = 'running')}>
                 <Gallery images={galleryImages} />
               </div>
@@ -108,7 +134,7 @@ export default function Home() {
                 <ul className="space-y-4">
                   {recentEvents.map((ev) => (
                     <li key={ev.id} className="rounded-lg border bg-white p-4 shadow-sm">
-                      <div className="text-sm text-[#003d7b] font-medium">{new Date(ev.date).toLocaleDateString()}</div>
+                      <div className="text-sm text-[#003d7b] font-medium">{formatEventDate(ev)}</div>
                       <div className="font-semibold text-gray-900">{ev.title}</div>
                       {ev.location && (
                         <div className="text-sm text-gray-600">{ev.location}</div>

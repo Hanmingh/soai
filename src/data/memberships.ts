@@ -15,12 +15,12 @@ export const membershipTypes: MembershipType[] = [
     description: "Ideal for professionals and researchers in the field",
     popular: true,
     features: [
-      "Full access to Soc-AI lectures",
+      "Full access to SoAI lectures",
       "Complimentary Coursera Plus subscription",
       "Conference discounts",
       "Priority networking access",
       "Academic-industry project opportunities",
-      "Official Soc-AI Certificate eligibility",
+      "Official SoAI Certificate eligibility",
       "Premium support"
     ]
   },
@@ -31,7 +31,7 @@ export const membershipTypes: MembershipType[] = [
     description: "Lifetime membership with exclusive benefits",
     popular: false,
     features: [
-      "Lifetime access to all Soc-AI content",
+      "Lifetime access to all SoAI content",
       "Premium Coursera Plus subscription",
       "Maximum conference discounts",
       "VIP networking privileges",
@@ -48,7 +48,7 @@ export const membershipTypes: MembershipType[] = [
     description: "Special pricing for developing countries",
     popular: false,
     features: [
-      "Full access to Soc-AI lectures",
+      "Full access to SoAI lectures",
       "Complimentary Coursera Plus subscription",
       "Conference discounts",
       "Global collaboration opportunities",
@@ -63,7 +63,7 @@ export const membershipTypes: MembershipType[] = [
     description: "Perfect for students pursuing algorithmic intelligence studies",
     popular: false,
     features: [
-      "Access to Soc-AI lectures",
+      "Access to SoAI lectures",
       "Student discounts on events",
       "Basic networking access",
       "Student resources library",

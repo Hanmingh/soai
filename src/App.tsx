@@ -9,6 +9,7 @@ import Conferences from './pages/resources/Conferences';
 import Workshops from './pages/resources/Workshops';
 import ResearchPapers from './pages/resources/ResearchPapers';
 import CommunityForum from './pages/resources/CommunityForum';
+import TeamSection from './pages/teams/TeamSection';
 import MembershipCheckout from './pages/MembershipCheckout';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
+          <Route path="about/teams/:sectionId" element={<TeamSection />} />
           <Route path="membership" element={<Membership />} />
           <Route path="membership/checkout" element={<MembershipCheckout />} />
           <Route path="contact" element={<Contact />} />

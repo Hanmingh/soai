@@ -2,6 +2,7 @@ export type Person = {
   name: string;
   role: string;
   photoFileName?: string; // stored in public/leadership or src/assets/leadership
+  title?: string; // e.g., "Dr.", "Prof."
   github?: string;
   linkedin?: string;
   dribbble?: string;
@@ -15,12 +16,12 @@ export type LeadershipSection = {
 };
 
 export const executiveCommittee: Person[] = [
-  { name: "Ying Chen", role: "President", photoFileName: "chenying.jpg", github: "", linkedin: "https://www.linkedin.com/in/ying-chen-940a9969/", dribbble: "www.yingchen.org" },
-  { name: "Thorsten Koch", role: "President-Elect", photoFileName: "Thorsten.png", github: "", linkedin: "https://www.linkedin.com/in/thorsten-koch-5b288352/", dribbble: "https://www.zib.de/userpage/koch/" },
+  { name: "Ying Chen", title: "Prof.", role: "President", photoFileName: "chenying.jpg", github: "", linkedin: "https://www.linkedin.com/in/ying-chen-940a9969/", dribbble: "www.yingchen.org" },
+  { name: "Thorsten Koch", title: "Prof.", role: "President-Elect", photoFileName: "Thorsten.png", github: "", linkedin: "https://www.linkedin.com/in/thorsten-koch-5b288352/", dribbble: "https://www.zib.de/userpage/koch/" },
   { name: "TBA", role: "Vice President", github: "", linkedin: "", dribbble: "" },
   { name: "TBA", role: "Vice President", github: "", linkedin: "", dribbble: "" },
-  { name: "Jianlong Lu", role: "Secretary", photoFileName: "jianlong.jpg", github: "", linkedin: "https://www.linkedin.com/in/jianlong-lu-1662a9167/", dribbble: "" },
-  { name: "Qiang He", role: "Treasurer", photoFileName: "qiang.jpg", github: "", linkedin: "https://www.linkedin.com/in/qiang-he-nus/", dribbble: "" },
+  { name: "Jianlong Lu", title: "Dr.", role: "Secretary", photoFileName: "jianlong.jpg", github: "", linkedin: "https://www.linkedin.com/in/jianlong-lu-1662a9167/", dribbble: "" },
+  { name: "Qiang He", title: "Dr.", role: "Treasurer", photoFileName: "qiang.jpg", github: "", linkedin: "https://www.linkedin.com/in/qiang-he-nus/", dribbble: "" },
   { name: "TBA", role: "Committee Member", github: "", linkedin: "", dribbble: "" },
 ];
 

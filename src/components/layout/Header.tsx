@@ -1,22 +1,23 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Download } from 'lucide-react';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isResourcesOpen, setIsResourcesOpen] = useState(false);
   const [isResourcesOpenMobile, setIsResourcesOpenMobile] = useState(false);
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isAboutMobileOpen, setIsAboutMobileOpen] = useState(false);
+  const [isTeamsMobileOpen, setIsTeamsMobileOpen] = useState(false);
+  const aboutCloseTimeout = useRef<number | null>(null);
+  const resourcesCloseTimeout = useRef<number | null>(null);
+  const teamsCloseTimeout = useRef<number | null>(null);
+  const [isTeamsOpen, setIsTeamsOpen] = useState(false);
   const location = useLocation();
   const logoImports = import.meta.glob('/src/assets/SoAI_logo.svg', { eager: true }) as Record<string, { default: string }>;
   const logoUrl = logoImports['/src/assets/SoAI_logo.svg']?.default ?? `${import.meta.env.BASE_URL}SoAI_logo.svg`;
 
-  const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Membership', href: '/membership' },
-    { name: 'Contact', href: '/contact' },
-  ];
 
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -30,7 +31,7 @@ export default function Header() {
           <Link to="/" className="flex items-center">
             <img 
               src={logoUrl} 
-              alt="Soc-AI - Society of Algorithmic Intelligence" 
+              alt="SoAI - Society of Algorithmic Intelligence" 
               className="h-12"
               onError={(e) => {
                 // Fallback to text logo if image fails to load
@@ -45,29 +46,171 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`text-sm font-medium transition-colors hover:text-[#003d7b] ${
-                  isActive(item.href)
-                    ? 'text-[#003d7b] border-b-2 border-[#003d7b] pb-1'
-                    : 'text-gray-700'
-                }`}
+            {/* Home */}
+            <Link
+              to="/"
+              className={`text-sm font-medium transition-colors hover:text-[#003d7b] ${
+                isActive('/') ? 'text-[#003d7b] border-b-2 border-[#003d7b] pb-1' : 'text-gray-700'
+              }`}
+            >
+              Home
+            </Link>
+
+            {/* About with nested Teams */}
+            <div
+              className="relative"
+              onMouseEnter={() => {
+                if (aboutCloseTimeout.current) clearTimeout(aboutCloseTimeout.current);
+                setIsAboutOpen(true);
+              }}
+              onMouseLeave={() => {
+                if (aboutCloseTimeout.current) clearTimeout(aboutCloseTimeout.current);
+                aboutCloseTimeout.current = window.setTimeout(() => setIsAboutOpen(false), 300);
+              }}
+              onFocus={() => {
+                if (aboutCloseTimeout.current) clearTimeout(aboutCloseTimeout.current);
+                setIsAboutOpen(true);
+              }}
+            >
+              <button
+                className={`text-sm font-medium inline-flex items-center gap-1 ${isActive('/about') ? 'text-[#003d7b]' : 'text-gray-700'} hover:text-[#003d7b]`}
+                onClick={() => setIsAboutOpen((v) => !v)}
+                aria-expanded={isAboutOpen}
+                aria-haspopup="menu"
               >
-                {item.name}
-              </Link>
-            ))}
-            <div className="relative">
+                About <ChevronDown className={`h-4 w-4 transition-transform ${isAboutOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {isAboutOpen && (
+                <div
+                  className="absolute left-0 mt-2 w-64 rounded-md border bg-white shadow-lg p-2"
+                  onMouseEnter={() => {
+                    if (aboutCloseTimeout.current) clearTimeout(aboutCloseTimeout.current);
+                    setIsAboutOpen(true);
+                  }}
+                  onMouseLeave={() => {
+                    if (aboutCloseTimeout.current) clearTimeout(aboutCloseTimeout.current);
+                    aboutCloseTimeout.current = window.setTimeout(() => setIsAboutOpen(false), 300);
+                  }}
+                >
+                  <Link to="/about#about-us" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>About Us</Link>
+                  <div
+                    className="relative"
+                    onMouseEnter={() => {
+                      if (teamsCloseTimeout.current) clearTimeout(teamsCloseTimeout.current);
+                      setIsTeamsOpen(true);
+                    }}
+                    onMouseLeave={() => {
+                      if (teamsCloseTimeout.current) clearTimeout(teamsCloseTimeout.current);
+                      teamsCloseTimeout.current = window.setTimeout(() => setIsTeamsOpen(false), 300);
+                    }}
+                  >
+                    <button
+                      className="w-full text-left px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50 inline-flex items-center justify-between"
+                      aria-expanded={isTeamsOpen}
+                      aria-haspopup="menu"
+                      onClick={() => setIsTeamsOpen((v) => !v)}
+                    >
+                      Teams <ChevronDown className={`h-4 w-4 transition-transform ${isTeamsOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    {isTeamsOpen && (
+                      <div
+                        className="absolute left-full top-0 ml-1 w-72 rounded-md border bg-white shadow-lg p-2"
+                        onMouseEnter={() => {
+                          if (teamsCloseTimeout.current) clearTimeout(teamsCloseTimeout.current);
+                          setIsTeamsOpen(true);
+                        }}
+                        onMouseLeave={() => {
+                          if (teamsCloseTimeout.current) clearTimeout(teamsCloseTimeout.current);
+                          teamsCloseTimeout.current = window.setTimeout(() => setIsTeamsOpen(false), 300);
+                        }}
+                      >
+                      <Link to="/about/teams/ec" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Executive Committees</Link>
+                      <Link to="/about/teams/steering-council" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Steering Council</Link>
+                      <Link to="/about/teams/ab" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Advisory Board (IAB)</Link>
+                      <Link to="/about/teams/ial" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Industry–Academic Liaison Committee</Link>
+                      <Link to="/about/teams/regional" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Regional Representatives / Ambassadors</Link>
+                      <Link to="/about/teams/operational" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Operational Committees (non-EC)</Link>
+                      <Link to="/about/teams/fellows" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Honorary & Distinguished Fellows</Link>
+                      <Link to="/about/teams/founding-fellows" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Founding Fellows</Link>
+                      <Link to="/about/teams/students" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Student Chapter Coordinators</Link>
+                      <Link to="/about/teams/task-forces" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Innovation Task Forces (ad hoc)</Link>
+                      </div>
+                    )}
+                  </div>
+                  <a
+                    href={`${import.meta.env.BASE_URL}Constitution_SoAI.pdf`}
+                    download
+                    className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50"
+                    onClick={() => setIsAboutOpen(false)}
+                  >
+                    <Download className="h-4 w-4" /> Constitution (PDF)
+                  </a>
+                  <a
+                    href={`${import.meta.env.BASE_URL}By-Laws_SoAI.pdf`}
+                    download
+                    className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50"
+                    onClick={() => setIsAboutOpen(false)}
+                  >
+                    <Download className="h-4 w-4" /> By-Laws (PDF)
+                  </a>
+                </div>
+              )}
+            </div>
+
+            {/* Membership */}
+            <Link
+              to="/membership"
+              className={`text-sm font-medium transition-colors hover:text-[#003d7b] ${
+                isActive('/membership') ? 'text-[#003d7b] border-b-2 border-[#003d7b] pb-1' : 'text-gray-700'
+              }`}
+            >
+              Membership
+            </Link>
+
+            {/* Contact */}
+            <Link
+              to="/contact"
+              className={`text-sm font-medium transition-colors hover:text-[#003d7b] ${
+                isActive('/contact') ? 'text-[#003d7b] border-b-2 border-[#003d7b] pb-1' : 'text-gray-700'
+              }`}
+            >
+              Contact
+            </Link>
+            <div
+              className="relative"
+              onMouseEnter={() => {
+                if (resourcesCloseTimeout.current) clearTimeout(resourcesCloseTimeout.current);
+                setIsResourcesOpen(true);
+              }}
+              onMouseLeave={() => {
+                if (resourcesCloseTimeout.current) clearTimeout(resourcesCloseTimeout.current);
+                resourcesCloseTimeout.current = window.setTimeout(() => setIsResourcesOpen(false), 300);
+              }}
+              onFocus={() => {
+                if (resourcesCloseTimeout.current) clearTimeout(resourcesCloseTimeout.current);
+                setIsResourcesOpen(true);
+              }}
+            >
               <button
                 className="text-sm font-medium text-gray-700 hover:text-[#003d7b] inline-flex items-center gap-1"
                 onClick={() => setIsResourcesOpen((v) => !v)}
                 aria-expanded={isResourcesOpen}
+                aria-haspopup="menu"
               >
                 Resources <ChevronDown className={`h-4 w-4 transition-transform ${isResourcesOpen ? 'rotate-180' : ''}`} />
               </button>
               {isResourcesOpen && (
-                <div className="absolute right-0 mt-2 w-56 rounded-md border bg-white shadow-lg p-2">
+                <div
+                  className="absolute right-0 mt-2 w-56 rounded-md border bg-white shadow-lg p-2"
+                  onMouseEnter={() => {
+                    if (resourcesCloseTimeout.current) clearTimeout(resourcesCloseTimeout.current);
+                    setIsResourcesOpen(true);
+                  }}
+                  onMouseLeave={() => {
+                    if (resourcesCloseTimeout.current) clearTimeout(resourcesCloseTimeout.current);
+                    resourcesCloseTimeout.current = window.setTimeout(() => setIsResourcesOpen(false), 300);
+                  }}
+                >
                   <Link to="/resources/conferences" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsResourcesOpen(false)}>Conferences</Link>
                   <Link to="/resources/workshops" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsResourcesOpen(false)}>Workshops</Link>
                   <Link to="/resources/research-papers" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsResourcesOpen(false)}>Research Papers</Link>
@@ -105,18 +248,72 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden border-t bg-white py-4">
             <nav className="flex flex-col space-y-4">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={`text-sm font-medium transition-colors hover:text-[#003d7b] px-2 py-1 ${
-                    isActive(item.href) ? 'text-[#003d7b]' : 'text-gray-700'
-                  }`}
-                  onClick={() => setIsMenuOpen(false)}
+              <Link
+                to="/"
+                className={`text-sm font-medium transition-colors hover:text-[#003d7b] px-2 py-1 ${
+                  isActive('/') ? 'text-[#003d7b]' : 'text-gray-700'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Home
+              </Link>
+              {/* About group */}
+              <div className="space-y-2">
+                <button
+                  className="text-left text-sm font-medium transition-colors hover:text-[#003d7b] px-2 py-1 flex items-center gap-1"
+                  onClick={() => setIsAboutMobileOpen((v) => !v)}
+                  aria-expanded={isAboutMobileOpen}
                 >
-                  {item.name}
-                </Link>
-              ))}
+                  About <ChevronDown className={`h-4 w-4 transition-transform ${isAboutMobileOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {isAboutMobileOpen && (
+                  <div className="pl-4 space-y-2">
+                    <Link to="/about#about-us" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>About Us</Link>
+                    {/* Teams submenu */}
+                    <div className="space-y-2">
+                      <button
+                        className="text-left text-sm font-medium transition-colors hover:text-[#003d7b] px-2 py-1 flex items-center gap-1"
+                        onClick={() => setIsTeamsMobileOpen((v) => !v)}
+                        aria-expanded={isTeamsMobileOpen}
+                      >
+                        Teams <ChevronDown className={`h-4 w-4 transition-transform ${isTeamsMobileOpen ? 'rotate-180' : ''}`} />
+                      </button>
+                      {isTeamsMobileOpen && (
+                        <div className="pl-4 space-y-2">
+                          <Link to="/about/teams/ec" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Executive Committee (EC)</Link>
+                          <Link to="/about/teams/steering-council" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Steering Council</Link>
+                          <Link to="/about/teams/ab" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Advisory Board (IAB)</Link>
+                          <Link to="/about/teams/ial" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Industry–Academic Liaison Committee</Link>
+                          <Link to="/about/teams/regional" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Regional Representatives / Ambassadors</Link>
+                          <Link to="/about/teams/operational" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Operational Committees (non-EC)</Link>
+                          <Link to="/about/teams/fellows" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Honorary & Distinguished Fellows</Link>
+                          <Link to="/about/teams/founding-fellows" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Founding Fellows</Link>
+                          <Link to="/about/teams/students" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Student Chapter Coordinators</Link>
+                          <Link to="/about/teams/task-forces" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Innovation Task Forces (ad hoc)</Link>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+              <Link
+                to="/membership"
+                className={`text-sm font-medium transition-colors hover:text-[#003d7b] px-2 py-1 ${
+                  isActive('/membership') ? 'text-[#003d7b]' : 'text-gray-700'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Membership
+              </Link>
+              <Link
+                to="/contact"
+                className={`text-sm font-medium transition-colors hover:text-[#003d7b] px-2 py-1 ${
+                  isActive('/contact') ? 'text-[#003d7b]' : 'text-gray-700'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Contact
+              </Link>
               <button
                 className="text-left text-sm font-medium transition-colors hover:text-[#003d7b] px-2 py-1 flex items-center gap-1"
                 onClick={() => setIsResourcesOpenMobile((v) => !v)}
