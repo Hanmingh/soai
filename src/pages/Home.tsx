@@ -68,7 +68,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-[#003d7b]/80"></div>
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-4 bg-[#ee7c01] text-white text-sm md:text-base px-3 py-1 md:px-4 md:py-1.5">
+            <Badge className="mb-4 mx-auto bg-[#ee7c01] text-white text-[11px] sm:text-sm md:text-base leading-snug px-2.5 py-0.5 sm:px-3 sm:py-1 md:px-4 md:py-1.5 rounded-full max-w-[18rem] sm:max-w-none whitespace-normal break-words">
               Leading Emerging Technology & Algorithms Research Society
             </Badge>
             <h1 className="text-5xl font-bold text-white mb-6">

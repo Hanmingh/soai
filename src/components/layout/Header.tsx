@@ -56,6 +56,8 @@ export default function Header() {
               Home
             </Link>
 
+            
+
             {/* About with nested Teams */}
             <div
               className="relative"
@@ -93,6 +95,9 @@ export default function Header() {
                   }}
                 >
                   <Link to="/about#about-us" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>About Us</Link>
+                  <Link to="/about/teams/ec" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Executive Committees</Link>
+                  <Link to="/about/teams/steering-council" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Steering Council</Link>
+                  <Link to="/about/teams/ab" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Advisory Board (AB)</Link>
                   <div
                     className="relative"
                     onMouseEnter={() => {
@@ -110,7 +115,7 @@ export default function Header() {
                       aria-haspopup="menu"
                       onClick={() => setIsTeamsOpen((v) => !v)}
                     >
-                      Teams <ChevronDown className={`h-4 w-4 transition-transform ${isTeamsOpen ? 'rotate-180' : ''}`} />
+                      Operational Committees (non-EC) <ChevronDown className={`h-4 w-4 transition-transform ${isTeamsOpen ? 'rotate-180' : ''}`} />
                     </button>
                     {isTeamsOpen && (
                       <div
@@ -124,12 +129,8 @@ export default function Header() {
                           teamsCloseTimeout.current = window.setTimeout(() => setIsTeamsOpen(false), 300);
                         }}
                       >
-                      <Link to="/about/teams/ec" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Executive Committees</Link>
-                      <Link to="/about/teams/steering-council" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Steering Council</Link>
-                      <Link to="/about/teams/ab" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Advisory Board (IAB)</Link>
                       <Link to="/about/teams/ial" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Industry–Academic Liaison Committee</Link>
                       <Link to="/about/teams/regional" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Regional Representatives / Ambassadors</Link>
-                      <Link to="/about/teams/operational" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Operational Committees (non-EC)</Link>
                       <Link to="/about/teams/fellows" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Honorary & Distinguished Fellows</Link>
                       <Link to="/about/teams/founding-fellows" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Founding Fellows</Link>
                       <Link to="/about/teams/students" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Student Chapter Coordinators</Link>
@@ -176,6 +177,7 @@ export default function Header() {
             >
               Contact
             </Link>
+            {/* Resources (rightmost) */}
             <div
               className="relative"
               onMouseEnter={() => {
@@ -211,10 +213,8 @@ export default function Header() {
                     resourcesCloseTimeout.current = window.setTimeout(() => setIsResourcesOpen(false), 300);
                   }}
                 >
-                  <Link to="/resources/conferences" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsResourcesOpen(false)}>Conferences</Link>
-                  <Link to="/resources/workshops" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsResourcesOpen(false)}>Workshops</Link>
-                  <Link to="/resources/research-papers" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsResourcesOpen(false)}>Research Papers</Link>
-                  <Link to="/resources/community-forum" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsResourcesOpen(false)}>Community Forum</Link>
+                  <Link to="/events" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsResourcesOpen(false)}>Events</Link>
+                  <Link to="/news" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsResourcesOpen(false)}>News</Link>
                 </div>
               )}
             </div>
@@ -269,23 +269,22 @@ export default function Header() {
                 {isAboutMobileOpen && (
                   <div className="pl-4 space-y-2">
                     <Link to="/about#about-us" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>About Us</Link>
-                    {/* Teams submenu */}
+                    <Link to="/about/teams/ec" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Executive Committees</Link>
+                    <Link to="/about/teams/steering-council" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Steering Council</Link>
+                    <Link to="/about/teams/ab" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Advisory Board (AB)</Link>
+                    {/* Operational Committees submenu */}
                     <div className="space-y-2">
                       <button
                         className="text-left text-sm font-medium transition-colors hover:text-[#003d7b] px-2 py-1 flex items-center gap-1"
                         onClick={() => setIsTeamsMobileOpen((v) => !v)}
                         aria-expanded={isTeamsMobileOpen}
                       >
-                        Teams <ChevronDown className={`h-4 w-4 transition-transform ${isTeamsMobileOpen ? 'rotate-180' : ''}`} />
+                        Operational Committees (non-EC) <ChevronDown className={`h-4 w-4 transition-transform ${isTeamsMobileOpen ? 'rotate-180' : ''}`} />
                       </button>
                       {isTeamsMobileOpen && (
                         <div className="pl-4 space-y-2">
-                          <Link to="/about/teams/ec" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Executive Committee (EC)</Link>
-                          <Link to="/about/teams/steering-council" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Steering Council</Link>
-                          <Link to="/about/teams/ab" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Advisory Board (IAB)</Link>
                           <Link to="/about/teams/ial" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Industry–Academic Liaison Committee</Link>
                           <Link to="/about/teams/regional" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Regional Representatives / Ambassadors</Link>
-                          <Link to="/about/teams/operational" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Operational Committees (non-EC)</Link>
                           <Link to="/about/teams/fellows" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Honorary & Distinguished Fellows</Link>
                           <Link to="/about/teams/founding-fellows" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Founding Fellows</Link>
                           <Link to="/about/teams/students" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Student Chapter Coordinators</Link>
@@ -293,6 +292,22 @@ export default function Header() {
                         </div>
                       )}
                     </div>
+                    <a
+                      href={`${import.meta.env.BASE_URL}Constitution_SoAI.pdf`}
+                      download
+                      className="flex items-center gap-2 text-sm text-gray-700 hover:text-[#003d7b]"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <Download className="h-4 w-4" /> Constitution (PDF)
+                    </a>
+                    <a
+                      href={`${import.meta.env.BASE_URL}By-Laws_SoAI.pdf`}
+                      download
+                      className="flex items-center gap-2 text-sm text-gray-700 hover:text-[#003d7b]"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <Download className="h-4 w-4" /> By-Laws (PDF)
+                    </a>
                   </div>
                 )}
               </div>
@@ -314,21 +329,22 @@ export default function Header() {
               >
                 Contact
               </Link>
-              <button
-                className="text-left text-sm font-medium transition-colors hover:text-[#003d7b] px-2 py-1 flex items-center gap-1"
-                onClick={() => setIsResourcesOpenMobile((v) => !v)}
-                aria-expanded={isResourcesOpenMobile}
-              >
-                Resources <ChevronDown className={`h-4 w-4 transition-transform ${isResourcesOpenMobile ? 'rotate-180' : ''}`} />
-              </button>
-              {isResourcesOpenMobile && (
-                <div className="pl-4 space-y-2">
-                  <Link to="/resources/conferences" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Conferences</Link>
-                  <Link to="/resources/workshops" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Workshops</Link>
-                  <Link to="/resources/research-papers" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Research Papers</Link>
-                  <Link to="/resources/community-forum" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Community Forum</Link>
-                </div>
-              )}
+              {/* Resources (mobile) */}
+              <div className="space-y-2">
+                <button
+                  className="text-left text-sm font-medium transition-colors hover:text-[#003d7b] px-2 py-1 flex items-center gap-1"
+                  onClick={() => setIsResourcesOpenMobile((v) => !v)}
+                  aria-expanded={isResourcesOpenMobile}
+                >
+                  Resources <ChevronDown className={`h-4 w-4 transition-transform ${isResourcesOpenMobile ? 'rotate-180' : ''}`} />
+                </button>
+                {isResourcesOpenMobile && (
+                  <div className="pl-4 space-y-2">
+                    <Link to="/events" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Events</Link>
+                    <Link to="/news" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>News</Link>
+                  </div>
+                )}
+              </div>
               <div className="flex flex-col space-y-2 pt-4 border-t">
                 <Button size="sm" className="bg-[#003d7b] hover:bg-[#002a5c]" asChild>
                   <Link to="/membership">Join Now</Link>

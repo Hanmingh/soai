@@ -73,15 +73,13 @@ export default function Footer() {
               </Link>
             </nav>
           </div>
-
+          
           {/* Resources */}
           <div>
             <h3 className="font-semibold text-lg mb-4">Resources</h3>
             <nav className="space-y-3">
-              <Link to="/resources/conferences" className="block text-sm text-gray-300 hover:text-white transition-colors">Conferences</Link>
-              <Link to="/resources/workshops" className="block text-sm text-gray-300 hover:text-white transition-colors">Workshops</Link>
-              <Link to="/resources/research-papers" className="block text-sm text-gray-300 hover:text-white transition-colors">Research Papers</Link>
-              <Link to="/resources/community-forum" className="block text-sm text-gray-300 hover:text-white transition-colors">Community Forum</Link>
+              <Link to="/events" className="block text-sm text-gray-300 hover:text-white transition-colors">Events</Link>
+              <Link to="/news" className="block text-sm text-gray-300 hover:text-white transition-colors">News</Link>
             </nav>
           </div>
         </div>

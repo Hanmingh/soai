@@ -5,10 +5,8 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Membership from './pages/Membership';
 import Contact from './pages/Contact';
-import Conferences from './pages/resources/Conferences';
-import Workshops from './pages/resources/Workshops';
-import ResearchPapers from './pages/resources/ResearchPapers';
-import CommunityForum from './pages/resources/CommunityForum';
+import Events from './pages/Events';
+import News from './pages/News';
 import TeamSection from './pages/teams/TeamSection';
 import MembershipCheckout from './pages/MembershipCheckout';
 
@@ -24,10 +22,8 @@ function App() {
           <Route path="membership" element={<Membership />} />
           <Route path="membership/checkout" element={<MembershipCheckout />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="resources/conferences" element={<Conferences />} />
-          <Route path="resources/workshops" element={<Workshops />} />
-          <Route path="resources/research-papers" element={<ResearchPapers />} />
-          <Route path="resources/community-forum" element={<CommunityForum />} />
+          <Route path="events" element={<Events />} />
+          <Route path="news" element={<News />} />
         </Route>
       </Routes>
     </Router>
