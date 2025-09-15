@@ -24,7 +24,7 @@ export default function About() {
               Through world-class conferences, workshops, training programs, and strategic partnerships, the Society creates a unique platform where ideas move seamlessly from theory to real-world impact. By bridging academic rigor with industry application, SoAI supports a vibrant ecosystem for knowledge exchange, capacity building, and technological innovation.
             </p>
             <p>
-              Society of Algorithmic Intelligence (SoAI) is a non-profit society registered in Singapore under the Societies Act (UEN: T25SS0119K). Our Constitution prohibits any distribution of profits to members; all funds are applied to our educational and research objectives. Accounts are tabled at the AGM and available on request, and officers are only reimbursed for approved expenses or paid reasonable honoraria for services rendered.
+              Society of Algorithmic Intelligence (SoAI) is a non-profit society registered in Singapore under the Societies Act. Our Constitution prohibits any distribution of profits to members; all funds are applied to our educational and research objectives. Accounts are tabled at the AGM and available on request, and officers are only reimbursed for approved expenses or paid reasonable honoraria for services rendered.
             </p>
             <p>
               Join us in building a globally connected, future-ready society where advanced algorithms drive human progress and technological breakthroughs.
