@@ -15,11 +15,6 @@ export default function MembershipCheckout() {
     return membershipTypes.find((p) => p.name === planName) || membershipTypes[0];
   }, [planName]);
 
-  const promoEndDisplay = "Jun 30, 2026";
-  const isPromoActive = new Date() <= new Date("2026-06-30T23:59:59.999Z");
-  const promoEligibleNames = new Set(["Regular Member", "Developing Countries", "Student Member"]);
-  const isEligible = isPromoActive && promoEligibleNames.has(plan.name);
-
   return (
     <div className="min-h-screen bg-white">
       <section className="py-16">
@@ -39,23 +34,12 @@ export default function MembershipCheckout() {
               <CardContent className="space-y-4">
                 <div className="grid gap-2 text-sm">
                   <div className="flex items-center justify-between"><span>Plan</span><span>{plan.name}</span></div>
-                  <div className="flex items-center justify-between"><span>Billing</span><span>{isEligible ? '/ month (trial)' : (plan.period || 'one-time')}</span></div>
+                  <div className="flex items-center justify-between"><span>Billing</span><span>{plan.period || 'one-time'}</span></div>
                 </div>
                 <div className="border-t pt-4 flex items-center justify-between font-semibold">
                   <span>Total</span>
-                  <span className="flex items-center gap-2">
-                    {isEligible && (
-                      <span className="text-gray-400 line-through">{plan.price}</span>
-                    )}
-                    {isEligible ? 'SGD 0' : plan.price}
-                  </span>
+                  <span>{plan.price}</span>
                 </div>
-                {isEligible && (
-                  <div className="text-xs text-green-700">
-                    Free trial until {promoEndDisplay}. Then {plan.price}
-                    <span className="text-gray-500">{plan.period}</span>.
-                  </div>
-                )}
                 <Button className="w-full bg-[#003d7b] hover:bg-[#002a5c]">Proceed to Payment</Button>
                 <p className="text-xs text-gray-500 text-center">By continuing, you agree to the <button type="button" onClick={() => setIsDisclaimerOpen(true)} className="underline text-[#003d7b]">privacy disclaimer</button>.</p>
               </CardContent>

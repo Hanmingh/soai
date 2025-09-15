@@ -18,7 +18,7 @@ export const recentEvents: EventItem[] = [
     endDate: "2025-09-19",
     location: "Singapore",
     description: "Joint ETH–NUS AI x FinTech workshop and hackathon, including NUS innovation day, talks, panel on regulation and innovation, and a hackathon on 'AI Agents for the Future of Financial Decision-Making'.",
-    link:"https://www.math.nus.edu.sg/wp-content/uploads/sites/4/2025/08/program_20250729.pdf",
+    link:"https://www.math.nus.edu.sg/cqf/events/conference_and_workshops/",
   },
   {
     id: "the-9th-ism-isct-nii-zib-nus-modal-workshop",

@@ -8,9 +8,6 @@ import membershipBanner from "@/assets/Membership_banner.jpg";
 import { membershipTypes } from "@/data/membership";
 
 export default function Membership() {
-  const promoEndDisplay = "Jun 30, 2026";
-  const isPromoActive = new Date() <= new Date("2026-06-30T23:59:59.999Z");
-  const promoEligibleNames = new Set(["Regular Member", "Developing Countries", "Student Member"]);
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -55,7 +52,7 @@ export default function Membership() {
       {/* Membership Types */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-8">
+          <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Membership Types & Fees
             </h2>
@@ -63,82 +60,45 @@ export default function Membership() {
               Choose the membership type that best fits your needs and career stage
             </p>
           </div>
-          {isPromoActive && (
-            <div className="mb-10 max-w-4xl mx-auto rounded-lg border border-green-200 bg-gradient-to-r from-green-50 to-blue-50 p-4 text-sm text-green-800">
-              <div className="flex items-center justify-center gap-2 flex-wrap">
-                <Badge className="bg-green-600 text-white">Free Trial</Badge>
-                <span>
-                  Limited-time promotion: <span className="font-semibold">Free trial ($0 / year)</span> for <span className="font-semibold">Regular</span>, <span className="font-semibold">Developing Countries</span>, and <span className="font-semibold">Student</span> memberships until {promoEndDisplay}.
-                </span>
-              </div>
-            </div>
-          )}
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {membershipTypes.map((type, index) => {
-              const isEligible = isPromoActive && promoEligibleNames.has(type.name);
-              return (
-                <Card key={index} className={`relative border-0 shadow-lg ${type.popular ? 'ring-2 ring-[#003d7b]' : ''}`}>
-                  {type.popular && (
-                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                      <Badge className="bg-[#003d7b] text-white">
-                        <Star className="h-3 w-3 mr-1" />
-                        Most Popular
-                      </Badge>
-                    </div>
-                  )}
-                  {isEligible && (
-                    <div className="absolute -top-3 right-3">
-                      <Badge className="bg-green-600 text-white">Free Trial</Badge>
-                    </div>
-                  )}
-                  <CardHeader className="text-center">
-                    <CardTitle className="text-xl">{type.name}</CardTitle>
-                    <div className="text-3xl font-bold text-[#003d7b]">
-                      {isEligible ? (
-                        <>
-                          <span className="text-gray-400 line-through mr-2">
-                            {type.price}
-                            <span className="text-sm font-normal text-gray-400">{type.period}</span>
-                          </span>
-                          SGD 0
-                          <span className="text-sm font-normal text-gray-500">/ year</span>
-                        </>
-                      ) : (
-                        <>
-                          {type.price}
-                          <span className="text-sm font-normal text-gray-500">{type.period}</span>
-                        </>
-                      )}
-                    </div>
-                    {isEligible && (
-                      <div className="text-xs text-green-700 mt-1">
-                        Free until {promoEndDisplay}. Then {type.price}
-                        <span className="text-gray-500">{type.period}</span>.
-                      </div>
-                    )}
-                    <CardDescription>{type.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-3 mb-6">
-                      {type.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-center space-x-2">
-                          <Check className="h-4 w-4 text-green-600 flex-shrink-0" />
-                          <span className="text-sm text-gray-700">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Button 
-                      asChild
-                      className={`w-full ${type.popular ? 'bg-[#003d7b] hover:bg-[#002a5c]' : ''}`}
-                      variant={type.popular ? "default" : "outline"}
-                    >
-                      <Link to={`/membership/checkout?plan=${encodeURIComponent(type.name)}`}>{isEligible ? 'Start Free Trial' : 'Choose Plan'}</Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              );
-            })}
+            {membershipTypes.map((type, index) => (
+              <Card key={index} className={`relative border-0 shadow-lg ${type.popular ? 'ring-2 ring-[#003d7b]' : ''}`}>
+                {type.popular && (
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                    <Badge className="bg-[#003d7b] text-white">
+                      <Star className="h-3 w-3 mr-1" />
+                      Most Popular
+                    </Badge>
+                  </div>
+                )}
+                <CardHeader className="text-center">
+                  <CardTitle className="text-xl">{type.name}</CardTitle>
+                  <div className="text-3xl font-bold text-[#003d7b]">
+                    {type.price}
+                    <span className="text-sm font-normal text-gray-500">{type.period}</span>
+                  </div>
+                  <CardDescription>{type.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3 mb-6">
+                    {type.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-center space-x-2">
+                        <Check className="h-4 w-4 text-green-600 flex-shrink-0" />
+                        <span className="text-sm text-gray-700">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button 
+                    asChild
+                    className={`w-full ${type.popular ? 'bg-[#003d7b] hover:bg-[#002a5c]' : ''}`}
+                    variant={type.popular ? "default" : "outline"}
+                  >
+                    <Link to={`/membership/checkout?plan=${encodeURIComponent(type.name)}`}>Choose Plan</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
