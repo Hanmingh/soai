@@ -4,92 +4,14 @@ import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Check, Star } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import membershipBanner from "@/assets/Membership_banner.jpg";
+import { membershipTypes } from "@/data/membership";
 
 export default function Membership() {
-  // Ordered to match the requested listing
-  const membershipTypes = [
-    {
-      name: "Regular Member",
-      price: "SGD 128",
-      period: "/ year",
-      description: "Ideal for professionals and researchers in the field",
-      popular: true,
-      features: [
-        "Conference discounts",
-        "Certificate programs discounts",
-        "Academic-industry project opportunities",
-        "Complimentary Coursera Plus subscription",
-        "Priority networking access",
-        "Premium support"
-      ]
-    },
-    {
-      name: "Permanent Member",
-      price: "SGD 1280",
-      period: "one-time",
-      description: "Lifetime membership with exclusive benefits",
-      popular: false,
-      features: [
-        "Lifetime access to all So-AI content",
-        "Conference discounts",
-        "Certificate programs",
-        "Academic-industry project opportunities",
-        "Complimentary Coursera Plus subscription",
-        "Priority networking access",
-        "VIP networking privileges",
-        "Advisory board consideration",
-        "Exclusive member events",
-        "Dedicated support"
-      ]
-    },
-    {
-      name: "Developing Countries",
-      price: "SGD 60",
-      period: "/ year",
-      description: "Special support for developing countries",
-      popular: false,
-      features: [
-        "Conference discounts",
-        "Certificate programs discounts",
-        "Academic-industry project opportunities",
-        "Complimentary Coursera Plus subscription",
-        "Priority networking access"
-      ]
-    },
-    {
-      name: "Student Member",
-      price: "SGD 30",
-      period: "/ year",
-      description: "Perfect for students pursuing algorithmic intelligence studies",
-      popular: false,
-      features: [
-        "Student discounts on events",
-        "Networking access",
-        "Certificate programs discounts",
-        "Academic-industry project opportunities",
-        "Complimentary Coursera Plus subscription",
-        "Email support"
-      ]
-    }
-  ];
-  
-  // Prefer importing the banner from src if present; otherwise fall back to public/
-  const [membershipBannerUrl, setMembershipBannerUrl] = useState<string>(`${import.meta.env.BASE_URL}Membership_banner.jpg`);
-  useEffect(() => {
-    import("@/assets/Membership_banner.jpg")
-      .then((mod) => {
-        if (mod?.default) setMembershipBannerUrl(mod.default);
-      })
-      .catch(() => {
-        // keep fallback to public path
-      });
-  }, []);
-
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <section className="relative py-20 bg-cover bg-center bg-no-repeat" style={{backgroundImage: `url(${membershipBannerUrl})`}}>
+      <section className="relative py-20 bg-cover bg-center bg-no-repeat" style={{backgroundImage: `url(${membershipBanner})`}}>
         <div className="absolute inset-0 bg-[#003d7b]/80"></div>
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">

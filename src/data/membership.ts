@@ -10,63 +10,60 @@ export type MembershipType = {
 export const membershipTypes: MembershipType[] = [
   {
     name: "Regular Member",
-    price: "USD 100",
+    price: "SGD 128",
     period: "/ year",
     description: "Ideal for professionals and researchers in the field",
     popular: true,
     features: [
-      "Full access to SoAI lectures",
-      "Complimentary Coursera Plus subscription",
       "Conference discounts",
-      "Priority networking access",
+      "Certificate programs discounts",
       "Academic-industry project opportunities",
-      "Official SoAI Certificate eligibility",
+      "Priority networking access",
       "Premium support"
     ]
   },
   {
     name: "Permanent Member",
-    price: "USD 1,000",
+    price: "SGD 1280",
     period: "one-time",
     description: "Lifetime membership with exclusive benefits",
     popular: false,
     features: [
-      "Lifetime access to all SoAI content",
-      "Premium Coursera Plus subscription",
-      "Maximum conference discounts",
+      "Lifetime access to all So-AI content",
+      "Conference discounts",
+      "Certificate programs",
+      "Academic-industry project opportunities",
+      "Priority networking access",
       "VIP networking privileges",
       "Advisory board consideration",
       "Exclusive member events",
-      "Priority project access",
       "Dedicated support"
     ]
   },
   {
     name: "Developing Countries",
-    price: "USD 50",
+    price: "SGD 60",
     period: "/ year",
-    description: "Special pricing for developing countries",
+    description: "Special support for developing countries",
     popular: false,
     features: [
-      "Full access to SoAI lectures",
-      "Complimentary Coursera Plus subscription",
       "Conference discounts",
-      "Global collaboration opportunities",
-      "Regional networking events",
-      "Certificate programs"
+      "Certificate programs discounts",
+      "Academic-industry project opportunities",
+      "Priority networking access"
     ]
   },
   {
     name: "Student Member",
-    price: "USD 30",
+    price: "SGD 30",
     period: "/ year",
     description: "Perfect for students pursuing algorithmic intelligence studies",
     popular: false,
     features: [
-      "Access to SoAI lectures",
       "Student discounts on events",
-      "Basic networking access",
-      "Student resources library",
+      "Networking access",
+      "Certificate programs discounts",
+      "Academic-industry project opportunities",
       "Email support"
     ]
   }

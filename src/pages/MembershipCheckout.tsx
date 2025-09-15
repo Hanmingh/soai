@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { membershipTypes } from "@/data/memberships";
+import { membershipTypes } from "@/data/membership";
 import { useState } from "react";
 
 export default function MembershipCheckout() {
