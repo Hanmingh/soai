@@ -63,7 +63,8 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 bg-cover bg-center bg-no-repeat" style={{backgroundImage: `url(${bannerUrl})`}}>
+      <section className="relative py-20 bg-gray-200">
+        <img src={bannerUrl} alt="" className="absolute inset-0 w-full h-full object-cover" loading="eager" />
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-[#003d7b]/80"></div>
         <div className="container mx-auto px-6 relative z-10">
