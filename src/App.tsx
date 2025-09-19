@@ -9,6 +9,10 @@ import Events from './pages/Events';
 import News from './pages/News';
 import TeamSection from './pages/teams/TeamSection';
 import MembershipCheckout from './pages/MembershipCheckout';
+import Maintenance from './pages/Maintenance';
+import ComingSoon from './pages/ComingSoon';
+import MembershipRegister from './pages/MembershipRegister';
+import MembershipSuccess from './pages/MembershipSuccess';
 
 function App() {
   return (
@@ -21,9 +25,13 @@ function App() {
           <Route path="about/teams/:sectionId" element={<TeamSection />} />
           <Route path="membership" element={<Membership />} />
           <Route path="membership/checkout" element={<MembershipCheckout />} />
+          <Route path="membership/register" element={<MembershipRegister />} />
+          <Route path="membership/success" element={<MembershipSuccess />} />
           <Route path="contact" element={<Contact />} />
           <Route path="events" element={<Events />} />
           <Route path="news" element={<News />} />
+          <Route path="maintenance" element={<Maintenance />} />
+          <Route path="coming-soon" element={<ComingSoon />} />
         </Route>
       </Routes>
     </Router>

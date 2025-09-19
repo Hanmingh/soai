@@ -56,7 +56,9 @@ export default function MembershipCheckout() {
                     <span className="text-gray-500">{plan.period}</span>.
                   </div>
                 )}
-                <Button className="w-full bg-[#003d7b] hover:bg-[#002a5c]">Proceed to Payment</Button>
+                <Button asChild className="w-full bg-[#003d7b] hover:bg-[#002a5c]">
+                  <Link to={`/membership/register?plan=${encodeURIComponent(plan.name)}`}>Proceed to Payment</Link>
+                </Button>
                 <p className="text-xs text-gray-500 text-center">By continuing, you agree to the <button type="button" onClick={() => setIsDisclaimerOpen(true)} className="underline text-[#003d7b]">privacy disclaimer</button>.</p>
               </CardContent>
             </Card>
@@ -75,6 +77,8 @@ export default function MembershipCheckout() {
           </div>
         </div>
       </section>
+
+      {/* Registration moved to dedicated page */}
 
       {isDisclaimerOpen && (
         <div className="fixed inset-0 z-50">

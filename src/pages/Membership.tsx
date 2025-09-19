@@ -78,6 +78,7 @@ export default function Membership() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {membershipTypes.map((type, index) => {
               const isEligible = isPromoActive && promoEligibleNames.has(type.name);
+              const isPermanent = type.name === "Permanent Member";
               return (
                 <Card key={index} className={`relative border-0 shadow-lg ${type.popular ? 'ring-2 ring-[#003d7b]' : ''}`}>
                   {type.popular && (
@@ -134,7 +135,9 @@ export default function Membership() {
                       className={`w-full ${type.popular ? 'bg-[#003d7b] hover:bg-[#002a5c]' : ''}`}
                       variant={type.popular ? "default" : "outline"}
                     >
-                      <Link to={`/membership/checkout?plan=${encodeURIComponent(type.name)}`}>{isEligible ? 'Start Free Trial' : 'Choose Plan'}</Link>
+                      <Link to={isPermanent ? "/coming-soon" : `/membership/checkout?plan=${encodeURIComponent(type.name)}`}>
+                        {isPermanent ? 'Coming Soon' : (isEligible ? 'Start Free Trial' : 'Choose Plan')}
+                      </Link>
                     </Button>
                   </CardContent>
                 </Card>
