@@ -35,9 +35,6 @@ export default function MembershipRegister() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
-  const isPromoActive = new Date() <= new Date("2026-06-30T23:59:59.999Z");
-  const isEligible = isPromoActive && new Set(["Regular Member", "Developing Countries", "Student Member"]).has(plan.name);
-
   function isValidUrlLike(input: string): boolean {
     const v = input.trim();
     if (!v) return false;
