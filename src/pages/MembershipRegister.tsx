@@ -30,7 +30,7 @@ export default function MembershipRegister() {
   const [affiliation, setAffiliation] = useState("");
   const [title, setTitle] = useState("");
   const [email, setEmail] = useState("");
-  const [phoneFull, setPhoneFull] = useState(""); // expects +<code> <number>
+  const [personalWebpage, setPersonalWebpage] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -38,15 +38,15 @@ export default function MembershipRegister() {
   const isPromoActive = new Date() <= new Date("2026-06-30T23:59:59.999Z");
   const isEligible = isPromoActive && new Set(["Regular Member", "Developing Countries", "Student Member"]).has(plan.name);
 
-  function parsePhone(input: string): { code: string; number: string } | null {
-    const trimmed = input.trim();
-    const match = trimmed.match(/^\+([0-9]{1,4})\s*(.*)$/);
-    if (!match) return null;
-    const code = `+${match[1]}`;
-    const numberRaw = match[2]?.trim() || "";
-    if (!numberRaw) return null;
-    const digitsOnly = numberRaw.replace(/[^0-9]/g, "");
-    return { code, number: digitsOnly || numberRaw };
+  function isValidUrlLike(input: string): boolean {
+    const v = input.trim();
+    if (!v) return false;
+    try {
+      const url = new URL(v.match(/^https?:\/\//) ? v : `https://${v}`);
+      return Boolean(url.hostname);
+    } catch {
+      return false;
+    }
   }
 
   async function onRegister(e: FormEvent) {
@@ -62,13 +62,8 @@ export default function MembershipRegister() {
       setError("Country, affiliation and title are required.");
       return;
     }
-    if (!phoneFull.trim()) {
-      setError("Please enter your phone number with country code (e.g., +65 8123 4567).");
-      return;
-    }
-    const parsed = parsePhone(phoneFull);
-    if (!parsed) {
-      setError("Enter phone with country code (e.g., +65 8123 4567).");
+    if (personalWebpage.trim() && !isValidUrlLike(personalWebpage)) {
+      setError("Enter a valid URL (e.g., https://example.com).");
       return;
     }
 
@@ -82,8 +77,7 @@ export default function MembershipRegister() {
         country: country.trim(),
         affiliation: affiliation.trim(),
         title: title.trim(),
-        phone_country_code: parsed.code,
-        phone: parsed.number,
+        personal_webpage: personalWebpage.trim() || undefined,
         plan: plan.name,
       });
       const msg = res?.message || (res?.success ? "Registration submitted successfully." : "Registration submitted.");
@@ -230,16 +224,15 @@ export default function MembershipRegister() {
                     />
                   </div>
 
-                  {/* Phone (with country code) */}
+                  {/* Personal Webpage (optional) */}
                   <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Phone (include country code) <span className="text-red-600">*</span></label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Personal Webpage</label>
                     <input
-                      type="tel"
-                      placeholder="Phone Number"
-                      value={phoneFull}
-                      onChange={(e) => setPhoneFull(e.target.value)}
+                      type="url"
+                      placeholder="https://example.com"
+                      value={personalWebpage}
+                      onChange={(e) => setPersonalWebpage(e.target.value)}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#003d7b] focus:border-[#003d7b]"
-                      required
                     />
                   </div>
 

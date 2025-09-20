@@ -64,16 +64,6 @@ export default function Membership() {
               Choose the membership type that best fits your needs and career stage
             </p>
           </div>
-          {isPromoActive && (
-            <div className="mb-10 max-w-4xl mx-auto rounded-lg border border-green-200 bg-gradient-to-r from-green-50 to-blue-50 p-4 text-sm text-green-800">
-              <div className="flex items-center justify-center gap-2 flex-wrap">
-                <Badge className="bg-green-600 text-white">Free Trial</Badge>
-                <span>
-                  Limited-time promotion: <span className="font-semibold">Free trial ($0 / year)</span> for <span className="font-semibold">Regular</span>, <span className="font-semibold">Developing Countries</span>, and <span className="font-semibold">Student</span> memberships until {promoEndDisplay}.
-                </span>
-              </div>
-            </div>
-          )}
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {membershipTypes.map((type, index) => {
@@ -89,22 +79,13 @@ export default function Membership() {
                       </Badge>
                     </div>
                   )}
-                  {isEligible && (
-                    <div className="absolute -top-3 right-3">
-                      <Badge className="bg-green-600 text-white">Free Trial</Badge>
-                    </div>
-                  )}
                   <CardHeader className="text-center">
                     <CardTitle className="text-xl">{type.name}</CardTitle>
                     <div className="text-3xl font-bold text-[#003d7b]">
                       {isEligible ? (
                         <>
-                          <span className="text-gray-400 line-through mr-2">
-                            {type.price}
-                            <span className="text-sm font-normal text-gray-400">{type.period}</span>
-                          </span>
-                          SGD 0
-                          <span className="text-sm font-normal text-gray-500">/ year</span>
+                          <span className="text-gray-400 line-through decoration-red-600">{type.price}</span>
+                          <span className="text-sm font-normal text-gray-500">{type.period}</span>
                         </>
                       ) : (
                         <>
@@ -115,8 +96,7 @@ export default function Membership() {
                     </div>
                     {isEligible && (
                       <div className="text-xs text-green-700 mt-1">
-                        Free until {promoEndDisplay}. Then {type.price}
-                        <span className="text-gray-500">{type.period}</span>.
+                        Members who register by {promoEndDisplay} will be granted one year of complimentary membership.
                       </div>
                     )}
                     <CardDescription>{type.description}</CardDescription>
@@ -136,7 +116,7 @@ export default function Membership() {
                       variant={type.popular ? "default" : "outline"}
                     >
                       <Link to={isPermanent ? "/coming-soon" : `/membership/checkout?plan=${encodeURIComponent(type.name)}`}>
-                        {isPermanent ? 'Coming Soon' : (isEligible ? 'Start Free Trial' : 'Choose Plan')}
+                        {isPermanent ? 'Coming Soon' : (isEligible ? 'Register Now' : 'Choose Plan')}
                       </Link>
                     </Button>
                   </CardContent>

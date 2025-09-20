@@ -55,8 +55,7 @@ export type RegisterPayload = {
 	country?: string;
 	affiliation?: string;
 	title?: string;
-	phone_country_code?: string;
-	phone?: string;
+	personal_webpage?: string;
 	plan: string;
 };
 

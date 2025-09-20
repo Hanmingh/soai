@@ -52,8 +52,7 @@ export default function MembershipCheckout() {
                 </div>
                 {isEligible && (
                   <div className="text-xs text-green-700">
-                    Free trial until {promoEndDisplay}. Then {plan.price}
-                    <span className="text-gray-500">{plan.period}</span>.
+                    Members who register by {promoEndDisplay} will be granted one year of complimentary membership.
                   </div>
                 )}
                 <Button asChild className="w-full bg-[#003d7b] hover:bg-[#002a5c]">
