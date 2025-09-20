@@ -94,11 +94,7 @@ export default function MembershipRegister() {
   }
 
   const countriesOrdered = useMemo(() => {
-    return [
-      "Singapore",
-      ...unMemberCountries.filter((c) => c !== "Singapore"),
-      "Other",
-    ];
+    return [...unMemberCountries, "Other"];
   }, []);
 
   return (
