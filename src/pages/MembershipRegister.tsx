@@ -236,7 +236,7 @@ export default function MembershipRegister() {
                   {success && <p className="text-sm text-green-700 md:col-span-2">{success}</p>}
                   <div className="md:col-span-2">
                     <Button type="submit" disabled={submitting} className="w-full bg-[#003d7b] hover:bg-[#002a5c] disabled:opacity-60">
-                      {submitting ? "Submitting…" : `Register ${isEligible ? "(Free Trial)" : ""}`}
+                      {submitting ? "Submitting…" : "Register"}
                     </Button>
                   </div>
                 </form>

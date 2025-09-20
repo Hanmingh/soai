@@ -56,7 +56,7 @@ export default function MembershipCheckout() {
                   </div>
                 )}
                 <Button asChild className="w-full bg-[#003d7b] hover:bg-[#002a5c]">
-                  <Link to={`/membership/register?plan=${encodeURIComponent(plan.name)}`}>Proceed to Payment</Link>
+                  <Link to={`/membership/register?plan=${encodeURIComponent(plan.name)}`}>Proceed to Register</Link>
                 </Button>
                 <p className="text-xs text-gray-500 text-center">By continuing, you agree to the <button type="button" onClick={() => setIsDisclaimerOpen(true)} className="underline text-[#003d7b]">privacy disclaimer</button>.</p>
               </CardContent>
