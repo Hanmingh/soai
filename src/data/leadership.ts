@@ -26,10 +26,14 @@ export const steeringCouncil: Person[] = [
   { name: "Ralf Borndörfer", title: "Prof. Dr.", role: "Chair", photoFileName: "Borndorfer.jpg", github: "", linkedin: "https://www.linkedin.com/in/ralf-bornd%C3%B6rfer-593710164/", dribbble: "https://www.zib.de/userpage/borndoerfer/Homepage/profession.en.html" },
 ];
 
+export const advisoryBoard: Person[] = [
+  { name: "Tomoyuki Higuchi", title: "Prof.", role: "Advisor", photoFileName: "Higuchi.png", github: "", linkedin: "", dribbble: "https://researchmap.jp/matrix" },
+];
+
 export const leadershipSections: LeadershipSection[] = [
   { id: "ec", title: "Executive Committee (EC)", people: executiveCommittee },
   { id: "steering-council", title: "Steering Council", people: steeringCouncil },
-  { id: "ab", title: "Advisory Board (AB)", description: "Details TBA." },
+  { id: "ab", title: "Advisory Board (AB)", people: advisoryBoard },
   { id: "ial", title: "Industry–Academic Liaison Committee", description: "Details TBA." },
   { id: "regional", title: "Regional Representatives / Ambassadors", description: "Details TBA." },
   { id: "operational", title: "Operational Committees (non-EC)", description: "Details TBA." },
