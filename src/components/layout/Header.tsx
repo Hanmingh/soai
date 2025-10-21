@@ -9,11 +9,8 @@ export default function Header() {
   const [isResourcesOpenMobile, setIsResourcesOpenMobile] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isAboutMobileOpen, setIsAboutMobileOpen] = useState(false);
-  const [isTeamsMobileOpen, setIsTeamsMobileOpen] = useState(false);
   const aboutCloseTimeout = useRef<number | null>(null);
   const resourcesCloseTimeout = useRef<number | null>(null);
-  const teamsCloseTimeout = useRef<number | null>(null);
-  const [isTeamsOpen, setIsTeamsOpen] = useState(false);
   const location = useLocation();
   const logoImports = import.meta.glob('/src/assets/SoAI_logo.svg', { eager: true }) as Record<string, { default: string }>;
   const logoUrl = logoImports['/src/assets/SoAI_logo.svg']?.default ?? `${import.meta.env.BASE_URL}SoAI_logo.svg`;
@@ -98,46 +95,7 @@ export default function Header() {
                   <Link to="/about/teams/ec" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Executive Committees</Link>
                   <Link to="/about/teams/steering-council" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Steering Council</Link>
                   <Link to="/about/teams/ab" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Advisory Board (AB)</Link>
-                  <div
-                    className="relative"
-                    onMouseEnter={() => {
-                      if (teamsCloseTimeout.current) clearTimeout(teamsCloseTimeout.current);
-                      setIsTeamsOpen(true);
-                    }}
-                    onMouseLeave={() => {
-                      if (teamsCloseTimeout.current) clearTimeout(teamsCloseTimeout.current);
-                      teamsCloseTimeout.current = window.setTimeout(() => setIsTeamsOpen(false), 300);
-                    }}
-                  >
-                    <button
-                      className="w-full text-left px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50 inline-flex items-center justify-between"
-                      aria-expanded={isTeamsOpen}
-                      aria-haspopup="menu"
-                      onClick={() => setIsTeamsOpen((v) => !v)}
-                    >
-                      Operational Committees (non-EC) <ChevronDown className={`h-4 w-4 transition-transform ${isTeamsOpen ? 'rotate-180' : ''}`} />
-                    </button>
-                    {isTeamsOpen && (
-                      <div
-                        className="absolute left-full top-0 ml-1 w-72 rounded-md border bg-white shadow-lg p-2"
-                        onMouseEnter={() => {
-                          if (teamsCloseTimeout.current) clearTimeout(teamsCloseTimeout.current);
-                          setIsTeamsOpen(true);
-                        }}
-                        onMouseLeave={() => {
-                          if (teamsCloseTimeout.current) clearTimeout(teamsCloseTimeout.current);
-                          teamsCloseTimeout.current = window.setTimeout(() => setIsTeamsOpen(false), 300);
-                        }}
-                      >
-                      <Link to="/about/teams/ial" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Industry–Academic Liaison Committee</Link>
-                      <Link to="/about/teams/regional" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Regional Representatives / Ambassadors</Link>
-                      <Link to="/about/teams/fellows" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Honorary & Distinguished Fellows</Link>
-                      <Link to="/about/teams/founding-fellows" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Founding Fellows</Link>
-                      <Link to="/about/teams/students" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Student Chapter Coordinators</Link>
-                      <Link to="/about/teams/task-forces" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Innovation Task Forces (ad hoc)</Link>
-                      </div>
-                    )}
-                  </div>
+                  <Link to="/about/teams/operational" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Country Leaders</Link>
                   <a
                     href={`${import.meta.env.BASE_URL}Constitution_SoAI.pdf`}
                     download
@@ -272,26 +230,7 @@ export default function Header() {
                     <Link to="/about/teams/ec" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Executive Committees</Link>
                     <Link to="/about/teams/steering-council" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Steering Council</Link>
                     <Link to="/about/teams/ab" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Advisory Board (AB)</Link>
-                    {/* Operational Committees submenu */}
-                    <div className="space-y-2">
-                      <button
-                        className="text-left text-sm font-medium transition-colors hover:text-[#003d7b] px-2 py-1 flex items-center gap-1"
-                        onClick={() => setIsTeamsMobileOpen((v) => !v)}
-                        aria-expanded={isTeamsMobileOpen}
-                      >
-                        Operational Committees (non-EC) <ChevronDown className={`h-4 w-4 transition-transform ${isTeamsMobileOpen ? 'rotate-180' : ''}`} />
-                      </button>
-                      {isTeamsMobileOpen && (
-                        <div className="pl-4 space-y-2">
-                          <Link to="/about/teams/ial" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Industry–Academic Liaison Committee</Link>
-                          <Link to="/about/teams/regional" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Regional Representatives / Ambassadors</Link>
-                          <Link to="/about/teams/fellows" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Honorary & Distinguished Fellows</Link>
-                          <Link to="/about/teams/founding-fellows" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Founding Fellows</Link>
-                          <Link to="/about/teams/students" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Student Chapter Coordinators</Link>
-                          <Link to="/about/teams/task-forces" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Innovation Task Forces (ad hoc)</Link>
-                        </div>
-                      )}
-                    </div>
+                    <Link to="/about/teams/operational" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Country Leaders</Link>
                     <a
                       href={`${import.meta.env.BASE_URL}Constitution_SoAI.pdf`}
                       download

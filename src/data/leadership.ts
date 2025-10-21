@@ -27,20 +27,20 @@ export const steeringCouncil: Person[] = [
 ];
 
 export const advisoryBoard: Person[] = [
+  { name: "Nikolaus Hautsch", title: "Prof. Dr.", role: "Advisor", photoFileName: "Nikolaus.png", github: "", linkedin: "", dribbble: "https://homepage.univie.ac.at/nikolaus.hautsch/" },
   { name: "Tomoyuki Higuchi", title: "Prof.", role: "Advisor", photoFileName: "Higuchi.png", github: "", linkedin: "", dribbble: "https://researchmap.jp/matrix" },
+];
+
+export const countryLeaders: Person[] = [
+  { name: "Stefan Lessmann", title: "Prof. Dr.", role: "SoAI Country Chair of Germany", photoFileName: "lessmann.jpg", github: "", linkedin: "", dribbble: "https://www.wiwi.hu-berlin.de/en/Professorships/bwl/wi/personen-en/hl/standardseite-en" },
+  { name: "Simon Trimborn", title: "Prof.", role: "SoAI Country Chair of Netherlands", photoFileName: "simon.png", github: "", linkedin: "", dribbble: "https://www.simontrimborn.de/" },
 ];
 
 export const leadershipSections: LeadershipSection[] = [
   { id: "ec", title: "Executive Committee (EC)", people: executiveCommittee },
   { id: "steering-council", title: "Steering Council", people: steeringCouncil },
   { id: "ab", title: "Advisory Board (AB)", people: advisoryBoard },
-  { id: "ial", title: "Industry–Academic Liaison Committee", description: "Details TBA." },
-  { id: "regional", title: "Regional Representatives / Ambassadors", description: "Details TBA." },
-  { id: "operational", title: "Operational Committees (non-EC)", description: "Details TBA." },
-  { id: "fellows", title: "Honorary & Distinguished Fellows", description: "Details TBA." },
-  { id: "founding-fellows", title: "Founding Fellows", description: "Details TBA." },
-  { id: "students", title: "Student Chapter Coordinators", description: "Details TBA." },
-  { id: "task-forces", title: "Innovation Task Forces (ad hoc)", description: "Details TBA." },
+  { id: "operational", title: "Country Leaders", people: countryLeaders },
 ];
 
 
