@@ -27,13 +27,15 @@ export const steeringCouncil: Person[] = [
 ];
 
 export const advisoryBoard: Person[] = [
+  { name: "Chun-houh Chen", title: "Prof.", role: "Advisor", photoFileName: "Chun-houh.png", github: "", linkedin: "", dribbble: "https://www.sinica.edu.tw/en/tab/23" },
   { name: "Nikolaus Hautsch", title: "Prof. Dr.", role: "Advisor", photoFileName: "Nikolaus.png", github: "", linkedin: "", dribbble: "https://homepage.univie.ac.at/nikolaus.hautsch/" },
   { name: "Tomoyuki Higuchi", title: "Prof.", role: "Advisor", photoFileName: "Higuchi.png", github: "", linkedin: "", dribbble: "https://researchmap.jp/matrix" },
 ];
 
 export const countryLeaders: Person[] = [
-  { name: "Stefan Lessmann", title: "Prof. Dr.", role: "SoAI Country Chair of Germany", photoFileName: "lessmann.jpg", github: "", linkedin: "", dribbble: "https://www.wiwi.hu-berlin.de/en/Professorships/bwl/wi/personen-en/hl/standardseite-en" },
+  { name: "Paolo Giudici", title: "Prof.", role: "SoAI Country Chair of Italy", photoFileName: "Giudici.jpg", github: "", linkedin: "", dribbble: "https://sites.google.com/a/unipv.it/giudici/paolo-giudici" },
   { name: "Simon Trimborn", title: "Prof.", role: "SoAI Country Chair of Netherlands", photoFileName: "simon.png", github: "", linkedin: "", dribbble: "https://www.simontrimborn.de/" },
+  { name: "Stefan Lessmann", title: "Prof. Dr.", role: "SoAI Country Chair of Germany", photoFileName: "lessmann.jpg", github: "", linkedin: "", dribbble: "https://www.wiwi.hu-berlin.de/en/Professorships/bwl/wi/personen-en/hl/standardseite-en" },
 ];
 
 export const leadershipSections: LeadershipSection[] = [
