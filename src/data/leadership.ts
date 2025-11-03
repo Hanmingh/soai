@@ -27,8 +27,10 @@ export const steeringCouncil: Person[] = [
 ];
 
 export const advisoryBoard: Person[] = [
+  { name: "Agostino Capponi", title: "Prof.", role: "Advisor", photoFileName: "Ago.jpg", github: "", linkedin: "", dribbble: "https://www.columbia.edu/~ac3827/" },
   { name: "Chun-houh Chen", title: "Prof.", role: "Advisor", photoFileName: "Chun-houh.png", github: "", linkedin: "", dribbble: "https://www.sinica.edu.tw/en/tab/23" },
   { name: "Nikolaus Hautsch", title: "Prof. Dr.", role: "Advisor", photoFileName: "Nikolaus.png", github: "", linkedin: "", dribbble: "https://homepage.univie.ac.at/nikolaus.hautsch/" },
+  { name: "Qiwei Yao", title: "Prof.", role: "Advisor", photoFileName: "Qiwei.png", github: "", linkedin: "", dribbble: "https://stats.lse.ac.uk/q.yao/" },
   { name: "Tomoyuki Higuchi", title: "Prof.", role: "Advisor", photoFileName: "Higuchi.png", github: "", linkedin: "", dribbble: "https://researchmap.jp/matrix" },
 ];
 
