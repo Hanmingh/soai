@@ -1,11 +1,20 @@
-import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { leadershipSections } from "@/data/leadership";
 import githubIcon from "@utils/github.svg";
 import linkedinIcon from "@utils/linkedin.svg";
 import dribbbleIcon from "@utils/dribbble.svg";
 
 export default function TeamSection() {
+  const navigate = useNavigate();
   const { sectionId } = useParams<{ sectionId: string }>();
+  useEffect(() => {
+    if (!sectionId) return;
+    // Redirect consolidated sections to Leadership Network with tab preselected
+    if (sectionId === 'steering-council' || sectionId === 'ab' || sectionId === 'operational') {
+      navigate(`/about/leadership-network?tab=${sectionId}`, { replace: true });
+    }
+  }, [sectionId, navigate]);
   const section = leadershipSections.find((s) => s.id === sectionId);
 
   if (!section) {
@@ -55,8 +64,27 @@ export default function TeamSection() {
                         </div>
                       </div>
                       <div className="mb-2">
-                        <h3 className="mb-1 text-base font-semibold text-gray-900">{p.title ? `${p.title} ` : ''}{p.name}</h3>
-                        <p className="text-[#003d7b] text-sm font-medium">{p.role}</p>
+                        <h3 className="mb-1 text-base font-semibold text-gray-900">
+                          {p.title && <span className="text-gray-500 italic mr-1">{p.title}</span>}
+                          {p.name}
+                        </h3>
+                        {p.role && (
+                          <p className="text-[#003d7b] text-sm font-medium truncate">{p.role}</p>
+                        )}
+                        {p.position && (
+                          p.name === "Paolo Giudici" && p.position.includes(" · ") ? (
+                            <div className="text-gray-600 text-xs mt-1">
+                              {p.position.split(" · ").map((part, idx) => (
+                                <p key={idx} className="whitespace-normal break-words leading-snug">{part}</p>
+                              ))}
+                            </div>
+                          ) : (
+                            <p className="text-gray-600 text-xs mt-1 truncate">{p.position}</p>
+                          )
+                        )}
+                        {p.affiliation && (
+                          <p className="text-gray-600 text-xs mt-1 truncate">{p.affiliation}</p>
+                        )}
                       </div>
                       {(p.github || p.linkedin || p.dribbble) && (
                         <div className="flex gap-3 mt-2">

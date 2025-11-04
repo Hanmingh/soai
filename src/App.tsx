@@ -8,6 +8,7 @@ import Contact from './pages/Contact';
 import Events from './pages/Events';
 import News from './pages/News';
 import TeamSection from './pages/teams/TeamSection';
+import LeadershipNetwork from './pages/teams/LeadershipNetwork';
 import MembershipCheckout from './pages/MembershipCheckout';
 import Maintenance from './pages/Maintenance';
 import ComingSoon from './pages/ComingSoon';
@@ -23,6 +24,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="about/teams/:sectionId" element={<TeamSection />} />
+          <Route path="about/leadership-network" element={<LeadershipNetwork />} />
           <Route path="membership" element={<Membership />} />
           <Route path="membership/checkout" element={<MembershipCheckout />} />
           <Route path="membership/register" element={<MembershipRegister />} />

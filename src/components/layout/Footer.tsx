@@ -34,11 +34,20 @@ export default function Footer() {
             <div className="space-y-2">
               <div className="flex items-center text-sm text-gray-300">
                 <Mail className="h-4 w-4 mr-2" />
-                <span>info@soc-ai.org</span>
+                <a href="mailto:info@soc-ai.org" className="hover:text-white transition-colors" aria-label="Email SoAI">
+                  info@soc-ai.org
+                </a>
               </div>
               <div className="flex items-center text-sm text-gray-300">
                 <Globe className="h-4 w-4 mr-2" />
-                <span>www.soc-ai.org</span>
+                <a
+                  href="https://www.soc-ai.org"
+                  rel="noreferrer"
+                  className="hover:text-white transition-colors"
+                  aria-label="Open SoAI website"
+                >
+                  www.soc-ai.org
+                </a>
               </div>
               <div className="flex items-center text-sm text-gray-300">
                 <Linkedin className="h-4 w-4 mr-2" />

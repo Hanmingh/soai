@@ -9,11 +9,19 @@ export type NewsItem = {
 
 export const newsItems: NewsItem[] = [
   {
+    id: "thorsten-koch-nature-computational-science-2025",
+    title: "Professor Thorsten Koch published in Nature Computational Science",
+    date: "2025-10-24",
+    source: "Nature Computational Science",
+    summary: "Professor Thorsten Koch co-authored an article on quantum approximate multi-objective optimization, published in Nature Computational Science.",
+    link: "https://www.nature.com/articles/s43588-025-00873-y",
+  },
+  {
     id: "the-9th-ism-isct-nii-zib-nus-modal-workshop",
     title: "The 9th ISM-ISCT-NII-ZIB-NUS-MODAL Workshop",
     date: "2025-09-24",
     source: "Society of Algorithmic Intelligence",
-    summary: "So-AI will support the 9th ISM-ISCT-NII-ZIB-NUS-MODAL Workshop on Optimization and Machine Learning for Data Science and Future Computing, to be held in Tokyo on 24–29 September 2025.",
+    summary: "So-AI supported the 9th ISM-ISCT-NII-ZIB-NUS-MODAL Workshop on Optimization and Machine Learning for Data Science and Future Computing, held in Tokyo on 24–29 September 2025.",
     link: "https://sites.google.com/view/optds2025",
   },
   {
@@ -21,7 +29,7 @@ export const newsItems: NewsItem[] = [
     title: "New Quantum Optimization Benchmarking Library",
     date: "2025-08-28",
     source: "Society of Algorithmic Intelligence",
-    summary: "New Quantum Optimization Benchmarking Library (QOBLIB) invites researchers to test algorithms on ten problem classes—an “intractable decathlon”—for comparing quantum and classical methods and advancing the search for quantum advantage in combinatorial optimization.",
+    summary: "New Quantum Optimization Benchmarking Library (QOBLIB) invited researchers to test algorithms on ten problem classes—an “intractable decathlon”—for comparing quantum and classical methods and advancing the search for quantum advantage in combinatorial optimization.",
     link: "https://arxiv.org/abs/2504.03832 ",
   },
   {

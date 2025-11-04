@@ -127,13 +127,16 @@ export default function Home() {
                     </Card>
                   ))}
                 </div>
+                <div className="mt-4 text-right">
+                  <Link to="/news" className="text-sm text-[#ee7c01] hover:underline">More news &gt;&gt;</Link>
+                </div>
               </div>
             </div>
             <aside className="lg:col-span-4 min-w-0">
               <div className="sticky top-24">
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">Recent Events</h3>
                 <ul className="space-y-4">
-                  {recentEvents.map((ev) => (
+                  {recentEvents.slice(0, 3).map((ev) => (
                     <li key={ev.id} className="rounded-lg border bg-white p-4 shadow-sm">
                       <div className="text-sm text-[#003d7b] font-medium">{formatEventDate(ev)}</div>
                       <div className="font-semibold text-gray-900">{ev.title}</div>
@@ -149,6 +152,9 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
+                <div className="mt-4 text-right">
+                  <Link to="/events" className="text-sm text-[#ee7c01] hover:underline">More events &gt;&gt;</Link>
+                </div>
               </div>
             </aside>
           </div>

@@ -12,6 +12,15 @@ export type EventItem = {
 
 export const recentEvents: EventItem[] = [
   {
+    id: "thinkswiss-research-scholarships-2026-apac",
+    title: "ThinkSwiss Research Scholarships 2026 (Asia-Pacific)",
+    startDate: "2026-04-1",
+    endDate: "2026-12-31",
+    location: "Switzerland",
+    description: "Applications open for the ThinkSwiss Research Scholarships 2026 for students from India, Singapore, Australia and Brunei to undertake a research stay in Switzerland. Funded by the Swiss State Secretariat for Education, Research and Innovation (SERI) and supported by the Swissnex network. Applicants must secure a Swiss host institution acceptance letter. Duration: minimum two months, up to three months.",
+    link: "https://swissnex.org/india/thinkswiss/"
+  },
+  {
     id: "eth-nus-joint-workshop",
     title: "ETH–NUS Joint Workshop",
     startDate: "2025-09-18",

@@ -92,10 +92,8 @@ export default function Header() {
                   }}
                 >
                   <Link to="/about#about-us" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>About Us</Link>
-                  <Link to="/about/teams/ec" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Executive Committees</Link>
-                  <Link to="/about/teams/steering-council" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Steering Council</Link>
-                  <Link to="/about/teams/ab" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Advisory Board (AB)</Link>
-                  <Link to="/about/teams/operational" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Country Leaders</Link>
+                  <Link to="/about/teams/ec" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Executive Committee</Link>
+                  <Link to="/about/leadership-network" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsAboutOpen(false)}>Leadership Network</Link>
                   <a
                     href={`${import.meta.env.BASE_URL}Constitution_SoAI.pdf`}
                     download
@@ -228,9 +226,7 @@ export default function Header() {
                   <div className="pl-4 space-y-2">
                     <Link to="/about#about-us" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>About Us</Link>
                     <Link to="/about/teams/ec" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Executive Committees</Link>
-                    <Link to="/about/teams/steering-council" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Steering Council</Link>
-                    <Link to="/about/teams/ab" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Advisory Board (AB)</Link>
-                    <Link to="/about/teams/operational" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Country Leaders</Link>
+                    <Link to="/about/leadership-network" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Leadership Network</Link>
                     <a
                       href={`${import.meta.env.BASE_URL}Constitution_SoAI.pdf`}
                       download
