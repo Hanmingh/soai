@@ -77,7 +77,7 @@ export default function Gallery({ images, speedMs = 30000 }: GalleryProps) {
               src={item.src}
               alt={item.alt ?? "Gallery image"}
               className="w-full h-full object-cover"
-              loading="lazy"
+              loading="eager"
             />
           </figure>
         ))}
@@ -112,6 +112,7 @@ export default function Gallery({ images, speedMs = 30000 }: GalleryProps) {
               src={images[lightboxIndex].src}
               alt={images[lightboxIndex].alt ?? "Gallery image"}
               className="w-full max-h-[70vh] object-contain rounded-lg shadow-2xl"
+              loading="eager"
             />
             {images[lightboxIndex].caption && (
               <figcaption className="mt-3 text-center text-white/80">

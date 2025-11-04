@@ -38,6 +38,7 @@ export default function LeadershipNetwork() {
                               src={resolvePhotoUrl(p.photoFileName)}
                               alt={`${p.name} photo`}
                               className="h-full w-full object-cover"
+                              loading="eager"
                               onError={(e) => {
                                 e.currentTarget.style.display = 'none';
                                 (e.currentTarget.parentElement as HTMLElement).classList.add('bg-gray-200');
