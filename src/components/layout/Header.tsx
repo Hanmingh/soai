@@ -30,6 +30,9 @@ export default function Header() {
               src={logoUrl} 
               alt="SoAI - Society of Algorithmic Intelligence" 
               className="h-12"
+              loading="eager"
+              fetchPriority="high"
+              decoding="sync"
               onError={(e) => {
                 // Fallback to text logo if image fails to load
                 e.currentTarget.style.display = 'none';

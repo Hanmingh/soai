@@ -15,7 +15,7 @@ export default function Membership() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <section className="relative py-20 bg-gray-200">
-        <img src={membershipBanner} alt="" className="absolute inset-0 w-full h-full object-cover" loading="eager" />
+        <img src={membershipBanner} alt="" className="absolute inset-0 w-full h-full object-cover" loading="eager" fetchPriority="high" decoding="sync" />
         <div className="absolute inset-0 bg-[#003d7b]/80"></div>
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">

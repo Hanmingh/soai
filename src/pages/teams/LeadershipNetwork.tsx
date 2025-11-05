@@ -39,6 +39,8 @@ export default function LeadershipNetwork() {
                               alt={`${p.name} photo`}
                               className="h-full w-full object-cover"
                               loading="eager"
+                              fetchPriority={i < 4 ? 'high' : 'auto'}
+                              decoding={i < 4 ? 'sync' : 'async'}
                               onError={(e) => {
                                 e.currentTarget.style.display = 'none';
                                 (e.currentTarget.parentElement as HTMLElement).classList.add('bg-gray-200');

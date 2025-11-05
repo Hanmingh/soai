@@ -78,6 +78,8 @@ export default function Gallery({ images, speedMs = 30000 }: GalleryProps) {
               alt={item.alt ?? "Gallery image"}
               className="w-full h-full object-cover"
               loading="eager"
+              fetchPriority={idx === 0 ? 'high' : 'auto'}
+              decoding={idx === 0 ? 'sync' : 'async'}
             />
           </figure>
         ))}
