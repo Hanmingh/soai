@@ -9,11 +9,11 @@ export type NewsItem = {
 
 export const newsItems: NewsItem[] = [
   {
-    id: "thorsten-koch-nature-computational-science-2025",
-    title: "Professor Thorsten Koch published in Nature Computational Science",
+    id: "introduction-of-a-ground-breaking-quantum-algorithm-for-multi-objective-optimization",
+    title: "Introduction of a Ground-Breaking Quantum Algorithm for Multi-Objective Optimization New Quantum Algorithm Tackles Multi-Objective Optimization",
     date: "2025-10-24",
     source: "Nature Computational Science",
-    summary: "Professor Thorsten Koch co-authored an article on quantum approximate multi-objective optimization, published in Nature Computational Science.",
+    summary: "A major step forward in quantum computing research has been achieved by Quantum approximate multi‑objective optimization (published 24 October 2025 in Nature Computational Science), which presents a novel quantum algorithm that tackles complex optimisation tasks with multiple competing objectives.",
     link: "https://www.nature.com/articles/s43588-025-00873-y",
   },
   {
