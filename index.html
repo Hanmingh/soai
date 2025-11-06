@@ -8,6 +8,22 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Consume ?redirect=... added by 404.html and clean the URL before the app boots
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var redirect = params.get('redirect');
+        if (redirect) {
+          try {
+            var target = decodeURIComponent(redirect);
+            if (!/^\//.test(target)) target = '/' + target;
+            window.history.replaceState(null, '', target);
+          } catch (e) {
+            window.history.replaceState(null, '', '/');
+          }
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

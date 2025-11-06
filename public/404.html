@@ -5,13 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SoAI</title>
     <script>
-      // GitHub Pages SPA fallback for both user and project sites
+      // SPA fallback that works on both GitHub Pages project sites and custom domains
       (function () {
         var l = window.location;
+        var params = new URLSearchParams(l.search);
+
+        // Determine base path:
+        // - Project sites on *.github.io host content under "/<repo>/"
+        // - User/organization sites and custom domains serve from root "/"
+        var isGithubProjectHost = /\.github\.io$/i.test(l.hostname);
         var segments = l.pathname.split('/').filter(Boolean);
-        // If project site, first segment is the repo name; else empty for user site
-        var base = segments.length > 0 ? '/' + segments[0] + '/' : '/';
-        var redirect = base + '?redirect=' + encodeURIComponent(l.pathname + l.search + l.hash);
+        var base = isGithubProjectHost && segments.length > 0 ? '/' + segments[0] + '/' : '/';
+
+        // If we've already been redirected once (redirect param present), avoid nesting
+        if (params.has('redirect')) {
+          window.location.replace(base);
+          return;
+        }
+
+        var redirectTarget = l.pathname + l.search + l.hash;
+        var redirect = base + '?redirect=' + encodeURIComponent(redirectTarget);
         window.location.replace(redirect);
       })();
     </script>
