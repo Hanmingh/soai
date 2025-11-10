@@ -38,11 +38,12 @@ export const advisoryBoard: Person[] = [
 ];
 
 export const countryLeaders: Person[] = [
-  { name: "Paulo Canas Rodrigues", title: "Prof. Dr.", role: "Chair of Brazil", position: "President, International Association of Statistical Computing", affiliation:"Federal University of Bahia", photoFileName: "Paulo.jpg", github: "", linkedin: "", dribbble: "https://www.paulocanas.org/" },
+  { name: "Paulo Canas Rodrigues", title: "Prof. Dr.", role: "Chair of Brazil", position: "President, International Association of Statistical Computing", affiliation:"Federal University of Bahia, Brazil", photoFileName: "Paulo.jpg", github: "", linkedin: "", dribbble: "https://www.paulocanas.org/" },
   { name: "Stefan Lessmann", title: "Prof. Dr.", role: "Chair of Germany", position:"Chair of Information Systems", affiliation:"Humboldt-Universität zu Berlin, Germany", photoFileName: "lessmann.jpg", github: "", linkedin: "", dribbble: "https://www.wiwi.hu-berlin.de/en/Professorships/bwl/wi/personen-en/hl/standardseite-en" },
-  { name: "Paolo Giudici", title: "Prof.", role: "Chair of Italy", position:"Lead PI, EU Horizon 2020 PERISCOPE (2020–2023) · Lead PI, EU Horizon 2020 FIN-TECH(2019–2021)", affiliation:"University of Pavia, Italy", photoFileName: "Giudici.jpg", github: "", linkedin: "", dribbble: "https://sites.google.com/a/unipv.it/giudici/paolo-giudici" },
+  { name: "Paolo Giudici", title: "Prof.", role: "Chair of Italy", position:"Lead PI, EU Horizon 2020 PERISCOPE(2020–2023) · Lead PI, EU Horizon 2020 FIN-TECH(2019–2021)", affiliation:"University of Pavia, Italy", photoFileName: "Giudici.jpg", github: "", linkedin: "", dribbble: "https://sites.google.com/a/unipv.it/giudici/paolo-giudici" },
   { name: "Simon Trimborn", title: "Prof.", role:"Chair of Netherlands", position:"Co-creator of the CRIX and VCRIX indices", affiliation:"University of Amsterdam, Netherlands", photoFileName: "simon.png", github: "", linkedin: "", dribbble: "https://www.simontrimborn.de/" },
   { name: "Bastian Bergmann", title: "Dr.", role: "Chair of Switzerland", position:"Executive Director, ETH Finsuretech Hub", affiliation:"ETH Zürich, Switzerland", photoFileName: "Bastian.jpeg", github: "", linkedin: "", dribbble: "https://finsuretech.ethz.ch/people.html" },
+  { name: "Ray-Bing Chen", title: "Prof.", role: "Chair of Taiwan", position:"President, The Chinese Institute of Probability and Statistics", affiliation:"National Tsing Hua University, Taiwan", photoFileName: "Ray-Bing.jpg", github: "", linkedin: "", dribbble: "https://sites.google.com/view/ray-bingchenswebsite" },
   { name: "Rujira Ouncharoen", title: "Prof.", role: "Chair of Thailand", position:"Dean, International College of Digital Innovation", affiliation:"Chiang Mai University, Thailand", photoFileName: "Rujira.png", github: "", linkedin: "", dribbble: "https://math.science.cmu.ac.th/personals-detail.php?lg=en&id=32" },
 ];
 

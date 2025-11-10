@@ -46,12 +46,12 @@ export default function TeamSection() {
 
           {section.people && (
             <div className="mt-6">
-              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-6 md:gap-y-8 gap-x-0">
                 {section.people.map((p, i) => (
-                  <div key={`${p.name}-${i}`} className="rounded-xl p-6 hover:bg-gray-50 transition-colors">
-                    <div className="flex flex-col items-center text-center">
+                  <div key={`${p.name}-${i}`} className="rounded-xl p-4 sm:p-6 hover:bg-gray-50 transition-colors">
+                    <div className="flex flex-col text-center">
                       <div className="mb-4">
-                        <div className="h-24 w-24 sm:h-28 sm:w-28 rounded-full overflow-hidden ring-2 ring-white shadow bg-gray-100">
+                        <div className="h-24 w-24 sm:h-28 sm:w-28 rounded-full overflow-hidden ring-2 ring-white shadow bg-gray-100 mx-auto">
                           <img
                             src={resolvePhotoUrl(p.photoFileName)}
                             alt={`${p.name} photo`}
@@ -66,13 +66,13 @@ export default function TeamSection() {
                           />
                         </div>
                       </div>
-                      <div className="mb-2">
+                      <div className="mb-2 w-full">
                         <h3 className="mb-1 text-base font-semibold text-gray-900">
                           {p.title && <span className="text-gray-500 italic mr-1">{p.title}</span>}
                           {p.name}
                         </h3>
                         {p.role && (
-                          <p className="text-[#003d7b] text-sm font-medium truncate">{p.role}</p>
+                          <p className="text-[#003d7b] text-sm font-medium whitespace-normal break-words leading-snug">{p.role}</p>
                         )}
                         {p.position && (
                           p.name === "Paolo Giudici" && p.position.includes(" · ") ? (
@@ -82,15 +82,15 @@ export default function TeamSection() {
                               ))}
                             </div>
                           ) : (
-                            <p className="text-gray-600 text-xs mt-1 truncate">{p.position}</p>
+                            <p className="text-gray-600 text-xs mt-1 whitespace-normal break-words leading-snug">{p.position}</p>
                           )
                         )}
                         {p.affiliation && (
-                          <p className="text-gray-600 text-xs mt-1 truncate">{p.affiliation}</p>
+                          <p className="text-gray-600 text-xs mt-1 whitespace-normal break-words leading-snug">{p.affiliation}</p>
                         )}
                       </div>
                       {(p.github || p.linkedin || p.dribbble) && (
-                        <div className="flex gap-3 mt-2">
+                        <div className="flex gap-3 mt-2 justify-center">
                           {p.github && (
                             <a href={p.github} aria-label="GitHub" className="bg-gray-100 rounded-lg p-2 hover:bg-gray-200 transition">
                               <img src={githubIcon} alt="GitHub" className="h-4 w-4" />
