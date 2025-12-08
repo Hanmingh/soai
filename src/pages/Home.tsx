@@ -42,7 +42,8 @@ export default function Home() {
   // Prefer build-time imported assets from src/assets/gallery via Vite glob
   const galleryImages = (() => {
     const imported = import.meta.glob(
-      "/src/assets/gallery/*.{jpg,jpeg,png,webp,avif,gif}",
+      // include uppercase extensions so newly added photos are picked up on case-sensitive builds
+      "/src/assets/gallery/*.{jpg,jpeg,png,webp,avif,gif,JPG,JPEG,PNG,WEBP,AVIF,GIF}",
       { eager: true }
     ) as Record<string, { default: string }>
 
