@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -39,6 +40,14 @@ export default function Home() {
     if (ev.endDate) return fmtFull(new Date(ev.endDate));
     return '';
   };
+  const latestNews = useMemo(
+    () =>
+      [...newsItems]
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        .slice(0, 4),
+    []
+  );
+
   // Prefer build-time imported assets from src/assets/gallery via Vite glob
   const galleryImages = (() => {
     const imported = import.meta.glob(
@@ -111,7 +120,7 @@ export default function Home() {
               <div className="mt-12">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">News</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {newsItems.slice(0, 4).map((n) => (
+                  {latestNews.map((n) => (
                     <Card key={n.id} className="border-0 shadow-lg">
                       <CardHeader>
                         <CardTitle className="text-lg">{n.title}</CardTitle>
