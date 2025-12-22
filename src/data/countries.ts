@@ -153,6 +153,7 @@ export const unMemberCountries: string[] = [
   "Seychelles",
   "Sierra Leone",
   "Singapore",
+  "Taiwan",
   "Slovakia",
   "Slovenia",
   "Solomon Islands",

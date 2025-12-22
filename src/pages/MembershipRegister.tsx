@@ -56,7 +56,7 @@ export default function MembershipRegister() {
       return;
     }
     if (!country.trim() || !affiliation.trim() || !title.trim()) {
-      setError("Country, affiliation and title are required.");
+      setError("Country/Region, affiliation and title are required.");
       return;
     }
     if (personalWebpage.trim() && !isValidUrlLike(personalWebpage)) {
@@ -165,16 +165,16 @@ export default function MembershipRegister() {
                     </div>
                   </div>
 
-                  {/* Country & Affiliation */}
+                  {/* Country/Region & Affiliation */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Country <span className="text-red-600">*</span></label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Country/Region <span className="text-red-600">*</span></label>
                     <select
                       value={country}
                       onChange={(e) => setCountry(e.target.value)}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:ring-[#003d7b] focus:border-[#003d7b]"
                       required
                     >
-                      <option value="" disabled>Country</option>
+                      <option value="" disabled>Country/Region</option>
                       {countriesOrdered.map((c) => (
                         <option key={c} value={c}>{c}</option>
                       ))}
