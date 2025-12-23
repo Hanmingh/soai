@@ -35,7 +35,8 @@ export default function Events() {
     return [...localEvents].sort((a, b) => {
       const aDate = new Date(a.startDate ?? a.date ?? a.endDate ?? 0).getTime();
       const bDate = new Date(b.startDate ?? b.date ?? b.endDate ?? 0).getTime();
-      return aDate - bDate;
+      // Newest / most recent events first
+      return bDate - aDate;
     });
   }, []);
 
