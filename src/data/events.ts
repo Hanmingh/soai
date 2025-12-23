@@ -12,6 +12,15 @@ export type EventItem = {
 
 export const recentEvents: EventItem[] = [
   {
+    id: "intelligencex-2026-global-quantum-ai-frontier",
+    title: "IntelligenceX 2026: The Global Quantum×AI Frontier",
+    startDate: "2026-09-24",
+    endDate: "2026-09-26",
+    location: "Singapore",
+    description: "A flagship three-day Global Quantum×AI Conference jointly organized by the National University of Singapore (NUS) and the Society of Algorithmic Intelligence (SoAI), exploring how quantum computing, AI, data science, and statistics jointly redefine the future of intelligent systems.",
+    link: "/events/intelligencex-2026",
+  },
+  {
     id: "thinkswiss-research-scholarships-2026-apac",
     title: "ThinkSwiss Research Scholarships 2026 (Asia-Pacific)",
     startDate: "2026-04-1",

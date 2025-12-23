@@ -14,6 +14,7 @@ import Maintenance from './pages/Maintenance';
 import ComingSoon from './pages/ComingSoon';
 import MembershipRegister from './pages/MembershipRegister';
 import MembershipSuccess from './pages/MembershipSuccess';
+import IntelligenceX2026 from './pages/IntelligenceX2026';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="membership/success" element={<MembershipSuccess />} />
           <Route path="contact" element={<Contact />} />
           <Route path="events" element={<Events />} />
+          <Route path="events/intelligencex-2026" element={<IntelligenceX2026 />} />
           <Route path="news" element={<News />} />
           <Route path="maintenance" element={<Maintenance />} />
           <Route path="coming-soon" element={<ComingSoon />} />
