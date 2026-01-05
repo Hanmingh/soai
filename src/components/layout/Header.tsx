@@ -5,12 +5,9 @@ import { Menu, X, ChevronDown, Download } from 'lucide-react';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isResourcesOpen, setIsResourcesOpen] = useState(false);
-  const [isResourcesOpenMobile, setIsResourcesOpenMobile] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isAboutMobileOpen, setIsAboutMobileOpen] = useState(false);
   const aboutCloseTimeout = useRef<number | null>(null);
-  const resourcesCloseTimeout = useRef<number | null>(null);
   const location = useLocation();
   const logoImports = import.meta.glob('/src/assets/SoAI_logo.svg', { eager: true }) as Record<string, { default: string }>;
   const logoUrl = logoImports['/src/assets/SoAI_logo.svg']?.default ?? `${import.meta.env.BASE_URL}SoAI_logo.svg`;
@@ -117,6 +114,16 @@ export default function Header() {
               )}
             </div>
 
+            {/* Events */}
+            <Link
+              to="/events"
+              className={`text-sm font-medium transition-colors hover:text-[#003d7b] ${
+                isActive('/events') ? 'text-[#003d7b] border-b-2 border-[#003d7b] pb-1' : 'text-gray-700'
+              }`}
+            >
+              Events
+            </Link>
+
             {/* Membership */}
             <Link
               to="/membership"
@@ -136,47 +143,15 @@ export default function Header() {
             >
               Contact
             </Link>
-            {/* Resources (rightmost) */}
-            <div
-              className="relative"
-              onMouseEnter={() => {
-                if (resourcesCloseTimeout.current) clearTimeout(resourcesCloseTimeout.current);
-                setIsResourcesOpen(true);
-              }}
-              onMouseLeave={() => {
-                if (resourcesCloseTimeout.current) clearTimeout(resourcesCloseTimeout.current);
-                resourcesCloseTimeout.current = window.setTimeout(() => setIsResourcesOpen(false), 300);
-              }}
-              onFocus={() => {
-                if (resourcesCloseTimeout.current) clearTimeout(resourcesCloseTimeout.current);
-                setIsResourcesOpen(true);
-              }}
+            {/* News */}
+            <Link
+              to="/news"
+              className={`text-sm font-medium transition-colors hover:text-[#003d7b] ${
+                isActive('/news') ? 'text-[#003d7b] border-b-2 border-[#003d7b] pb-1' : 'text-gray-700'
+              }`}
             >
-              <button
-                className="text-sm font-medium text-gray-700 hover:text-[#003d7b] inline-flex items-center gap-1"
-                onClick={() => setIsResourcesOpen((v) => !v)}
-                aria-expanded={isResourcesOpen}
-                aria-haspopup="menu"
-              >
-                Resources <ChevronDown className={`h-4 w-4 transition-transform ${isResourcesOpen ? 'rotate-180' : ''}`} />
-              </button>
-              {isResourcesOpen && (
-                <div
-                  className="absolute right-0 mt-2 w-56 rounded-md border bg-white shadow-lg p-2"
-                  onMouseEnter={() => {
-                    if (resourcesCloseTimeout.current) clearTimeout(resourcesCloseTimeout.current);
-                    setIsResourcesOpen(true);
-                  }}
-                  onMouseLeave={() => {
-                    if (resourcesCloseTimeout.current) clearTimeout(resourcesCloseTimeout.current);
-                    resourcesCloseTimeout.current = window.setTimeout(() => setIsResourcesOpen(false), 300);
-                  }}
-                >
-                  <Link to="/events" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsResourcesOpen(false)}>Events</Link>
-                  <Link to="/news" className="block px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50" onClick={() => setIsResourcesOpen(false)}>News</Link>
-                </div>
-              )}
-            </div>
+              News
+            </Link>
           </nav>
 
           {/* Desktop CTA */}
@@ -250,6 +225,15 @@ export default function Header() {
                 )}
               </div>
               <Link
+                to="/events"
+                className={`text-sm font-medium transition-colors hover:text-[#003d7b] px-2 py-1 ${
+                  isActive('/events') ? 'text-[#003d7b]' : 'text-gray-700'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Events
+              </Link>
+              <Link
                 to="/membership"
                 className={`text-sm font-medium transition-colors hover:text-[#003d7b] px-2 py-1 ${
                   isActive('/membership') ? 'text-[#003d7b]' : 'text-gray-700'
@@ -267,22 +251,15 @@ export default function Header() {
               >
                 Contact
               </Link>
-              {/* Resources (mobile) */}
-              <div className="space-y-2">
-                <button
-                  className="text-left text-sm font-medium transition-colors hover:text-[#003d7b] px-2 py-1 flex items-center gap-1"
-                  onClick={() => setIsResourcesOpenMobile((v) => !v)}
-                  aria-expanded={isResourcesOpenMobile}
-                >
-                  Resources <ChevronDown className={`h-4 w-4 transition-transform ${isResourcesOpenMobile ? 'rotate-180' : ''}`} />
-                </button>
-                {isResourcesOpenMobile && (
-                  <div className="pl-4 space-y-2">
-                    <Link to="/events" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>Events</Link>
-                    <Link to="/news" className="block text-sm text-gray-700 hover:text-[#003d7b]" onClick={() => setIsMenuOpen(false)}>News</Link>
-                  </div>
-                )}
-              </div>
+              <Link
+                to="/news"
+                className={`text-sm font-medium transition-colors hover:text-[#003d7b] px-2 py-1 ${
+                  isActive('/news') ? 'text-[#003d7b]' : 'text-gray-700'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                News
+              </Link>
               <div className="flex flex-col space-y-2 pt-4 border-t">
                 <Button size="sm" className="bg-[#003d7b] hover:bg-[#002a5c]" asChild>
                   <Link to="/membership">Join Now</Link>

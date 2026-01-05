@@ -15,8 +15,8 @@ export default function MembershipCheckout() {
     return membershipTypes.find((p) => p.name === planName) || membershipTypes[0];
   }, [planName]);
 
-  const promoEndDisplay = "Jun 30, 2026";
-  const isPromoActive = new Date() <= new Date("2026-06-30T23:59:59.999Z");
+  const promoEndDisplay = "Dec 31, 2028";
+  const isPromoActive = new Date() <= new Date("2028-12-31T23:59:59.999Z");
   const promoEligibleNames = new Set(["Regular Member", "Developing Countries", "Student Member"]);
   const isEligible = isPromoActive && promoEligibleNames.has(plan.name);
 
@@ -52,7 +52,7 @@ export default function MembershipCheckout() {
                 </div>
                 {isEligible && (
                   <div className="text-xs text-green-700">
-                    Members who register by {promoEndDisplay} will be granted one year of complimentary membership.
+                    Complimentary SoAI membership valid until  {promoEndDisplay}.
                   </div>
                 )}
                 <Button asChild className="w-full bg-[#003d7b] hover:bg-[#002a5c]">

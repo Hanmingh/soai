@@ -8,8 +8,8 @@ import membershipBanner from "@/assets/Membership_banner.jpg";
 import { membershipTypes } from "@/data/membership";
 
 export default function Membership() {
-  const promoEndDisplay = "Jun 30, 2026";
-  const isPromoActive = new Date() <= new Date("2026-06-30T23:59:59.999Z");
+  const promoEndDisplay = "Dec 31, 2028";
+  const isPromoActive = new Date() <= new Date("2028-12-31T23:59:59.999Z");
   const promoEligibleNames = new Set(["Regular Member", "Developing Countries", "Student Member"]);
   return (
     <div className="min-h-screen bg-gray-50">
@@ -96,7 +96,7 @@ export default function Membership() {
                     </div>
                     {isEligible && (
                       <div className="text-xs text-green-700 mt-1">
-                        Members who register by {promoEndDisplay} will be granted one year of complimentary membership.
+                        Complimentary SoAI membership valid until  {promoEndDisplay}.
                       </div>
                     )}
                     <CardDescription>{type.description}</CardDescription>

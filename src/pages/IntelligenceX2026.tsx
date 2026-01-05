@@ -114,19 +114,31 @@ export default function IntelligenceX2026() {
             </p>
           </section>
 
-          {/* About the Organizers */}
+          {/* Scientific Organizing Committee */}
           <section className="space-y-4">
-            <h2 className="text-2xl font-semibold text-gray-900">About the Organizers</h2>
-            <p className="text-gray-800 leading-relaxed">
-              The conference is a joint initiative between the National University of Singapore (NUS) and the Society
-              of Algorithmic Intelligence (SoAI).
-            </p>
-            <p className="text-gray-800 leading-relaxed">
-              SoAI is a global, non-profit academic society based in Singapore, dedicated to advancing research and
-              collaboration in algorithmic intelligence, encompassing artificial intelligence, quantum computing,
-              data science, statistics, and related emerging technologies. SoAI connects experts from academia and
-              industry worldwide to foster global collaboration and advance intelligent algorithmic systems.
-            </p>
+            <h2 className="text-2xl font-semibold text-gray-900">
+              Scientific Organizing Committee
+            </h2>
+            <ul className="list-disc pl-6 space-y-2 text-gray-800 leading-relaxed text-sm md:text-base">
+              <li>Bastian Bergmann (ETH Zürich, Switzerland)</li>
+              <li>Ralf Borndörfer (Freie Universität Berlin &amp; Zuse Institute Berlin, Germany)</li>
+              <li>Agostino Capponi (Columbia University, USA)</li>
+              <li>Chun-houh Chen (Academia Sinica, Taiwan)</li>
+              <li>Ray-Bing Chen (National Tsing Hua University, Taiwan)</li>
+              <li>Ying Chen (National University of Singapore, Singapore)</li>
+              <li>Paolo Giudici (University of Pavia, Italy)</li>
+              <li>Xin Guo (University of California, Berkeley, USA)</li>
+              <li>Nikolaus Hautsch (University of Vienna, Austria)</li>
+              <li>Tomoyuki Higuchi (The Institute of Statistical Mathematics, Japan)</li>
+              <li>Thorsten Koch (Zuse Institute Berlin &amp; TU Berlin, Germany)</li>
+              <li>Stefan Lessmann (Humboldt-Universität zu Berlin, Germany)</li>
+              <li>Rujira Ouncharoen (Chiang Mai University, Thailand)</li>
+              <li>Huyên Pham (École Polytechnique, France)</li>
+              <li>Paulo Canas Rodrigues (Federal University of Bahia, Brazil)</li>
+              <li>Josef Teichmann (ETH Zürich, Switzerland)</li>
+              <li>Simon Trimborn (University of Amsterdam, Netherlands)</li>
+              <li>Qiwei Yao (London School of Economics and Political Science, UK)</li>
+            </ul>
           </section>
 
           {/* Back link */}
