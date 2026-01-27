@@ -41,7 +41,6 @@ export default function Membership() {
             <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">Member Benefits</h2>
             <ul className="space-y-4 text-gray-800 text-lg">
               <li><span className="font-semibold">Global Exchange:</span> Collaborate with scholars, professionals, and innovators worldwide.</li>
-              <li><span className="font-semibold">Free Access to Knowledge:</span> Enjoy free access to selected SoAI lectures and a complimentary Coursera Plus subscription.</li>
               <li><span className="font-semibold">Exclusive Discounts:</span> Reduced registration fees for SoAI conferences, workshops, and events.</li>
               <li><span className="font-semibold">Real-World Experience:</span> Valuable opportunity to join academic-industry collaborative projects, gaining hands-on experience and an official SoAI Certificate.</li>
               <li><span className="font-semibold">Networking Opportunities:</span> Meet and interact with leading experts shaping the future of algorithmic intelligence.</li>
