@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
+import intelligenceXBg from "@/assets/IntelligenceX/IntelligenceX_bg.jpg";
+import spmpLogo from "@/assets/IntelligenceX/SPMP_Logo.jpg";
+import secbLogo from "@/assets/IntelligenceX/SECB_Logo.png";
 
 export default function IntelligenceX2026() {
-  const bgUrl = `${import.meta.env.BASE_URL}IntelligenceX_bg.jpg`;
+  const bgUrl = intelligenceXBg;
   return (
     <div className="min-h-screen bg-white">
       {/* Hero / Title band */}
@@ -139,6 +142,48 @@ export default function IntelligenceX2026() {
               <li>Simon Trimborn (University of Amsterdam, Netherlands)</li>
               <li>Qiwei Yao (London School of Economics and Political Science, UK)</li>
             </ul>
+          </section>
+
+          {/* Host & Support logos */}
+          <section className="pt-8">
+            <div className="grid gap-10 md:grid-cols-2 items-center">
+              <div className="flex flex-col items-center md:items-start gap-3">
+                <p className="text-sm md:text-base font-semibold text-gray-700 uppercase tracking-wide">
+                  Held in:
+                </p>
+                <a
+                  href="https://www.visitsingapore.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="VisitSingapore – Singapore, Passion Made Possible"
+                >
+                  <img
+                    src={spmpLogo}
+                    alt="Singapore – Passion Made Possible"
+                    className="h-50 md:h-50 w-auto"
+                    loading="lazy"
+                  />
+                </a>
+              </div>
+              <div className="flex flex-col items-center md:items-start gap-3">
+                <p className="text-sm md:text-base font-semibold text-gray-700 uppercase tracking-wide">
+                  Supported by:
+                </p>
+                <a
+                  href="https://www.visitsingapore.com/mice"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="VisitSingapore – Singapore Exhibition & Convention Bureau"
+                >
+                  <img
+                    src={secbLogo}
+                    alt="Singapore Exhibition & Convention Bureau"
+                    className="h-50 md:h-50 w-auto"
+                    loading="lazy"
+                  />
+                </a>
+              </div>
+            </div>
           </section>
 
           {/* Back link */}
