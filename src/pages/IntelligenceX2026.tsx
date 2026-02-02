@@ -62,6 +62,10 @@ export default function IntelligenceX2026() {
           {/* Ticket pricing */}
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold text-gray-900">Ticket Pricing</h2>
+            <p className="text-gray-700 text-sm md:text-base max-w-2xl">
+              Registration fees include full conference access and the conference banquet. All amounts below are
+              inclusive of GST.
+            </p>
             <div className="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden">
               <Table>
                 <TableHeader>
@@ -119,7 +123,7 @@ export default function IntelligenceX2026() {
                   </TableRow>
                 </TableBody>
                 <TableCaption className="px-4 pb-3 text-left text-sm text-gray-500">
-                  All prices are GST included.
+                  All prices inclusive of GST. Banquet included.
                 </TableCaption>
               </Table>
             </div>
