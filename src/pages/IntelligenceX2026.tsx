@@ -2,6 +2,15 @@ import { Link } from "react-router-dom";
 import intelligenceXBg from "@/assets/IntelligenceX/IntelligenceX_bg.jpg";
 import spmpLogo from "@/assets/IntelligenceX/SPMP_Logo.jpg";
 import secbLogo from "@/assets/IntelligenceX/SECB_Logo.png";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 export default function IntelligenceX2026() {
   const bgUrl = intelligenceXBg;
@@ -48,6 +57,72 @@ export default function IntelligenceX2026() {
                 <dd>28 September 2026 · Singapore · By invitation only</dd>
               </div>
             </dl>
+          </section>
+
+          {/* Ticket pricing */}
+          <section className="space-y-4">
+            <h2 className="text-2xl font-semibold text-gray-900">Ticket Pricing</h2>
+            <div className="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden">
+              <Table>
+                <TableHeader>
+                  <TableRow className="border-gray-200 bg-gray-50 hover:bg-gray-50">
+                    <TableHead className="h-12 px-4 font-semibold text-gray-900">
+                      Registration type
+                    </TableHead>
+                    <TableHead className="h-12 px-4 font-semibold text-gray-900 text-right">
+                      SoAI member
+                    </TableHead>
+                    <TableHead className="h-12 px-4 font-semibold text-gray-900 text-right">
+                      Non-SoAI member
+                    </TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow className="border-gray-100">
+                    <TableCell className="px-4 py-3.5 text-gray-800">
+                      <span className="font-medium">Early bird</span>
+                      <span className="block text-sm text-gray-500 mt-0.5">
+                        Open till 31 Jul 2026
+                      </span>
+                    </TableCell>
+                    <TableCell className="px-4 py-3.5 text-right font-medium text-gray-900">
+                      300 SGD
+                    </TableCell>
+                    <TableCell className="px-4 py-3.5 text-right font-medium text-gray-900">
+                      600 SGD
+                    </TableCell>
+                  </TableRow>
+                  <TableRow className="border-gray-100">
+                    <TableCell className="px-4 py-3.5 text-gray-800">
+                      <span className="font-medium">Later registration</span>
+                      <span className="block text-sm text-gray-500 mt-0.5">
+                        Open till 15 Sep 2026
+                      </span>
+                    </TableCell>
+                    <TableCell className="px-4 py-3.5 text-right font-medium text-gray-900">
+                      380 SGD
+                    </TableCell>
+                    <TableCell className="px-4 py-3.5 text-right font-medium text-gray-900">
+                      850 SGD
+                    </TableCell>
+                  </TableRow>
+                  <TableRow className="border-gray-100">
+                    <TableCell className="px-4 py-3.5 text-gray-800">
+                      <span className="font-medium">On-site registration</span>
+                    </TableCell>
+                    <TableCell className="px-4 py-3.5 text-right font-medium text-gray-900">
+                      380 SGD
+                    </TableCell>
+                    <TableCell className="px-4 py-3.5 text-right font-medium text-gray-900">
+                      900 SGD
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+                <TableCaption className="px-4 pb-3 text-left text-sm text-gray-500">
+                  All prices are GST included.
+                </TableCaption>
+              </Table>
+            </div>
           </section>
 
           {/* Overview */}
