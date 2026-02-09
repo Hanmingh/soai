@@ -1,4 +1,8 @@
-const BASE_URL = (import.meta as any).env?.VITE_API_BASE_URL /* || "http://127.0.0.1:8787" */ || "https://soai-be.soc-ai.workers.dev";
+/*const BASE_URL = (import.meta as any).env?.DEV
+	? "http://127.0.0.1:8787"
+	: "https://soai-be.soc-ai.workers.dev";*/
+
+const BASE_URL = "https://soai-be.soc-ai.workers.dev";
 
 type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
@@ -67,6 +71,35 @@ export async function registerMember(payload: RegisterPayload) {
 	}>("/api/register", { method: "POST", body: payload });
 }
 
+export type CheckoutPayload = {
+	priceId: string;
+	successUrl: string;
+	cancelUrl: string;
+	mode?: "payment" | "subscription";
+	metadata?: Record<string, string>;
+	quantity?: number;
+	allowPromotionCodes?: boolean;
+	customerEmail?: string;
+};
+
+export async function createCheckoutSession(payload: CheckoutPayload) {
+	return fetchJson<{ url: string }>("/api/checkout", { method: "POST", body: payload });
+}
+
+export type MemberVerifyPayload = {
+	member_id?: string;
+	email?: string;
+};
+
+export async function verifyMember(payload: MemberVerifyPayload) {
+	return fetchJson<{
+		ok: boolean;
+		member_id?: string;
+		email?: string;
+		status?: string;
+	}>("/api/members/verify", { method: "POST", body: payload });
+}
+
 export type NewsItem = {
 	id: string;
 	title: string;
@@ -102,6 +135,8 @@ export const api = {
 	fetchJson,
 	sendContact,
 	registerMember,
+	createCheckoutSession,
+	verifyMember,
 	getNewsList,
 	getEventsList,
 };

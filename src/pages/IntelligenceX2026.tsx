@@ -2,15 +2,7 @@ import { Link } from "react-router-dom";
 import intelligenceXBg from "@/assets/IntelligenceX/IntelligenceX_bg.jpg";
 import spmpLogo from "@/assets/IntelligenceX/SPMP_Logo.jpg";
 import secbLogo from "@/assets/IntelligenceX/SECB_Logo.png";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import isiLogo from "@/assets/IntelligenceX/isi_logo.png";
 
 export default function IntelligenceX2026() {
   const bgUrl = intelligenceXBg;
@@ -44,6 +36,61 @@ export default function IntelligenceX2026() {
       {/* Main content */}
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-6 max-w-5xl space-y-10">
+          <section className="grid gap-6 md:grid-cols-2">
+            <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm flex flex-col">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Participant Registration</h3>
+              <p className="text-sm text-gray-700 mb-4">
+                For general attendees (faculty, students, and industry).
+              </p>
+              <div className="mt-auto">
+                <Link
+                  to="/events/intelligencex-2026/register"
+                  className="inline-flex items-center justify-center rounded-md bg-[#ee7c01] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#d66900]"
+                >
+                  Register
+                </Link>
+              </div>
+            </div>
+            <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm flex flex-col">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Invited Session Proposal</h3>
+              <p className="text-sm text-gray-700 mb-4">
+                For prospective organizers who wish to host an invited session at IngelligenceX-2026. Briefly outline
+                the session theme, motivation, and 4 potential speakers in your proposal.
+              </p>
+              <div className="mt-auto flex flex-wrap items-center gap-3">
+                <a
+                  href="https://forms.gle/kKcYxG6PDgyvrSNk8"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center rounded-md bg-[#ee7c01] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#d66900]"
+                >
+                  Open Proposal Form
+                </a>
+                <a
+                  href="/events/Call%20for%20Invited%20Sessions.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-[#003d7b] hover:text-[#002a57]"
+                >
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <path d="M14 2v6h6" />
+                  </svg>
+                  View details
+                </a>
+              </div>
+            </div>
+          </section>
+
           {/* Event information summary */}
           <section className="border-l-4 border-[#ee7c01] pl-5 py-2 bg-[#f9fafb]">
             <h2 className="text-xl font-semibold text-gray-900 mb-2">Event Information</h2>
@@ -57,75 +104,6 @@ export default function IntelligenceX2026() {
                 <dd>28 September 2026 · Singapore · By invitation only</dd>
               </div>
             </dl>
-          </section>
-
-          {/* Ticket pricing */}
-          <section className="space-y-4">
-            <h2 className="text-2xl font-semibold text-gray-900">Ticket Pricing</h2>
-            <p className="text-gray-700 text-sm md:text-base max-w-2xl">
-              Registration fees include full conference access and the conference banquet.
-            </p>
-            <div className="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden">
-              <Table>
-                <TableHeader>
-                  <TableRow className="border-gray-200 bg-gray-50 hover:bg-gray-50">
-                    <TableHead className="h-12 px-4 font-semibold text-gray-900">
-                      Registration type
-                    </TableHead>
-                    <TableHead className="h-12 px-4 font-semibold text-gray-900 text-right">
-                      SoAI member
-                    </TableHead>
-                    <TableHead className="h-12 px-4 font-semibold text-gray-900 text-right">
-                      Non-SoAI member
-                    </TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  <TableRow className="border-gray-100">
-                    <TableCell className="px-4 py-3.5 text-gray-800">
-                      <span className="font-medium">Early bird</span>
-                      <span className="block text-sm text-gray-500 mt-0.5">
-                        Open till 31 Jul 2026
-                      </span>
-                    </TableCell>
-                    <TableCell className="px-4 py-3.5 text-right font-medium text-gray-900">
-                      300 SGD
-                    </TableCell>
-                    <TableCell className="px-4 py-3.5 text-right font-medium text-gray-900">
-                      600 SGD
-                    </TableCell>
-                  </TableRow>
-                  <TableRow className="border-gray-100">
-                    <TableCell className="px-4 py-3.5 text-gray-800">
-                      <span className="font-medium">Later registration</span>
-                      <span className="block text-sm text-gray-500 mt-0.5">
-                        Open till 15 Sep 2026
-                      </span>
-                    </TableCell>
-                    <TableCell className="px-4 py-3.5 text-right font-medium text-gray-900">
-                      380 SGD
-                    </TableCell>
-                    <TableCell className="px-4 py-3.5 text-right font-medium text-gray-900">
-                      850 SGD
-                    </TableCell>
-                  </TableRow>
-                  <TableRow className="border-gray-100">
-                    <TableCell className="px-4 py-3.5 text-gray-800">
-                      <span className="font-medium">On-site registration</span>
-                    </TableCell>
-                    <TableCell className="px-4 py-3.5 text-right font-medium text-gray-900">
-                      380 SGD
-                    </TableCell>
-                    <TableCell className="px-4 py-3.5 text-right font-medium text-gray-900">
-                      900 SGD
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-                <TableCaption className="px-4 pb-3 text-left text-sm text-gray-500">
-                  All prices inclusive of GST. Banquet included.
-                </TableCaption>
-              </Table>
-            </div>
           </section>
 
           {/* Overview */}
@@ -207,6 +185,7 @@ export default function IntelligenceX2026() {
               <li>Chun-houh Chen (Academia Sinica, Taiwan)</li>
               <li>Ray-Bing Chen (National Tsing Hua University, Taiwan)</li>
               <li>Ying Chen (National University of Singapore, Singapore)</li>
+              <li>Philippe Codognet (CNRS / Sorbonne University / University of Tokyo, France)</li>
               <li>Paolo Giudici (University of Pavia, Italy)</li>
               <li>Xin Guo (University of California, Berkeley, USA)</li>
               <li>Nikolaus Hautsch (University of Vienna, Austria)</li>
@@ -224,7 +203,7 @@ export default function IntelligenceX2026() {
 
           {/* Host & Support logos */}
           <section className="pt-8">
-            <div className="grid gap-10 md:grid-cols-2 items-center">
+            <div className="grid gap-10 md:grid-cols-3 items-center">
               <div className="flex flex-col items-center md:items-start gap-3">
                 <p className="text-sm md:text-base font-semibold text-gray-700 uppercase tracking-wide">
                   Held in:
@@ -256,7 +235,29 @@ export default function IntelligenceX2026() {
                   <img
                     src={secbLogo}
                     alt="Singapore Exhibition & Convention Bureau"
-                    className="h-50 md:h-50 w-auto"
+                    width={360}
+                    height={203}
+                    className="h-50 md:h-50 w-auto object-contain"
+                    loading="lazy"
+                  />
+                </a>
+              </div>
+              <div className="flex flex-col items-center md:items-start gap-3">
+                <p className="text-sm md:text-base font-semibold text-gray-700 uppercase tracking-wide">
+                  Partner with:
+                </p>
+                <a
+                  href="https://isi-web.org/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="International Statistical Institute"
+                >
+                  <img
+                    src={isiLogo}
+                    alt="International Statistical Institute"
+                    width={1513}
+                    height={516}
+                    className="h-50 md:h-50 w-auto object-contain"
                     loading="lazy"
                   />
                 </a>
@@ -272,6 +273,7 @@ export default function IntelligenceX2026() {
           </div>
         </div>
       </section>
+
     </div>
   );
 }

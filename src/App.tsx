@@ -15,6 +15,8 @@ import ComingSoon from './pages/ComingSoon';
 import MembershipRegister from './pages/MembershipRegister';
 import MembershipSuccess from './pages/MembershipSuccess';
 import IntelligenceX2026 from './pages/IntelligenceX2026';
+import IntelligenceX2026Registration from './pages/IntelligenceX2026Registration';
+import PaymentSuccess from './pages/PaymentSuccess';
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="events" element={<Events />} />
           <Route path="events/intelligencex-2026" element={<IntelligenceX2026 />} />
+          <Route path="events/intelligencex-2026/register" element={<IntelligenceX2026Registration />} />
+          <Route path="payment-success" element={<PaymentSuccess />} />
           <Route path="news" element={<News />} />
           <Route path="maintenance" element={<Maintenance />} />
           <Route path="coming-soon" element={<ComingSoon />} />
