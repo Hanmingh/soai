@@ -40,7 +40,7 @@ export default function IntelligenceX2026() {
             <div className="flex flex-wrap items-center gap-3">
               <Link
                 to="/events/intelligencex-2026/register"
-                className="inline-flex items-center justify-center rounded-full bg-[#ee7c01] px-6 py-2.5 text-sm font-semibold text-white shadow-md transition hover:bg-[#d66900] hover:shadow-lg"
+                className="inline-flex items-center justify-center rounded-full bg-[#ee7c01] px-6 py-2.5 text-base font-semibold text-white shadow-md transition hover:bg-[#d66900] hover:shadow-lg"
               >
                 Registration here
               </Link>
@@ -48,7 +48,7 @@ export default function IntelligenceX2026() {
                 href="https://forms.gle/kKcYxG6PDgyvrSNk8"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-[#ee7c01] bg-white px-6 py-2.5 text-sm font-semibold text-[#ee7c01] shadow-sm transition hover:bg-[#fff3e6]"
+                className="inline-flex items-center justify-center rounded-full border border-[#ee7c01] bg-white px-6 py-2.5 text-base font-semibold text-[#ee7c01] shadow-sm transition hover:bg-[#fff3e6]"
               >
                 Invited Session Submission
               </a>
@@ -57,7 +57,7 @@ export default function IntelligenceX2026() {
               href="/events/Call%20for%20Invited%20Sessions.pdf"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-medium text-[#003d7b] hover:text-[#002a57]"
+              className="inline-flex items-center gap-2 text-base font-semibold text-[#003d7b] hover:text-[#002a57]"
             >
               <svg
                 aria-hidden="true"
@@ -171,15 +171,19 @@ export default function IntelligenceX2026() {
               <li>Ray-Bing Chen (National Tsing Hua University, Taiwan)</li>
               <li>Ying Chen (National University of Singapore, Singapore)</li>
               <li>Philippe Codognet (CNRS / Sorbonne University / University of Tokyo, France)</li>
+              <li>Katsuki Fujisawa (Institute of Science Tokyo, Japan)</li>
               <li>Paolo Giudici (University of Pavia, Italy)</li>
               <li>Xin Guo (University of California, Berkeley, USA)</li>
               <li>Nikolaus Hautsch (University of Vienna, Austria)</li>
               <li>Tomoyuki Higuchi (The Institute of Statistical Mathematics, Japan)</li>
+              <li>Satoshi Ito (The Institute of Statistical Mathematics, Japan)</li>
               <li>Thorsten Koch (Zuse Institute Berlin &amp; TU Berlin, Germany)</li>
               <li>Stefan Lessmann (Humboldt-Universität zu Berlin, Germany)</li>
               <li>Rujira Ouncharoen (Chiang Mai University, Thailand)</li>
               <li>Huyên Pham (École Polytechnique, France)</li>
               <li>Paulo Canas Rodrigues (Federal University of Bahia, Brazil)</li>
+              <li>Xun Shen (Tokyo University of Agriculture and Technology, Japan)</li>
+              <li>Yuji Shinano (Zuse Institute Berlin, Germany)</li>
               <li>Josef Teichmann (ETH Zürich, Switzerland)</li>
               <li>Simon Trimborn (University of Amsterdam, Netherlands)</li>
               <li>Qiwei Yao (London School of Economics and Political Science, UK)</li>
