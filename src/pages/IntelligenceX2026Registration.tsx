@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -13,15 +13,18 @@ import {
 } from "@/components/ui/table";
 import { formatPrice, getActiveTier, intelligenceX2026Prices } from "@/data/prices";
 import { createCheckoutSession, verifyMember } from "@/lib/api";
+import { unMemberCountries } from "@/data/countries";
 
 export default function IntelligenceX2026Registration() {
   const [title, setTitle] = useState("");
   const [firstName, setFirstName] = useState("");
   const [middleName, setMiddleName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [country, setCountry] = useState("");
   const [affiliation, setAffiliation] = useState("");
   const [email, setEmail] = useState("");
   const [personalWebpage, setPersonalWebpage] = useState("");
+  const [membershipStatus, setMembershipStatus] = useState<"existing" | "join" | "nonmember" | "">("");
   const [formError, setFormError] = useState<string | null>(null);
 
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -70,16 +73,16 @@ export default function IntelligenceX2026Registration() {
     if (
       !title.trim() ||
       !firstName.trim() ||
-      !middleName.trim() ||
       !lastName.trim() ||
+      !country.trim() ||
       !affiliation.trim() ||
       !email.trim() ||
-      !personalWebpage.trim()
+      !membershipStatus
     ) {
-      setFormError("Please complete all fields before continuing.");
+      setFormError("Please complete all required fields before continuing.");
       return false;
     }
-    if (!isValidUrlLike(personalWebpage)) {
+    if (personalWebpage.trim() && !isValidUrlLike(personalWebpage)) {
       setFormError("Please enter a valid personal webpage URL.");
       return false;
     }
@@ -121,9 +124,11 @@ export default function IntelligenceX2026Registration() {
           middle_name: middleName.trim(),
           last_name: lastName.trim(),
           title: title.trim(),
+          country: country.trim(),
           affiliation: affiliation.trim(),
           email: email.trim(),
           personal_webpage: personalWebpage.trim(),
+          membership_status: membershipStatus,
           ...(memberMeta?.member_id ? { member_id: memberMeta.member_id } : {}),
           ...(memberMeta?.email ? { member_email: memberMeta.email } : {}),
         },
@@ -166,6 +171,10 @@ export default function IntelligenceX2026Registration() {
     }
   };
 
+  const countriesOrdered = useMemo(() => {
+    return [...unMemberCountries, "Other"];
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
       <section className="py-16">
@@ -187,55 +196,81 @@ export default function IntelligenceX2026Registration() {
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Attendee Information</h2>
             {formError && <p className="text-sm text-red-600 mb-4">{formError}</p>}
             <form onSubmit={handleStartRegistration} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:col-span-2">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Title <span className="text-red-600">*</span>
+                  </label>
+                  <select
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:ring-[#ee7c01] focus:border-[#ee7c01]"
+                    required
+                  >
+                    <option value="" disabled>Title</option>
+                    <option value="Dr.">Dr.</option>
+                    <option value="Prof.">Prof.</option>
+                    <option value="Mr.">Mr.</option>
+                    <option value="Ms.">Ms.</option>
+                    <option value="Mx.">Mx.</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    First name <span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Last name <span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Middle name</label>
+                  <input
+                    type="text"
+                    value={middleName}
+                    onChange={(e) => setMiddleName(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
+                  />
+                </div>
+              </div>
+
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Title <span className="text-red-600">*</span></label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Country/Region <span className="text-red-600">*</span>
+                </label>
                 <select
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:ring-[#ee7c01] focus:border-[#ee7c01]"
                   required
                 >
-                  <option value="" disabled>Title</option>
-                  <option value="Dr.">Dr.</option>
-                  <option value="Prof.">Prof.</option>
-                  <option value="Mr.">Mr.</option>
-                  <option value="Ms.">Ms.</option>
-                  <option value="Mx.">Mx.</option>
-                  <option value="Other">Other</option>
+                  <option value="" disabled>Country/Region</option>
+                  {countriesOrdered.map((c) => (
+                    <option key={c} value={c}>{c}</option>
+                  ))}
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">First name <span className="text-red-600">*</span></label>
-                <input
-                  type="text"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Middle name <span className="text-red-600">*</span></label>
-                <input
-                  type="text"
-                  value={middleName}
-                  onChange={(e) => setMiddleName(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Last name <span className="text-red-600">*</span></label>
-                <input
-                  type="text"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Affiliation <span className="text-red-600">*</span></label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Affiliation <span className="text-red-600">*</span>
+                </label>
                 <input
                   type="text"
                   value={affiliation}
@@ -244,8 +279,11 @@ export default function IntelligenceX2026Registration() {
                   required
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email <span className="text-red-600">*</span></label>
+
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Email <span className="text-red-600">*</span>
+                </label>
                 <input
                   type="email"
                   value={email}
@@ -254,21 +292,72 @@ export default function IntelligenceX2026Registration() {
                   required
                 />
               </div>
+
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Personal webpage <span className="text-red-600">*</span></label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  SoAI Membership <span className="text-red-600">*</span>
+                </label>
+                <p className="text-sm text-gray-600 mb-3">Please indicate your status:</p>
+                <div className="space-y-2 text-sm text-gray-700">
+                  <label className="flex items-start gap-2">
+                    <input
+                      type="radio"
+                      name="soai-membership"
+                      value="existing"
+                      checked={membershipStatus === "existing"}
+                      onChange={() => setMembershipStatus("existing")}
+                      className="mt-1"
+                      required
+                    />
+                    <span>I am an existing SoAI member.</span>
+                  </label>
+                  <label className="flex items-start gap-2">
+                    <input
+                      type="radio"
+                      name="soai-membership"
+                      value="join"
+                      checked={membershipStatus === "join"}
+                      onChange={() => setMembershipStatus("join")}
+                      className="mt-1"
+                      required
+                    />
+                    <span>I consent to join SoAI as a member.</span>
+                  </label>
+                  <label className="flex items-start gap-2">
+                    <input
+                      type="radio"
+                      name="soai-membership"
+                      value="nonmember"
+                      checked={membershipStatus === "nonmember"}
+                      onChange={() => setMembershipStatus("nonmember")}
+                      className="mt-1"
+                      required
+                    />
+                    <span>I do not wish to join SoAI and will attend the conference as a non-SoAI member.</span>
+                  </label>
+                </div>
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Personal webpage</label>
                 <input
                   type="url"
                   value={personalWebpage}
                   onChange={(e) => setPersonalWebpage(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
-                  required
                 />
               </div>
               <div className="md:col-span-2">
                 <Button type="submit" disabled className="bg-gray-300 text-gray-600 hover:bg-gray-300">
-                  Continue to payment
+                  Coming soon
                 </Button>
               </div>
+              <p className="md:col-span-2 text-xs text-gray-500 leading-relaxed">
+                By registering, you consent to the collection and processing of your personal data for conference
+                administration, organisation, and statistical reporting, in accordance with applicable data protection
+                laws (including the GDPR), and to the use of photographs and video recordings taken during the event for
+                official conference communications and reports.
+              </p>
             </form>
           </section>
 
