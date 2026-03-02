@@ -24,12 +24,12 @@ export const intelligenceX2026Prices: PriceTier[] = [
     member: {
       amount: 300,
       currency: "SGD",
-      priceId: "price_1SwI1hRtTdpRUixwsOczXB96",
+      priceId: "price_1T6O8fRoKuwmRueSr4aaZAig",
     },
     nonMember: {
       amount: 600,
       currency: "SGD",
-      priceId: "price_1SwI1hRtTdpRUixwHYVifs0q",
+      priceId: "price_1T6O8gRoKuwmRueS5yaUMuAq",
     },
   },
   {
@@ -40,12 +40,12 @@ export const intelligenceX2026Prices: PriceTier[] = [
     member: {
       amount: 380,
       currency: "SGD",
-      priceId: "price_1SwI1hRtTdpRUixwR9ubfOYY",
+      priceId: "price_1T6O8gRoKuwmRueS2e77bN5k",
     },
     nonMember: {
       amount: 850,
       currency: "SGD",
-      priceId: "price_1SwI1hRtTdpRUixwdwxU5CDZ",
+      priceId: "price_1T6O8fRoKuwmRueSofCGxxTC",
     },
   },
   {
@@ -54,12 +54,12 @@ export const intelligenceX2026Prices: PriceTier[] = [
     member: {
       amount: 380,
       currency: "SGD",
-      priceId: "price_1SwI1hRtTdpRUixwcnZfJr25",
+      priceId: "price_1T6O8gRoKuwmRueSRrTiTkbz",
     },
     nonMember: {
       amount: 900,
       currency: "SGD",
-      priceId: "price_1SwI1hRtTdpRUixw235G2392",
+      priceId: "price_1T6O8gRoKuwmRueS6c5jZB3v",
     },
   },
 ];
