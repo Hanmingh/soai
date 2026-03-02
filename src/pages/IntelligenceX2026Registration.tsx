@@ -310,8 +310,8 @@ export default function IntelligenceX2026Registration() {
                 />
               </div>
               <div className="md:col-span-2">
-                <Button type="submit">
-                  Register
+                <Button type="submit" disabled={isBusy}>
+                  {isBusy ? "Processing..." : "Register"}
                 </Button>
               </div>
               <p className="md:col-span-2 text-xs text-gray-500 leading-relaxed">
