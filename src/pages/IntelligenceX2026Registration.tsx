@@ -24,7 +24,8 @@ export default function IntelligenceX2026Registration() {
   const [affiliation, setAffiliation] = useState("");
   const [email, setEmail] = useState("");
   const [personalWebpage, setPersonalWebpage] = useState("");
-  const [membershipStatus, setMembershipStatus] = useState<"existing" | "join" | "nonmember" | "">("");
+  const [membershipStatus, setMembershipStatus] = useState<"existing" | "join" | "isi" | "nonmember" | "">("");
+  const [isiMemberId, setIsiMemberId] = useState("");
   const [formError, setFormError] = useState<string | null>(null);
 
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
@@ -58,6 +59,10 @@ export default function IntelligenceX2026Registration() {
       setFormError("Please enter a valid personal webpage URL.");
       return false;
     }
+    if (membershipStatus === "isi" && !isiMemberId.trim()) {
+      setFormError("Please enter your ISI member ID.");
+      return false;
+    }
     setFormError(null);
     return true;
   };
@@ -86,7 +91,7 @@ export default function IntelligenceX2026Registration() {
       }
     }
 
-    const isMember = membershipStatus === "existing" || membershipStatus === "join";
+    const isMember = membershipStatus === "existing" || membershipStatus === "join" || membershipStatus === "isi";
     await startCheckout(isMember);
   };
 
@@ -123,6 +128,9 @@ export default function IntelligenceX2026Registration() {
           email: email.trim(),
           personal_webpage: personalWebpage.trim(),
           membership_status: membershipStatus,
+          ...(membershipStatus === "isi" && isiMemberId.trim()
+            ? { isi_member_id: isiMemberId.trim() }
+            : {}),
         },
       });
       window.location.assign(url);
@@ -257,7 +265,7 @@ export default function IntelligenceX2026Registration() {
 
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  SoAI Membership <span className="text-red-600">*</span>
+                  Membership Status <span className="text-red-600">*</span>
                 </label>
                 <p className="text-sm text-gray-600 mb-3">Please indicate your status:</p>
                 <div className="space-y-2 text-sm text-gray-700">
@@ -289,6 +297,18 @@ export default function IntelligenceX2026Registration() {
                     <input
                       type="radio"
                       name="soai-membership"
+                      value="isi"
+                      checked={membershipStatus === "isi"}
+                      onChange={() => setMembershipStatus("isi")}
+                      className="mt-1"
+                      required
+                    />
+                    <span>I am an ISI member.</span>
+                  </label>
+                  <label className="flex items-start gap-2">
+                    <input
+                      type="radio"
+                      name="soai-membership"
                       value="nonmember"
                       checked={membershipStatus === "nonmember"}
                       onChange={() => setMembershipStatus("nonmember")}
@@ -298,6 +318,20 @@ export default function IntelligenceX2026Registration() {
                     <span>I do not wish to join SoAI and will attend the conference as a non-SoAI member.</span>
                   </label>
                 </div>
+                {membershipStatus === "isi" && (
+                  <div className="mt-3">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      ISI member ID <span className="text-red-600">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={isiMemberId}
+                      onChange={(e) => setIsiMemberId(e.target.value)}
+                      placeholder="Enter your ISI member ID"
+                      className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
+                    />
+                  </div>
+                )}
               </div>
 
               <div className="md:col-span-2">

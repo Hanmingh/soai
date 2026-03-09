@@ -179,6 +179,7 @@ export default function IntelligenceX2026() {
               <li>Satoshi Ito (The Institute of Statistical Mathematics, Japan)</li>
               <li>Thorsten Koch (Zuse Institute Berlin &amp; TU Berlin, Germany)</li>
               <li>Stefan Lessmann (Humboldt-Universität zu Berlin, Germany)</li>
+              <li>Sven Leyffer (Argonne National Laboratory, USA)</li>
               <li>Rujira Ouncharoen (Chiang Mai University, Thailand)</li>
               <li>Huyên Pham (École Polytechnique, France)</li>
               <li>Paulo Canas Rodrigues (Federal University of Bahia, Brazil)</li>
