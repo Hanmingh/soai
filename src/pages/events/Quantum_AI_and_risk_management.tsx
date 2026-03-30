@@ -108,10 +108,10 @@ function SlideDownload({ href, label = "Download slides (PDF)" }: { href: string
             <div className="flex items-center justify-between gap-3 mt-5">
               <Link
                 to="/membership"
-                className="text-sm text-[#003d7b] hover:underline whitespace-nowrap"
+                className="inline-flex items-center justify-center rounded-md bg-[#ee7c01] px-3 py-2 text-sm font-semibold text-white hover:bg-[#d66900] whitespace-nowrap"
                 onClick={() => setOpen(false)}
               >
-                Register as a member
+                Become a member
               </Link>
 
               <div className="flex items-center gap-2">
