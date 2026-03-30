@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import paviaLogo from "@/assets/quantum_ai_and_risk_management/UNIVERSITA_DI_PAVIA_Logo.png";
 import slidesYingChen from "@/assets/quantum_ai_and_risk_management/Algorithmic Intelligence in the Quantum-AI Era.pdf";
@@ -7,20 +8,135 @@ import slidesFinancialStability from "@/assets/quantum_ai_and_risk_management/Qu
 import slidesSafeQml from "@/assets/quantum_ai_and_risk_management/SAFE Quantum Machine Learning with Variational Quantum Classifiers.pdf";
 import slidesCreditScoring from "@/assets/quantum_ai_and_risk_management/Quantum support vector machines for credit scoring.pdf";
 import slidesSoftQuantumKernels from "@/assets/quantum_ai_and_risk_management/Soft Quantum Kernels for Workforce Risk Analytics.pdf";
+import { verifyMember } from "@/lib/api";
 
 const soaiLogoUrl = `${import.meta.env.BASE_URL}SoAI_logo.png`;
 
+const VERIFIED_MEMBER_ID_KEY = "soai_verified_member_id";
+
+function downloadPdf(href: string) {
+  const link = document.createElement("a");
+  link.href = href;
+  const fileName = href.split("/").pop()?.split("?")[0];
+  link.download = fileName || "slides.pdf";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
+
 function SlideDownload({ href, label = "Download slides (PDF)" }: { href: string; label?: string }) {
+  const [open, setOpen] = useState(false);
+  const [memberId, setMemberId] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function onVerifyAndDownload() {
+    setBusy(true);
+    setError(null);
+
+    try {
+      const id = memberId.trim();
+      if (!id) {
+        setError("Please enter your SoAI member ID.");
+        return;
+      }
+
+      const res = await verifyMember({ member_id: id });
+      if (res?.ok) {
+        sessionStorage.setItem(VERIFIED_MEMBER_ID_KEY, id);
+        setOpen(false);
+        downloadPdf(href);
+        return;
+      }
+
+      setError("Member ID not found. Please register as a SoAI member first.");
+    } catch {
+      setError("Unable to verify your member ID right now. Please try again later.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  function onClickDownload() {
+    const verifiedId = sessionStorage.getItem(VERIFIED_MEMBER_ID_KEY);
+    if (verifiedId) {
+      downloadPdf(href);
+      return;
+    }
+    setOpen(true);
+    setError(null);
+    setMemberId("");
+  }
+
   return (
-    <a
-      href={href}
-      download
-      target="_blank"
-      rel="noreferrer"
-      className="text-[#003d7b] font-medium hover:underline whitespace-nowrap"
-    >
-      {label}
-    </a>
+    <>
+      <button
+        type="button"
+        onClick={onClickDownload}
+        className="text-[#003d7b] font-medium hover:underline whitespace-nowrap"
+      >
+        {label}
+      </button>
+
+      {open && (
+        <div
+          className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+        >
+          <div className="w-full max-w-md rounded-lg bg-white shadow-lg p-5">
+            <div className="mb-2">
+              <h3 className="text-lg font-semibold text-gray-900">Verify your SoAI member ID</h3>
+              <p className="text-sm text-gray-700 leading-relaxed mt-1">
+                For slide downloads, please enter your SoAI member ID. If you’re not a member yet, you can register first.
+              </p>
+            </div>
+
+            <div className="mt-4">
+              <label className="block text-sm font-medium text-gray-700 mb-1">SoAI member ID</label>
+              <input
+                value={memberId}
+                onChange={(e) => setMemberId(e.target.value)}
+                placeholder="e.g., 12345"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:ring-[#003d7b] focus:border-[#003d7b]"
+                inputMode="text"
+              />
+            </div>
+
+            {error && <p className="text-sm text-red-600 mt-3">{error}</p>}
+
+            <div className="flex items-center justify-between gap-3 mt-5">
+              <Link
+                to="/membership"
+                className="text-sm text-[#003d7b] hover:underline whitespace-nowrap"
+                onClick={() => setOpen(false)}
+              >
+                Register as a member
+              </Link>
+
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  className="rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-800 hover:bg-gray-50"
+                  onClick={() => setOpen(false)}
+                  disabled={busy}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  className="rounded-md bg-[#003d7b] px-3 py-2 text-sm font-semibold text-white hover:bg-[#002a5c] disabled:opacity-60"
+                  onClick={onVerifyAndDownload}
+                  disabled={busy}
+                >
+                  {busy ? "Verifying…" : "Verify & download"}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
