@@ -16,6 +16,7 @@ import MembershipRegister from './pages/MembershipRegister';
 import MembershipSuccess from './pages/MembershipSuccess';
 import IntelligenceX2026 from './pages/IntelligenceX2026';
 import IntelligenceX2026Registration from './pages/IntelligenceX2026Registration';
+import QuantumAIAndRiskManagement from './pages/events/Quantum_AI_and_risk_management';
 import PaymentSuccess from './pages/PaymentSuccess';
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           <Route path="events" element={<Events />} />
           <Route path="events/intelligencex-2026" element={<IntelligenceX2026 />} />
           <Route path="events/intelligencex-2026/register" element={<IntelligenceX2026Registration />} />
+          <Route path="events/quantum-ai-risk-management" element={<QuantumAIAndRiskManagement />} />
           <Route path="payment-success" element={<PaymentSuccess />} />
           <Route path="news" element={<News />} />
           <Route path="maintenance" element={<Maintenance />} />

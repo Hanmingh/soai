@@ -12,6 +12,15 @@ export type EventItem = {
 
 export const recentEvents: EventItem[] = [
   {
+    id: "quantum-ai-risk-management-pavia-2026",
+    title: "Quantum AI and risk management",
+    date: "2026-03-27",
+    location: "University of Pavia, Italy (hybrid)",
+    description:
+      "Half-day hybrid workshop on quantum research and applications for risk management, financial stability, and intelligent systems. Free admission; registration required.",
+    link: "/events/quantum-ai-risk-management",
+  },
+  {
     id: "intelligencex-2026-global-quantum-ai-frontier",
     title: "IntelligenceX 2026: The Global Quantum×AI Frontier",
     startDate: "2026-09-24",
