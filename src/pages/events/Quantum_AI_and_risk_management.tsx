@@ -5,6 +5,7 @@ import slidesThorstenKoch from "@/assets/quantum_ai_and_risk_management/Algorith
 import slidesPasqal from "@/assets/quantum_ai_and_risk_management/Quantum computing at Pasqal, and its application to the financial sector.pdf";
 import slidesFinancialStability from "@/assets/quantum_ai_and_risk_management/Quantum Computing, Deep Learning and Financial Stability in Good Times.pdf";
 import slidesSafeQml from "@/assets/quantum_ai_and_risk_management/SAFE Quantum Machine Learning with Variational Quantum Classifiers.pdf";
+import slidesCreditScoring from "@/assets/quantum_ai_and_risk_management/Quantum support vector machines for credit scoring.pdf";
 import slidesSoftQuantumKernels from "@/assets/quantum_ai_and_risk_management/Soft Quantum Kernels for Workforce Risk Analytics.pdf";
 
 const soaiLogoUrl = `${import.meta.env.BASE_URL}SoAI_logo.png`;
@@ -163,7 +164,8 @@ export default function QuantumAIAndRiskManagement() {
               <li>
                 <span className="font-medium">Quantum support vector machines for credit scoring</span>{" "}
                 — Mattia Bacigalupo (AXPO Italia Spa) &amp; Pier Giuseppe Giribone (Gruppo BPER,
-                University of Genoa)
+                University of Genoa).{" "}
+                <SlideDownload href={slidesCreditScoring} />
               </li>
               <li>
                 <span className="font-medium">
