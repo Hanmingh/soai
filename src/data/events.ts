@@ -30,6 +30,16 @@ export const recentEvents: EventItem[] = [
     link: "/events/intelligencex-2026",
   },
   {
+    id: "iasc-ars-soai-2026-chiang-mai",
+    title: "14th IASC-ARS & SoAI 2026 Joint Conference",
+    startDate: "2026-12-09",
+    endDate: "2026-12-11",
+    location: "Chiang Mai University, Chiang Mai, Thailand",
+    description:
+      "Joint conference of the International Association for Statistical Computing (IASC) Asian Regional Section and the Society of Algorithmic Intelligence (SoAI). Theme: Shaping the Future — AI, Big Data, and Emerging Technologies for a Smarter World.",
+    link: "https://iasc-ars2026.icdi.cmu.ac.th/Home",
+  },
+  {
     id: "thinkswiss-research-scholarships-2026-apac",
     title: "ThinkSwiss Research Scholarships 2026 (Asia-Pacific)",
     startDate: "2026-04-1",
