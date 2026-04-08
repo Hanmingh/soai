@@ -101,6 +101,18 @@ export default function IntelligenceX2026() {
               intelligence, data science, and statistics jointly redefine the future of intelligent systems.
             </p>
             <p className="text-gray-800 leading-relaxed">
+              This flagship conference also integrates The 10th NUS-ZIB-IIR-ISM-MODAL Workshop on Algorithmic Intelligence: Optimization, Data Science & Decision-Making in the Quantum–AI Era, continuing{" "}
+              <a
+                href="https://sites.google.com/view/optds2025/"
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold text-[#003d7b] underline hover:text-[#002a57]"
+              >
+                a long-standing international workshop series
+              </a>{" "}
+              on optimization, data science, and decision intelligence, and extending it into the emerging Quantum × AI frontier.
+            </p>
+            <p className="text-gray-800 leading-relaxed">
               Building on a strong foundation of prior workshops, tutorials, and hackathons, IntelligenceX 2026 is
               designed to bridge frontier research and practical deployment, combining scientific rigor with
               methodological and strategic relevance.
@@ -177,6 +189,7 @@ export default function IntelligenceX2026() {
               <li>Nikolaus Hautsch (University of Vienna, Austria)</li>
               <li>Tomoyuki Higuchi (The Institute of Statistical Mathematics, Japan)</li>
               <li>Satoshi Ito (The Institute of Statistical Mathematics, Japan)</li>
+              <li>Tal Kachman (Humboldt-Universität zu Berlin, Germany)</li>
               <li>Thorsten Koch (Zuse Institute Berlin &amp; TU Berlin, Germany)</li>
               <li>Stefan Lessmann (Humboldt-Universität zu Berlin, Germany)</li>
               <li>Sven Leyffer (Argonne National Laboratory, USA)</li>
