@@ -101,7 +101,12 @@ export default function IntelligenceX2026() {
               intelligence, data science, and statistics jointly redefine the future of intelligent systems.
             </p>
             <p className="text-gray-800 leading-relaxed">
-              This flagship conference also integrates The 10th NUS-ZIB-IIR-ISM-MODAL Workshop on Algorithmic Intelligence: Optimization, Data Science & Decision-Making in the Quantum–AI Era, continuing{" "}
+              This flagship conference also integrates{" "}
+              <span className="font-bold">
+                The 10th NUS-ZIB-IIR-ISM-MODAL Workshop on Algorithmic Intelligence: Optimization, Data Science & Decision-Making
+                in the Quantum–AI Era
+              </span>
+              , continuing{" "}
               <a
                 href="https://sites.google.com/view/optds2025/"
                 target="_blank"
