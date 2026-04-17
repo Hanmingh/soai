@@ -147,6 +147,73 @@ export default function IntelligenceX2026() {
             </ul>
           </section>
 
+          {/* Hands-On Tutorials */}
+          <section className="space-y-4 rounded-lg border border-gray-200 bg-[#f9fafb] p-6 md:p-8">
+            <div>
+              <h2 className="text-2xl font-semibold text-gray-900">
+                Hands-On Tutorials @ IntelligenceX 2026
+              </h2>
+              <p className="mt-2 text-sm md:text-base font-medium text-[#003d7b]">
+                Limited Seats | Deep-Dive | Learn by Building
+              </p>
+            </div>
+            <p className="text-gray-800 leading-relaxed text-sm md:text-base">
+              As part of IntelligenceX 2026: Global Quantum × AI Frontier, we are offering a curated series of 3-hour
+              intensive hands-on tutorials (tentatively scheduled for 25 September), designed for participants who want
+              to go beyond theory and build real, working systems.
+            </p>
+            <p className="text-gray-800 leading-relaxed text-sm md:text-base">
+              Each tutorial is highly interactive, led by leading experts from academia and industry, and focuses on
+              practical implementation—not just concepts.
+            </p>
+            <ol className="list-decimal pl-6 space-y-4 text-gray-800 leading-relaxed text-sm md:text-base">
+              <li>
+                <span className="font-semibold text-gray-900">Quantum Computing: 3-Hour Hands-On Tutorial</span>
+                <span className="block mt-1">From Fundamentals to Algorithms &amp; Implementation</span>
+                <span className="block mt-1 font-normal">
+                  This session provides a structured and practical introduction to quantum computing, bridging theory
+                  and real-world applications.
+                </span>
+              </li>
+              <li>
+                <span className="font-semibold text-gray-900">AI for Coding: 3-Hour Hands-On Tutorial</span>
+                <span className="block mt-1">Build Your Own Intelligent Development Workflows</span>
+                <span className="block mt-1 font-normal">
+                  This tutorial focuses on using AI coding agents for code generation, debugging, and optimization,
+                  enabling you to leverage AI as a coding co-pilot to significantly improve productivity and code quality.
+                </span>
+              </li>
+              <li>
+                <span className="font-semibold text-gray-900">AI Algorithmic Trading: 3-Hour Hands-On Tutorial</span>
+                <span className="block mt-1">From Strategy to Execution</span>
+                <span className="block mt-1 font-normal">
+                  A practical, end-to-end session on designing and implementing algorithmic trading strategies in modern
+                  markets.
+                </span>
+              </li>
+            </ol>
+            <div className="space-y-2">
+              <h3 className="text-lg font-semibold text-gray-900">🎯 Key Features</h3>
+              <ul className="list-disc pl-6 space-y-2 text-gray-800 leading-relaxed text-sm md:text-base">
+                <li>Hands-on, code-driven sessions (bring your laptop)</li>
+                <li>Real datasets and practical use cases</li>
+                <li>Small-group setting for close interaction</li>
+                <li>Direct engagement with leading experts</li>
+              </ul>
+            </div>
+            <p className="text-gray-800 leading-relaxed text-sm md:text-base">
+              <span className="font-semibold">⚠️ Limited seats</span> available to ensure a high-quality learning experience.
+              Early registration is strongly recommended.
+            </p>
+            <p className="text-sm text-gray-600">
+              You may indicate a tutorial preference when you{" "}
+              <Link to="/events/intelligencex-2026/register" className="font-semibold text-[#003d7b] hover:underline">
+                register
+              </Link>
+              ; preference is optional and subject to capacity (see registration form for details).
+            </p>
+          </section>
+
           {/* Executive Track */}
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold text-gray-900">Executive Track</h2>

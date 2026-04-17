@@ -26,6 +26,9 @@ export default function IntelligenceX2026Registration() {
   const [personalWebpage, setPersonalWebpage] = useState("");
   const [membershipStatus, setMembershipStatus] = useState<"existing" | "join" | "isi" | "nonmember" | "">("");
   const [isiMemberId, setIsiMemberId] = useState("");
+  const [handsOnTutorialPref, setHandsOnTutorialPref] = useState<
+    "" | "quantum" | "ai_coding" | "ai_trading" | "na"
+  >("");
   const [formError, setFormError] = useState<string | null>(null);
 
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
@@ -130,6 +133,9 @@ export default function IntelligenceX2026Registration() {
           membership_status: membershipStatus,
           ...(membershipStatus === "isi" && isiMemberId.trim()
             ? { isi_member_id: isiMemberId.trim() }
+            : {}),
+          ...(handsOnTutorialPref
+            ? { hands_on_tutorial_preference: handsOnTutorialPref }
             : {}),
         },
       });
@@ -343,6 +349,33 @@ export default function IntelligenceX2026Registration() {
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
                 />
               </div>
+
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Hands-on tutorial preference <span className="font-normal text-gray-500">(optional)</span>
+                </label>
+                <select
+                  value={handsOnTutorialPref}
+                  onChange={(e) =>
+                    setHandsOnTutorialPref(
+                      e.target.value as "" | "quantum" | "ai_coding" | "ai_trading" | "na",
+                    )
+                  }
+                  className="w-full max-w-xl px-3 py-2 border border-gray-300 rounded-md bg-white focus:ring-[#ee7c01] focus:border-[#ee7c01]"
+                >
+                  <option value="">No preference indicated</option>
+                  <option value="quantum">Hands-on tutorial Quantum Computing</option>
+                  <option value="ai_coding">Hands-on tutorial AI for Coding</option>
+                  <option value="ai_trading">Hands-on tutorial AI Algorithmic Trading</option>
+                  <option value="na">NA</option>
+                </select>
+                <p className="mt-2 text-xs text-gray-600 leading-relaxed max-w-3xl">
+                  While we will do our best to accommodate preferences, we cannot guarantee placement in your selected
+                  tutorial due to capacity constraints. Participants who are not allocated a seat will be provided
+                  access to a live broadcast of the selected hands-on sessions.
+                </p>
+              </div>
+
               <div className="md:col-span-2">
                 <Button type="submit" disabled={isBusy}>
                   {isBusy ? "Processing..." : "Register"}
