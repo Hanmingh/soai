@@ -103,7 +103,7 @@ export default function IntelligenceX2026() {
             <p className="text-gray-800 leading-relaxed">
               This flagship conference also integrates{" "}
               <span className="font-bold">
-                The 10th NUS-ZIB-IIR-ISM-MODAL Workshop on Algorithmic Intelligence: Optimization, Data Science & Decision-Making
+                The 10th NUS-ZIB-ISCT-ISM-MODAL Workshop on Algorithmic Intelligence: Optimization, Data Science & Decision-Making
                 in the Quantum–AI Era
               </span>
               , continuing{" "}
