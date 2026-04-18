@@ -254,6 +254,7 @@ export default function IntelligenceX2026() {
               <li>Chun-houh Chen (Academia Sinica, Taiwan)</li>
               <li>Ray-Bing Chen (National Tsing Hua University, Taiwan)</li>
               <li>Ying Chen (National University of Singapore, Singapore)</li>
+              <li>Patrick Chia (National University Health System, Singapore)</li>
               <li>Philippe Codognet (CNRS / Sorbonne University / University of Tokyo, France)</li>
               <li>Katsuki Fujisawa (Institute of Science Tokyo, Japan)</li>
               <li>Paolo Giudici (University of Pavia, Italy)</li>
