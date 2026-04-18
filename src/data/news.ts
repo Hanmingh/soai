@@ -9,6 +9,15 @@ export type NewsItem = {
 
 export const newsItems: NewsItem[] = [
   {
+    id: "lu-jianlong-eric-wendy-schmidt-ai-science-postdoctoral-fellowship-2026",
+    title:
+      "Dr. Lu Jianlong Selected for the Eric and Wendy Schmidt AI in Science Postdoctoral Fellowship 2026",
+    date: "2026-04-18",
+    source: "Society of Algorithmic Intelligence",
+    summary:
+      "SoAI congratulates Dr. Lu Jianlong, who has been selected to receive the Eric and Wendy Schmidt AI in Science Postdoctoral Fellowship 2026. The award carries the title Eric and Wendy Schmidt AI in Science Postdoctoral Fellow and is tenable for up to two years. The fellowship is awarded on the recommendation of the program’s Joint Evaluation Committee.",
+  },
+  {
     id: "introduction-of-a-ground-breaking-quantum-algorithm-for-multi-objective-optimization",
     title: "Introduction of a Ground-Breaking Quantum Algorithm for Multi-Objective Optimization New Quantum Algorithm Tackles Multi-Objective Optimization",
     date: "2025-10-24",
