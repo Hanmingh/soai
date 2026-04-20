@@ -1,6 +1,6 @@
 # Society of Algorithmic Intelligence — Official Website
 
-This repository contains the source code for the **official website** of the [Society of Algorithmic Intelligence (SoAI)](https://soc-ai.org), published at **[https://soc-ai.org](https://soc-ai.org)**.
+This repository contains the source code for the **official website** of the [Society of Algorithmic Intelligence (SoAI)](https://www.soc-ai.org), published at **[https://www.soc-ai.org](https://www.soc-ai.org)**.
 
 The site presents SoAI’s mission, programmes, events (including IntelligenceX), membership, news, and contact information. Content here is intended for public visitors, members, and partners.
 
