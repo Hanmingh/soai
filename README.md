@@ -1,69 +1,98 @@
-# React + TypeScript + Vite
+# Society of Algorithmic Intelligence — Official Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the source code for the **official website** of the [Society of Algorithmic Intelligence (SoAI)](https://soc-ai.org), published at **[https://soc-ai.org](https://soc-ai.org)**.
 
-Currently, two official plugins are available:
+The site presents SoAI’s mission, programmes, events (including IntelligenceX), membership, news, and contact information. Content here is intended for public visitors, members, and partners.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Technology
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Area | Choice |
+|------|--------|
+| UI | [React](https://react.dev/) 19 |
+| Language | [TypeScript](https://www.typescriptlang.org/) |
+| Build tool | [Vite](https://vite.dev/) 7 |
+| Styling | [Tailwind CSS](https://tailwindcss.com/) 4 |
+| Components | [Radix UI](https://www.radix-ui.com/) primitives, custom layout |
+| Routing | [React Router](https://reactrouter.com/) 7 |
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+The app is a client-side single-page application. API calls to backend services (for example membership or events) are configured in application code as needed for each environment.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Requirements
+
+- **Node.js** 20.x (aligned with CI; other LTS versions may work)
+- **npm** (lockfile: `package-lock.json`)
+
+---
+
+## Local development
+
+```bash
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Vite serves the app with hot module replacement. Open the URL shown in the terminal (typically `http://localhost:5173`).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Other useful commands:
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+| Command | Purpose |
+|---------|---------|
+| `npm run build` | Production build (`tsc -b` then `vite build` → `dist/`) |
+| `npm run preview` | Serve the `dist/` output locally |
+| `npm run lint` | Run ESLint |
+
+---
+
+## Deployment
+
+### Hosting and automation
+
+Production traffic is served by **GitHub Pages**. Deployments are fully automated with **GitHub Actions**.
+
+- **Workflow:** [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)
+- **Trigger:** push to the `main` branch, or manual **Run workflow** (`workflow_dispatch`)
+- **Steps (summary):** checkout → Node 20 → `npm ci` → `npm run build` → write **`dist/CNAME`** with `soc-ai.org` → upload `dist/` as a Pages artifact → deploy with `actions/deploy-pages`
+
+The workflow uses the `github-pages` environment so deployment history and optional protection rules are visible in the repository’s **Environments** settings.
+
+### Custom domain and DNS
+
+The canonical hostname **`soc-ai.org`** is configured for GitHub Pages. The build step writes a [`CNAME`](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site) file into `dist/` so GitHub Pages continues to associate the site with that domain after each deploy.
+
+**Domain registration and DNS** are managed at **Namecheap** (registrar). Records there (for example apex `A`/`ALIAS` and `www` as required) must point to GitHub Pages as described in GitHub’s documentation:
+
+- [Configuring a custom domain for your GitHub Pages site](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site)
+
+After DNS changes, allow for propagation and verify the custom domain under **Repository → Settings → Pages**.
+
+---
+
+## Repository layout (overview)
+
+| Path | Role |
+|------|------|
+| `src/App.tsx`, `src/main.tsx` | Application shell and entry |
+| `src/pages/` | Route-level pages (home, about, events, membership, IntelligenceX, etc.) |
+| `src/components/` | Shared UI and layout (header, footer, sections) |
+| `src/data/` | Static data modules (events, news, membership tiers, etc.) |
+| `src/lib/` | Utilities and API helpers |
+| `public/` | Static assets served as-is |
+
+---
+
+## Contributing and releases
+
+1. Work on a branch, open a pull request against `main`, and ensure `npm run build` and `npm run lint` succeed.
+2. Merging to **`main`** triggers a new GitHub Pages deployment automatically.
+
+For infrastructure changes (Actions secrets, environment protection, or Namecheap DNS), coordinate with repository administrators.
+
+---
+
+## Support
+
+For questions about the Society or this website, use the contact options listed on **[soc-ai.org](https://soc-ai.org)**.
