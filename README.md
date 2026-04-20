@@ -95,4 +95,4 @@ For infrastructure changes (Actions secrets, environment protection, or Namechea
 
 ## Support
 
-For questions about the Society or this website, use the contact options listed on **[soc-ai.org](https://soc-ai.org)**.
+For questions about the Society or this website, use the contact options listed on **[www.soc-ai.org](https://www.soc-ai.org)**.
