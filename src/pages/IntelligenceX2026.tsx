@@ -182,6 +182,12 @@ export default function IntelligenceX2026() {
                   This tutorial focuses on using AI coding agents for code generation, debugging, and optimization,
                   enabling you to leverage AI as a coding co-pilot to significantly improve productivity and code quality.
                 </span>
+                <a
+                  href="#thorsten-agentic-coding-post"
+                  className="mt-2 inline-flex text-sm font-semibold text-[#003d7b] hover:underline"
+                >
+                  Read tutorial spotlight: Hands-on Agentic Coding with Prof. Dr. Thorsten Koch
+                </a>
               </li>
               <li>
                 <span className="font-semibold text-gray-900">AI Algorithmic Trading: 3-Hour Hands-On Tutorial</span>
@@ -212,6 +218,86 @@ export default function IntelligenceX2026() {
               </Link>
               ; preference is optional and subject to capacity (see registration form for details).
             </p>
+          </section>
+
+          {/* Tutorial Spotlight Post */}
+          <section
+            id="thorsten-agentic-coding-post"
+            className="space-y-6 rounded-lg border border-[#cddcf0] bg-[#f4f8ff] p-6 md:p-8 scroll-mt-28"
+          >
+            <div className="flex flex-col gap-5 md:flex-row md:items-start">
+              <img
+                src="/leadership/Thorsten.png"
+                alt="Prof. Dr. Thorsten Koch"
+                className="h-56 w-56 rounded-lg object-cover shadow-sm"
+                loading="lazy"
+              />
+              <div className="space-y-3">
+                <p className="text-sm font-semibold uppercase tracking-wide text-[#003d7b]">
+                  Tutorial Spotlight
+                </p>
+                <h2 className="text-2xl font-semibold text-gray-900">
+                  Hands-on Agentic Coding (3-hour course)
+                </h2>
+                <p className="text-gray-700 text-sm md:text-base">
+                  Led by <span className="font-semibold">Prof. Dr. Thorsten Koch</span> (TU Berlin &amp; Zuse Institute
+                  Berlin)
+                </p>
+                <p className="text-gray-800 leading-relaxed text-sm md:text-base">
+                  This intensive tutorial introduces participants to agentic coding, where software agents autonomously
+                  plan, execute, and iterate on complex tasks. Through guided exercises, attendees will build practical
+                  agent workflows and integrate external development tools.
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold text-gray-900">About Prof. Dr. Thorsten Koch</h3>
+              <p className="text-gray-800 leading-relaxed text-sm md:text-base">
+                Prof. Dr. Thorsten Koch is Professor for Software and Algorithms for Discrete Optimization at TU-Berlin
+                and head of the Applied Optimization and the Digital Data and Information for Society, Science, and
+                Culture departments at the Zuse Institute Berlin (ZIB). With more than 40 years of experience in software
+                development, he has worked in several areas, particularly infrastructure network planning, chip
+                verification, mathematical education, and integer optimization. From 2000-2020, he led the efforts on
+                developing Integer Programming Solvers at ZIB, including the SCIP development.
+              </p>
+              <p className="text-gray-800 leading-relaxed text-sm md:text-base">
+                From 2008-2014, he was the coordinator of the FORNE project, an industry collaboration project regarding
+                gas transportation involving five universities and two research institutes. The project received the 2016
+                EURO Excellence in Practice Award of the European OR Society.
+              </p>
+              <p className="text-gray-800 leading-relaxed text-sm md:text-base">
+                From 2013-2019, he was head of the GasLab and the SynLab within the Research Campus MODAL. The project
+                Optimized Execution of Dispatching, conducted together with Germany's largest Gas Transmission System
+                Operator, became a finalist of the 2020 INFORMS Innovative Applications in Analytics Award.
+              </p>
+              <p className="text-gray-800 leading-relaxed text-sm md:text-base">
+                Currently, the work is focused on developing high-performance methods for solving large-scale structured
+                optimization problems using multi-core CPUs, GPUs, and Quantum computing.
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold text-gray-900">Tutorial Abstract</h3>
+              <p className="text-gray-800 leading-relaxed text-sm md:text-base">
+                This intensive 3-hour course introduces participants to the emerging paradigm of agentic coding, where
+                software agents autonomously plan, execute, and iterate on complex tasks. Moving beyond traditional
+                prompt-based interactions, learners will explore how to design, orchestrate, and supervise AI agents that
+                can write code, debug systems, and interact with tools in dynamic environments.
+              </p>
+              <p className="text-gray-800 leading-relaxed text-sm md:text-base">
+                Through a series of guided, hands-on exercises, participants will build and deploy simple agent workflows,
+                integrate external tools (such as APIs and development environments), and experiment with multi-step
+                reasoning and decision-making loops. The course emphasizes practical implementation, covering core concepts
+                like task decomposition, memory handling, tool usage, and feedback-driven refinement.
+              </p>
+              <p className="text-gray-800 leading-relaxed text-sm md:text-base">
+                By the end of the session, attendees will have a working understanding of agent architectures and the
+                confidence to prototype their own agentic coding systems for real-world applications. This course is ideal
+                for developers, technical product builders, and AI enthusiasts looking to move from passive AI use to
+                active system design.
+              </p>
+            </div>
           </section>
 
           {/* Executive Track */}
