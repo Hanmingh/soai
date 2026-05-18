@@ -1,0 +1,2170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SoAI 2026 AI Algorithmic Trading Competition</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+
+  :root {
+    --bg-0: #070b14;
+    --bg-1: #0a0f1e;
+    --bg-2: #0d1428;
+    --bg-card: #111827;
+    --bg-card2: #0f1a2e;
+    --blue: #3b82f6;
+    --blue-dim: #1d4ed8;
+    --blue-glow: rgba(59,130,246,0.15);
+    --green: #10b981;
+    --green-dim: #059669;
+    --green-glow: rgba(16,185,129,0.15);
+    --amber: #f59e0b;
+    --text-1: #f0f4ff;
+    --text-2: #94a3b8;
+    --text-3: #4b5563;
+    --border: rgba(255,255,255,0.07);
+    --border-blue: rgba(59,130,246,0.3);
+    --radius: 12px;
+    --font-display: 'Syne', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-0);
+    color: var(--text-1);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ─── NAVBAR ─── */
+  #navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 64px;
+    background: rgba(7, 11, 20, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  #navbar.hidden { transform: translateY(-100%); }
+  #navbar.scrolled { background: rgba(7, 11, 20, 0.97); }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--blue);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--text-1); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--text-2);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--text-1); }
+
+  .btn-nav {
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+    font-family: var(--font-body);
+  }
+  .btn-nav:hover { background: var(--blue-dim); transform: translateY(-1px); }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text-1);
+    transition: all 0.3s;
+    border-radius: 2px;
+  }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 64px; left: 0; right: 0;
+    background: rgba(7,11,20,0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    z-index: 999;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: var(--text-2);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--text-1); }
+  .mobile-menu .btn-nav { text-align: center; }
+
+  /* ─── SECTION COMMONS ─── */
+  section { position: relative; z-index: 1; }
+
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--text-1);
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    color: var(--text-2);
+    font-size: 1.05rem;
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 2rem 4rem;
+    background: radial-gradient(ellipse 70% 60% at 70% 40%, rgba(59,130,246,0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 40% at 20% 80%, rgba(16,185,129,0.06) 0%, transparent 60%),
+                var(--bg-0);
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(59,130,246,0.1);
+    border: 1px solid rgba(59,130,246,0.25);
+    border-radius: 100px;
+    padding: 0.35rem 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--blue);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    letter-spacing: -0.04em;
+    line-height: 1.08;
+    color: var(--text-1);
+    margin-bottom: 1rem;
+  }
+
+  .hero-title .accent-blue { color: var(--blue); }
+  .hero-title .accent-green { color: var(--green); }
+
+  .hero-tagline {
+    font-family: var(--font-mono);
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    color: var(--green);
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+
+  .hero-desc {
+    color: var(--text-2);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--blue);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 0 0 0 rgba(59,130,246,0);
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+  }
+  .btn-primary:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(59,130,246,0.35);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: transparent;
+    color: var(--green);
+    text-decoration: none;
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 1px solid var(--green);
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    font-family: var(--font-body);
+  }
+  .btn-secondary:hover {
+    background: rgba(16,185,129,0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(16,185,129,0.2);
+  }
+
+  /* Countdown */
+  .countdown-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .countdown {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .countdown-unit {
+    text-align: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    min-width: 72px;
+  }
+
+  .countdown-num {
+    font-family: var(--font-mono);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--blue);
+    line-height: 1;
+    display: block;
+  }
+
+  .countdown-unit-label {
+    font-size: 0.65rem;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.3rem;
+    display: block;
+  }
+
+  /* Hero Chart */
+  .hero-chart-wrap {
+    position: relative;
+    height: 340px;
+  }
+
+  .chart-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .chart-grid line { stroke: rgba(255,255,255,0.04); }
+  .chart-line { fill: none; stroke: var(--green); stroke-width: 2; }
+  .chart-area { fill: url(#areaGrad); }
+  .chart-candle-up { fill: var(--green); }
+  .chart-candle-down { fill: #ef4444; }
+
+  /* ─── ABOUT ─── */
+  #about {
+    padding: 6rem 2rem;
+    background: var(--bg-1);
+    border-top: 1px solid var(--border);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .stat-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .stat-card:hover {
+    border-color: var(--border-blue);
+    transform: translateY(-3px);
+  }
+
+  .stat-value {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--text-1);
+    line-height: 1.2;
+    margin-bottom: 0.35rem;
+  }
+
+  .stat-desc {
+    font-size: 0.8rem;
+    color: var(--text-2);
+  }
+
+  .stat-icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .intelligencex-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(245,158,11,0.08);
+    border: 1px solid rgba(245,158,11,0.2);
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    color: var(--amber);
+    margin-top: 1.5rem;
+  }
+
+  /* ─── TIMELINE ─── */
+  #timeline {
+    padding: 6rem 2rem;
+    background: var(--bg-0);
+  }
+
+  .timeline-wrap {
+    position: relative;
+    margin-top: 3rem;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--border-blue) 10%, var(--border-blue) 90%, transparent);
+    transform: translateX(-50%);
+  }
+
+  .tl-item {
+    display: grid;
+    grid-template-columns: 1fr 48px 1fr;
+    align-items: start;
+    gap: 0;
+    margin-bottom: 3rem;
+  }
+
+  .tl-item:last-child { margin-bottom: 0; }
+
+  .tl-left { text-align: right; padding-right: 1.75rem; padding-top: 0.2rem; }
+  .tl-right { padding-left: 1.75rem; padding-top: 0.2rem; }
+
+  .tl-dot {
+    width: 48px; height: 48px;
+    background: var(--bg-card);
+    border: 2px solid var(--border-blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    position: relative;
+    z-index: 1;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    flex-shrink: 0;
+  }
+
+  .tl-item:hover .tl-dot {
+    border-color: var(--blue);
+    box-shadow: 0 0 16px rgba(59,130,246,0.4);
+  }
+
+  .tl-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--blue);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+  }
+
+  .tl-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-1);
+    line-height: 1.3;
+  }
+
+  .tl-sub {
+    font-size: 0.8rem;
+    color: var(--text-2);
+    margin-top: 0.2rem;
+  }
+
+  .tl-item.odd .tl-left { order: 0; }
+  .tl-item.odd .tl-right { order: 2; opacity: 0; pointer-events: none; }
+  .tl-item.even .tl-left { opacity: 0; pointer-events: none; }
+  .tl-item.even .tl-right { order: 2; }
+
+  /* ─── HOW IT WORKS ─── */
+  #how {
+    padding: 6rem 2rem;
+    background: var(--bg-1);
+    border-top: 1px solid var(--border);
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .step-card {
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .step-card:hover {
+    border-color: var(--border-blue);
+    transform: translateY(-4px);
+  }
+
+  .step-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .step-card:hover::before { opacity: 1; }
+
+  .step-num {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-3);
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .step-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .step-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--text-1);
+    margin-bottom: 0.75rem;
+  }
+
+  .step-desc {
+    color: var(--text-2);
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .step-list {
+    list-style: none;
+    margin-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .step-list li {
+    font-size: 0.85rem;
+    color: var(--text-2);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .step-list li::before {
+    content: '→';
+    color: var(--blue);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  /* ─── ASSET UNIVERSE ─── */
+  #assets {
+    padding: 6rem 2rem;
+    background: var(--bg-0);
+  }
+
+  .assets-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .asset-card {
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .asset-card:hover { transform: translateY(-4px); }
+  .asset-card.crypto { border-color: rgba(245,158,11,0.2); }
+  .asset-card.crypto:hover { border-color: rgba(245,158,11,0.5); }
+  .asset-card.equities { border-color: rgba(59,130,246,0.2); }
+  .asset-card.equities:hover { border-color: rgba(59,130,246,0.5); }
+
+  .asset-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.25rem;
+    display: block;
+  }
+
+  .asset-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--text-1);
+    margin-bottom: 0.5rem;
+  }
+
+  .asset-desc {
+    color: var(--text-2);
+    font-size: 0.9rem;
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+
+  .asset-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.25rem 0.65rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-2);
+  }
+
+  .tag.blue { background: rgba(59,130,246,0.1); border-color: rgba(59,130,246,0.25); color: var(--blue); }
+  .tag.amber { background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.25); color: var(--amber); }
+
+  /* ─── TECHNICAL ─── */
+  #technical {
+    padding: 6rem 2rem;
+    background: var(--bg-1);
+    border-top: 1px solid var(--border);
+  }
+
+  .tech-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+
+  .tech-reqs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .tech-req {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .tech-req-icon {
+    width: 36px; height: 36px;
+    background: var(--blue-glow);
+    border: 1px solid rgba(59,130,246,0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .tech-req-body { flex: 1; }
+  .tech-req-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-1);
+    margin-bottom: 0.2rem;
+  }
+  .tech-req-desc {
+    font-size: 0.82rem;
+    color: var(--text-2);
+    line-height: 1.55;
+  }
+
+  .code-block {
+    background: #0a0e1a;
+    border: 1px solid var(--border-blue);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .code-header {
+    background: rgba(59,130,246,0.08);
+    border-bottom: 1px solid var(--border-blue);
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-2);
+  }
+
+  .code-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+
+  pre {
+    padding: 1.5rem;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.7;
+    color: #e2e8f0;
+  }
+
+  .kw { color: #c084fc; }
+  .fn { color: #93c5fd; }
+  .cm { color: #4b5563; font-style: italic; }
+  .st { color: #86efac; }
+  .nm { color: #fbbf24; }
+
+  /* ─── EVALUATION ─── */
+  #evaluation {
+    padding: 6rem 2rem;
+    background: var(--bg-0);
+  }
+
+  .eval-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .eval-card {
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    transition: border-color 0.3s;
+  }
+
+  .eval-card.metric { border-color: rgba(16,185,129,0.2); }
+  .eval-card.metric:hover { border-color: rgba(16,185,129,0.4); }
+  .eval-card.fair { border-color: rgba(59,130,246,0.2); }
+  .eval-card.fair:hover { border-color: rgba(59,130,246,0.4); }
+
+  .eval-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--green);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .eval-card.fair .eval-label { color: var(--blue); }
+
+  .eval-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--text-1);
+    margin-bottom: 0.75rem;
+  }
+
+  .eval-desc {
+    color: var(--text-2);
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .eval-list {
+    list-style: none;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .eval-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.87rem;
+    color: var(--text-2);
+  }
+  .eval-list li::before {
+    content: '✓';
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  .eval-note {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(16,185,129,0.06);
+    border-left: 2px solid var(--green);
+    border-radius: 0 6px 6px 0;
+    font-size: 0.82rem;
+    color: var(--text-2);
+    font-style: italic;
+  }
+
+  /* ─── AWARDS ─── */
+  #awards {
+    padding: 6rem 2rem;
+    background: var(--bg-1);
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .prize-hero {
+    margin: 2rem 0;
+  }
+
+  .prize-amount {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    letter-spacing: -0.04em;
+    background: linear-gradient(135deg, var(--blue), var(--green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+
+  .prize-label {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-2);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+
+  .warning-box {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: rgba(245,158,11,0.07);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    max-width: 600px;
+    margin: 2rem auto;
+  }
+
+  .warning-icon { font-size: 1.25rem; flex-shrink: 0; }
+
+  .warning-text {
+    font-size: 0.9rem;
+    color: #fcd34d;
+    line-height: 1.6;
+  }
+
+  .warning-text strong { color: var(--amber); }
+
+  .finalists-section {
+    margin-top: 3rem;
+  }
+
+  .finalists-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-2);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .finalist-cards {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .finalist-card {
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem 2rem;
+    text-align: center;
+    transition: border-color 0.3s, transform 0.3s;
+    min-width: 160px;
+  }
+  .finalist-card:hover { border-color: var(--border-blue); transform: translateY(-3px); }
+
+  .finalist-icon { font-size: 2rem; margin-bottom: 0.75rem; display: block; }
+  .finalist-name { font-size: 0.875rem; color: var(--text-1); font-weight: 500; }
+
+  /* ─── WHY JOIN ─── */
+  #why {
+    padding: 6rem 2rem;
+    background: var(--bg-0);
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .why-card {
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .why-card:hover { border-color: var(--border-blue); transform: translateY(-4px); }
+
+  .why-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 60px;
+    background: linear-gradient(to top, var(--blue-glow), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .why-card:hover::after { opacity: 1; }
+
+  .why-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+  .why-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-1);
+    margin-bottom: 0.5rem;
+  }
+  .why-desc { font-size: 0.85rem; color: var(--text-2); line-height: 1.6; }
+
+  /* ─── CTA / REGISTER SECTION ─── */
+  #register {
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, rgba(59,130,246,0.07) 0%, rgba(16,185,129,0.05) 100%),
+                var(--bg-1);
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .register-inner { max-width: 900px; margin: 0 auto; }
+  .register-inner .section-title { margin-bottom: 0.5rem; }
+  .register-desc { color: var(--text-2); font-size: 1rem; margin-bottom: 3rem; line-height: 1.7; }
+
+  /* Pricing cards grid */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+
+  .pricing-card {
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.25rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  }
+  .pricing-card:hover { transform: translateY(-5px); }
+
+  .pricing-card.member {
+    border-color: rgba(16,185,129,0.35);
+  }
+  .pricing-card.member:hover {
+    border-color: rgba(16,185,129,0.65);
+    box-shadow: 0 20px 48px rgba(16,185,129,0.12);
+  }
+  .pricing-card.member::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--green), #34d399);
+  }
+
+  .pricing-card.nonmember {
+    border-color: rgba(59,130,246,0.3);
+  }
+  .pricing-card.nonmember:hover {
+    border-color: rgba(59,130,246,0.6);
+    box-shadow: 0 20px 48px rgba(59,130,246,0.12);
+  }
+  .pricing-card.nonmember::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue), #60a5fa);
+  }
+
+  .pricing-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.28rem 0.75rem;
+    border-radius: 100px;
+    margin-bottom: 1.25rem;
+  }
+  .pricing-badge.green {
+    background: rgba(16,185,129,0.12);
+    border: 1px solid rgba(16,185,129,0.3);
+    color: var(--green);
+  }
+  .pricing-badge.blue {
+    background: rgba(59,130,246,0.12);
+    border: 1px solid rgba(59,130,246,0.3);
+    color: var(--blue);
+  }
+
+  .pricing-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--text-1);
+    margin-bottom: 0.35rem;
+  }
+
+  .pricing-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-2);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .pricing-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .price-amount {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 3rem;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .price-amount.green { color: var(--green); }
+  .price-amount.blue  { color: var(--blue); }
+
+  .price-currency {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--text-2);
+  }
+  .price-per {
+    font-size: 0.8rem;
+    color: var(--text-3);
+  }
+
+  .pricing-perks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+  .pricing-perks li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.875rem;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+  .pricing-perks li .perk-icon {
+    font-size: 0.85rem;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+  }
+  .perk-icon.green { color: var(--green); }
+  .perk-icon.blue  { color: var(--blue); }
+
+  /* Member consent checkbox */
+  .consent-box {
+    background: rgba(16,185,129,0.06);
+    border: 1px solid rgba(16,185,129,0.2);
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    cursor: pointer;
+  }
+  .consent-box input[type="checkbox"] {
+    accent-color: var(--green);
+    width: 15px;
+    height: 15px;
+    margin-top: 2px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .consent-label {
+    font-size: 0.8rem;
+    color: #86efac;
+    line-height: 1.5;
+    cursor: pointer;
+    user-select: none;
+  }
+  .consent-label strong { color: var(--green); }
+
+  /* Pricing CTA buttons */
+  .btn-register-member {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    background: var(--green);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.875rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    font-family: var(--font-body);
+  }
+  .btn-register-member:hover {
+    background: var(--green-dim);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(16,185,129,0.35);
+  }
+
+  .btn-register-nonmember {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    background: var(--blue);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.875rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    font-family: var(--font-body);
+  }
+  .btn-register-nonmember:hover {
+    background: var(--blue-dim);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(59,130,246,0.35);
+  }
+
+  .register-github-link {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+  .register-github-link a {
+    color: var(--green);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .register-github-link a:hover { color: #34d399; }
+
+  /* Divider hint */
+  .pricing-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-3);
+    letter-spacing: 0.1em;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .pricing-divider::before,
+  .pricing-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 120px;
+  }
+
+  /* Responsive for pricing */
+  @media (max-width: 640px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+  }
+
+  .btn-primary-lg {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--blue);
+    color: #fff;
+    text-decoration: none;
+    padding: 1rem 2.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  }
+  .btn-primary-lg:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(59,130,246,0.4);
+  }
+
+  .btn-secondary-lg {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--green);
+    text-decoration: none;
+    padding: 1rem 2.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    border: 1px solid var(--green);
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  }
+  .btn-secondary-lg:hover {
+    background: rgba(16,185,129,0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(16,185,129,0.25);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg-0);
+    border-top: 1px solid var(--border);
+    padding: 4rem 2rem 0;
+  }
+
+  .footer-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .footer-brand-logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.75rem;
+    color: var(--blue);
+    letter-spacing: -0.03em;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .footer-tagline {
+    color: var(--text-2);
+    font-size: 0.875rem;
+    line-height: 1.65;
+    max-width: 280px;
+  }
+
+  .footer-heading {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .footer-links a {
+    color: var(--text-2);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--text-1); }
+
+  .footer-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-2);
+    margin-bottom: 0.75rem;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-contact-item:hover { color: var(--text-1); }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--text-3);
+  }
+
+  .footer-copy a {
+    color: var(--text-2);
+    text-decoration: none;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-chart-wrap { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .assets-grid { grid-template-columns: 1fr; }
+    .eval-grid { grid-template-columns: 1fr; }
+    .tech-inner { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .tl-line { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    .nav-links, .btn-nav { display: none; }
+    .hamburger { display: flex; }
+    .why-grid { grid-template-columns: 1fr; }
+    .finalist-cards { flex-direction: column; align-items: center; }
+    .timeline-line { left: 28px; transform: none; }
+    .tl-item {
+      grid-template-columns: 48px 1fr;
+      gap: 1rem;
+    }
+    .tl-item .tl-left { display: none; }
+    .tl-item.odd .tl-right,
+    .tl-item.even .tl-right { opacity: 1; pointer-events: auto; order: 1; }
+    .tl-item.even .tl-left { display: none; }
+    .stat-cards { grid-template-columns: 1fr; }
+    .register-btns { flex-direction: column; }
+    .btn-primary-lg, .btn-secondary-lg { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">SoAI<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#timeline">Timeline</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#register">Register</a></li>
+  </ul>
+  <a href="#register" class="btn-nav">Register Now</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#about" class="mobile-link">About</a>
+  <a href="#timeline" class="mobile-link">Timeline</a>
+  <a href="#how" class="mobile-link">How It Works</a>
+  <a href="#assets" class="mobile-link">Asset Universe</a>
+  <a href="#awards" class="mobile-link">Awards</a>
+  <a href="#register" class="btn-nav">Register Now</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">Global Open Competition · 2026</div>
+      <h1 class="hero-title">
+        SoAI 2026<br>
+        <span class="accent-blue">AI Algorithmic</span><br>
+        <span class="accent-green">Trading Competition</span>
+      </h1>
+      <p class="hero-tagline">Build. Deploy. Trade. Compete.</p>
+      <p class="hero-desc">
+        Design and deploy AI-driven trading strategies in a fair, standardized global simulation. Compete worldwide. Present in Singapore.
+      </p>
+      <div class="hero-ctas">
+        <a href="#register" class="btn-primary">Register Now →</a>
+        <a href="https://github.com/Society-of-Algorithmic-Intelligence/SoAI-2026-AI-Algorithmic-Trading-Competition" target="_blank" rel="noopener" class="btn-secondary">View GitHub Template ↗</a>
+      </div>
+      <div class="countdown-label">Code Submission Deadline</div>
+      <div class="countdown" id="countdown">
+        <div class="countdown-unit"><span class="countdown-num" id="cd-days">--</span><span class="countdown-unit-label">Days</span></div>
+        <div class="countdown-unit"><span class="countdown-num" id="cd-hours">--</span><span class="countdown-unit-label">Hours</span></div>
+        <div class="countdown-unit"><span class="countdown-num" id="cd-mins">--</span><span class="countdown-unit-label">Minutes</span></div>
+        <div class="countdown-unit"><span class="countdown-num" id="cd-secs">--</span><span class="countdown-unit-label">Seconds</span></div>
+      </div>
+    </div>
+
+    <!-- Animated Chart -->
+    <div class="hero-chart-wrap">
+      <svg class="chart-svg" viewBox="0 0 420 340" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#10b981" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#3b82f6"/>
+            <stop offset="100%" stop-color="#10b981"/>
+          </linearGradient>
+        </defs>
+        <!-- Grid lines -->
+        <g class="chart-grid">
+          <line x1="40" y1="40" x2="400" y2="40"/>
+          <line x1="40" y1="100" x2="400" y2="100"/>
+          <line x1="40" y1="160" x2="400" y2="160"/>
+          <line x1="40" y1="220" x2="400" y2="220"/>
+          <line x1="40" y1="280" x2="400" y2="280"/>
+        </g>
+        <!-- Y axis labels -->
+        <text x="30" y="44" fill="#4b5563" font-size="9" text-anchor="end" font-family="monospace">120%</text>
+        <text x="30" y="104" fill="#4b5563" font-size="9" text-anchor="end" font-family="monospace">100%</text>
+        <text x="30" y="164" fill="#4b5563" font-size="9" text-anchor="end" font-family="monospace">80%</text>
+        <text x="30" y="224" fill="#4b5563" font-size="9" text-anchor="end" font-family="monospace">60%</text>
+        <!-- Candlesticks -->
+        <!-- Candle 1 - up -->
+        <line x1="65" y1="195" x2="65" y2="240" stroke="#10b981" stroke-width="1.5"/>
+        <rect x="59" y="205" width="12" height="28" fill="#10b981" rx="1"/>
+        <!-- Candle 2 - down -->
+        <line x1="95" y1="200" x2="95" y2="245" stroke="#ef4444" stroke-width="1.5"/>
+        <rect x="89" y="215" width="12" height="22" fill="#ef4444" rx="1"/>
+        <!-- Candle 3 - up -->
+        <line x1="125" y1="175" x2="125" y2="225" stroke="#10b981" stroke-width="1.5"/>
+        <rect x="119" y="185" width="12" height="28" fill="#10b981" rx="1"/>
+        <!-- Candle 4 - up -->
+        <line x1="155" y1="155" x2="155" y2="200" stroke="#10b981" stroke-width="1.5"/>
+        <rect x="149" y="163" width="12" height="30" fill="#10b981" rx="1"/>
+        <!-- Candle 5 - down -->
+        <line x1="185" y1="160" x2="185" y2="205" stroke="#ef4444" stroke-width="1.5"/>
+        <rect x="179" y="170" width="12" height="25" fill="#ef4444" rx="1"/>
+        <!-- Candle 6 - up -->
+        <line x1="215" y1="130" x2="215" y2="180" stroke="#10b981" stroke-width="1.5"/>
+        <rect x="209" y="140" width="12" height="30" fill="#10b981" rx="1"/>
+        <!-- Candle 7 - up -->
+        <line x1="245" y1="105" x2="245" y2="155" stroke="#10b981" stroke-width="1.5"/>
+        <rect x="239" y="115" width="12" height="28" fill="#10b981" rx="1"/>
+        <!-- Candle 8 - down -->
+        <line x1="275" y1="110" x2="275" y2="155" stroke="#ef4444" stroke-width="1.5"/>
+        <rect x="269" y="122" width="12" height="22" fill="#ef4444" rx="1"/>
+        <!-- Candle 9 - up -->
+        <line x1="305" y1="80" x2="305" y2="130" stroke="#10b981" stroke-width="1.5"/>
+        <rect x="299" y="90" width="12" height="28" fill="#10b981" rx="1"/>
+        <!-- Candle 10 - up -->
+        <line x1="335" y1="58" x2="335" y2="105" stroke="#10b981" stroke-width="1.5"/>
+        <rect x="329" y="66" width="12" height="28" fill="#10b981" rx="1"/>
+        <!-- Candle 11 - down -->
+        <line x1="365" y1="63" x2="365" y2="108" stroke="#ef4444" stroke-width="1.5"/>
+        <rect x="359" y="72" width="12" height="25" fill="#ef4444" rx="1"/>
+        <!-- Area chart overlay -->
+        <path class="chart-area" d="M58 230 C80 215 100 210 125 195 C150 178 170 162 200 148 C230 130 255 115 285 108 C315 98 340 72 380 60 L380 290 L58 290 Z"/>
+        <!-- Line chart -->
+        <path d="M58 230 C80 215 100 210 125 195 C150 178 170 162 200 148 C230 130 255 115 285 108 C315 98 340 72 380 60" fill="none" stroke="url(#lineGrad)" stroke-width="2.5" stroke-linecap="round">
+          <animate attributeName="stroke-dashoffset" from="800" to="0" dur="2.5s" fill="freeze"/>
+          <animate attributeName="stroke-dasharray" from="800 800" to="800 0" dur="2.5s" fill="freeze"/>
+        </path>
+        <!-- Glowing dot at end -->
+        <circle cx="380" cy="60" r="5" fill="#10b981">
+          <animate attributeName="r" values="4;7;4" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="380" cy="60" r="12" fill="none" stroke="#10b981" stroke-width="1" opacity="0.3">
+          <animate attributeName="r" values="8;16;8" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <!-- Profit label -->
+        <rect x="340" y="40" width="60" height="18" rx="4" fill="rgba(16,185,129,0.15)" stroke="rgba(16,185,129,0.3)" stroke-width="1"/>
+        <text x="370" y="53" fill="#10b981" font-size="9" text-anchor="middle" font-family="monospace">+24.8%</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div>
+        <p class="section-label reveal">About the Competition</p>
+        <h2 class="section-title reveal reveal-delay-1">The Premier AI Trading Arena of 2026</h2>
+        <p class="section-sub reveal reveal-delay-2">
+          The SoAI 2026 AI Algorithmic Trading Competition invites participants worldwide to design and deploy AI-driven trading strategies. Open to all backgrounds — AI, finance, computer science, mathematics, and beyond.
+        </p>
+        <p class="section-sub reveal reveal-delay-2" style="margin-top:1rem">
+          All strategies compete in a fair, standardized simulation environment: centralized execution, identical data feeds, zero hardware bias.
+        </p>
+        <div class="intelligencex-badge reveal reveal-delay-3">
+          <span>🏙️</span>
+          <span>Part of <strong>IntelligenceX 2026 – The Global Quantum × AI Frontier</strong><br>
+          24–26 September 2026 &nbsp;|&nbsp; Singapore</span>
+        </div>
+      </div>
+      <div class="stat-cards">
+        <div class="stat-card reveal reveal-delay-1">
+          <span class="stat-icon">🏆</span>
+          <div class="stat-value">SGD 3,000</div>
+          <div class="stat-desc">Total prize pool</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-2">
+          <span class="stat-icon">📈</span>
+          <div class="stat-value">Aug 1–31</div>
+          <div class="stat-desc">Official trading window</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-3">
+          <span class="stat-icon">🌏</span>
+          <div class="stat-value">Global Open</div>
+          <div class="stat-desc">Worldwide eligibility</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-4">
+          <span class="stat-icon">👥</span>
+          <div class="stat-value">1–5 Members</div>
+          <div class="stat-desc">Individual or team</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="section-inner">
+    <p class="section-label" style="text-align:center">Key Dates</p>
+    <h2 class="section-title" style="text-align:center">Competition Timeline</h2>
+
+    <div class="timeline-wrap">
+      <div class="timeline-line"></div>
+
+      <div class="tl-item odd reveal">
+        <div class="tl-left">
+          <div class="tl-date">25 July 2026</div>
+          <div class="tl-title">Code Submission Deadline</div>
+          <div class="tl-sub">23:59:59 SGT (UTC+8)</div>
+        </div>
+        <div class="tl-dot">📅</div>
+        <div class="tl-right"></div>
+      </div>
+
+      <div class="tl-item even reveal reveal-delay-1">
+        <div class="tl-left"></div>
+        <div class="tl-dot">🔍</div>
+        <div class="tl-right">
+          <div class="tl-date">26–28 July 2026</div>
+          <div class="tl-title">Verification & Test Run</div>
+          <div class="tl-sub">Official validation by technical team</div>
+        </div>
+      </div>
+
+      <div class="tl-item odd reveal reveal-delay-2">
+        <div class="tl-left">
+          <div class="tl-date">1 August 2026</div>
+          <div class="tl-title">Official Trading Begins</div>
+          <div class="tl-sub">All strategies go live — 00:00:00 SGT</div>
+        </div>
+        <div class="tl-dot">🚀</div>
+        <div class="tl-right"></div>
+      </div>
+
+      <div class="tl-item even reveal reveal-delay-3">
+        <div class="tl-left"></div>
+        <div class="tl-dot">🏁</div>
+        <div class="tl-right">
+          <div class="tl-date">31 August 2026</div>
+          <div class="tl-title">Fund Closure & Final Results</div>
+          <div class="tl-sub">Full portfolio liquidation at 23:59:59 SGT</div>
+        </div>
+      </div>
+
+      <div class="tl-item odd reveal reveal-delay-4">
+        <div class="tl-left">
+          <div class="tl-date">6 September 2026</div>
+          <div class="tl-title">Winners Announcement</div>
+          <div class="tl-sub">SGT — top teams invited to IntelligenceX 2026</div>
+        </div>
+        <div class="tl-dot">🏆</div>
+        <div class="tl-right"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-inner">
+    <p class="section-label">Process</p>
+    <h2 class="section-title">How It Works</h2>
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-num">STEP 01</div>
+        <span class="step-icon">🧠</span>
+        <div class="step-title">Develop Your Strategy</div>
+        <div class="step-desc">Build a fully autonomous trading system using the Lumibot framework.</div>
+        <ul class="step-list">
+          <li>Signal generation & alpha research</li>
+          <li>Portfolio construction</li>
+          <li>Risk management</li>
+          <li>Inherit from <code style="font-size:0.78rem;color:var(--blue)">lumibot.strategies.Strategy</code></li>
+        </ul>
+      </div>
+
+      <div class="step-card reveal reveal-delay-1">
+        <div class="step-num">STEP 02</div>
+        <span class="step-icon">📦</span>
+        <div class="step-title">Submit to GitHub</div>
+        <div class="step-desc">Fork the template repo and push your strategy by the deadline.</div>
+        <ul class="step-list">
+          <li>Fully reproducible code required</li>
+          <li>All deps pinned in <code style="font-size:0.78rem;color:var(--blue)">requirements.txt</code></li>
+          <li>Clear README documentation</li>
+          <li>No secrets or hardcoded paths</li>
+        </ul>
+      </div>
+
+      <div class="step-card reveal reveal-delay-2">
+        <div class="step-num">STEP 03</div>
+        <span class="step-icon">⚡</span>
+        <div class="step-title">Compete Officially</div>
+        <div class="step-desc">IntelligenceX technical team executes all strategies identically.</div>
+        <ul class="step-list">
+          <li>Standardized, centralized environment</li>
+          <li>Identical data feeds for all participants</li>
+          <li>Zero latency or hardware advantages</li>
+          <li>Only official results count</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ASSET UNIVERSE -->
+<section id="assets">
+  <div class="section-inner">
+    <p class="section-label">Markets</p>
+    <h2 class="section-title">Asset Universe</h2>
+    <p class="section-sub" style="margin-bottom:0">Trade across two major asset classes with unrestricted access.</p>
+    <div class="assets-grid">
+      <div class="asset-card crypto reveal">
+        <span class="asset-icon">₿</span>
+        <div class="asset-title">Crypto Markets</div>
+        <div class="asset-desc">
+          Any CCXT-supported spot pair. Full access to the digital asset ecosystem — from blue-chip to long-tail. Orders subject to volume-aware slippage constraints.
+        </div>
+        <div class="asset-tags">
+          <span class="tag amber">BTC</span>
+          <span class="tag amber">ETH</span>
+          <span class="tag amber">Altcoins</span>
+          <span class="tag amber">Meme Coins</span>
+          <span class="tag">via CCXT</span>
+        </div>
+      </div>
+
+      <div class="asset-card equities reveal reveal-delay-1">
+        <span class="asset-icon">📊</span>
+        <div class="asset-title">US Equities</div>
+        <div class="asset-desc">
+          Full public market access via the Massive data provider. Large caps, small caps, ETFs, ADRs — the entire US equity universe available to your strategy.
+        </div>
+        <div class="asset-tags">
+          <span class="tag blue">Large-Caps</span>
+          <span class="tag blue">ETFs</span>
+          <span class="tag blue">ADRs</span>
+          <span class="tag blue">Small/Micro-Caps</span>
+          <span class="tag">via Massive</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNICAL REQUIREMENTS -->
+<section id="technical">
+  <div class="section-inner">
+    <p class="section-label">Developer Guide</p>
+    <h2 class="section-title">Technical Requirements</h2>
+    <div class="tech-inner">
+      <div class="tech-reqs">
+        <div class="tech-req reveal">
+          <div class="tech-req-icon">🔧</div>
+          <div class="tech-req-body">
+            <div class="tech-req-title">Lumibot Framework</div>
+            <div class="tech-req-desc">Your <code style="font-size:0.78rem;color:var(--blue)">Strategy</code> class must inherit from <code style="font-size:0.78rem;color:var(--blue)">lumibot.strategies.Strategy</code>. The template provides the base scaffold.</div>
+          </div>
+        </div>
+        <div class="tech-req reveal reveal-delay-1">
+          <div class="tech-req-icon">⚙️</div>
+          <div class="tech-req-body">
+            <div class="tech-req-title">Lifecycle Methods</div>
+            <div class="tech-req-desc">Implement <code style="font-size:0.78rem;color:var(--green)">initialize()</code> for one-time setup and <code style="font-size:0.78rem;color:var(--green)">on_trading_iteration()</code> for each trading cycle — fetch data, compute signals, submit orders.</div>
+          </div>
+        </div>
+        <div class="tech-req reveal reveal-delay-2">
+          <div class="tech-req-icon">⏱️</div>
+          <div class="tech-req-body">
+            <div class="tech-req-title">Supported Frequencies</div>
+            <div class="tech-req-desc">Minute, hourly, and daily cadences only. Sub-minute scheduling will be automatically rejected by the execution environment.</div>
+          </div>
+        </div>
+        <div class="tech-req reveal reveal-delay-3">
+          <div class="tech-req-icon">📡</div>
+          <div class="tech-req-body">
+            <div class="tech-req-title">Data Feed</div>
+            <div class="tech-req-desc">Official feed provides OHLCV bars only. No order-book depth, news feeds, or alternative data sources are available during official execution.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-block reveal reveal-delay-1">
+        <div class="code-header">
+          <div class="code-dot" style="background:#ef4444"></div>
+          <div class="code-dot" style="background:#f59e0b"></div>
+          <div class="code-dot" style="background:#10b981"></div>
+          <span style="margin-left:0.5rem">strategies/strategy.py</span>
+        </div>
+        <pre><span class="kw">from</span> lumibot.strategies <span class="kw">import</span> Strategy
+
+<span class="kw">class</span> <span class="fn">Strategy</span>(Strategy):
+
+    <span class="kw">def</span> <span class="fn">initialize</span>(<span class="nm">self</span>):
+        <span class="cm"># One-time setup</span>
+        <span class="nm">self</span>.sleeptime = <span class="st">"1D"</span>  <span class="cm"># "1M" | "1H" | "1D"</span>
+
+    <span class="kw">def</span> <span class="fn">on_trading_iteration</span>(<span class="nm">self</span>):
+        <span class="cm"># Runs every sleeptime cycle</span>
+        bars = <span class="nm">self</span>.get_historical_prices(
+            <span class="st">"BTC/USDT"</span>, <span class="nm">30</span>, <span class="st">"day"</span>
+        )
+        <span class="cm"># Compute signal...</span>
+        order = <span class="nm">self</span>.create_order(
+            <span class="st">"BTC/USDT"</span>,
+            quantity=<span class="nm">0.01</span>,
+            side=<span class="st">"buy"</span>
+        )
+        <span class="nm">self</span>.submit_order(order)</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVALUATION -->
+<section id="evaluation">
+  <div class="section-inner">
+    <p class="section-label">Judging Criteria</p>
+    <h2 class="section-title">Evaluation & Fairness</h2>
+    <div class="eval-grid">
+      <div class="eval-card metric reveal">
+        <div class="eval-label">Primary Metric</div>
+        <div class="eval-title">Terminal Return</div>
+        <div class="eval-desc">
+          Final portfolio value after full liquidation at market close on 31 August 2026 (23:59:59 SGT). The single metric that determines the leaderboard.
+        </div>
+        <div class="eval-note">
+          Only results generated by the official IntelligenceX execution system are valid. Self-reported backtest results do not count.
+        </div>
+      </div>
+
+      <div class="eval-card fair reveal reveal-delay-1">
+        <div class="eval-label">Centralized Execution</div>
+        <div class="eval-title">Fairness & Reproducibility</div>
+        <div class="eval-desc">
+          All strategies run in an identical, controlled environment. No participant gains an unfair edge.
+        </div>
+        <ul class="eval-list">
+          <li>Latency advantages eliminated</li>
+          <li>Hardware differences neutralized</li>
+          <li>Execution bias removed</li>
+          <li>Identical OHLCV data feeds</li>
+          <li>Pinned dependency environments</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="section-inner" style="text-align:center">
+    <p class="section-label reveal">Prize Pool</p>
+    <h2 class="section-title reveal reveal-delay-1" style="text-align:center">Awards</h2>
+
+    <div class="prize-hero reveal reveal-delay-2">
+      <div class="prize-amount">SGD 3,000</div>
+      <div class="prize-label">Total Prize Pool</div>
+    </div>
+
+    <div class="warning-box reveal reveal-delay-3">
+      <span class="warning-icon">⚠️</span>
+      <div class="warning-text">
+        <strong>Attendance Requirement:</strong> Cash prizes are awarded <strong>only</strong> to winners who present in person at IntelligenceX 2026 in Singapore.<br>
+        No physical attendance → No cash payout. No money transfer or remote disbursement will be arranged.
+      </div>
+    </div>
+
+    <div class="finalists-section reveal reveal-delay-4">
+      <div class="finalists-title">Top finalists will present live and connect with</div>
+      <div class="finalist-cards">
+        <div class="finalist-card">
+          <span class="finalist-icon">💼</span>
+          <div class="finalist-name">Venture Capital Firms</div>
+        </div>
+        <div class="finalist-card">
+          <span class="finalist-icon">📉</span>
+          <div class="finalist-name">Quant Funds</div>
+        </div>
+        <div class="finalist-card">
+          <span class="finalist-icon">🏦</span>
+          <div class="finalist-name">Financial Institutions</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY JOIN -->
+<section id="why">
+  <div class="section-inner">
+    <p class="section-label">Reasons to Compete</p>
+    <h2 class="section-title">Why Join?</h2>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <span class="why-icon">📈</span>
+        <div class="why-title">Real Trading Scenarios</div>
+        <div class="why-desc">Apply AI in live market conditions — not just backtests. Your strategy trades real market data across the entire month of August.</div>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <span class="why-icon">🤖</span>
+        <div class="why-title">Hands-On Experience</div>
+        <div class="why-desc">Gain deep expertise in algorithmic trading, signal engineering, portfolio optimization, and execution systems.</div>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <span class="why-icon">🌐</span>
+        <div class="why-title">Global Showcase</div>
+        <div class="why-desc">Benchmark your performance against top AI and quant talent worldwide. Present your work at IntelligenceX 2026 in Singapore.</div>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <span class="why-icon">🤝</span>
+        <div class="why-title">Investor Connections</div>
+        <div class="why-desc">Network with venture capital firms, quant funds, and financial institutions at the IntelligenceX 2026 conference.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTER CTA -->
+<section id="register">
+  <div class="section-inner">
+    <div class="register-inner">
+      <p class="section-label reveal">Registration</p>
+      <h2 class="section-title reveal reveal-delay-1" style="text-align:center">Choose Your Plan</h2>
+      <p class="register-desc reveal reveal-delay-2">
+        Submit deadline: <strong style="color:var(--blue)">25 July 2026 · 23:59:59 SGT</strong>.&nbsp; Register your team, fork the GitHub template, and start building.
+      </p>
+
+      <div class="pricing-divider reveal reveal-delay-2">SELECT REGISTRATION TYPE</div>
+
+      <div class="pricing-grid">
+
+        <!-- MEMBER CARD -->
+        <div class="pricing-card member reveal reveal-delay-2">
+          <div class="pricing-badge green">SoAI Member</div>
+          <div class="pricing-title">Member Registration</div>
+          <div class="pricing-subtitle">Current SoAI members &amp; new members joining now</div>
+
+          <div class="pricing-price">
+            <span class="price-amount green">FREE</span>
+          </div>
+
+          <ul class="pricing-perks">
+            <li><span class="perk-icon green">✓</span> Full competition access</li>
+            <li><span class="perk-icon green">✓</span> Official leaderboard ranking</li>
+            <li><span class="perk-icon green">✓</span> GitHub template &amp; support</li>
+            <li><span class="perk-icon green">✓</span> Finalist presentation slot at IntelligenceX 2026</li>
+            <li><span class="perk-icon green">✓</span> SoAI community membership benefits</li>
+          </ul>
+
+          <label class="consent-box" for="soai-consent">
+            <input type="checkbox" id="soai-consent" checked>
+            <span class="consent-label">
+              I consent to become a <strong>SoAI member</strong> (free). Membership grants access to the Society of Algorithmic Intelligence network, events, and resources.
+            </span>
+          </label>
+
+          <a href="https://www.soc-ai.org/events/intelligencex-2026/register" target="_blank" rel="noopener" class="btn-register-member">
+            Register as Member — Free →
+          </a>
+        </div>
+
+        <!-- NON-MEMBER CARD -->
+        <div class="pricing-card nonmember reveal reveal-delay-3">
+          <div class="pricing-badge blue">Non-Member</div>
+          <div class="pricing-title">Open Registration</div>
+          <div class="pricing-subtitle">Open to all participants worldwide, no membership required</div>
+
+          <div class="pricing-price">
+            <span class="price-currency">SGD</span>
+            <span class="price-amount blue">100</span>
+            <span class="price-per">/ team</span>
+          </div>
+
+          <ul class="pricing-perks">
+            <li><span class="perk-icon blue">✓</span> Full competition access</li>
+            <li><span class="perk-icon blue">✓</span> Official leaderboard ranking</li>
+            <li><span class="perk-icon blue">✓</span> GitHub template &amp; support</li>
+            <li><span class="perk-icon blue">✓</span> Finalist presentation slot at IntelligenceX 2026</li>
+            <li><span class="perk-icon blue" style="color:var(--text-3)">–</span> <span style="color:var(--text-3)">SoAI membership not included</span></li>
+          </ul>
+
+          <div style="height: 3.6rem; margin-bottom: 1.25rem;"></div><!-- spacer to align button -->
+
+          <a href="https://www.soc-ai.org/events/intelligencex-2026/register" target="_blank" rel="noopener" class="btn-register-nonmember">
+            Register Now — SGD 100 →
+          </a>
+        </div>
+
+      </div><!-- /pricing-grid -->
+
+      <div class="register-github-link reveal">
+        <span>🔗</span>
+        <span>After registering, fork the competition template:</span>
+        <a href="https://github.com/Society-of-Algorithmic-Intelligence/SoAI-2026-AI-Algorithmic-Trading-Competition" target="_blank" rel="noopener">
+          GitHub Template Repository ↗
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <span class="footer-brand-logo">SoAI.</span>
+      <div class="footer-tagline">Society of Algorithmic Intelligence — bringing together top talent in AI, quantitative finance, and algorithmic intelligence.</div>
+    </div>
+    <div>
+      <div class="footer-heading">Quick Links</div>
+      <ul class="footer-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#timeline">Timeline</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#assets">Asset Universe</a></li>
+        <li><a href="#awards">Awards</a></li>
+        <li><a href="#register">Register</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Contact</div>
+      <a href="mailto:info@soc-ai.org" class="footer-contact-item">
+        <span>✉️</span> info@soc-ai.org
+      </a>
+      <a href="https://www.soc-ai.org/events/intelligencex-2026" target="_blank" rel="noopener" class="footer-contact-item">
+        <span>🏙️</span> IntelligenceX 2026
+      </a>
+      <a href="https://github.com/Society-of-Algorithmic-Intelligence/SoAI-2026-AI-Algorithmic-Trading-Competition" target="_blank" rel="noopener" class="footer-contact-item">
+        <span>⌥</span> GitHub Template
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Society of Algorithmic Intelligence · <a href="https://www.soc-ai.org/events/intelligencex-2026" target="_blank" rel="noopener">IntelligenceX 2026</a></div>
+    <div class="footer-copy">Built with ❤️ for the global AI trading community</div>
+  </div>
+</footer>
+
+<script>
+// ─── COUNTDOWN ───
+function updateCountdown() {
+  const deadline = new Date('2026-07-25T23:59:59+08:00').getTime();
+  const now = Date.now();
+  const diff = deadline - now;
+
+  if (diff <= 0) {
+    ['days','hours','mins','secs'].forEach(id => {
+      document.getElementById('cd-' + id).textContent = '00';
+    });
+    return;
+  }
+
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const mins = Math.floor((diff % 3600000) / 60000);
+  const secs = Math.floor((diff % 60000) / 1000);
+
+  const pad = n => String(n).padStart(2, '0');
+  document.getElementById('cd-days').textContent = pad(days);
+  document.getElementById('cd-hours').textContent = pad(hours);
+  document.getElementById('cd-mins').textContent = pad(mins);
+  document.getElementById('cd-secs').textContent = pad(secs);
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ─── NAVBAR SCROLL ───
+let lastScroll = 0;
+const navbar = document.getElementById('navbar');
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+
+  if (currentScroll > lastScroll && currentScroll > 120) {
+    navbar.classList.add('hidden');
+  } else {
+    navbar.classList.remove('hidden');
+  }
+
+  navbar.classList.toggle('scrolled', currentScroll > 10);
+  lastScroll = Math.max(0, currentScroll);
+
+  // Active nav link
+  const sections = ['about','timeline','how','assets','technical','evaluation','awards','why','register'];
+  const navLinks = document.querySelectorAll('.nav-links a');
+  let current = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.pageYOffset >= el.offsetTop - 120) current = id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}, { passive: true });
+
+// ─── SCROLL REVEAL ───
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ─── HAMBURGER ───
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+
+// Close mobile menu on link click
+document.querySelectorAll('.mobile-link, .mobile-menu .btn-nav').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  });
+});
+
+// ─── SMOOTH SCROLL ───
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', e => {
+    const target = document.querySelector(anchor.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>
