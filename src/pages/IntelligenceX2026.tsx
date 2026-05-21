@@ -42,7 +42,7 @@ export default function IntelligenceX2026() {
                 to="/events/intelligencex-2026/register"
                 className="inline-flex items-center justify-center rounded-full bg-[#ee7c01] px-6 py-2.5 text-base font-semibold text-white shadow-md transition hover:bg-[#d66900] hover:shadow-lg"
               >
-                Registration here
+                Conference Registration
               </Link>
               <a
                 href="https://forms.gle/kKcYxG6PDgyvrSNk8"
@@ -56,9 +56,9 @@ export default function IntelligenceX2026() {
                 href="/trading-competition/index.html"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-[#ee7c01] bg-white px-6 py-2.5 text-base font-semibold text-[#ee7c01] shadow-sm transition hover:bg-[#fff3e6]"
+                className="btn-blink inline-flex items-center justify-center rounded-full bg-[#ee7c01] px-6 py-2.5 text-base font-semibold text-white shadow-md transition hover:bg-[#d66900] hover:shadow-lg"
               >
-                AI Trading Competition
+                AI Trading Hackathon
               </a>
             </div>
             <a
@@ -225,6 +225,17 @@ export default function IntelligenceX2026() {
                 register
               </Link>
               ; preference is optional and subject to capacity (see registration form for details).
+            </p>
+          </section>
+
+          {/* Hackathon Notice */}
+          <section className="rounded-lg border border-gray-200 bg-gray-50 p-5">
+            <p className="text-xs text-gray-500 leading-relaxed">
+              <span className="font-semibold text-gray-700">Hackathon Notice: </span>
+              The organizers reserve the right to modify, suspend, or adjust the hackathon rules,
+              evaluation criteria, participation requirements, or related settings at their
+              discretion if deemed necessary for operational, technical, regulatory, or fairness
+              considerations.
             </p>
           </section>
 

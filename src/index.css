@@ -120,6 +120,14 @@
 }
 
 /* ---- SoAI custom utilities ---- */
+@keyframes btn-blink {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(238,124,1,0); }
+  50%       { opacity: 0.7; box-shadow: 0 0 8px 4px rgba(238,124,1,0.45); }
+}
+.btn-blink {
+  animation: btn-blink 1.4s ease-in-out infinite;
+}
+
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }

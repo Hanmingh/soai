@@ -75,6 +75,12 @@
   #navbar.hidden { transform: translateY(-100%); }
   #navbar.scrolled { background: rgba(7, 11, 20, 0.97); }
 
+  .nav-logo img {
+    height: 32px;
+    width: auto;
+    display: block;
+    filter: brightness(0) invert(1);
+  }
   .nav-logo {
     font-family: var(--font-display);
     font-weight: 800;
@@ -1446,7 +1452,7 @@
 
 <!-- NAVBAR -->
 <nav id="navbar">
-  <a href="#hero" class="nav-logo">SoAI<span>.</span></a>
+  <a href="#hero" class="nav-logo"><img src="/SoAI_logo.svg" alt="SoAI" /></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#timeline">Timeline</a></li>
@@ -1987,7 +1993,7 @@
             </span>
           </label>
 
-          <a href="https://www.soc-ai.org/events/intelligencex-2026/register" target="_blank" rel="noopener" class="btn-register-member">
+          <a href="/events/intelligencex-2026/hackathon-register?m=member" class="btn-register-member">
             Register as Member — Free →
           </a>
         </div>
@@ -2014,7 +2020,7 @@
 
           <div style="height: 3.6rem; margin-bottom: 1.25rem;"></div><!-- spacer to align button -->
 
-          <a href="https://www.soc-ai.org/events/intelligencex-2026/register" target="_blank" rel="noopener" class="btn-register-nonmember">
+          <a href="/events/intelligencex-2026/hackathon-register?m=nonmember" class="btn-register-nonmember">
             Register Now — SGD 100 →
           </a>
         </div>
@@ -2030,6 +2036,13 @@
       </div>
 
     </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<section style="padding:2rem;background:var(--bg-1);border-top:1px solid var(--border)">
+  <div style="max-width:860px;margin:0 auto;font-size:0.78rem;color:var(--text-2);line-height:1.7;text-align:center">
+    The organisers reserve the right to modify, suspend, or adjust the competition rules, evaluation criteria, participation requirements, or related settings at their discretion if deemed necessary for operational, technical, regulatory, or fairness considerations.
   </div>
 </section>
 
