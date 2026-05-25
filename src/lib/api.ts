@@ -130,6 +130,33 @@ export async function getEventsList(signal?: AbortSignal) {
 	return Array.isArray(data) ? data : data.items ?? [];
 }
 
+export type HackathonRegisterPayload = {
+	email: string;
+	first_name: string;
+	last_name: string;
+	middle_name?: string;
+	title: string;
+	country: string;
+	affiliation: string;
+	personal_webpage?: string;
+	membership_status: string;
+	isi_member_id?: string;
+	registration_type: "individual" | "team";
+	team_name?: string;
+	team_size?: number;
+	team_non_member_count?: number;
+};
+
+// Registers a hackathon participant and triggers a confirmation email.
+// Backend should implement POST /api/hackathon/register to store the record
+// and send a confirmation email to payload.email.
+export async function registerHackathon(payload: HackathonRegisterPayload) {
+	return fetchJson<{ success?: boolean; message?: string }>("/api/hackathon/register", {
+		method: "POST",
+		body: payload,
+	});
+}
+
 export const api = {
 	BASE_URL,
 	fetchJson,

@@ -24,8 +24,11 @@ export default function IntelligenceX2026Registration() {
   const [affiliation, setAffiliation] = useState("");
   const [email, setEmail] = useState("");
   const [personalWebpage, setPersonalWebpage] = useState("");
-  const [membershipStatus, setMembershipStatus] = useState<"existing" | "join" | "isi" | "nonmember" | "">("");
+  const [membershipStatus, setMembershipStatus] = useState<"existing" | "join" | "isi" | "nusqic" | "nonmember" | "">("");
+  const [soaiMemberId, setSoaiMemberId] = useState("");
+  // Note: ISI member ID is not currently validated against ISI records, but we collect it for reporting purposes and may reach out to users to verify their ISI membership status if needed.
   const [isiMemberId, setIsiMemberId] = useState("");
+  const [nusQicMemberId, setNusQicMemberId] = useState("");
   const [handsOnTutorialPref, setHandsOnTutorialPref] = useState<
     "" | "quantum" | "ai_coding" | "ai_trading" | "na"
   >("");
@@ -66,6 +69,10 @@ export default function IntelligenceX2026Registration() {
       setFormError("Please enter your ISI member ID.");
       return false;
     }
+    if (membershipStatus === "nusqic" && !nusQicMemberId.trim()) {
+      setFormError("Please enter your NUS Quantum Innovation Centre member ID.");
+      return false;
+    }
     setFormError(null);
     return true;
   };
@@ -94,7 +101,7 @@ export default function IntelligenceX2026Registration() {
       }
     }
 
-    const isMember = membershipStatus === "existing" || membershipStatus === "join" || membershipStatus === "isi";
+    const isMember = membershipStatus === "existing" || membershipStatus === "join" || membershipStatus === "isi" || membershipStatus === "nusqic";
     await startCheckout(isMember);
   };
 
@@ -131,8 +138,14 @@ export default function IntelligenceX2026Registration() {
           email: email.trim(),
           personal_webpage: personalWebpage.trim(),
           membership_status: membershipStatus,
+          ...(membershipStatus === "existing" && soaiMemberId.trim()
+            ? { soai_member_id: soaiMemberId.trim() }
+            : {}),
           ...(membershipStatus === "isi" && isiMemberId.trim()
             ? { isi_member_id: isiMemberId.trim() }
+            : {}),
+          ...(membershipStatus === "nusqic" && nusQicMemberId.trim()
+            ? { nusqic_member_id: nusQicMemberId.trim() }
             : {}),
           ...(handsOnTutorialPref
             ? { hands_on_tutorial_preference: handsOnTutorialPref }
@@ -287,6 +300,22 @@ export default function IntelligenceX2026Registration() {
                     />
                     <span>I am an existing SoAI member.</span>
                   </label>
+                  {membershipStatus === "existing" && (
+                    <div className="mt-2 ml-6">
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        SoAI member ID <span className="font-normal text-gray-500">(optional)</span>
+                      </label>
+    
+                      <input
+                        type="text"
+                        value={soaiMemberId}
+                        onChange={(e) => setSoaiMemberId(e.target.value)}
+                        placeholder="Enter your SoAI member ID"
+                        className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
+                      />
+                    </div>
+                  )}
+                  {/* Note: "join" creates a free SoAI membership during registration (1 year, member benefits included) */}
                   <label className="flex items-start gap-2">
                     <input
                       type="radio"
@@ -297,7 +326,7 @@ export default function IntelligenceX2026Registration() {
                       className="mt-1"
                       required
                     />
-                    <span>I consent to join SoAI as a member.</span>
+                    <span>I consent to join SoAI as a member.(free membership)</span>
                   </label>
                   <label className="flex items-start gap-2">
                     <input
@@ -311,6 +340,46 @@ export default function IntelligenceX2026Registration() {
                     />
                     <span>I am an ISI member.</span>
                   </label>
+                  {membershipStatus === "isi" && (
+                    <div className="mt-2 ml-6">
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        ISI member ID <span className="text-red-600">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        value={isiMemberId}
+                        onChange={(e) => setIsiMemberId(e.target.value)}
+                        placeholder="Enter your ISI member ID"
+                        className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
+                      />
+                    </div>
+                  )}
+                  <label className="flex items-start gap-2">
+                    <input
+                      type="radio"
+                      name="soai-membership"
+                      value="nusqic"
+                      checked={membershipStatus === "nusqic"}
+                      onChange={() => setMembershipStatus("nusqic")}
+                      className="mt-1"
+                      required
+                    />
+                    <span>I am a NUS Quantum Innovation Centre member.</span>
+                  </label>
+                  {membershipStatus === "nusqic" && (
+                    <div className="mt-2 ml-6">
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        NUS QIC member ID <span className="text-red-600">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        value={nusQicMemberId}
+                        onChange={(e) => setNusQicMemberId(e.target.value)}
+                        placeholder="Enter your NUS Member Affiliation ID"
+                        className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
+                      />
+                    </div>
+                  )}
                   <label className="flex items-start gap-2">
                     <input
                       type="radio"
@@ -321,23 +390,10 @@ export default function IntelligenceX2026Registration() {
                       className="mt-1"
                       required
                     />
+                    
                     <span>I do not wish to join SoAI and will attend the conference as a non-SoAI member.</span>
                   </label>
                 </div>
-                {membershipStatus === "isi" && (
-                  <div className="mt-3">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      ISI member ID <span className="text-red-600">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      value={isiMemberId}
-                      onChange={(e) => setIsiMemberId(e.target.value)}
-                      placeholder="Enter your ISI member ID"
-                      className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
-                    />
-                  </div>
-                )}
               </div>
 
               <div className="md:col-span-2">
@@ -352,7 +408,7 @@ export default function IntelligenceX2026Registration() {
 
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Hands-on tutorial preference <span className="font-normal text-gray-500">(optional)</span>
+                  Hands-on tutorial preference <span className="font-normal text-gray-500">(Seats limited !)</span>
                 </label>
                 <select
                   value={handsOnTutorialPref}
@@ -363,9 +419,9 @@ export default function IntelligenceX2026Registration() {
                   }
                   className="w-full max-w-xl px-3 py-2 border border-gray-300 rounded-md bg-white focus:ring-[#ee7c01] focus:border-[#ee7c01]"
                 >
-                  <option value="">No preference indicated</option>
+                  
                   <option value="quantum">Hands-on tutorial Quantum Computing</option>
-                  <option value="ai_coding">Hands-on tutorial AI for Coding</option>
+                  <option value="ai_coding">Hands-on tutorial Agentic Coding</option>
                   <option value="ai_trading">Hands-on tutorial AI Algorithmic Trading</option>
                   <option value="na">NA</option>
                 </select>
