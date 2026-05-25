@@ -287,35 +287,38 @@ export default function IntelligenceX2026Registration() {
                   Membership Status <span className="text-red-600">*</span>
                 </label>
                 <p className="text-sm text-gray-600 mb-3">Please indicate your status:</p>
-                <div className="space-y-2 text-sm text-gray-700">
-                  <label className="flex items-start gap-2">
-                    <input
-                      type="radio"
-                      name="soai-membership"
-                      value="existing"
-                      checked={membershipStatus === "existing"}
-                      onChange={() => setMembershipStatus("existing")}
-                      className="mt-1"
-                      required
-                    />
-                    <span>I am an existing SoAI member.</span>
-                  </label>
-                  {membershipStatus === "existing" && (
-                    <div className="mt-2 ml-6">
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        SoAI member ID <span className="font-normal text-gray-500">(optional)</span>
-                      </label>
-    
+                <div className="space-y-3 text-sm text-gray-700">
+                  {/* Existing SoAI member */}
+                  <div>
+                    <label className="flex items-start gap-2">
                       <input
-                        type="text"
-                        value={soaiMemberId}
-                        onChange={(e) => setSoaiMemberId(e.target.value)}
-                        placeholder="Enter your SoAI member ID"
-                        className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
+                        type="radio"
+                        name="soai-membership"
+                        value="existing"
+                        checked={membershipStatus === "existing"}
+                        onChange={() => setMembershipStatus("existing")}
+                        className="mt-1"
                       />
-                    </div>
-                  )}
-                  {/* Note: "join" creates a free SoAI membership during registration (1 year, member benefits included) */}
+                      <span>I am an existing SoAI member.</span>
+                    </label>
+                    {membershipStatus === "existing" && (
+                      <div className="mt-2 ml-6">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          SoAI member ID{" "}
+                          <span className="font-normal text-gray-500">(optional)</span>
+                        </label>
+                        <input
+                          type="text"
+                          value={soaiMemberId}
+                          onChange={(e) => setSoaiMemberId(e.target.value)}
+                          placeholder="Enter your SoAI member ID"
+                          className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
+                        />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Join SoAI */}
                   <label className="flex items-start gap-2">
                     <input
                       type="radio"
@@ -324,62 +327,69 @@ export default function IntelligenceX2026Registration() {
                       checked={membershipStatus === "join"}
                       onChange={() => setMembershipStatus("join")}
                       className="mt-1"
-                      required
                     />
-                    <span>I consent to join SoAI as a member.(free membership)</span>
+                    <span>I consent to join SoAI as a member (free membership).</span>
                   </label>
-                  <label className="flex items-start gap-2">
-                    <input
-                      type="radio"
-                      name="soai-membership"
-                      value="isi"
-                      checked={membershipStatus === "isi"}
-                      onChange={() => setMembershipStatus("isi")}
-                      className="mt-1"
-                      required
-                    />
-                    <span>I am an ISI member.</span>
-                  </label>
-                  {membershipStatus === "isi" && (
-                    <div className="mt-2 ml-6">
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        ISI member ID <span className="text-red-600">*</span>
-                      </label>
+
+                  {/* ISI member */}
+                  <div>
+                    <label className="flex items-start gap-2">
                       <input
-                        type="text"
-                        value={isiMemberId}
-                        onChange={(e) => setIsiMemberId(e.target.value)}
-                        placeholder="Enter your ISI member ID"
-                        className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
+                        type="radio"
+                        name="soai-membership"
+                        value="isi"
+                        checked={membershipStatus === "isi"}
+                        onChange={() => setMembershipStatus("isi")}
+                        className="mt-1"
                       />
-                    </div>
-                  )}
-                  <label className="flex items-start gap-2">
-                    <input
-                      type="radio"
-                      name="soai-membership"
-                      value="nusqic"
-                      checked={membershipStatus === "nusqic"}
-                      onChange={() => setMembershipStatus("nusqic")}
-                      className="mt-1"
-                      required
-                    />
-                    <span>I am a NUS Quantum Innovation Centre member.</span>
-                  </label>
-                  {membershipStatus === "nusqic" && (
-                    <div className="mt-2 ml-6">
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        NUS QIC member ID <span className="text-red-600">*</span>
-                      </label>
+                      <span>I am an ISI member.</span>
+                    </label>
+                    {membershipStatus === "isi" && (
+                      <div className="mt-2 ml-6">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          ISI member ID <span className="text-red-600">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          value={isiMemberId}
+                          onChange={(e) => setIsiMemberId(e.target.value)}
+                          placeholder="Enter your ISI member ID"
+                          className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
+                        />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* NUS QIC member */}
+                  <div>
+                    <label className="flex items-start gap-2">
                       <input
-                        type="text"
-                        value={nusQicMemberId}
-                        onChange={(e) => setNusQicMemberId(e.target.value)}
-                        placeholder="Enter your NUS Member Affiliation ID"
-                        className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
+                        type="radio"
+                        name="soai-membership"
+                        value="nusqic"
+                        checked={membershipStatus === "nusqic"}
+                        onChange={() => setMembershipStatus("nusqic")}
+                        className="mt-1"
                       />
-                    </div>
-                  )}
+                      <span>I am a NUS Quantum Innovation Centre member.</span>
+                    </label>
+                    {membershipStatus === "nusqic" && (
+                      <div className="mt-2 ml-6">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          NUS QIC member ID <span className="text-red-600">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          value={nusQicMemberId}
+                          onChange={(e) => setNusQicMemberId(e.target.value)}
+                          placeholder="Enter your NUS Member Affiliation ID"
+                          className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
+                        />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Non-member */}
                   <label className="flex items-start gap-2">
                     <input
                       type="radio"
@@ -388,9 +398,7 @@ export default function IntelligenceX2026Registration() {
                       checked={membershipStatus === "nonmember"}
                       onChange={() => setMembershipStatus("nonmember")}
                       className="mt-1"
-                      required
                     />
-                    
                     <span>I do not wish to join SoAI and will attend the conference as a non-SoAI member.</span>
                   </label>
                 </div>
