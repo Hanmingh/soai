@@ -251,10 +251,7 @@ export default function IntelligenceX2026() {
               <li>
                 Ecosystem Forum, featuring industry–academia showcases and collaboration opportunities
               </li>
-              <li>
-                Executive Track — a curated half-day program for senior technology, innovation, and policy leaders
-                (28 September 2026 · By invitation only)
-              </li>
+
             </ul>
           </section>
 
