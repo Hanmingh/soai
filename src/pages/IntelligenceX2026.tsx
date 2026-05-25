@@ -192,10 +192,14 @@ export default function IntelligenceX2026() {
           {/* Event information summary */}
           <section className="border-l-4 border-[#ee7c01] pl-5 py-2 bg-[#f9fafb]">
             <h2 className="text-xl font-semibold text-gray-900 mb-2">Event Information</h2>
-            <dl className="grid gap-1 text-sm md:text-base text-gray-800">
+            <dl className="grid gap-1 text-sm md:text-base text-gray-800 md:grid-cols-2">
               <div>
                 <dt className="font-medium">Main Conference</dt>
                 <dd>24–26 September 2026 · Singapore</dd>
+              </div>
+              <div>
+                <dt className="font-medium">Executive Track</dt>
+                <dd>28 September 2026 · Singapore · By invitation only</dd>
               </div>
             </dl>
           </section>
@@ -267,6 +271,34 @@ export default function IntelligenceX2026() {
             </ul>
           </section>
 
+
+          {/* Executive Track */}
+          <section className="space-y-4">
+            <h2 className="text-2xl font-semibold text-gray-900">Executive Track</h2>
+            <p className="text-gray-700 text-sm md:text-base">
+              <span className="font-semibold">28 September 2026 – By Invitation Only</span>
+            </p>
+            <p className="text-gray-800 leading-relaxed">
+              In addition to the main conference, IntelligenceX 2026 will host a half-day executive program designed
+              for senior technology, innovation, and policy leaders. This curated track will offer:
+            </p>
+            <ul className="list-disc pl-6 space-y-2 text-gray-800 leading-relaxed text-sm md:text-base">
+              <li>
+                Strategic briefings on Quantum×AI readiness, integration, and long-term impact
+              </li>
+              <li>
+                Moderated roundtables on investment strategy, governance, and organizational transformation
+              </li>
+              <li>
+                Opportunities to engage with global experts in a focused, high-level setting
+              </li>
+            </ul>
+            <p className="text-gray-800 leading-relaxed">
+              The executive program complements the public training sessions, which are open to practitioners and
+              researchers seeking hands-on exposure to quantum computing, artificial intelligence, and data science
+              foundations.
+            </p>
+          </section>
 
           {/* Scientific Organizing Committee */}
           <section className="space-y-6">
