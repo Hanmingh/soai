@@ -245,27 +245,22 @@ export default function IntelligenceX2026() {
             </ul>
           </section>
 
-          {/* Hands-On Tutorials — link card */}
-          <section className="rounded-lg border border-gray-200 bg-[#f9fafb] p-6 md:p-8">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-              <div className="space-y-1">
-                <h2 className="text-2xl font-semibold text-gray-900">
-                  Hands-On Tutorials @ IntelligenceX 2026
-                </h2>
-                <p className="text-sm md:text-base font-medium text-[#003d7b]">
-                  Limited Seats · 3 tutorials · 25 September 2026
-                </p>
-                <p className="text-sm text-gray-600">
-                  Quantum Computing · AI for Coding · AI Algorithmic Trading
-                </p>
-              </div>
+          {/* Hands-On Tutorials — inline link */}
+          <section className="space-y-1">
+            <h2 className="text-2xl font-semibold text-gray-900">
               <Link
                 to="/events/intelligencex-2026/tutorials"
-                className="shrink-0 inline-flex items-center justify-center rounded-full bg-[#003d7b] px-6 py-2.5 text-base font-semibold text-white shadow-md transition hover:bg-[#002a57] hover:shadow-lg"
+                className="hover:text-[#003d7b] transition-colors"
               >
-                View Tutorials →
+                Hands-On Tutorials @ IntelligenceX 2026 →
               </Link>
-            </div>
+            </h2>
+            <p className="text-sm md:text-base font-medium text-[#003d7b]">
+              Limited Seats · 3 tutorials · 25 September 2026
+            </p>
+            <p className="text-sm text-gray-600">
+              Quantum Computing · AI for Coding · AI Algorithmic Trading
+            </p>
           </section>
 
           {/* Executive Track */}
