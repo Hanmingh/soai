@@ -72,13 +72,15 @@ export default function HackathonRegistration() {
     membershipStatus === "join";
 
   // For individual: free if member, $100 if non-member
-  // For team: $100 per non-member in the team
+  // For team: lead fee (auto from membership status) + other non-member count × $100
+  const teamLeadFee = !isMember ? hackathonPrices.nonMember.amount : 0;
   const totalAmount = useMemo(() => {
     if (regType === "individual") {
       return isMember ? 0 : hackathonPrices.nonMember.amount;
     }
-    // Team: non-member count × $100
-    return teamNonMemberCount * hackathonPrices.nonMember.amount;
+    // Team lead fee + additional non-member teammates × $100
+    return (!isMember ? hackathonPrices.nonMember.amount : 0) +
+      teamNonMemberCount * hackathonPrices.nonMember.amount;
   }, [regType, isMember, teamNonMemberCount]);
 
   const countriesOrdered = useMemo(() => [...unMemberCountries, "Other"], []);
@@ -125,8 +127,8 @@ export default function HackathonRegistration() {
         setFormError("Team size must be between 2 and 10.");
         return false;
       }
-      if (teamNonMemberCount < 0 || teamNonMemberCount > teamSize) {
-        setFormError("Number of non-members cannot exceed team size.");
+      if (teamNonMemberCount < 0 || teamNonMemberCount > teamSize - 1) {
+        setFormError("Number of non-member teammates cannot exceed team size minus 1 (Team Lead not included here).");
         return false;
       }
       for (let i = 0; i < teamSize - 1; i++) {
@@ -212,7 +214,9 @@ export default function HackathonRegistration() {
     try {
       const fullName = [firstName, middleName, lastName].filter(Boolean).join(" ");
       const quantity =
-        regType === "individual" ? 1 : teamNonMemberCount;
+        regType === "individual"
+          ? 1
+          : teamNonMemberCount + (!isMember ? 1 : 0);
 
       const { url } = await createCheckoutSession({
         priceId,
@@ -321,7 +325,7 @@ export default function HackathonRegistration() {
               </li>
               <li>
                 <span className="font-medium">Team registration</span>: SGD 100
-                per non-member in the team
+                per non-member (Team Lead + other members counted separately)
               </li>
             </ul>
             {totalAmount === 0 && membershipStatus !== "" && (
@@ -619,13 +623,13 @@ export default function HackathonRegistration() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Number of non-SoAI members in team{" "}
+                      Non-SoAI members among other team members{" "}
                       <span className="text-red-600">*</span>
                     </label>
                     <input
                       type="number"
                       min={0}
-                      max={teamSize}
+                      max={teamSize - 1}
                       value={teamNonMemberCount}
                       onChange={(e) =>
                         setTeamNonMemberCount(Number(e.target.value))
@@ -633,6 +637,7 @@ export default function HackathonRegistration() {
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
                     />
                     <p className="mt-1 text-xs text-gray-500">
+                      Excluding Team Lead — Team Lead fee is determined by the membership status selected above.
                       Each non-member: SGD 100 · SoAI members: free
                     </p>
                   </div>
