@@ -197,10 +197,20 @@ export default function IntelligenceX2026() {
                 and hybrid Quantum×AI methodologies
               </li>
               <li>
-                Hands-on tutorials on quantum computing, AI-assisted coding, and AI algorithmic trading
+                <Link to="/events/intelligencex-2026/tutorials" className="text-[#003d7b] font-medium hover:underline">
+                  Hands-on tutorials on quantum computing, Agentic coding, and AI algorithmic trading (Limited Seats!)
+                </Link>
               </li>
               <li>
                 Panel discussions and roundtables fostering dialogue among academia, industry, and policymakers
+              </li>
+              <li>
+                <a
+                  href="/trading-competition/index.html"
+                  className="text-[#003d7b] font-medium hover:underline"
+                >
+                  AI Algorithmic Trading Hackathon
+                </a>
               </li>
               <li>
                 Ecosystem Forum, featuring industry–academia showcases and collaboration opportunities
