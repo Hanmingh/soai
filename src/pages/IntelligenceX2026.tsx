@@ -235,7 +235,7 @@ export default function IntelligenceX2026() {
               </li>
               <li>
                 <Link to="/events/intelligencex-2026/tutorials" className="text-[#003d7b] font-medium hover:underline">
-                  Hands-on tutorials on quantum computing, AI-assisted coding, and AI algorithmic trading
+                  Hands-on tutorials on quantum computing, Agentic coding, and AI algorithmic trading (Limited Seats!)
                 </Link>
               </li>
               <li>
