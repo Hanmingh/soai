@@ -12,7 +12,7 @@ export default function IntelligenceX2026() {
 
   const institutionLogos = [
     { abbr: "ANL",  name: "Argonne National Laboratory",    src: sfp("ArgonneLaboratoryLogo.png"),                                                                                                                      href: "https://www.anl.gov" },
-    { abbr: "AS",   name: "Academia Sinica",                 src: "https://www.sinica.edu.tw/img/footer_logo.png",                                                                                                      href: "https://www.sinica.edu.tw" },
+    { abbr: "AS",   name: "Academia Sinica",                 src: "https://upload.wikimedia.org/wikipedia/en/2/21/Academia_Sinica_logo.svg",                                                               href: "https://www.sinica.edu.tw" },
     { abbr: "CHU",  name: "Chuo University",                 src: sfp("%E4%B8%AD%E5%A4%AE%E5%A4%A7%E5%AD%A6.svg"),                                                                                                     href: "https://www.chuo-u.ac.jp/en/" },
     { abbr: "CMU",  name: "Chiang Mai University",           src: sfp("CMU_sub-logo.svg"),                                                                                                                              href: "https://www.cmu.ac.th" },
     { abbr: "CNRS", name: "CNRS",                            src: "https://upload.wikimedia.org/wikipedia/en/f/f5/Centre_national_de_la_recherche_scientifique_%28logo%29.svg",                                        href: "https://www.cnrs.fr" },
@@ -35,6 +35,7 @@ export default function IntelligenceX2026() {
     { abbr: "UVie", name: "University of Vienna",           src: "https://upload.wikimedia.org/wikipedia/commons/1/13/University_of_Vienna_wordmark.svg",                                                             href: "https://www.univie.ac.at/en/" },
     { abbr: "ZIB",  name: "Zuse Institute Berlin",         src: "https://upload.wikimedia.org/wikipedia/en/6/69/Logo_of_the_Zuse_Institute_Berlin.png",                                                               href: "https://www.zib.de/en" },
   ];
+  //to do由原来的机构首字母排序改成人名 首字母形式重排
 
   const marqueeLogos = [
     { abbr: "CNRS", name: "CNRS",                                     src: "https://upload.wikimedia.org/wikipedia/en/f/f5/Centre_national_de_la_recherche_scientifique_%28logo%29.svg",   href: "https://www.cnrs.fr" },
@@ -258,34 +259,33 @@ export default function IntelligenceX2026() {
               Scientific Organizing Committee
             </h2>
             <div className="flex flex-col md:flex-row gap-8 items-start">
-              {/* Left: list sorted by institution abbreviation */}
+              {/* Left: list sorted by last name A–Z */}
               <ul className="list-disc pl-6 space-y-2 text-gray-800 leading-relaxed text-sm md:text-base flex-1 min-w-0">
-                <li>Sven Leyffer (Argonne National Laboratory, USA)</li>
-                <li>Chun-houh Chen (Academia Sinica, Taiwan)</li>
-                <li>Tomoyuki Higuchi (Chuo University, Japan)</li>
-                <li>Rujira Ouncharoen (Chiang Mai University, Thailand)</li>
-                <li>Philippe Codognet (CNRS / Sorbonne University / University of Tokyo, France)</li>
-                <li>Agostino Capponi (Columbia University, USA)</li>
-                <li>Huyên Pham (École Polytechnique, France)</li>
                 <li>Bastian Bergmann (ETH Zürich, Switzerland)</li>
-                <li>Josef Teichmann (ETH Zürich, Switzerland)</li>
                 <li>Ralf Borndörfer (Freie Universität Berlin &amp; Zuse Institute Berlin, Germany)</li>
-                <li>Tal Kachman (Humboldt-Universität zu Berlin, Germany)</li>
-                <li>Stefan Lessmann (Humboldt-Universität zu Berlin, Germany)</li>
-                <li>Satoshi Ito (The Institute of Statistical Mathematics, Japan)</li>
-                <li>Katsuki Fujisawa (Institute of Science Tokyo, Japan)</li>
-                <li>Qiwei Yao (London School of Economics and Political Science, UK)</li>
+                <li>Agostino Capponi (Columbia University, USA)</li>
+                <li>Paulo Canas Rodrigues (Federal University of Bahia, Brazil)</li>
+                <li>Patrick Chia (National University Health System, Singapore)</li>
+                <li>Chun-houh Chen (Academia Sinica, Taiwan)</li>
                 <li>Ray-Bing Chen (National Tsing Hua University, Taiwan)</li>
                 <li>Ying Chen (National University of Singapore, Singapore)</li>
-                <li>Patrick Chia (National University Health System, Singapore)</li>
-                <li>Xun Shen (Tokyo University of Agriculture and Technology, Japan)</li>
-                <li>Xin Guo (University of California, Berkeley, USA)</li>
-                <li>Paulo Canas Rodrigues (Federal University of Bahia, Brazil)</li>
+                <li>Katsuki Fujisawa (Institute of Science Tokyo, Japan)</li>
                 <li>Paolo Giudici (University of Pavia, Italy)</li>
-                <li>Simon Trimborn (University of Amsterdam, Netherlands)</li>
+                <li>Xin Guo (University of California, Berkeley, USA)</li>
                 <li>Nikolaus Hautsch (University of Vienna, Austria)</li>
+                <li>Tomoyuki Higuchi (Chuo University, Japan)</li>
+                <li>Satoshi Ito (The Institute of Statistical Mathematics, Japan)</li>
+                <li>Tal Kachman (Radboud University, Netherlands)</li>
                 <li>Thorsten Koch (Zuse Institute Berlin &amp; TU Berlin, Germany)</li>
+                <li>Stefan Lessmann (Humboldt-Universität zu Berlin, Germany)</li>
+                <li>Sven Leyffer (Argonne National Laboratory, USA)</li>
+                <li>Rujira Ouncharoen (Chiang Mai University, Thailand)</li>
+                <li>Huyên Pham (École Polytechnique, France)</li>
+                <li>Xun Shen (Tokyo University of Agriculture and Technology, Japan)</li>
                 <li>Yuji Shinano (Zuse Institute Berlin, Germany)</li>
+                <li>Josef Teichmann (ETH Zürich, Switzerland)</li>
+                <li>Simon Trimborn (University of Amsterdam, Netherlands)</li>
+                <li>Qiwei Yao (London School of Economics and Political Science, UK)</li>
               </ul>
 
               {/* Right: institution logo grid (desktop only) */}
