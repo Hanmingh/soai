@@ -9,7 +9,7 @@ const soaiLogo = "/SoAI_logo.svg";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type RegistrationType = "individual" | "team";
-type MembershipStatus = "existing" | "join" | "isi" | "nonmember" | "";
+type MembershipStatus = "existing" | "join" | "nonmember" | "";
 
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function HackathonRegistration() {
@@ -28,12 +28,30 @@ export default function HackathonRegistration() {
   const [email, setEmail] = useState("");
   const [personalWebpage, setPersonalWebpage] = useState("");
   const [membershipStatus, setMembershipStatus] = useState<MembershipStatus>("");
-  const [isiMemberId, setIsiMemberId] = useState("");
+  const [memberId, setMemberId] = useState("");
 
   // Team-only fields
   const [teamName, setTeamName] = useState("");
   const [teamSize, setTeamSize] = useState<number>(2);
   const [teamNonMemberCount, setTeamNonMemberCount] = useState<number>(1);
+  const [teamMembers, setTeamMembers] = useState<
+    { name: string; affiliation: string; email: string }[]
+  >([{ name: "", affiliation: "", email: "" }]);
+
+  // Set browser tab title + force favicon refresh for this route
+  useEffect(() => {
+    document.title = "AI Algorithmic Trading Hackathon — Registration | SoAI";
+    // Force the browser to re-read the favicon (some browsers cache the previous tab icon in SPAs)
+    const link = document.querySelector<HTMLLinkElement>("link[rel~='icon']");
+    if (link) {
+      const prev = link.getAttribute("href") ?? "";
+      link.setAttribute("href", "");
+      link.setAttribute("href", prev);
+    }
+    return () => {
+      document.title = "Society of Algorithmic Intelligence";
+    };
+  }, []);
 
   // Pre-select membership from URL param ?m=member|nonmember
   useEffect(() => {
@@ -51,8 +69,7 @@ export default function HackathonRegistration() {
   // ─── Derived ──────────────────────────────────────────────────────────────
   const isMember =
     membershipStatus === "existing" ||
-    membershipStatus === "join" ||
-    membershipStatus === "isi";
+    membershipStatus === "join";
 
   // For individual: free if member, $100 if non-member
   // For team: $100 per non-member in the team
@@ -95,8 +112,8 @@ export default function HackathonRegistration() {
       setFormError("Please enter a valid personal webpage URL.");
       return false;
     }
-    if (membershipStatus === "isi" && !isiMemberId.trim()) {
-      setFormError("Please enter your ISI member ID.");
+    if (membershipStatus === "existing" && !memberId.trim()) {
+      setFormError("Please enter your SoAI member ID.");
       return false;
     }
     if (regType === "team") {
@@ -111,6 +128,13 @@ export default function HackathonRegistration() {
       if (teamNonMemberCount < 0 || teamNonMemberCount > teamSize) {
         setFormError("Number of non-members cannot exceed team size.");
         return false;
+      }
+      for (let i = 0; i < teamSize - 1; i++) {
+        const m = teamMembers[i];
+        if (!m?.name?.trim() || !m?.affiliation?.trim() || !m?.email?.trim()) {
+          setFormError(`Please complete all required fields for Team Member ${i + 2}.`);
+          return false;
+        }
       }
     }
     setFormError(null);
@@ -157,11 +181,12 @@ export default function HackathonRegistration() {
         affiliation: affiliation.trim(),
         personal_webpage: personalWebpage.trim() || undefined,
         membership_status: membershipStatus,
-        isi_member_id: membershipStatus === "isi" && isiMemberId.trim() ? isiMemberId.trim() : undefined,
+        soai_member_id: membershipStatus === "existing" && memberId.trim() ? memberId.trim() : undefined,
         registration_type: regType,
         team_name: regType === "team" ? teamName.trim() : undefined,
         team_size: regType === "team" ? teamSize : undefined,
         team_non_member_count: regType === "team" ? teamNonMemberCount : undefined,
+        team_members: regType === "team" ? teamMembers.slice(0, teamSize - 1) : undefined,
       });
     } catch {
       // Non-blocking: proceed even if the endpoint isn't live yet
@@ -209,8 +234,8 @@ export default function HackathonRegistration() {
           email: email.trim(),
           personal_webpage: personalWebpage.trim(),
           membership_status: membershipStatus,
-          ...(membershipStatus === "isi" && isiMemberId.trim()
-            ? { isi_member_id: isiMemberId.trim() }
+          ...(membershipStatus === "existing" && memberId.trim()
+            ? { soai_member_id: memberId.trim() }
             : {}),
           ...(regType === "team"
             ? {
@@ -288,8 +313,7 @@ export default function HackathonRegistration() {
             </h2>
             <ul className="text-sm text-gray-700 space-y-1">
               <li>
-                <span className="font-medium">SoAI members</span> (existing,
-                joining, or ISI): <span className="font-semibold text-green-700">Free</span>
+                <span className="font-medium">SoAI members</span> (existing and joining): <span className="font-semibold text-green-700">Free</span>
               </li>
               <li>
                 <span className="font-medium">Non-SoAI members</span>: SGD 100
@@ -300,12 +324,6 @@ export default function HackathonRegistration() {
                 per non-member in the team
               </li>
             </ul>
-            {totalAmount > 0 && (
-              <p className="mt-3 text-sm font-semibold text-gray-900">
-                Estimated total:{" "}
-                <span className="text-[#ee7c01]">SGD {totalAmount}</span>
-              </p>
-            )}
             {totalAmount === 0 && membershipStatus !== "" && (
               <p className="mt-3 text-sm font-semibold text-green-700">
                 Your registration is complimentary as a SoAI member.
@@ -491,20 +509,42 @@ export default function HackathonRegistration() {
                   Membership Status <span className="text-red-600">*</span>
                 </label>
                 <p className="text-sm text-gray-600 mb-3">
-                  SoAI members register for free.
+                  <Link
+                    to="/membership/register"
+                    className="text-[#003d7b] font-medium hover:underline"
+                  >
+                    SoAI members register for free.
+                  </Link>
                 </p>
                 <div className="space-y-2 text-sm text-gray-700">
-                  <label className="flex items-start gap-2">
-                    <input
-                      type="radio"
-                      name="membership"
-                      value="existing"
-                      checked={membershipStatus === "existing"}
-                      onChange={() => setMembershipStatus("existing")}
-                      className="mt-1"
-                    />
-                    <span>I am an existing SoAI member.</span>
-                  </label>
+                  <div>
+                    <label className="flex items-start gap-2">
+                      <input
+                        type="radio"
+                        name="membership"
+                        value="existing"
+                        checked={membershipStatus === "existing"}
+                        onChange={() => setMembershipStatus("existing")}
+                        className="mt-1"
+                      />
+                      <span>I am an existing SoAI member.</span>
+                    </label>
+                    {membershipStatus === "existing" && (
+                      <div className="mt-2 ml-6">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          SoAI Member ID <span className="text-red-600">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          value={memberId}
+                          onChange={(e) => setMemberId(e.target.value)}
+                          placeholder="Enter your SoAI member ID"
+                          className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
+                          required
+                        />
+                      </div>
+                    )}
+                  </div>
                   <label className="flex items-start gap-2">
                     <input
                       type="radio"
@@ -515,17 +555,6 @@ export default function HackathonRegistration() {
                       className="mt-1"
                     />
                     <span>I consent to join SoAI as a member.</span>
-                  </label>
-                  <label className="flex items-start gap-2">
-                    <input
-                      type="radio"
-                      name="membership"
-                      value="isi"
-                      checked={membershipStatus === "isi"}
-                      onChange={() => setMembershipStatus("isi")}
-                      className="mt-1"
-                    />
-                    <span>I am an ISI member.</span>
                   </label>
                   <label className="flex items-start gap-2">
                     <input
@@ -542,20 +571,6 @@ export default function HackathonRegistration() {
                     </span>
                   </label>
                 </div>
-                {membershipStatus === "isi" && (
-                  <div className="mt-3">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      ISI member ID <span className="text-red-600">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      value={isiMemberId}
-                      onChange={(e) => setIsiMemberId(e.target.value)}
-                      placeholder="Enter your ISI member ID"
-                      className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
-                    />
-                  </div>
-                )}
               </div>
 
               {/* ── Team fields ─────────────────────────────────────────── */}
@@ -591,8 +606,13 @@ export default function HackathonRegistration() {
                       onChange={(e) => {
                         const v = Number(e.target.value);
                         setTeamSize(v);
-                        if (teamNonMemberCount > v)
-                          setTeamNonMemberCount(v);
+                        if (teamNonMemberCount > v) setTeamNonMemberCount(v);
+                        // Resize teamMembers to hold additional members (v - 1)
+                        setTeamMembers((prev) =>
+                          Array.from({ length: Math.max(0, v - 1) }, (_, i) =>
+                            prev[i] ?? { name: "", affiliation: "", email: "" }
+                          )
+                        );
                       }}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
                     />
@@ -616,6 +636,84 @@ export default function HackathonRegistration() {
                       Each non-member: SGD 100 · SoAI members: free
                     </p>
                   </div>
+
+                  {/* Additional team members */}
+                  {teamSize > 1 && (
+                    <div className="md:col-span-2 space-y-4 border-t border-gray-100 pt-4">
+                      <h3 className="text-sm font-semibold text-gray-800">
+                        Additional Team Members
+                      </h3>
+                      {Array.from({ length: teamSize - 1 }, (_, i) => (
+                        <div key={i} className="space-y-2">
+                          <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                            Member {i + 2}
+                          </p>
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <div>
+                              <label className="block text-xs font-medium text-gray-700 mb-1">
+                                Name <span className="text-red-600">*</span>
+                              </label>
+                              <input
+                                type="text"
+                                value={teamMembers[i]?.name ?? ""}
+                                onChange={(e) =>
+                                  setTeamMembers((prev) =>
+                                    prev.map((m, idx) =>
+                                      idx === i
+                                        ? { ...m, name: e.target.value }
+                                        : m
+                                    )
+                                  )
+                                }
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01] text-sm"
+                                required
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-xs font-medium text-gray-700 mb-1">
+                                Affiliation <span className="text-red-600">*</span>
+                              </label>
+                              <input
+                                type="text"
+                                value={teamMembers[i]?.affiliation ?? ""}
+                                onChange={(e) =>
+                                  setTeamMembers((prev) =>
+                                    prev.map((m, idx) =>
+                                      idx === i
+                                        ? { ...m, affiliation: e.target.value }
+                                        : m
+                                    )
+                                  )
+                                }
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01] text-sm"
+                                required
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-xs font-medium text-gray-700 mb-1">
+                                Email <span className="text-red-600">*</span>
+                              </label>
+                              <input
+                                type="email"
+                                value={teamMembers[i]?.email ?? ""}
+                                onChange={(e) =>
+                                  setTeamMembers((prev) =>
+                                    prev.map((m, idx) =>
+                                      idx === i
+                                        ? { ...m, email: e.target.value }
+                                        : m
+                                    )
+                                  )
+                                }
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01] text-sm"
+                                required
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </>
               )}
 
