@@ -41,7 +41,7 @@ export default function IntelligenceX2026() {
     { abbr: "ANL",    name: "Argonne National Laboratory",                  src: sfp("ArgonneLaboratoryLogo.png"),                                                                             href: "https://www.anl.gov" },
     { abbr: "CMU",    name: "Chiang Mai University",                        src: sfp("CMU_sub-logo.svg"),                                                                                      href: "https://www.cmu.ac.th" },
     { abbr: "EP",     name: "École Polytechnique",                          src: sfp("%C3%89cole_polytechnique_signature.svg"),                                                                href: "https://www.polytechnique.edu" },
-    { abbr: "TUAT",   name: "Tokyo University of Agriculture and Technology", src: sfp("Logo_Tokyo_University_of_Agriculture_and_Technology.svg"),                                            href: "https://www.tuat.ac.jp/en/" },
+    { abbr: "TUAT",   name: "Tokyo University of Agriculture and Technology", src: ismLogo,                                                                                                      href: "https://www.tuat.ac.jp/en/" },
     { abbr: "UvA",    name: "University of Amsterdam",                      src: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Amsterdamuniversitylogo.svg",                           href: "https://www.uva.nl/en" },
     { abbr: "LSE",    name: "London School of Economics",                   src: sfp("LSE_Logo.svg"),                                                                                          href: "https://www.lse.ac.uk" },
     // ── Startups / industry partners ───────────────────────────────────────
