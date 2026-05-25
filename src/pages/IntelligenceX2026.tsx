@@ -242,6 +242,9 @@ export default function IntelligenceX2026() {
                 Panel discussions and roundtables fostering dialogue among academia, industry, and policymakers
               </li>
               <li>
+                AI Algorithmic Trading Hackathon
+              </li>
+              <li>
                 Ecosystem Forum, featuring industry–academia showcases and collaboration opportunities
               </li>
             </ul>
