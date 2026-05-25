@@ -11,6 +11,8 @@ const soaiLogo = "/SoAI_logo.svg";
 type RegistrationType = "individual" | "team";
 type MembershipStatus = "existing" | "join" | "nonmember" | "";
 
+const FORM_STORAGE_KEY = "soai_hackathon_reg_draft";
+
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function HackathonRegistration() {
   const [searchParams] = useSearchParams();
@@ -41,7 +43,6 @@ export default function HackathonRegistration() {
   // Set browser tab title + force favicon refresh for this route
   useEffect(() => {
     document.title = "AI Algorithmic Trading Hackathon — Registration | SoAI";
-    // Force the browser to re-read the favicon (some browsers cache the previous tab icon in SPAs)
     const link = document.querySelector<HTMLLinkElement>("link[rel~='icon']");
     if (link) {
       const prev = link.getAttribute("href") ?? "";
@@ -53,10 +54,34 @@ export default function HackathonRegistration() {
     };
   }, []);
 
-  // Pre-select membership from URL param ?m=member|nonmember
+  // Restore saved form state (returning from Stripe) OR pre-select from URL param
   useEffect(() => {
+    const saved = sessionStorage.getItem(FORM_STORAGE_KEY);
+    if (saved) {
+      try {
+        const d = JSON.parse(saved);
+        if (d.regType)              setRegType(d.regType);
+        if (d.title)                setTitle(d.title);
+        if (d.firstName)            setFirstName(d.firstName);
+        if (d.middleName  != null)  setMiddleName(d.middleName);
+        if (d.lastName)             setLastName(d.lastName);
+        if (d.country)              setCountry(d.country);
+        if (d.affiliation)          setAffiliation(d.affiliation);
+        if (d.email)                setEmail(d.email);
+        if (d.personalWebpage != null) setPersonalWebpage(d.personalWebpage);
+        if (d.membershipStatus)     setMembershipStatus(d.membershipStatus);
+        if (d.memberId    != null)  setMemberId(d.memberId);
+        if (d.teamName    != null)  setTeamName(d.teamName);
+        if (d.teamSize)             setTeamSize(d.teamSize);
+        if (d.teamNonMemberCount != null) setTeamNonMemberCount(d.teamNonMemberCount);
+        if (d.teamMembers)          setTeamMembers(d.teamMembers);
+      } catch { /* ignore corrupted data */ }
+      sessionStorage.removeItem(FORM_STORAGE_KEY);
+      return; // skip URL-param pre-select when restoring a draft
+    }
+    // Pre-select membership from URL param ?m=member|nonmember
     const m = searchParams.get("m");
-    if (m === "member") setMembershipStatus("existing");
+    if (m === "member")    setMembershipStatus("existing");
     else if (m === "nonmember") setMembershipStatus("nonmember");
   }, [searchParams]);
 
@@ -217,6 +242,14 @@ export default function HackathonRegistration() {
         regType === "individual"
           ? 1
           : teamNonMemberCount + (!isMember ? 1 : 0);
+
+      // Save form state so it can be restored if user returns from Stripe
+      sessionStorage.setItem(FORM_STORAGE_KEY, JSON.stringify({
+        regType, title, firstName, middleName, lastName,
+        country, affiliation, email, personalWebpage,
+        membershipStatus, memberId,
+        teamName, teamSize, teamNonMemberCount, teamMembers,
+      }));
 
       const { url } = await createCheckoutSession({
         priceId,
