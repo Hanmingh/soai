@@ -9,6 +9,7 @@ import ismLogo      from "@/logo/logo_ISM.png";
 import iofLogo      from "@/logo/logo_IOF.jpg.jpeg";
 import fuelttureLogo from "@/logo/logo_fuelture.png";
 import i2damoLogo   from "@/logo/logo_I2DAMO-gh-e07cc61c.webp";
+import quantonLogo  from "@/logo/Logo_Quanton.png";
 
 export default function IntelligenceX2026() {
   const bgUrl = intelligenceXBg;
@@ -41,13 +42,14 @@ export default function IntelligenceX2026() {
     { abbr: "HUB",    name: "Humboldt-Universität zu Berlin",               src: "https://upload.wikimedia.org/wikipedia/commons/c/ce/Huberlin-logo.svg",                scale: 1.4,          href: "https://www.hu-berlin.de" },
     { abbr: "ANL",    name: "Argonne National Laboratory",                  src: sfp("ArgonneLaboratoryLogo.png"),                                                                             href: "https://www.anl.gov" },
     { abbr: "CMU",    name: "Chiang Mai University",                        src: sfp("CMU_sub-logo.svg"),                                                                                      href: "https://www.cmu.ac.th" },
-    { abbr: "EP",     name: "École Polytechnique",                          src: sfp("%C3%89cole_polytechnique_signature.svg"),                                                                href: "https://www.polytechnique.edu" },
+    { abbr: "EP",     name: "École Polytechnique",                          src: sfp("%C3%89cole_polytechnique_signature.svg"),                              scale: 1.5,              href: "https://www.polytechnique.edu" },
     { abbr: "UvA",    name: "University of Amsterdam",                      src: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Amsterdamuniversitylogo.svg",                           href: "https://www.uva.nl/en" },
     { abbr: "LSE",    name: "London School of Economics",                   src: sfp("LSE_Logo.svg"),                                                                                          href: "https://www.lse.ac.uk" },
     // ── Startups / industry partners ───────────────────────────────────────
     { abbr: "iOF",    name: "iOF Algorithmic Solutions",                    src: iofLogo,                                                                                                      href: "https://www.iof.sg" },
     { abbr: "Fuelture", name: "Fuelture",                                   src: fuelttureLogo,                                                               scale: 1.5,                      href: "https://fuelture.com" },
     { abbr: "I2DAMO", name: "I²DAMO",                                       src: i2damoLogo,                                                                                                   href: "https://www.i2damo.de/en" },
+    { abbr: "Quanton", name: "Quanton Technologies",                        src: quantonLogo,                                                                                                  href: "https://www.quantontechnologies.com" },
   ];
 
   const marqueeLogos = [
