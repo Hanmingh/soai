@@ -65,9 +65,8 @@ export const intelligenceX2026Prices: PriceTier[] = [
 ];
 
 // ── Hackathon pricing ──────────────────────────────────────────────────────
-// SoAI members (existing / joining / ISI): free
+// SoAI members (existing / joining): free
 // Non-members: SGD 100 per person (individual or per non-member in a team)
-// priceId intentionally left blank — to be filled in when Stripe is configured
 export const hackathonPrices = {
   member: {
     amount: 0,
@@ -77,7 +76,7 @@ export const hackathonPrices = {
   nonMember: {
     amount: 100,
     currency: "SGD" as Currency,
-    priceId: "", // TODO: fill in Stripe price ID when available
+    priceId: "price_1TavD8RoKuwmRueSTQzPHHvR",
   },
 };
 
