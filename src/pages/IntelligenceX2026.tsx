@@ -17,6 +17,7 @@ export default function IntelligenceX2026() {
   const sfp = (f: string) => `https://commons.wikimedia.org/wiki/Special:FilePath/${f}`;
 
   // SOC institution logos — NUS first, then universities by committee last-name A–Z, then startups
+  // scale: optional multiplier for logos that appear too small inside the fixed container
   const institutionLogos = [
     // ── NUS first ──────────────────────────────────────────────────────────
     { abbr: "NUS",    name: "National University of Singapore",             src: "https://nus.edu.sg/images/default-source/base/logo.png",                                                      href: "https://www.nus.edu.sg" },
@@ -25,7 +26,7 @@ export default function IntelligenceX2026() {
     { abbr: "FUB",    name: "Freie Universität Berlin",                     src: "https://upload.wikimedia.org/wikipedia/commons/6/6d/Freie_Universit%C3%A4t_Berlin_Logo_05.2024.svg",        href: "https://www.fu-berlin.de" },
     { abbr: "ZIB",    name: "Zuse Institute Berlin",                        src: "https://upload.wikimedia.org/wikipedia/en/6/69/Logo_of_the_Zuse_Institute_Berlin.png",                      href: "https://www.zib.de/en" },
     { abbr: "MODAL",  name: "MODAL Forschungscampus",                       src: modalLogo,                                                                                                    href: "https://modal-forschungscampus.de" },
-    { abbr: "CU",     name: "Columbia University",                          src: columbiaLogo,                                                                                                 href: "https://www.columbia.edu" },
+    { abbr: "CU",     name: "Columbia University",                          src: columbiaLogo,                                                                  scale: 1.5,                    href: "https://www.columbia.edu" },
     { abbr: "UFBA",   name: "Federal University of Bahia",                  src: sfp("Bras%C3%A3o_da_UFBA.png"),                                                                              href: "https://www.ufba.br" },
     { abbr: "NUHS",   name: "National University Health System",            src: "https://www.nuhs.edu.sg/images/nuhslibraries/default-album/footer-logo/nuhs.png?sfvrsn=7838e2df_17",        href: "https://www.nuhs.edu.sg" },
     { abbr: "AS",     name: "Academia Sinica",                              src: "https://upload.wikimedia.org/wikipedia/en/2/21/Academia_Sinica_logo.svg",                                   href: "https://www.sinica.edu.tw" },
@@ -37,16 +38,15 @@ export default function IntelligenceX2026() {
     { abbr: "CHU",    name: "Chuo University",                              src: sfp("%E4%B8%AD%E5%A4%AE%E5%A4%A7%E5%AD%A6.svg"),                                                             href: "https://www.chuo-u.ac.jp/en/" },
     { abbr: "ISM",    name: "The Institute of Statistical Mathematics",     src: ismLogo,                                                                                                      href: "http://www.ism.ac.jp/index_e.html" },
     { abbr: "RU",     name: "Radboud University",                           src: "https://upload.wikimedia.org/wikipedia/commons/7/76/Logo_Radboud_University.svg",                           href: "https://www.ru.nl/en" },
-    { abbr: "HUB",    name: "Humboldt-Universität zu Berlin",               src: "https://upload.wikimedia.org/wikipedia/commons/c/ce/Huberlin-logo.svg",                                     href: "https://www.hu-berlin.de" },
+    { abbr: "HUB",    name: "Humboldt-Universität zu Berlin",               src: "https://upload.wikimedia.org/wikipedia/commons/c/ce/Huberlin-logo.svg",                scale: 1.4,          href: "https://www.hu-berlin.de" },
     { abbr: "ANL",    name: "Argonne National Laboratory",                  src: sfp("ArgonneLaboratoryLogo.png"),                                                                             href: "https://www.anl.gov" },
     { abbr: "CMU",    name: "Chiang Mai University",                        src: sfp("CMU_sub-logo.svg"),                                                                                      href: "https://www.cmu.ac.th" },
     { abbr: "EP",     name: "École Polytechnique",                          src: sfp("%C3%89cole_polytechnique_signature.svg"),                                                                href: "https://www.polytechnique.edu" },
-
     { abbr: "UvA",    name: "University of Amsterdam",                      src: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Amsterdamuniversitylogo.svg",                           href: "https://www.uva.nl/en" },
     { abbr: "LSE",    name: "London School of Economics",                   src: sfp("LSE_Logo.svg"),                                                                                          href: "https://www.lse.ac.uk" },
     // ── Startups / industry partners ───────────────────────────────────────
     { abbr: "iOF",    name: "iOF Algorithmic Solutions",                    src: iofLogo,                                                                                                      href: "https://www.iof.sg" },
-    { abbr: "Fuelture", name: "Fuelture",                                   src: fuelttureLogo,                                                                                                href: "https://fuelture.com" },
+    { abbr: "Fuelture", name: "Fuelture",                                   src: fuelttureLogo,                                                               scale: 1.5,                      href: "https://fuelture.com" },
     { abbr: "I2DAMO", name: "I²DAMO",                                       src: i2damoLogo,                                                                                                   href: "https://www.i2damo.de/en" },
   ];
 
@@ -349,7 +349,8 @@ export default function IntelligenceX2026() {
                   <img
                     src={inst.src}
                     alt={inst.name}
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain transition-transform"
+                    style={"scale" in inst ? { transform: `scale(${inst.scale})` } : undefined}
                     loading="lazy"
                     onError={(e) => {
                       const anchor = (e.currentTarget as HTMLElement).closest("a") as HTMLElement | null;
