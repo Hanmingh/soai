@@ -336,7 +336,7 @@ export default function IntelligenceX2026() {
             </ul>
 
             {/* Institution logos — full colour horizontal wrap */}
-            <div className="flex flex-wrap gap-x-8 gap-y-5 items-center pt-2">
+            <div className="flex flex-wrap gap-x-6 gap-y-5 items-center pt-2">
               {institutionLogos.filter(inst => inst.src).map((inst) => (
                 <a
                   key={inst.abbr}
@@ -344,12 +344,12 @@ export default function IntelligenceX2026() {
                   target="_blank"
                   rel="noreferrer"
                   title={inst.name}
-                  className="flex items-center justify-center h-12 opacity-80 hover:opacity-100 transition-opacity"
+                  className="flex items-center justify-center w-[110px] h-[52px] opacity-80 hover:opacity-100 transition-opacity"
                 >
                   <img
                     src={inst.src}
                     alt={inst.name}
-                    className="h-10 w-auto max-w-[120px] object-contain"
+                    className="w-full h-full object-contain"
                     loading="lazy"
                     onError={(e) => {
                       const anchor = (e.currentTarget as HTMLElement).closest("a") as HTMLElement | null;
