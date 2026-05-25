@@ -146,6 +146,7 @@ export type HackathonRegisterPayload = {
 	team_name?: string;
 	team_size?: number;
 	team_non_member_count?: number;
+	team_members?: string[];
 };
 
 // Registers a hackathon participant and triggers a confirmation email.
