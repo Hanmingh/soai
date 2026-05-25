@@ -78,6 +78,7 @@ export type CheckoutPayload = {
 	mode?: "payment" | "subscription";
 	metadata?: Record<string, string>;
 	quantity?: number;
+	amount?: number;   // total amount in SGD — used for team registrations with variable pricing
 	allowPromotionCodes?: boolean;
 	customerEmail?: string;
 };

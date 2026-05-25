@@ -221,6 +221,7 @@ export default function HackathonRegistration() {
       const { url } = await createCheckoutSession({
         priceId,
         quantity,
+        ...(regType === "team" ? { amount: totalAmount } : {}),
         successUrl: `${window.location.origin}/payment-success?event=IntelligenceX%202026%20Hackathon`,
         cancelUrl: `${window.location.origin}/events/intelligencex-2026/hackathon-register?checkout=cancel`,
         allowPromotionCodes: true,
