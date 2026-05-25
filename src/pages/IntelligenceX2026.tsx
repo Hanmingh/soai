@@ -234,7 +234,9 @@ export default function IntelligenceX2026() {
                 and hybrid Quantum×AI methodologies
               </li>
               <li>
-                Hands-on tutorials on quantum computing, AI-assisted coding, and AI algorithmic trading
+                <Link to="/events/intelligencex-2026/tutorials" className="text-[#003d7b] font-medium hover:underline">
+                  Hands-on tutorials on quantum computing, AI-assisted coding, and AI algorithmic trading
+                </Link>
               </li>
               <li>
                 Panel discussions and roundtables fostering dialogue among academia, industry, and policymakers
@@ -245,23 +247,6 @@ export default function IntelligenceX2026() {
             </ul>
           </section>
 
-          {/* Hands-On Tutorials — inline link */}
-          <section className="space-y-1">
-            <h2 className="text-2xl font-semibold text-gray-900">
-              <Link
-                to="/events/intelligencex-2026/tutorials"
-                className="hover:text-[#003d7b] transition-colors"
-              >
-                Hands-On Tutorials @ IntelligenceX 2026 →
-              </Link>
-            </h2>
-            <p className="text-sm md:text-base font-medium text-[#003d7b]">
-              Limited Seats · 3 tutorials · 25 September 2026
-            </p>
-            <p className="text-sm text-gray-600">
-              Quantum Computing · AI for Coding · AI Algorithmic Trading
-            </p>
-          </section>
 
           {/* Executive Track */}
           <section className="space-y-4">
