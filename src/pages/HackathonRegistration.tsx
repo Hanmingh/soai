@@ -3,7 +3,7 @@ import type { FormEvent } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { hackathonPrices } from "@/data/prices";
-import { createCheckoutSession, registerMember } from "@/lib/api";
+import { createCheckoutSession, registerMember, registerHackathon } from "@/lib/api";
 import { unMemberCountries } from "@/data/countries";
 const soaiLogo = "/SoAI_logo.svg";
 
@@ -145,6 +145,28 @@ export default function HackathonRegistration() {
       }
     }
 
+    // Store registration data and send confirmation email (backend: POST /api/hackathon/register)
+    try {
+      await registerHackathon({
+        email: email.trim(),
+        first_name: firstName.trim(),
+        last_name: lastName.trim(),
+        middle_name: middleName.trim() || undefined,
+        title: title.trim(),
+        country: country.trim(),
+        affiliation: affiliation.trim(),
+        personal_webpage: personalWebpage.trim() || undefined,
+        membership_status: membershipStatus,
+        isi_member_id: membershipStatus === "isi" && isiMemberId.trim() ? isiMemberId.trim() : undefined,
+        registration_type: regType,
+        team_name: regType === "team" ? teamName.trim() : undefined,
+        team_size: regType === "team" ? teamSize : undefined,
+        team_non_member_count: regType === "team" ? teamNonMemberCount : undefined,
+      });
+    } catch {
+      // Non-blocking: proceed even if the endpoint isn't live yet
+    }
+
     // If total is $0 (free), mark complete without Stripe
     if (totalAmount === 0) {
       setRegistrationComplete(true);
@@ -253,12 +275,9 @@ export default function HackathonRegistration() {
           <div className="flex items-start gap-4">
             <img src={soaiLogo} alt="SoAI" className="h-10 mt-1 hidden sm:block" />
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                AI Trading Hackathon — Registration
+              <h1 className="text-3xl font-bold text-gray-900">
+                AI Algorithmic Trading Hackathon — Registration
               </h1>
-              <p className="text-gray-600">
-                IntelligenceX 2026 · AI Algorithmic Trading Hackathon
-              </p>
             </div>
           </div>
 
