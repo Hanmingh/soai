@@ -98,7 +98,6 @@ export default function HackathonRegistration() {
 
   // For individual: free if member, $100 if non-member
   // For team: lead fee (auto from membership status) + other non-member count × $100
-  const teamLeadFee = !isMember ? hackathonPrices.nonMember.amount : 0;
   const totalAmount = useMemo(() => {
     if (regType === "individual") {
       return isMember ? 0 : hackathonPrices.nonMember.amount;
@@ -208,7 +207,7 @@ export default function HackathonRegistration() {
         affiliation: affiliation.trim(),
         personal_webpage: personalWebpage.trim() || undefined,
         membership_status: membershipStatus,
-        soai_member_id: membershipStatus === "existing" && memberId.trim() ? memberId.trim() : undefined,
+        isi_member_id: membershipStatus === "existing" && memberId.trim() ? memberId.trim() : undefined,
         registration_type: regType,
         team_name: regType === "team" ? teamName.trim() : undefined,
         team_size: regType === "team" ? teamSize : undefined,
