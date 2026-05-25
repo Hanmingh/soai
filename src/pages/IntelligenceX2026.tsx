@@ -83,6 +83,39 @@ export default function IntelligenceX2026() {
       {/* Main content */}
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-6 max-w-5xl space-y-10">
+
+          {/* Partner logos – scrolling marquee */}
+          <section className="pb-2">
+            <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
+              <div
+                className="marquee flex items-center gap-14"
+                style={{ animationDuration: "38s" }}
+              >
+                {[...marqueeLogos, ...marqueeLogos].map((logo, i) => (
+                  <a
+                    key={i}
+                    href={logo.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={logo.name}
+                    className="shrink-0 transition-opacity hover:opacity-70"
+                  >
+                    <img
+                      src={logo.src}
+                      alt={logo.name}
+                      className="h-10 w-auto max-w-[130px] object-contain transition"
+                      loading="lazy"
+                      onError={(e) => {
+                        const anchor = (e.currentTarget as HTMLElement).closest("a") as HTMLElement | null;
+                        if (anchor) anchor.style.display = "none";
+                      }}
+                    />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </section>
+
           <section className="flex flex-col items-start gap-4">
             <div className="flex flex-wrap items-center gap-3">
               <Link
@@ -330,40 +363,6 @@ export default function IntelligenceX2026() {
             </div>
           </section>
 
-          {/* Partner logos – scrolling marquee */}
-          <section className="pt-6 border-t border-gray-100">
-            <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4 text-center">
-              Partner Institutions
-            </p>
-            <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
-              <div
-                className="marquee flex items-center gap-14"
-                style={{ animationDuration: "38s" }}
-              >
-                {[...marqueeLogos, ...marqueeLogos].map((logo, i) => (
-                  <a
-                    key={i}
-                    href={logo.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={logo.name}
-                    className="shrink-0 opacity-60 hover:opacity-100 transition-opacity"
-                  >
-                    <img
-                      src={logo.src}
-                      alt={logo.name}
-                      className="h-10 w-auto max-w-[130px] object-contain grayscale hover:grayscale-0 transition"
-                      loading="lazy"
-                      onError={(e) => {
-                        const anchor = (e.currentTarget as HTMLElement).closest("a") as HTMLElement | null;
-                        if (anchor) anchor.style.display = "none";
-                      }}
-                    />
-                  </a>
-                ))}
-              </div>
-            </div>
-          </section>
 
           {/* Back link */}
           <div className="pt-4">
