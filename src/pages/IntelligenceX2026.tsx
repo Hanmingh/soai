@@ -10,6 +10,7 @@ import iofLogo      from "@/logo/logo_IOF.jpg.jpeg";
 import fuelttureLogo from "@/logo/logo_fuelture.png";
 import i2damoLogo   from "@/logo/logo_I2DAMO-gh-e07cc61c.webp";
 import quantonLogo  from "@/logo/Logo_Quanton.png";
+import tubLogo      from "@/logo_TUB.jpeg";
 
 export default function IntelligenceX2026() {
   const bgUrl = intelligenceXBg;
@@ -25,7 +26,7 @@ export default function IntelligenceX2026() {
     // ── Universities / research institutes (committee A–Z by last name) ───
     { abbr: "ETH",    name: "ETH Zürich",                                   src: "https://upload.wikimedia.org/wikipedia/commons/9/99/ETH_Z%C3%BCrich_Logo_black.svg",                                              href: "https://ethz.ch" },
     { abbr: "FUB",    name: "Freie Universität Berlin",                     src: "https://upload.wikimedia.org/wikipedia/commons/6/6d/Freie_Universit%C3%A4t_Berlin_Logo_05.2024.svg",                              href: "https://www.fu-berlin.de" },
-    { abbr: "TUB",    name: "TU Berlin",                                    src: sfp("TU_Berlin_Logo.svg"),                                                                                scale: 1.3,          href: "https://www.tu.berlin" },
+    { abbr: "TUB",    name: "TU Berlin",                                    src: tubLogo,                                                                                                  scale: 1.3,          href: "https://www.tu.berlin" },
     { abbr: "ZIB",    name: "Zuse Institute Berlin",                        src: "https://upload.wikimedia.org/wikipedia/en/6/69/Logo_of_the_Zuse_Institute_Berlin.png",                      scale: 1.3,          href: "https://www.zib.de/en" },
     { abbr: "MODAL",  name: "MODAL Forschungscampus",                       src: modalLogo,                                                                                                                         href: "https://modal-forschungscampus.de" },
     { abbr: "CU",     name: "Columbia University",                          src: columbiaLogo,                                                                  scale: 1.5,                    href: "https://www.columbia.edu" },
