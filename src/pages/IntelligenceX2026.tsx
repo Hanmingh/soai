@@ -5,7 +5,6 @@ import secbLogo from "@/assets/IntelligenceX/SECB_Logo.png";
 import isiLogo from "@/assets/IntelligenceX/isi_logo.png";
 import modalLogo    from "@/logo/Logo_MODAL.png";
 import columbiaLogo from "@/logo/logo_columbia.png";
-import ismLogo      from "@/logo/logo_ISM.png";
 import iofLogo      from "@/logo/logo_IOF.jpg.jpeg";
 import fuelttureLogo from "@/logo/logo_fuelture.png";
 import i2damoLogo   from "@/logo/logo_I2DAMO-gh-e07cc61c.webp";
@@ -22,55 +21,56 @@ export default function IntelligenceX2026() {
   // scale: optional multiplier for logos that appear too small inside the fixed container
   const institutionLogos = [
     // ── NUS first ──────────────────────────────────────────────────────────
-    { abbr: "NUS",    name: "National University of Singapore",             src: "https://nus.edu.sg/images/default-source/base/logo.png",                                                      scale: 0.8,          href: "https://www.nus.edu.sg" },
-    // ── Universities / research institutes (committee A–Z by last name) ───
-    { abbr: "ETH",    name: "ETH Zürich",                                   src: "https://upload.wikimedia.org/wikipedia/commons/9/99/ETH_Z%C3%BCrich_Logo_black.svg",                                              href: "https://ethz.ch" },
-    { abbr: "FUB",    name: "Freie Universität Berlin",                     src: "https://upload.wikimedia.org/wikipedia/commons/6/6d/Freie_Universit%C3%A4t_Berlin_Logo_05.2024.svg",                              href: "https://www.fu-berlin.de" },
-    { abbr: "TUB",    name: "TU Berlin",                                    src: tubLogo,                                                                                                  scale: 1.3,          href: "https://www.tu.berlin" },
-    { abbr: "ZIB",    name: "Zuse Institute Berlin",                        src: "https://upload.wikimedia.org/wikipedia/en/6/69/Logo_of_the_Zuse_Institute_Berlin.png",                      scale: 1.3,          href: "https://www.zib.de/en" },
-    { abbr: "MODAL",  name: "MODAL Forschungscampus",                       src: modalLogo,                                                                                                                         href: "https://modal-forschungscampus.de" },
-    { abbr: "CU",     name: "Columbia University",                          src: columbiaLogo,                                                                  scale: 1.5,                    href: "https://www.columbia.edu" },
-    { abbr: "UFBA",   name: "Federal University of Bahia",                  src: sfp("Bras%C3%A3o_da_UFBA.png"),                                                                                                    href: "https://www.ufba.br" },
-    { abbr: "NUHS",   name: "National University Health System",            src: "https://www.nuhs.edu.sg/images/nuhslibraries/default-album/footer-logo/nuhs.png?sfvrsn=7838e2df_17",                              href: "https://www.nuhs.edu.sg" },
-    { abbr: "ISI",    name: "International Statistical Institute",          src: isiLogo,                                                                       scale: 1.1,                    href: "https://isi-web.org/" },
-    { abbr: "AS",     name: "Academia Sinica",                              src: "https://upload.wikimedia.org/wikipedia/en/2/21/Academia_Sinica_logo.svg",                                   scale: 1.3,          href: "https://www.sinica.edu.tw" },
-    { abbr: "NTHU",   name: "National Tsing Hua University",                src: sfp("NTHU_Round_Seal.svg"),                                                                                                         href: "https://www.nthu.edu.tw" },
-    { abbr: "IST",    name: "Institute of Science Tokyo",                   src: "https://upload.wikimedia.org/wikipedia/commons/c/c5/Institute_of_Science_Tokyo_logo%2C_basic.svg",                                href: "https://www.isct.ac.jp/en" },
-    { abbr: "UP",     name: "University of Pavia",                          src: "https://upload.wikimedia.org/wikipedia/commons/d/dc/Logo_UNIPV.svg",                                                             href: "https://www.unipv.it/en" },
-    { abbr: "UCB",    name: "UC Berkeley",                                  src: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Seal_of_University_of_California%2C_Berkeley.svg",                           href: "https://www.berkeley.edu" },
-    { abbr: "UVie",   name: "University of Vienna",                         src: "https://upload.wikimedia.org/wikipedia/commons/1/13/University_of_Vienna_wordmark.svg",                     scale: 1.4,          href: "https://www.univie.ac.at/en/" },
-    { abbr: "CHU",    name: "Chuo University",                              src: sfp("%E4%B8%AD%E5%A4%AE%E5%A4%A7%E5%AD%A6.svg"),                                                                                   href: "https://www.chuo-u.ac.jp/en/" },
-    { abbr: "ISM",    name: "The Institute of Statistical Mathematics",     src: ismLogo,                                                                                                                           href: "http://www.ism.ac.jp/index_e.html" },
-    { abbr: "RU",     name: "Radboud University",                           src: "https://upload.wikimedia.org/wikipedia/commons/7/76/Logo_Radboud_University.svg",                                                href: "https://www.ru.nl/en" },
-    { abbr: "HUB",    name: "Humboldt-Universität zu Berlin",               src: "https://upload.wikimedia.org/wikipedia/commons/c/ce/Huberlin-logo.svg",                scale: 1.4,          href: "https://www.hu-berlin.de" },
-    { abbr: "ANL",    name: "Argonne National Laboratory",                  src: sfp("ArgonneLaboratoryLogo.png"),                                                                                                   href: "https://www.anl.gov" },
-    { abbr: "CMU",    name: "Chiang Mai University",                        src: sfp("CMU_sub-logo.svg"),                                                                                                            href: "https://www.cmu.ac.th" },
-    { abbr: "EP",     name: "École Polytechnique",                          src: sfp("%C3%89cole_polytechnique_signature.svg"),                              scale: 1.5,                      href: "https://www.polytechnique.edu" },
-    { abbr: "UvA",    name: "University of Amsterdam",                      src: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Amsterdamuniversitylogo.svg",                                                 href: "https://www.uva.nl/en" },
-    { abbr: "LSE",    name: "London School of Economics",                   src: sfp("LSE_Logo.svg"),                                                                                                               href: "https://www.lse.ac.uk" },
+    { abbr: "NUS",     name: "National University of Singapore",            src: "https://nus.edu.sg/images/default-source/base/logo.png",                                                     scale: 0.8,  href: "https://www.nus.edu.sg" },
+    // ── Universities / research institutes A–Z ────────────────────────────
+    { abbr: "AS",      name: "Academia Sinica",                             src: "https://upload.wikimedia.org/wikipedia/en/2/21/Academia_Sinica_logo.svg",                                  scale: 1.3,  href: "https://www.sinica.edu.tw" },
+    { abbr: "ANL",     name: "Argonne National Laboratory",                 src: sfp("ArgonneLaboratoryLogo.png"),                                                                                          href: "https://www.anl.gov" },
+    { abbr: "CMU",     name: "Chiang Mai University",                       src: sfp("CMU_sub-logo.svg"),                                                                                                   href: "https://www.cmu.ac.th" },
+    { abbr: "CHU",     name: "Chuo University",                             src: sfp("%E4%B8%AD%E5%A4%AE%E5%A4%A7%E5%AD%A6.svg"),                                                                          href: "https://www.chuo-u.ac.jp/en/" },
+    { abbr: "CNRS",    name: "CNRS",                                        src: "https://upload.wikimedia.org/wikipedia/en/f/f5/Centre_national_de_la_recherche_scientifique_%28logo%29.svg",             href: "https://www.cnrs.fr" },
+    { abbr: "CU",      name: "Columbia University",                         src: columbiaLogo,                                                                 scale: 1.5,                    href: "https://www.columbia.edu" },
+    { abbr: "EP",      name: "École Polytechnique",                         src: sfp("%C3%89cole_polytechnique_signature.svg"),                             scale: 1.5,                      href: "https://www.polytechnique.edu" },
+    { abbr: "ETH",     name: "ETH Zürich",                                  src: "https://upload.wikimedia.org/wikipedia/commons/9/99/ETH_Z%C3%BCrich_Logo_black.svg",                                    href: "https://ethz.ch" },
+    { abbr: "UFBA",    name: "Federal University of Bahia",                 src: sfp("Bras%C3%A3o_da_UFBA.png"),                                                                                           href: "https://www.ufba.br" },
+    { abbr: "FUB",     name: "Freie Universität Berlin",                    src: "https://upload.wikimedia.org/wikipedia/commons/6/6d/Freie_Universit%C3%A4t_Berlin_Logo_05.2024.svg",                    href: "https://www.fu-berlin.de" },
+    { abbr: "HUB",     name: "Humboldt-Universität zu Berlin",              src: "https://upload.wikimedia.org/wikipedia/commons/c/ce/Huberlin-logo.svg",               scale: 1.4,          href: "https://www.hu-berlin.de" },
+    { abbr: "IST",     name: "Institute of Science Tokyo",                  src: "https://upload.wikimedia.org/wikipedia/commons/c/c5/Institute_of_Science_Tokyo_logo%2C_basic.svg",                      href: "https://www.isct.ac.jp/en" },
+    { abbr: "LSE",     name: "London School of Economics",                  src: sfp("LSE_Logo.svg"),                                                                                                      href: "https://www.lse.ac.uk" },
+    { abbr: "MODAL",   name: "MODAL Forschungscampus",                      src: modalLogo,                                                                                                                href: "https://modal-forschungscampus.de" },
+    { abbr: "NTHU",    name: "National Tsing Hua University",               src: sfp("NTHU_Round_Seal.svg"),                                                                                               href: "https://www.nthu.edu.tw" },
+    { abbr: "NUHS",    name: "National University Health System",           src: "https://www.nuhs.edu.sg/images/nuhslibraries/default-album/footer-logo/nuhs.png?sfvrsn=7838e2df_17",                    href: "https://www.nuhs.edu.sg" },
+    { abbr: "RU",      name: "Radboud University",                          src: "https://upload.wikimedia.org/wikipedia/commons/7/76/Logo_Radboud_University.svg",                                       href: "https://www.ru.nl/en" },
+    { abbr: "TUB",     name: "TU Berlin",                                   src: tubLogo,                                                                      scale: 1.3,                    href: "https://www.tu.berlin" },
+    { abbr: "UCB",     name: "UC Berkeley",                                 src: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Seal_of_University_of_California%2C_Berkeley.svg",                  href: "https://www.berkeley.edu" },
+    { abbr: "UvA",     name: "University of Amsterdam",                     src: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Amsterdamuniversitylogo.svg",                                        href: "https://www.uva.nl/en" },
+    { abbr: "UP",      name: "University of Pavia",                         src: "https://upload.wikimedia.org/wikipedia/commons/d/dc/Logo_UNIPV.svg",                                                    href: "https://www.unipv.it/en" },
+    { abbr: "UVie",    name: "University of Vienna",                        src: "https://upload.wikimedia.org/wikipedia/commons/1/13/University_of_Vienna_wordmark.svg",                  scale: 1.4,  href: "https://www.univie.ac.at/en/" },
+    { abbr: "ZIB",     name: "Zuse Institute Berlin",                       src: "https://upload.wikimedia.org/wikipedia/en/6/69/Logo_of_the_Zuse_Institute_Berlin.png",                   scale: 1.3,  href: "https://www.zib.de/en" },
+    // ── ISI last in university/institute section ───────────────────────────
+    { abbr: "ISI",     name: "International Statistical Institute",         src: isiLogo,                                                                      scale: 1.1,                    href: "https://isi-web.org/" },
     // ── Startups / industry partners ───────────────────────────────────────
-    { abbr: "iOF",    name: "iOF Algorithmic Solutions",                    src: iofLogo,                                                                                                                           href: "https://www.iof.sg" },
+    { abbr: "iOF",     name: "iOF Algorithmic Solutions",                   src: iofLogo,                                                                                                      href: "https://www.iof.sg" },
     { abbr: "Fuelture", name: "Fuelture",                                   src: fuelttureLogo,                                                               scale: 1.5,                      href: "https://fuelture.com" },
-    { abbr: "I2DAMO", name: "I²DAMO",                                       src: i2damoLogo,                                                                                                                        href: "https://www.i2damo.de/en" },
-    { abbr: "Quanton", name: "Quanton Technologies",                        src: quantonLogo,                                                                                                                       href: "https://www.quantontechnologies.com" },
+    { abbr: "I2DAMO",  name: "I²DAMO",                                      src: i2damoLogo,                                                                                                   href: "https://www.i2damo.de/en" },
+    { abbr: "Quanton", name: "Quanton Technologies",                        src: quantonLogo,                                                                                                  href: "https://www.quantontechnologies.com" },
     // ── Singapore tourism / convention partners ────────────────────────────
-    { abbr: "SECB",   name: "Singapore Exhibition & Convention Bureau",     src: secbLogo,                                                                      scale: 1.5,                    href: "https://www.visitsingapore.com/mice" },
-    { abbr: "SPMP",   name: "Singapore – Passion Made Possible",            src: spmpLogo,                                                                      scale: 1.5,                    href: "https://www.visitsingapore.com" },
+    { abbr: "SECB",    name: "Singapore Exhibition & Convention Bureau",    src: secbLogo,                                                                     scale: 1.5,                    href: "https://www.visitsingapore.com/mice" },
+    { abbr: "SPMP",    name: "Singapore – Passion Made Possible",           src: spmpLogo,                                                                     scale: 1.5,                    href: "https://www.visitsingapore.com" },
   ];
 
   const marqueeLogos = [
     { abbr: "CNRS", name: "CNRS",                                     src: "https://upload.wikimedia.org/wikipedia/en/f/f5/Centre_national_de_la_recherche_scientifique_%28logo%29.svg",   href: "https://www.cnrs.fr" },
     { abbr: "CU",   name: "Columbia University",                      src: "https://upload.wikimedia.org/wikipedia/commons/3/33/Coat_of_Arms_of_Columbia_University.svg",                  href: "https://www.columbia.edu" },
-    { abbr: "ETH",  name: "ETH Zürich",                              src: "https://upload.wikimedia.org/wikipedia/commons/9/99/ETH_Z%C3%BCrich_Logo_black.svg",                            href: "https://ethz.ch" },
+    { abbr: "ETH",  name: "ETH Zürich",                               src: "https://upload.wikimedia.org/wikipedia/commons/9/99/ETH_Z%C3%BCrich_Logo_black.svg",                           href: "https://ethz.ch" },
     { abbr: "ISI",  name: "International Statistical Institute",      src: isiLogo,                                                                                                         href: "https://isi-web.org/" },
-    { abbr: "ISM",  name: "Inst. Statistical Mathematics",            src: "https://upload.wikimedia.org/wikipedia/commons/e/e6/ISM_logo.svg",                                              href: "http://www.ism.ac.jp/index_e.html" },
     { abbr: "IST",  name: "Institute of Science Tokyo",               src: "https://upload.wikimedia.org/wikipedia/commons/c/c5/Institute_of_Science_Tokyo_logo%2C_basic.svg",             href: "https://www.isct.ac.jp/en" },
     { abbr: "LSE",  name: "London School of Economics",               src: sfp("LSE_Logo.svg"),                                                                                             href: "https://www.lse.ac.uk" },
     { abbr: "NUS",  name: "National University of Singapore",         src: "https://nus.edu.sg/images/default-source/base/logo.png",                                                        href: "https://www.nus.edu.sg" },
     { abbr: "SECB", name: "Singapore Exhibition & Convention Bureau", src: secbLogo,                                                                                                        href: "https://www.visitsingapore.com/mice" },
     { abbr: "SPMP", name: "Singapore – Passion Made Possible",        src: spmpLogo,                                                                                                        href: "https://www.visitsingapore.com" },
+    { abbr: "TUB",  name: "TU Berlin",                                src: tubLogo,                                                                                                         href: "https://www.tu.berlin" },
     { abbr: "UCB",  name: "UC Berkeley",                              src: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Seal_of_University_of_California%2C_Berkeley.svg",         href: "https://www.berkeley.edu" },
-    { abbr: "UvA",  name: "Univ. of Amsterdam",                      src: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Amsterdamuniversitylogo.svg",                               href: "https://www.uva.nl/en" },
+    { abbr: "UvA",  name: "Univ. of Amsterdam",                       src: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Amsterdamuniversitylogo.svg",                              href: "https://www.uva.nl/en" },
     { abbr: "ZIB",  name: "Zuse Institute Berlin",                    src: "https://upload.wikimedia.org/wikipedia/en/6/69/Logo_of_the_Zuse_Institute_Berlin.png",                         href: "https://www.zib.de/en" },
   ];
 
