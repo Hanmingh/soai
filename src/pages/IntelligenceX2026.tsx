@@ -58,21 +58,8 @@ export default function IntelligenceX2026() {
     { abbr: "SPMP",    name: "Singapore – Passion Made Possible",           src: spmpLogo,                                                                     scale: 1.5,                    href: "https://www.visitsingapore.com" },
   ];
 
-  const marqueeLogos = [
-    { abbr: "CNRS", name: "CNRS",                                     src: "https://upload.wikimedia.org/wikipedia/en/f/f5/Centre_national_de_la_recherche_scientifique_%28logo%29.svg",   href: "https://www.cnrs.fr" },
-    { abbr: "CU",   name: "Columbia University",                      src: "https://upload.wikimedia.org/wikipedia/commons/3/33/Coat_of_Arms_of_Columbia_University.svg",                  href: "https://www.columbia.edu" },
-    { abbr: "ETH",  name: "ETH Zürich",                               src: "https://upload.wikimedia.org/wikipedia/commons/9/99/ETH_Z%C3%BCrich_Logo_black.svg",                           href: "https://ethz.ch" },
-    { abbr: "ISI",  name: "International Statistical Institute",      src: isiLogo,                                                                                                         href: "https://isi-web.org/" },
-    { abbr: "IST",  name: "Institute of Science Tokyo",               src: "https://upload.wikimedia.org/wikipedia/commons/c/c5/Institute_of_Science_Tokyo_logo%2C_basic.svg",             href: "https://www.isct.ac.jp/en" },
-    { abbr: "LSE",  name: "London School of Economics",               src: sfp("LSE_Logo.svg"),                                                                                             href: "https://www.lse.ac.uk" },
-    { abbr: "NUS",  name: "National University of Singapore",         src: "https://nus.edu.sg/images/default-source/base/logo.png",                                                        href: "https://www.nus.edu.sg" },
-    { abbr: "SECB", name: "Singapore Exhibition & Convention Bureau", src: secbLogo,                                                                                                        href: "https://www.visitsingapore.com/mice" },
-    { abbr: "SPMP", name: "Singapore – Passion Made Possible",        src: spmpLogo,                                                                                                        href: "https://www.visitsingapore.com" },
-    { abbr: "TUB",  name: "TU Berlin",                                src: tubLogo,                                                                                                         href: "https://www.tu.berlin" },
-    { abbr: "UCB",  name: "UC Berkeley",                              src: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Seal_of_University_of_California%2C_Berkeley.svg",         href: "https://www.berkeley.edu" },
-    { abbr: "UvA",  name: "Univ. of Amsterdam",                       src: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Amsterdamuniversitylogo.svg",                              href: "https://www.uva.nl/en" },
-    { abbr: "ZIB",  name: "Zuse Institute Berlin",                    src: "https://upload.wikimedia.org/wikipedia/en/6/69/Logo_of_the_Zuse_Institute_Berlin.png",                         href: "https://www.zib.de/en" },
-  ];
+  // Marquee reuses the same source as the grid — always in sync
+  const marqueeLogos = institutionLogos;
 
   return (
     <div className="min-h-screen bg-white">
@@ -110,7 +97,7 @@ export default function IntelligenceX2026() {
             <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
               <div
                 className="marquee flex items-center gap-14"
-                style={{ animationDuration: "38s" }}
+                style={{ animationDuration: "80s" }}
               >
                 {[...marqueeLogos, ...marqueeLogos].map((logo, i) => (
                   <a
