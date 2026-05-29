@@ -6,7 +6,7 @@ import isiLogo from "@/assets/IntelligenceX/isi_logo.png";
 import modalLogo    from "@/logo/Logo_MODAL.png";
 import columbiaLogo from "@/logo/logo_columbia.png";
 import iofLogo      from "@/logo/logo_IOF.jpg.jpeg";
-import fuelttureLogo from "@/logo/logo_fuelture.png";
+import fuelttureLogo from "@/logo/logo_fuelture_new.jpg";
 import i2damoLogo   from "@/logo/logo_I2DAMO-gh-e07cc61c.webp";
 import quantonLogo  from "@/logo/Logo_Quanton.png";
 import tubLogo      from "@/logo_TUB.jpeg";
