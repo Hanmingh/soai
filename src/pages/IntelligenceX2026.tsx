@@ -14,6 +14,8 @@ import quantonLogo  from "@/logo/Logo_Quanton.png";
 import tubLogo      from "@/logo_TUB.jpeg";
 import finsureTechLogo from "@/logo/logo_finsuretech_hub.png";
 import chuoLogo from "@/logo/logo_chuo.svg";
+import rmiLogo from "@/logo/0244cc1c-d6ea-4544-bde5-50acfeb75831.jpg";
+import zibLogo from "@/logo/ZIB-Primary-Logo_Blue-RGB.png";
 
 export default function IntelligenceX2026() {
   const bgUrl = intelligenceXBg;
@@ -28,6 +30,7 @@ export default function IntelligenceX2026() {
   const institutionLogos = [
     // ── NUS first ──────────────────────────────────────────────────────────
     { abbr: "NUS",      name: "National University of Singapore",           src: "https://nus.edu.sg/images/default-source/base/logo.png",                                                     gridPx: 40, href: "https://www.nus.edu.sg" },
+    { abbr: "RMI",      name: "NUS Risk Management Institute",               src: rmiLogo,                                                                                                     gridPx: 68, href: "https://rmi.nus.edu.sg/" },
     // ── Universities / research institutes A–Z ────────────────────────────
     { abbr: "AS",       name: "Academia Sinica",                            src: "https://upload.wikimedia.org/wikipedia/en/2/21/Academia_Sinica_logo.svg",                                  gridPx: 40, href: "https://www.sinica.edu.tw" },
     { abbr: "ANL",      name: "Argonne National Laboratory",                src: sfp("ArgonneLaboratoryLogo.png"),                                                                             gridPx: 41, href: "https://www.anl.gov" },
@@ -51,7 +54,7 @@ export default function IntelligenceX2026() {
     { abbr: "UvA",      name: "University of Amsterdam",                    src: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Amsterdamuniversitylogo.svg",                           gridPx: 50, href: "https://www.uva.nl/en" },
     { abbr: "UP",       name: "University of Pavia",                        src: "https://upload.wikimedia.org/wikipedia/commons/d/dc/Logo_UNIPV.svg",                                        gridPx: 60, href: "https://www.unipv.it/en" },
     { abbr: "UVie",     name: "University of Vienna",                       src: "https://upload.wikimedia.org/wikipedia/commons/1/13/University_of_Vienna_wordmark.svg",                    gridPx: 47, href: "https://www.univie.ac.at/en/" },
-    { abbr: "ZIB",      name: "Zuse Institute Berlin",                      src: "https://upload.wikimedia.org/wikipedia/en/6/69/Logo_of_the_Zuse_Institute_Berlin.png",                     gridPx: 65, href: "https://www.zib.de/en" },
+    { abbr: "ZIB",      name: "Zuse Institute Berlin",                      src: zibLogo,                                                                                                     gridPx: 65, href: "https://www.zib.de/en" },
     // ── ISI ───────────────────────────────────────────────────────────────
     { abbr: "ISI",      name: "International Statistical Institute",        src: isiLogo,                                                                                                     gridPx: 40, href: "https://isi-web.org/" },
     // ── Startups / industry partners ─────────────────────────────────────
