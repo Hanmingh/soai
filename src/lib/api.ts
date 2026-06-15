@@ -9,6 +9,16 @@ type FetchJsonOptions = {
 	signal?: AbortSignal;
 };
 
+export class ApiError extends Error {
+	status: number;
+
+	constructor(message: string, status: number) {
+		super(message);
+		this.name = "ApiError";
+		this.status = status;
+	}
+}
+
 async function fetchJson<T>(path: string, options: FetchJsonOptions = {}): Promise<T> {
 	const { method = "GET", body, headers = {}, signal } = options;
 	const response = await fetch(`${BASE_URL}${path}`, {
@@ -36,7 +46,7 @@ async function fetchJson<T>(path: string, options: FetchJsonOptions = {}): Promi
 			(typeof responseMessage === "string" && responseMessage) ||
 			response.statusText ||
 			"Request failed";
-		throw new Error(errorMessage);
+		throw new ApiError(errorMessage, response.status);
 	}
 
 	return parsed as T;

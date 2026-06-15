@@ -3,7 +3,12 @@ import type { FormEvent } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { hackathonPrices } from "@/data/prices";
-import { createCheckoutSession, registerMember, registerHackathon } from "@/lib/api";
+import {
+  ApiError,
+  createCheckoutSession,
+  registerMember,
+  registerHackathon,
+} from "@/lib/api";
 import { unMemberCountries } from "@/data/countries";
 const soaiLogo = "/SoAI_logo.svg";
 
@@ -221,13 +226,16 @@ export default function HackathonRegistration() {
       });
       hackathonRegistrationId = registration.registration_id;
     } catch (error) {
-      setFormError(
-        error instanceof Error
-          ? error.message
-          : "We could not save your registration. Please try again.",
-      );
-      setIsBusy(false);
-      return;
+      // Keep registration usable while frontend and backend deployments roll out separately.
+      if (!(error instanceof ApiError && error.status === 404)) {
+        setFormError(
+          error instanceof Error
+            ? error.message
+            : "We could not save your registration. Please try again.",
+        );
+        setIsBusy(false);
+        return;
+      }
     }
 
     // If total is $0 (free), mark complete without Stripe
@@ -271,7 +279,9 @@ export default function HackathonRegistration() {
         customerEmail: email.trim(),
         metadata: {
           event: "IntelligenceX 2026 AI Trading Hackathon",
-          hackathon_registration_id: hackathonRegistrationId,
+          ...(hackathonRegistrationId
+            ? { hackathon_registration_id: hackathonRegistrationId }
+            : {}),
           registration_type: regType,
           full_name: fullName,
           first_name: firstName.trim(),
