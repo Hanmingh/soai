@@ -1,7 +1,3 @@
-/*const BASE_URL = (import.meta as any).env?.DEV
-	? "http://127.0.0.1:8787"
-	: "https://soai-be.soc-ai.workers.dev";*/
-
 const BASE_URL = "https://soai-be.soc-ai.workers.dev";
 
 type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
@@ -28,10 +24,18 @@ async function fetchJson<T>(path: string, options: FetchJsonOptions = {}): Promi
 
 	const contentType = response.headers.get("content-type") || "";
 	const isJson = contentType.includes("application/json");
-	const parsed = isJson ? await response.json().catch(() => ({})) : ({} as any);
+	const parsed: unknown = isJson ? await response.json().catch(() => ({})) : {};
+	const errorPayload =
+		typeof parsed === "object" && parsed !== null
+			? (parsed as Record<string, unknown>)
+			: {};
 
 	if (!response.ok) {
-		const errorMessage = (parsed && (parsed.message || parsed.error)) || response.statusText || "Request failed";
+		const responseMessage = errorPayload.message || errorPayload.error;
+		const errorMessage =
+			(typeof responseMessage === "string" && responseMessage) ||
+			response.statusText ||
+			"Request failed";
 		throw new Error(errorMessage);
 	}
 
@@ -141,19 +145,24 @@ export type HackathonRegisterPayload = {
 	affiliation: string;
 	personal_webpage?: string;
 	membership_status: string;
+	soai_member_id?: string;
 	isi_member_id?: string;
 	registration_type: "individual" | "team";
 	team_name?: string;
 	team_size?: number;
 	team_non_member_count?: number;
 	team_members?: { name: string; affiliation: string; email: string }[];
+	amount_total?: number;
+	currency?: string;
 };
 
-// Registers a hackathon participant and triggers a confirmation email.
-// Backend should implement POST /api/hackathon/register to store the record
-// and send a confirmation email to payload.email.
 export async function registerHackathon(payload: HackathonRegisterPayload) {
-	return fetchJson<{ success?: boolean; message?: string }>("/api/hackathon/register", {
+	return fetchJson<{
+		success: boolean;
+		registration_id: string;
+		registration_status: string;
+		payment_status: string;
+	}>("/api/hackathon/register", {
 		method: "POST",
 		body: payload,
 	});

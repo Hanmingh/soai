@@ -171,6 +171,8 @@ export default function HackathonRegistration() {
   const handleSubmit = async (e?: FormEvent) => {
     if (e) e.preventDefault();
     if (!validateForm()) return;
+    setIsBusy(true);
+    setCheckoutError(null);
 
     // Optionally register as SoAI member
     if (membershipStatus === "join") {
@@ -186,18 +188,19 @@ export default function HackathonRegistration() {
           personal_webpage: personalWebpage.trim() || undefined,
           plan: "Regular Member",
         });
-      } catch (err: any) {
+      } catch (err) {
         setFormError(
-          err?.message ||
+          (err instanceof Error && err.message) ||
             "We could not register your SoAI membership. Please try again."
         );
+        setIsBusy(false);
         return;
       }
     }
 
-    // Store registration data and send confirmation email (backend: POST /api/hackathon/register)
+    let hackathonRegistrationId = "";
     try {
-      await registerHackathon({
+      const registration = await registerHackathon({
         email: email.trim(),
         first_name: firstName.trim(),
         last_name: lastName.trim(),
@@ -207,15 +210,24 @@ export default function HackathonRegistration() {
         affiliation: affiliation.trim(),
         personal_webpage: personalWebpage.trim() || undefined,
         membership_status: membershipStatus,
-        isi_member_id: membershipStatus === "existing" && memberId.trim() ? memberId.trim() : undefined,
+        soai_member_id: membershipStatus === "existing" && memberId.trim() ? memberId.trim() : undefined,
         registration_type: regType,
         team_name: regType === "team" ? teamName.trim() : undefined,
         team_size: regType === "team" ? teamSize : undefined,
         team_non_member_count: regType === "team" ? teamNonMemberCount : undefined,
         team_members: regType === "team" ? teamMembers.slice(0, teamSize - 1) : undefined,
+        amount_total: Math.round(totalAmount * 100),
+        currency: "sgd",
       });
-    } catch {
-      // Non-blocking: proceed even if the endpoint isn't live yet
+      hackathonRegistrationId = registration.registration_id;
+    } catch (error) {
+      setFormError(
+        error instanceof Error
+          ? error.message
+          : "We could not save your registration. Please try again.",
+      );
+      setIsBusy(false);
+      return;
     }
 
     // If total is $0 (free), mark complete without Stripe
@@ -230,11 +242,10 @@ export default function HackathonRegistration() {
       setCheckoutError(
         "Payment is not yet configured. Please contact info@soc-ai.org to complete registration."
       );
+      setIsBusy(false);
       return;
     }
 
-    setIsBusy(true);
-    setCheckoutError(null);
     try {
       const fullName = [firstName, middleName, lastName].filter(Boolean).join(" ");
       const quantity =
@@ -260,6 +271,7 @@ export default function HackathonRegistration() {
         customerEmail: email.trim(),
         metadata: {
           event: "IntelligenceX 2026 AI Trading Hackathon",
+          hackathon_registration_id: hackathonRegistrationId,
           registration_type: regType,
           full_name: fullName,
           first_name: firstName.trim(),
