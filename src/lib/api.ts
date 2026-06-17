@@ -101,6 +101,37 @@ export async function createCheckoutSession(payload: CheckoutPayload) {
 	return fetchJson<{ url: string }>("/api/checkout", { method: "POST", body: payload });
 }
 
+export type HotelBookingCheckoutDetails = {
+	first_name: string;
+	last_name: string;
+	room_type: string;
+	check_in: string;
+	check_out: string;
+	nights: number;
+	amount_total: number | null;
+	currency: string;
+};
+
+export type CheckoutStatus = {
+	ok: boolean;
+	status: string;
+	email?: string;
+	attendeeName?: string;
+	title?: string;
+	affiliation?: string;
+	hands_on_tutorial_preference?: string | null;
+	hands_on_tutorial_preference_label?: string | null;
+	booking_type?: "hotel" | null;
+	hotel_booking?: HotelBookingCheckoutDetails | null;
+};
+
+export async function getCheckoutStatus(sessionId: string, signal?: AbortSignal) {
+	return fetchJson<CheckoutStatus>(
+		`/api/checkout/status?session_id=${encodeURIComponent(sessionId)}`,
+		{ method: "GET", signal }
+	);
+}
+
 export type MemberVerifyPayload = {
 	member_id?: string;
 	email?: string;
@@ -178,6 +209,28 @@ export async function registerHackathon(payload: HackathonRegisterPayload) {
 	});
 }
 
+export type HotelBookingPayload = {
+	email: string;
+	firstName: string;
+	lastName: string;
+	checkIn: string;
+	checkOut: string;
+	roomType: string;
+	arrivalFlightDetails?: string;
+	departureFlightDetails?: string;
+	remarks?: string;
+};
+
+export async function bookHotel(payload: HotelBookingPayload) {
+	return fetchJson<{
+		ok: boolean;
+		session_id: string;
+		url: string;
+		nights: number;
+		price_id: string;
+	}>("/api/hotel-booking", { method: "POST", body: payload });
+}
+
 export const api = {
 	BASE_URL,
 	fetchJson,
@@ -187,6 +240,8 @@ export const api = {
 	verifyMember,
 	getNewsList,
 	getEventsList,
+	bookHotel,
+	getCheckoutStatus,
 };
 
 export default api;
