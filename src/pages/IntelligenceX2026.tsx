@@ -1,16 +1,9 @@
-import { useEffect, useState, type FormEvent, type MouseEvent } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import { Link } from "react-router-dom";
 import intelligenceXBg from "@/assets/IntelligenceX/IntelligenceX_bg.jpg";
 import spmpLogo from "@/assets/IntelligenceX/SPMP_Logo.jpg";
 import secbLogo from "@/assets/IntelligenceX/SECB_Logo.png";
 import isiLogo from "@/assets/IntelligenceX/isi_logo.png";
-import hotelLobby from "@/assets/IntelligenceX/lobby.jpg";
-import hotelPoolBar from "@/assets/IntelligenceX/pool_bar.jpg";
-import hotelPremierRoom from "@/assets/IntelligenceX/premier_room.jpg";
-import hotelSuperiorRoom from "@/assets/IntelligenceX/superior_room.jpg";
-import hotelDeluxeRoom from "@/assets/IntelligenceX/deluxe_room.jpg";
-import momentusLogo from "@/assets/IntelligenceX/Momentus_logo.jpg";
-import { ApiError, bookHotel } from "@/lib/api";
 import modalLogo    from "@/logo/Logo_MODAL.png";
 import columbiaLogo from "@/logo/logo_columbia.png";
 import iofLogo      from "@/logo/logo_IOF.jpg.jpeg";
@@ -34,506 +27,9 @@ const sectionLinks = [
 
 type SectionId = (typeof sectionLinks)[number]["id"];
 
-const HOTEL_BOOKING_MIN_DATE = "2026-09-20";
-const HOTEL_BOOKING_MAX_DATE = "2026-10-01";
-
-const hotelRoomOptions = [
-  "Superior Room (24sqm) SGD 229 inclusive of taxes  (Single occupancy) Per day",
-  "Superior Room (24sqm) SGD 261 inclusive of taxes (Double occupancy) Per day",
-  "Deluxe Room (24sqm) SGD 254 inclusive of taxes (Single occupancy) Per day",
-  "Deluxe Room (24sqm) SGD 286 inclusive of taxes (Double occupancy) Per day",
-  "Premier Room (26sqm) SGD 280 inclusive of taxes (Single occupancy) Per day",
-  "Premier Room (26sqm) SGD 312 inclusive of taxes (Double occupancy) Per day",
-];
-
-type HotelBookingFormState = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  checkIn: string;
-  arrivalFlightDetails: string;
-  checkOut: string;
-  departureFlightDetails: string;
-  roomType: string;
-  remarks: string;
-};
-
-const emptyHotelBookingForm: HotelBookingFormState = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  checkIn: "",
-  arrivalFlightDetails: "",
-  checkOut: "",
-  departureFlightDetails: "",
-  roomType: "",
-  remarks: "",
-};
-
-function AccommodationModal({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const [step, setStep] = useState<"info" | "form">("info");
-  const [form, setForm] = useState<HotelBookingFormState>(emptyHotelBookingForm);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [redirecting, setRedirecting] = useState(false);
-
-  useEffect(() => {
-    if (!open) return;
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKeyDown);
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [open, onClose]);
-
-  useEffect(() => {
-    if (!open) {
-      setStep("info");
-      setForm(emptyHotelBookingForm);
-      setError(null);
-      setSubmitting(false);
-      setRedirecting(false);
-    }
-  }, [open]);
-
-  if (!open) return null;
-
-  const updateField = (field: keyof HotelBookingFormState, value: string) => {
-    setForm((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError(null);
-
-    if (!form.firstName.trim() || !form.lastName.trim()) {
-      setError("Please enter your first and last name as per your passport.");
-      return;
-    }
-    if (!/^\S+@\S+\.\S+$/.test(form.email.trim())) {
-      setError("Please enter a valid email address.");
-      return;
-    }
-    if (!form.checkIn || !form.checkOut) {
-      setError("Please select your check-in and check-out dates.");
-      return;
-    }
-    if (form.checkIn < HOTEL_BOOKING_MIN_DATE || form.checkIn > HOTEL_BOOKING_MAX_DATE) {
-      setError("Check-in date must be between 20 September and 1 October 2026.");
-      return;
-    }
-    if (form.checkOut < HOTEL_BOOKING_MIN_DATE || form.checkOut > HOTEL_BOOKING_MAX_DATE) {
-      setError("Check-out date must be between 20 September and 1 October 2026.");
-      return;
-    }
-    if (new Date(form.checkOut) <= new Date(form.checkIn)) {
-      setError("Check-out date must be after check-in date.");
-      return;
-    }
-    if (!form.roomType) {
-      setError("Please select a room type.");
-      return;
-    }
-
-    setSubmitting(true);
-    try {
-      const result = await bookHotel({
-        firstName: form.firstName.trim(),
-        lastName: form.lastName.trim(),
-        email: form.email.trim(),
-        checkIn: form.checkIn,
-        checkOut: form.checkOut,
-        roomType: form.roomType,
-        arrivalFlightDetails: form.arrivalFlightDetails.trim() || undefined,
-        departureFlightDetails: form.departureFlightDetails.trim() || undefined,
-        remarks: form.remarks.trim() || undefined,
-      });
-      setRedirecting(true);
-      window.location.href = result.url;
-    } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Something went wrong. Please try again.");
-      setSubmitting(false);
-    }
-  };
-
-  const inclusions = [
-    "Room rate is inclusive of buffet breakfast and unlimited internet access",
-    "Complimentary one (1) welcome drink per guest per stay at Verandah Pool Bar",
-    "Complimentary early check-in from 11:00 AM, subject to room availability",
-    "Complimentary late check-out till 4:00 PM, subject to room availability",
-    "20% discount on Food & Beverage and 20% discount on laundry services",
-  ];
-
-  const terms = [
-    "Check-In Time 3:00 PM. Early check-in is subject to availability.",
-    "To guarantee early check-in, a reservation for the preceding night is required at the prevailing rate.",
-    "Check-Out Time 11:00 AM. Late check-out until 6:00 PM: 50% of agreed room rate. After 6:00 PM: 100% of agreed room rate.",
-    "Early Departure — guests departing earlier than their confirmed check-out date are chargeable for the full duration of stay.",
-    "No Show — confirmed reservations not utilized will be charged the full room rate, inclusive of prevailing taxes, for the entire stay.",
-    "All charges incurred during the stay will be settled directly by individual guests.",
-  ];
-
-  const rooms = [
-    { src: hotelSuperiorRoom, label: "Superior Room", size: "24 sqm", single: 229, double: 261 },
-    { src: hotelDeluxeRoom, label: "Deluxe Room", size: "24 sqm", single: 254, double: 286 },
-    { src: hotelPremierRoom, label: "Premier Room", size: "26 sqm", single: 280, double: 312 },
-  ];
-
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="accommodation-modal-title"
-      onClick={onClose}
-    >
-      <div
-        className="w-full max-w-3xl overflow-hidden rounded-2xl bg-white shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div
-          className="flex items-start"
-          style={{
-            width: "200%",
-            transform: step === "form" ? "translateX(-50%)" : "translateX(0%)",
-            transition: "transform 320ms ease-in-out",
-          }}
-        >
-          {/* ---------- Panel 1: Accommodation info ---------- */}
-          <div className="max-h-[90vh] w-1/2 shrink-0 overflow-y-auto">
-            {/* Hero */}
-            <div className="relative h-48 md:h-56">
-              <img
-                src={hotelLobby}
-                alt="Momentus Hotel Alexandra lobby"
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#003d7b]/90 via-[#003d7b]/40 to-transparent" />
-              <button
-                type="button"
-                onClick={onClose}
-                aria-label="Close"
-                className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-[#003d7b] shadow-md transition hover:bg-white"
-              >
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 6 6 18M6 6l12 12" />
-                </svg>
-              </button>
-              <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
-                <p className="text-xs font-semibold uppercase tracking-wide text-[#ffcf8c]">
-                  Official Accommodation Partner
-                </p>
-                <h2 id="accommodation-modal-title" className="text-xl md:text-2xl font-bold text-white">
-                  Momentus Hotel Alexandra
-                </h2>
-              </div>
-            </div>
-
-            <div className="space-y-8 p-6 md:p-8">
-              <p className="text-gray-800 leading-relaxed">
-                SoAI is pleased to partner with{" "}
-                <span className="font-semibold text-[#003d7b]">Momentus Hotel Alexandra</span> to offer
-                preferential accommodation rates for{" "}
-                <span className="font-semibold">
-                  IntelligenceX 2026: Global Quantum×AI Frontier, Singapore, September 2026
-                </span>
-                .
-              </p>
-
-              {/* Room gallery & rates */}
-              <div>
-                <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
-                  <h3 className="text-sm font-semibold uppercase tracking-[0.12em] text-gray-400">
-                    Room Types &amp; Rates
-                  </h3>
-                  <p className="text-xs text-gray-500">Rates are per room, per night</p>
-                </div>
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-                  {rooms.map((room) => (
-                    <div key={room.label} className="overflow-hidden rounded-xl border border-gray-200 shadow-sm">
-                      <img
-                        src={room.src}
-                        alt={room.label}
-                        className="h-32 w-full object-cover sm:h-28"
-                        loading="lazy"
-                      />
-                      <div className="px-3 py-2.5">
-                        <p className="text-sm font-semibold text-gray-900">{room.label}</p>
-                        <p className="mb-1.5 text-xs text-gray-500">{room.size}</p>
-                        <div className="space-y-0.5 text-sm text-gray-700">
-                          <div className="flex items-center justify-between">
-                            <span>Single Occupancy</span>
-                            <span className="font-semibold text-[#003d7b]">SGD {room.single}</span>
-                          </div>
-                          <div className="flex items-center justify-between">
-                            <span>Double Occupancy</span>
-                            <span className="font-semibold text-[#003d7b]">SGD {room.double}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <p className="mt-2 text-xs text-gray-500">
-                  Rates are inclusive of prevailing GST and service charge.
-                </p>
-              </div>
-
-              {/* Pool bar banner */}
-              <div className="relative overflow-hidden rounded-xl">
-                <img
-                  src={hotelPoolBar}
-                  alt="Verandah Pool Bar & Grill"
-                  className="h-36 w-full object-cover md:h-44"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                <p className="absolute bottom-3 left-4 text-sm font-medium text-white">
-                  Verandah Pool Bar &amp; Grill — complimentary welcome drink included
-                </p>
-              </div>
-
-              {/* Inclusions */}
-              <div>
-                <h3 className="mb-3 text-base font-semibold text-gray-900">Inclusions</h3>
-                <ul className="space-y-2">
-                  {inclusions.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm md:text-base text-gray-800">
-                      <svg
-                        aria-hidden="true"
-                        viewBox="0 0 24 24"
-                        className="mt-0.5 h-4 w-4 shrink-0 text-[#ee7c01]"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M20 6 9 17l-5-5" />
-                      </svg>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Terms & Conditions */}
-              <div className="rounded-xl border border-gray-200 bg-[#f9fafb] p-4 md:p-5">
-                <h3 className="mb-3 text-base font-semibold text-gray-900">Terms &amp; Conditions</h3>
-                <ul className="list-disc space-y-1.5 pl-5 text-sm text-gray-600 leading-relaxed">
-                  {terms.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* CTA to booking form */}
-              <div className="flex justify-center pt-2">
-                <button
-                  type="button"
-                  onClick={() => setStep("form")}
-                  className="inline-flex w-full items-center justify-center rounded-full bg-[#ee7c01] px-6 py-3 text-base font-semibold text-white shadow-md transition hover:bg-[#d66900] hover:shadow-lg sm:w-auto"
-                >
-                  Book This Rate
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* ---------- Panel 2: Booking form ---------- */}
-          <div className="max-h-[90vh] w-1/2 shrink-0 overflow-y-auto">
-            <div className="flex items-center justify-between bg-[#003d7b] px-6 py-4 md:px-8">
-              <button
-                type="button"
-                onClick={() => setStep("info")}
-                aria-label="Back to accommodation details"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
-              >
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M15 18 9 12l6-6" />
-                </svg>
-              </button>
-              <img src={momentusLogo} alt="Momentus Hotel Alexandra" className="h-12 w-auto rounded-md bg-white p-1.5" />
-              <button
-                type="button"
-                onClick={onClose}
-                aria-label="Close"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
-              >
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 6 6 18M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-5 p-6 md:p-8">
-              <div>
-                <h3 className="text-lg font-bold text-gray-900">Book Your Stay</h3>
-                <p className="text-sm text-gray-500">Momentus Hotel Alexandra · IntelligenceX 2026</p>
-              </div>
-
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="space-y-1">
-                  <label className="block text-sm font-medium text-gray-800">
-                    First Name (as per your Passport) <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={form.firstName}
-                    onChange={(e) => updateField("firstName", e.target.value)}
-                    placeholder="Enter your answer"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <label className="block text-sm font-medium text-gray-800">
-                    Last Name (as per your Passport) <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={form.lastName}
-                    onChange={(e) => updateField("lastName", e.target.value)}
-                    placeholder="Enter your answer"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <label className="block text-sm font-medium text-gray-800">
-                  Your Email Address <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="email"
-                  required
-                  value={form.email}
-                  onChange={(e) => updateField("email", e.target.value)}
-                  placeholder="Enter your answer"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
-                />
-              </div>
-
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="space-y-1">
-                  <label className="block text-sm font-medium text-gray-800">
-                    Check-in Date <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="date"
-                    required
-                    min={HOTEL_BOOKING_MIN_DATE}
-                    max={HOTEL_BOOKING_MAX_DATE}
-                    value={form.checkIn}
-                    onChange={(e) => updateField("checkIn", e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:ring-[#ee7c01] focus:border-[#ee7c01]"
-                  />
-                  <p className="text-xs text-gray-500">Available 20 Sep – 1 Oct 2026</p>
-                </div>
-                <div className="space-y-1">
-                  <label className="block text-sm font-medium text-gray-800">Arrival Flight Details</label>
-                  <input
-                    type="text"
-                    value={form.arrivalFlightDetails}
-                    onChange={(e) => updateField("arrivalFlightDetails", e.target.value)}
-                    placeholder="Flight no. &amp; arrival time"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
-                  />
-                </div>
-              </div>
-
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="space-y-1">
-                  <label className="block text-sm font-medium text-gray-800">
-                    Check-out Date <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="date"
-                    required
-                    min={HOTEL_BOOKING_MIN_DATE}
-                    max={HOTEL_BOOKING_MAX_DATE}
-                    value={form.checkOut}
-                    onChange={(e) => updateField("checkOut", e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:ring-[#ee7c01] focus:border-[#ee7c01]"
-                  />
-                  <p className="text-xs text-gray-500">Available 20 Sep – 1 Oct 2026</p>
-                </div>
-                <div className="space-y-1">
-                  <label className="block text-sm font-medium text-gray-800">Departure Flight Details</label>
-                  <input
-                    type="text"
-                    value={form.departureFlightDetails}
-                    onChange={(e) => updateField("departureFlightDetails", e.target.value)}
-                    placeholder="Flight no. &amp; departure time"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-800">
-                  Preferred Room Type <span className="text-red-500">*</span>
-                </label>
-                <div className="space-y-2 rounded-md border border-gray-200 p-3">
-                  {hotelRoomOptions.map((option) => (
-                    <label key={option} className="flex items-start gap-2 text-sm text-gray-800">
-                      <input
-                        type="radio"
-                        name="roomType"
-                        value={option}
-                        checked={form.roomType === option}
-                        onChange={() => updateField("roomType", option)}
-                        required
-                        className="mt-0.5 accent-[#ee7c01]"
-                      />
-                      <span>{option}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <label className="block text-sm font-medium text-gray-800">Remarks</label>
-                <textarea
-                  value={form.remarks}
-                  onChange={(e) => updateField("remarks", e.target.value)}
-                  placeholder="Enter your answer"
-                  rows={3}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
-                />
-              </div>
-
-              {error && <p className="text-sm font-medium text-red-600">{error}</p>}
-
-              <button
-                type="submit"
-                disabled={submitting}
-                className="inline-flex w-full items-center justify-center rounded-full bg-[#ee7c01] px-6 py-3 text-base font-semibold text-white shadow-md transition hover:bg-[#d66900] hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                {redirecting ? "Redirecting to secure payment…" : submitting ? "Submitting…" : "Continue to Payment"}
-              </button>
-              <p className="text-center text-xs text-gray-500">
-                You will be redirected to a secure Stripe checkout to complete payment. A confirmation email
-                with your booking details will be sent to you.
-              </p>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function IntelligenceX2026() {
   const bgUrl = intelligenceXBg;
   const [activeSection, setActiveSection] = useState<SectionId>(sectionLinks[0].id);
-  const [showAccommodation, setShowAccommodation] = useState(false);
 
   useEffect(() => {
     const sections = sectionLinks
@@ -693,13 +189,12 @@ export default function IntelligenceX2026() {
                 >
                   AI Algorithmic Trading Competition
                 </a>
-                <button
-                  type="button"
-                  onClick={() => setShowAccommodation(true)}
-                  className="block w-full rounded-lg px-3 py-2 text-left text-sm font-medium text-gray-700 hover:bg-[#003d7b]/10 hover:text-[#003d7b]"
+                <Link
+                  to="/events/intelligencex-2026/accommodation"
+                  className="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-[#003d7b]/10 hover:text-[#003d7b]"
                 >
                   Accommodation
-                </button>
+                </Link>
               </div>
             </div>
           </details>
@@ -738,13 +233,12 @@ export default function IntelligenceX2026() {
                 >
                   AI Algorithmic Trading Competition
                 </a>
-                <button
-                  type="button"
-                  onClick={() => setShowAccommodation(true)}
-                  className="block w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium text-gray-700 transition-colors hover:bg-[#003d7b]/10 hover:text-[#003d7b]"
+                <Link
+                  to="/events/intelligencex-2026/accommodation"
+                  className="block rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-[#003d7b]/10 hover:text-[#003d7b]"
                 >
                   Accommodation
-                </button>
+                </Link>
               </div>
             </aside>
 
@@ -799,13 +293,12 @@ export default function IntelligenceX2026() {
               >
                 Invited Session Submission
               </a>
-              <button
-                type="button"
-                onClick={() => setShowAccommodation(true)}
+              <Link
+                to="/events/intelligencex-2026/accommodation"
                 className="inline-flex items-center justify-center whitespace-nowrap rounded-full border border-[#003d7b] bg-white px-6 py-2.5 text-base font-semibold text-[#003d7b] shadow-sm transition hover:bg-[#f0f6ff]"
               >
                 🏨 Accommodation
-              </button>
+              </Link>
               <a
                 href="/trading-competition/index.html"
                 target="_blank"
@@ -1030,8 +523,6 @@ export default function IntelligenceX2026() {
           </div>
         </div>
       </section>
-
-      <AccommodationModal open={showAccommodation} onClose={() => setShowAccommodation(false)} />
     </div>
   );
 }

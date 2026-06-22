@@ -19,6 +19,8 @@ import IntelligenceX2026Registration from './pages/IntelligenceX2026Registration
 import HackathonRegistration from './pages/HackathonRegistration';
 import QuantumAIAndRiskManagement from './pages/events/Quantum_AI_and_risk_management';
 import IntelligenceX2026Tutorials from './pages/events/IntelligenceX2026Tutorials';
+import IntelligenceX2026Accommodation from './pages/events/IntelligenceX2026Accommodation';
+import IntelligenceX2026AccommodationBooking from './pages/events/IntelligenceX2026AccommodationBooking';
 import PaymentSuccess from './pages/PaymentSuccess';
 
 function App() {
@@ -40,6 +42,8 @@ function App() {
           <Route path="events/intelligencex-2026" element={<IntelligenceX2026 />} />
           <Route path="events/intelligencex-2026/register" element={<IntelligenceX2026Registration />} />
           <Route path="events/intelligencex-2026/tutorials" element={<IntelligenceX2026Tutorials />} />
+          <Route path="events/intelligencex-2026/accommodation" element={<IntelligenceX2026Accommodation />} />
+          <Route path="events/intelligencex-2026/accommodation/book" element={<IntelligenceX2026AccommodationBooking />} />
           <Route path="events/intelligencex-2026/hackathon-register" element={<HackathonRegistration />} />
           <Route path="events/quantum-ai-risk-management" element={<QuantumAIAndRiskManagement />} />
           <Route path="payment-success" element={<PaymentSuccess />} />
