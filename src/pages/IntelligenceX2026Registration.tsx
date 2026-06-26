@@ -451,6 +451,12 @@ export default function IntelligenceX2026Registration() {
                 laws (including the GDPR), and to the use of photographs and video recordings taken during the event for
                 official conference communications and reports.
               </p>
+              <p className="md:col-span-2 text-xs text-gray-500 leading-relaxed">
+                This registration is subject to the Personal Data Protection Act 2012 (Singapore). Personal data
+                collected in connection with this registration will be processed in accordance with the Privacy
+                Policy. The Client warrants it has obtained all necessary consents from its delegates for the
+                Society to process their personal data for the purposes of this registration.
+              </p>
             </form>
           </section>
 

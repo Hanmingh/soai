@@ -244,6 +244,13 @@ export default function IntelligenceX2026Accommodation() {
               issues, cancellations, refunds, personal injury, property loss, or other matters arising from a
               delegate's stay at the hotel.
             </p>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              This reservation is subject to the Personal Data Protection Act 2012 (Singapore). Personal data
+              collected in connection with this reservation will be processed in accordance with the Privacy
+              Policy. The Client warrants it has obtained all necessary consents from its delegates for the
+              Society and Hotel to process their personal data for the purposes of this booking and delivery of
+              hotel services.
+            </p>
           </section>
 
           {/* CTA */}
