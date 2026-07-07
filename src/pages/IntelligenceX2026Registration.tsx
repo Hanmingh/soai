@@ -500,9 +500,7 @@ export default function IntelligenceX2026Registration() {
                     </TableRow>
                   ))}
                 </TableBody>
-                <TableCaption className="px-4 pb-3 text-left text-sm text-gray-500">
-                  All prices inclusive of GST.
-                </TableCaption>
+
               </Table>
             </div>
           </section>

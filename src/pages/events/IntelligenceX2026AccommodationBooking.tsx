@@ -7,12 +7,12 @@ const HOTEL_BOOKING_MIN_DATE = "2026-09-20";
 const HOTEL_BOOKING_MAX_DATE = "2026-10-01";
 
 const hotelRoomOptions = [
-  "Superior Room (24sqm) SGD 229 inclusive of taxes  (Single occupancy) Per day",
-  "Superior Room (24sqm) SGD 261 inclusive of taxes (Double occupancy) Per day",
-  "Deluxe Room (24sqm) SGD 254 inclusive of taxes (Single occupancy) Per day",
-  "Deluxe Room (24sqm) SGD 286 inclusive of taxes (Double occupancy) Per day",
-  "Premier Room (26sqm) SGD 280 inclusive of taxes (Single occupancy) Per day",
-  "Premier Room (26sqm) SGD 312 inclusive of taxes (Double occupancy) Per day",
+  "Superior Room (24sqm) SGD 229 (Single occupancy) Per day",
+  "Superior Room (24sqm) SGD 261 (Double occupancy) Per day",
+  "Deluxe Room (24sqm) SGD 254 (Single occupancy) Per day",
+  "Deluxe Room (24sqm) SGD 286 (Double occupancy) Per day",
+  "Premier Room (26sqm) SGD 280 (Single occupancy) Per day",
+  "Premier Room (26sqm) SGD 312 (Double occupancy) Per day",
 ];
 
 type HotelBookingFormState = {
