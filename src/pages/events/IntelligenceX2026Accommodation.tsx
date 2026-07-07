@@ -91,6 +91,9 @@ export default function IntelligenceX2026Accommodation() {
           {/* Room Types & Rates */}
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold text-gray-900">Room Types &amp; Rates</h2>
+            <p className="text-gray-800 leading-relaxed">
+              Rates are quoted per room per night and are inclusive of prevailing service charge.
+            </p>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               {rooms.map((room) => (
                 <div key={room.label} className="overflow-hidden rounded-xl border border-gray-200 shadow-sm">
