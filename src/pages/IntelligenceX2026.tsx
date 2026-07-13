@@ -20,6 +20,7 @@ const sectionLinks = [
   { id: "registration", label: "Registration & Calls" },
   { id: "event-information", label: "Event Information" },
   { id: "overview", label: "Overview" },
+  { id: "premeeting", label: "Switzerland–Singapore Pre-meeting" },
   { id: "conference-highlights", label: "Conference Highlights" },
   { id: "executive-track", label: "Executive Track" },
   { id: "scientific-committee", label: "Scientific Committee" },
@@ -385,6 +386,39 @@ export default function IntelligenceX2026() {
               designed to bridge frontier research and practical deployment, combining scientific rigor with
               methodological and strategic relevance.
             </p>
+          </section>
+
+          {/* Switzerland–Singapore Pre-meeting */}
+          <section id="premeeting" className="scroll-mt-24 space-y-4">
+            <h2 className="text-2xl font-semibold text-gray-900">Switzerland–Singapore AI &amp; Quantum Pre-meeting</h2>
+            <div className="rounded-xl border border-[#003d7b]/20 bg-[#f0f6ff] px-6 py-5 space-y-3">
+              <p className="text-base font-semibold text-[#003d7b]">
+                Deep-Tech Innovation Management: AI, Data Science and Quantum Computing
+              </p>
+              <p className="text-sm text-gray-700">
+                <span className="font-medium">10 September 2026</span>
+                <span className="mx-2 text-gray-400">·</span>
+                2:00 pm – 4:15 pm
+                <span className="mx-2 text-gray-400">·</span>
+                National University of Singapore (NUS)
+                <span className="mx-2 text-gray-400">·</span>
+                <span className="font-medium">By Invitation Only</span>
+              </p>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                A pre-meeting of IntelligenceX 2026 exploring the deep-tech innovation ecosystems of Singapore and
+                Switzerland across AI, Data Science, and Quantum Computing — featuring opening remarks, a technology
+                showcase, networking, and a panel discussion.
+              </p>
+              <Link
+                to="/events/intelligencex-2026/switzerland-singapore-premeeting"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#003d7b] hover:underline"
+              >
+                Learn more
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
           </section>
 
           {/* Conference Highlights */}
