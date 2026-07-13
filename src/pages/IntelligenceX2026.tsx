@@ -12,6 +12,7 @@ import i2damoLogo   from "@/logo/logo_I2DAMO-gh-e07cc61c.webp";
 import quantonLogo  from "@/logo/Logo_Quanton.png";
 import tubLogo      from "@/logo_TUB.jpeg";
 import finsureTechLogo from "@/logo/logo_finsuretech_hub.png";
+import zhawLogo from "@/logo/ZHAW_logo.png";
 import chuoLogo from "@/logo/logo_chuo.svg";
 import rmiLogo from "@/logo/0244cc1c-d6ea-4544-bde5-50acfeb75831.jpg";
 import zibLogo from "@/logo/ZIB-Primary-Logo_Blue-RGB.png";
@@ -95,6 +96,7 @@ export default function IntelligenceX2026() {
     { abbr: "CU",       name: "Columbia University",                        src: columbiaLogo,                                                                                                gridPx: 90, href: "https://www.columbia.edu" },
     { abbr: "EP",       name: "École Polytechnique",                        src: sfp("%C3%89cole_polytechnique_signature.svg"),                                                               gridPx: 120, href: "https://www.polytechnique.edu/en" },
     { abbr: "ETH",      name: "ETH Zürich",                                 src: "https://upload.wikimedia.org/wikipedia/commons/9/99/ETH_Z%C3%BCrich_Logo_black.svg",                        gridPx: 25,  href: "https://ethz.ch/en.html" },
+    { abbr: "ZHAW",     name: "Zurich University of Applied Sciences (ZHAW)", src: zhawLogo,                                                                                                    gridPx: 45, href: "https://www.zhaw.ch/en/university/" },
     { abbr: "UFBA",     name: "Federal University of Bahia",                src: sfp("Bras%C3%A3o_da_UFBA.png"),                                                                              gridPx: 72, href: "https://aai.ufba.br/en/about-ufba" },
     { abbr: "FUB",      name: "Freie Universität Berlin",                   src: "https://upload.wikimedia.org/wikipedia/commons/6/6d/Freie_Universit%C3%A4t_Berlin_Logo_05.2024.svg",        gridPx: 40, href: "https://www.fu-berlin.de/en/index.html" },
     { abbr: "HUB",      name: "Humboldt-Universität zu Berlin",             src: "https://upload.wikimedia.org/wikipedia/commons/c/ce/Huberlin-logo.svg",                                    gridPx: 80, href: "https://www.hu-berlin.de/en" },
@@ -513,6 +515,7 @@ export default function IntelligenceX2026() {
               <li>Huyên Pham (École Polytechnique, France)</li>
               <li>Paulo Canas Rodrigues (Federal University of Bahia, Brazil)</li>
               <li>Xun Shen (Tokyo University of Agriculture and Technology, Japan)</li>
+              <li>Nikola Pascher (Zurich University of Applied Sciences (ZHAW), Switzerland)</li>
               <li>Yuji Shinano (Zuse Institute Berlin, Germany)</li>
               <li>Josef Teichmann (ETH Zürich, Switzerland)</li>
               <li>Simon Trimborn (University of Amsterdam, Netherlands)</li>
