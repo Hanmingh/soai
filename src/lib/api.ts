@@ -95,6 +95,7 @@ export type CheckoutPayload = {
 	amount?: number;   // total amount in SGD — used for team registrations with variable pricing
 	allowPromotionCodes?: boolean;
 	customerEmail?: string;
+	country?: string;  // determines available payment methods (Singapore → PayNow only)
 };
 
 export async function createCheckoutSession(payload: CheckoutPayload) {

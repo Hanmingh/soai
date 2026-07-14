@@ -124,6 +124,7 @@ export default function IntelligenceX2026Registration() {
         cancelUrl,
         allowPromotionCodes: true,
         customerEmail: email.trim(),
+        country: country.trim(),
         metadata: {
           event: "IntelligenceX 2026",
           tier: tier.label,
