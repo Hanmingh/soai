@@ -431,7 +431,7 @@ export default function IntelligenceX2026Registration() {
                   
                   <option value="quantum">Hands-on tutorial Quantum Computing</option>
                   <option value="ai_coding">Hands-on tutorial Agentic Coding</option>
-                  <option value="ai_trading">Hands-on tutorial AI Algorithmic Trading</option>
+                  {/* <option value="ai_trading">Hands-on tutorial AI Algorithmic Trading</option> */}
                   <option value="na">NA</option>
                 </select>
                 <p className="mt-2 text-xs text-gray-600 leading-relaxed max-w-3xl">

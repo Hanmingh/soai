@@ -61,6 +61,7 @@ export default function IntelligenceX2026Tutorials() {
                   Read tutorial spotlight: Hands-on Agentic Coding with Prof. Dr. Thorsten Koch
                 </a>
               </li>
+              {/* AI Algorithmic Trading tutorial — not yet finalized, temporarily hidden
               <li>
                 <span className="font-semibold text-gray-900">AI Algorithmic Trading: 3-Hour Hands-On Tutorial</span>
                 <span className="block mt-1">From Strategy to Execution</span>
@@ -69,6 +70,7 @@ export default function IntelligenceX2026Tutorials() {
                   markets.
                 </span>
               </li>
+              */}
             </ol>
 
             <div className="space-y-2">
