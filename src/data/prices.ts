@@ -19,8 +19,8 @@ export const intelligenceX2026Prices: PriceTier[] = [
   {
     key: "early",
     label: "Early bird",
-    deadline: "Open till 31 Jul 2026",
-    cutoffDate: "2026-07-31",
+    deadline: "Open till 15 Aug 2026",
+    cutoffDate: "2026-08-15",
     member: {
       amount: 300,
       currency: "SGD",

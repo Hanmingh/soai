@@ -463,9 +463,20 @@ export default function IntelligenceX2026Registration() {
 
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold text-gray-900">Registration</h2>
-            <p className="text-gray-700 text-sm md:text-base max-w-2xl">
-              Registration fees include full conference access and the conference banquet.
-            </p>
+            <div className="text-gray-700 text-sm md:text-base max-w-2xl space-y-2">
+              <p>Registration fees include full access to the main conference (24–26 September 2026).</p>
+              <p>
+                Participants who complete their Early Bird registration by{" "}
+                <strong>15 August 2026</strong> are entitled to one complimentary conference banquet ticket.
+              </p>
+              <p>
+                For registrations received after 15 August 2026, the conference banquet is{" "}
+                <strong>not</strong> included. Participants who wish to attend the banquet may purchase
+                a ticket at their own expense, subject to availability. Banquet seats cannot be
+                guaranteed after the Early Bird registration deadline.
+              </p>
+              <p>Thank you for your kind understanding.</p>
+            </div>
             <div className="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden">
               <Table>
                 <TableHeader>
