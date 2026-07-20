@@ -16,6 +16,7 @@ import zhawLogo from "@/logo/ZHAW_logo.png";
 import chuoLogo from "@/logo/logo_chuo.svg";
 import rmiLogo from "@/logo/0244cc1c-d6ea-4544-bde5-50acfeb75831.jpg";
 import zibLogo from "@/logo/ZIB-Primary-Logo_Blue-RGB.png";
+import qhealthLogo from "@/logo/QHealth_logo.jpg.jpeg";
 
 const sectionLinks = [
   { id: "registration", label: "Registration & Calls" },
@@ -122,6 +123,7 @@ export default function IntelligenceX2026() {
     { abbr: "I2DAMO",   name: "I²DAMO",                                     src: i2damoLogo,                                                                                                  gridPx: 45, href: "https://www.i2damo.de/en" },
     { abbr: "Quanton",  name: "Quanton Technologies",                       src: quantonLogo,                                                                                                 gridPx: 60, href: "https://www.quanton.tech/" },
     { abbr: "FTH",      name: "FinsureTech Hub",                            src: finsureTechLogo,                                                                                             gridPx: 28, href: "https://finsuretech.ethz.ch/" },
+    { abbr: "QHealth",  name: "QHealth",                                    src: qhealthLogo,                                                                                                 gridPx: 48 },
     // ── Singapore tourism / convention partners ───────────────────────────
     { abbr: "SECB",     name: "Singapore Exhibition & Convention Bureau",   src: secbLogo,                                                                                                    gridPx: 65, href: "https://www.visitsingapore.com/mice/en/" },
     { abbr: "SPMP",     name: "Singapore – Passion Made Possible",          src: spmpLogo,                                                                                                    gridPx: 85, href: "https://www.visitsingapore.com" },
@@ -256,15 +258,8 @@ export default function IntelligenceX2026() {
                 className="marquee flex items-center gap-14"
                 style={{ animationDuration: "80s" }}
               >
-                {[...marqueeLogos, ...marqueeLogos].map((logo, i) => (
-                  <a
-                    key={i}
-                    href={logo.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={logo.name}
-                    className="shrink-0 transition-opacity hover:opacity-70"
-                  >
+                {[...marqueeLogos, ...marqueeLogos].map((logo, i) => {
+                  const img = (
                     <img
                       src={logo.src}
                       alt={logo.name}
@@ -272,12 +267,21 @@ export default function IntelligenceX2026() {
                       style={{ height: `${logo.gridPx ?? 40}px`, maxWidth: "200px" }}
                       loading="lazy"
                       onError={(e) => {
-                        const anchor = (e.currentTarget as HTMLElement).closest("a") as HTMLElement | null;
-                        if (anchor) anchor.style.display = "none";
+                        const el = (e.currentTarget as HTMLElement).closest("a,span") as HTMLElement | null;
+                        if (el) el.style.display = "none";
                       }}
                     />
-                  </a>
-                ))}
+                  );
+                  return logo.href ? (
+                    <a key={i} href={logo.href} target="_blank" rel="noreferrer" aria-label={logo.name} className="shrink-0 transition-opacity hover:opacity-70">
+                      {img}
+                    </a>
+                  ) : (
+                    <span key={i} aria-label={logo.name} className="shrink-0 opacity-70">
+                      {img}
+                    </span>
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -647,16 +651,8 @@ export default function IntelligenceX2026() {
 
             {/* Institution logos — full colour horizontal wrap */}
             <div className="pt-2" style={{ display: "flex", flexWrap: "wrap", gap: "20px 28px", alignItems: "flex-start" }}>
-              {institutionLogos.filter(inst => inst.src).map((inst) => (
-                <a
-                  key={inst.abbr}
-                  href={inst.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  title={inst.name}
-                  style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "90px" }}
-                  className="opacity-80 hover:opacity-100 transition-opacity"
-                >
+              {institutionLogos.filter(inst => inst.src).map((inst) => {
+                const img = (
                   <img
                     src={inst.src}
                     alt={inst.name}
@@ -664,12 +660,22 @@ export default function IntelligenceX2026() {
                     className="object-contain"
                     loading="lazy"
                     onError={(e) => {
-                      const anchor = (e.currentTarget as HTMLElement).closest("a") as HTMLElement | null;
-                      if (anchor) anchor.style.display = "none";
+                      const el = (e.currentTarget as HTMLElement).closest("a,span") as HTMLElement | null;
+                      if (el) el.style.display = "none";
                     }}
                   />
-                </a>
-              ))}
+                );
+                const wrapStyle: React.CSSProperties = { display: "flex", alignItems: "center", justifyContent: "center", height: "90px" };
+                return inst.href ? (
+                  <a key={inst.abbr} href={inst.href} target="_blank" rel="noreferrer" title={inst.name} style={wrapStyle} className="opacity-80 hover:opacity-100 transition-opacity">
+                    {img}
+                  </a>
+                ) : (
+                  <span key={inst.abbr} title={inst.name} style={wrapStyle} className="opacity-80">
+                    {img}
+                  </span>
+                );
+              })}
             </div>
           </section>
 
