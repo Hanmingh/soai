@@ -19,9 +19,9 @@ import zibLogo from "@/logo/ZIB-Primary-Logo_Blue-RGB.png";
 import qhealthLogo from "@/logo/QHealth_logo.jpg.jpeg";
 
 const sectionLinks = [
-  { id: "registration", label: "Registration & Calls" },
-  { id: "event-information", label: "Event Information" },
+  { id: "registration", label: "Registration" },
   { id: "overview", label: "Overview" },
+  { id: "invited-session", label: "Call for Invited Session" },
   { id: "contributed-talks", label: "Call for Contributed Talks" },
   { id: "travel-support", label: "Travel Support" },
   { id: "premeeting", label: "Switzerland–Singapore Pre-meeting" },
@@ -419,6 +419,14 @@ export default function IntelligenceX2026() {
             </p>
           </section>
 
+          {/* Call for Invited Session */}
+          <section id="invited-session" className="scroll-mt-24 space-y-4">
+            <h2 className="text-2xl font-semibold text-gray-900">Call for Invited Session</h2>
+            <div className="rounded-lg border border-amber-200 bg-amber-50 px-5 py-4 text-sm text-amber-900">
+              Details on the Call for Invited Session will be announced shortly. Please check back for updates.
+            </div>
+          </section>
+
           {/* Call for Contributed Talks */}
           <section id="contributed-talks" className="scroll-mt-24 space-y-5">
             <h2 className="text-2xl font-semibold text-gray-900">Call for Contributed Talks</h2>
@@ -502,7 +510,7 @@ export default function IntelligenceX2026() {
                 available for travel fees, conference registration fees, and accommodation.
               </p>
               <div className="flex flex-wrap gap-x-8 gap-y-1 text-sm text-gray-700">
-                <div><span className="font-semibold">Application deadline:</span> 31 July 2026</div>
+                <div><span className="font-semibold">Application deadline:</span> 10 September 2026</div>
                 <div><span className="font-semibold">Results announced:</span> 15 September 2026</div>
               </div>
               <Link

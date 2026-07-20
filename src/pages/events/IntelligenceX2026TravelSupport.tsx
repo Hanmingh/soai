@@ -65,7 +65,7 @@ export default function IntelligenceX2026TravelSupport() {
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="rounded-lg border border-gray-200 bg-white px-5 py-4">
                 <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Submission Deadline</p>
-                <p className="text-base font-semibold text-gray-900">31 July 2026</p>
+                <p className="text-base font-semibold text-gray-900">10 September 2026</p>
               </div>
               <div className="rounded-lg border border-gray-200 bg-white px-5 py-4">
                 <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Results Announced</p>
@@ -95,7 +95,7 @@ export default function IntelligenceX2026TravelSupport() {
           <section className="rounded-xl border border-[#003d7b]/20 bg-[#f0f6ff] px-6 py-6 space-y-4">
             <h2 className="text-lg font-semibold text-[#003d7b]">Apply for Travel Support</h2>
             <p className="text-sm text-gray-700">
-              Submit your application via the link below before <strong>31 July 2026</strong>.
+              Submit your application via the link below before <strong>10 September 2026</strong>.
             </p>
             <a
               href="https://forms.gle/qH5vGtjwar6N2UAW6"
