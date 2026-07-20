@@ -22,6 +22,7 @@ import IntelligenceX2026Tutorials from './pages/events/IntelligenceX2026Tutorial
 import IntelligenceX2026Accommodation from './pages/events/IntelligenceX2026Accommodation';
 import IntelligenceX2026AccommodationBooking from './pages/events/IntelligenceX2026AccommodationBooking';
 import SwitzerlandSingaporePremeeting from './pages/events/SwitzerlandSingaporePremeeting';
+import IntelligenceX2026TravelSupport from './pages/events/IntelligenceX2026TravelSupport';
 import PaymentSuccess from './pages/PaymentSuccess';
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
           <Route path="events/intelligencex-2026/accommodation/book" element={<IntelligenceX2026AccommodationBooking />} />
           <Route path="events/intelligencex-2026/hackathon-register" element={<HackathonRegistration />} />
           <Route path="events/intelligencex-2026/switzerland-singapore-premeeting" element={<SwitzerlandSingaporePremeeting />} />
+          <Route path="events/intelligencex-2026/travel-support" element={<IntelligenceX2026TravelSupport />} />
           <Route path="events/quantum-ai-risk-management" element={<QuantumAIAndRiskManagement />} />
           <Route path="payment-success" element={<PaymentSuccess />} />
           <Route path="news" element={<News />} />

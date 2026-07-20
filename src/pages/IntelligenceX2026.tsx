@@ -21,6 +21,8 @@ const sectionLinks = [
   { id: "registration", label: "Registration & Calls" },
   { id: "event-information", label: "Event Information" },
   { id: "overview", label: "Overview" },
+  { id: "contributed-talks", label: "Call for Contributed Talks" },
+  { id: "travel-support", label: "Travel Support" },
   { id: "premeeting", label: "Switzerland–Singapore Pre-meeting" },
   { id: "conference-highlights", label: "Conference Highlights" },
   { id: "executive-track", label: "Executive Track" },
@@ -336,6 +338,29 @@ export default function IntelligenceX2026() {
                 </svg>
                 Call for Hackathon Participation
               </a>
+              <a
+                href="/events/Call%20for%20Contributed%20Talks.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 text-base font-semibold text-[#003d7b] hover:text-[#002a57]"
+              >
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <path d="M14 2v6h6" />
+                </svg>
+                Call for Contributed Talks
+              </a>
+              <Link
+                to="/events/intelligencex-2026/travel-support"
+                className="inline-flex items-center gap-2 text-base font-semibold text-[#003d7b] hover:text-[#002a57]"
+              >
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3" />
+                  <rect x="9" y="11" width="14" height="10" rx="2" />
+                  <path d="M16 11V9" />
+                </svg>
+                Travel Support Programme
+              </Link>
             </div>
           </section>
 
@@ -388,6 +413,104 @@ export default function IntelligenceX2026() {
               designed to bridge frontier research and practical deployment, combining scientific rigor with
               methodological and strategic relevance.
             </p>
+          </section>
+
+          {/* Call for Contributed Talks */}
+          <section id="contributed-talks" className="scroll-mt-24 space-y-5">
+            <h2 className="text-2xl font-semibold text-gray-900">Call for Contributed Talks</h2>
+            <p className="text-gray-800 leading-relaxed">
+              The Organising Committee of IntelligenceX 2026 invites proposals for Contributed Talks
+              to be held during the main conference on 24–26 September 2026 in Singapore. Each
+              Contributed Session is expected to last about 20 minutes. Complimentary SoAI membership
+              will be offered to all participants of the contributed session.
+            </p>
+
+            <div className="space-y-2">
+              <h3 className="text-base font-semibold text-gray-900">Themes of Contributed Sessions</h3>
+              <p className="text-sm text-gray-700">Contributed Sessions may cover theory, methods, applications, and/or industry showcases, including:</p>
+              <ul className="list-disc pl-6 space-y-1.5 text-gray-800 text-sm md:text-base">
+                <li>Theoretical foundations of AI, quantum computing, optimization, and data science</li>
+                <li>Algorithmic and methodological advances in AI, ML, optimization, and statistics</li>
+                <li>Hybrid Quantum×AI systems, architectures, and applications</li>
+                <li>Applications in, but not limited to, finance, engineering, logistics, healthcare, and energy</li>
+                <li>Industry showcases, real-world deployments, and emerging use cases</li>
+              </ul>
+            </div>
+
+            <div className="rounded-lg border border-gray-200 bg-[#f9fafb] px-5 py-4 space-y-3">
+              <div className="flex flex-wrap gap-x-10 gap-y-2 text-sm">
+                <div>
+                  <span className="font-semibold text-gray-700">Early-bird rate (until 31 Jul 2026):</span>
+                  <span className="ml-2 text-gray-800">SGD 600 · SoAI members SGD 300</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700">Regular rate:</span>
+                  <span className="ml-2 text-gray-800">SGD 800</span>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-x-10 gap-y-2 text-sm">
+                <div>
+                  <span className="font-semibold text-gray-700">Submission deadline:</span>
+                  <span className="ml-2 text-gray-800">31 August 2026</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700">Acceptance:</span>
+                  <span className="ml-2 text-gray-800">Rolling basis, subject to programme capacity</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-4">
+              <a
+                href="https://forms.gle/3SbT3HyngBfWRKXx8"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center rounded-full bg-[#003d7b] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#002a57]"
+              >
+                Submit a Talk →
+              </a>
+              <a
+                href="/events/Call%20for%20Contributed%20Talks.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#003d7b] hover:underline"
+              >
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <path d="M14 2v6h6" />
+                </svg>
+                Download Call (PDF)
+              </a>
+            </div>
+          </section>
+
+          {/* Travel Support Programme */}
+          <section id="travel-support" className="scroll-mt-24 space-y-4">
+            <h2 className="text-2xl font-semibold text-gray-900">Travel Support Programme</h2>
+            <div className="rounded-xl border border-[#003d7b]/20 bg-[#f0f6ff] px-6 py-5 space-y-3">
+              <p className="text-base font-semibold text-[#003d7b]">
+                Supporting Early-Career Researchers
+              </p>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                The Travel Support Programme is launched by SoAI to encourage PhD students and
+                researchers within three years of graduation to participate in IntelligenceX 2026.
+                Priority is given to applicants from developing countries. Partial coverage is
+                available for travel fees, conference registration fees, and accommodation.
+              </p>
+              <div className="flex flex-wrap gap-x-8 gap-y-1 text-sm text-gray-700">
+                <div><span className="font-semibold">Application deadline:</span> 31 July 2026</div>
+                <div><span className="font-semibold">Results announced:</span> 15 September 2026</div>
+              </div>
+              <Link
+                to="/events/intelligencex-2026/travel-support"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#003d7b] hover:underline"
+              >
+                Learn more and apply
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
           </section>
 
           {/* Switzerland–Singapore Pre-meeting */}
