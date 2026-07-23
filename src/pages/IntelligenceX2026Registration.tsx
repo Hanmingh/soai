@@ -30,7 +30,7 @@ export default function IntelligenceX2026Registration() {
   const [isiMemberId, setIsiMemberId] = useState("");
   const [nusQicMemberId, setNusQicMemberId] = useState("");
   const [handsOnTutorialPref, setHandsOnTutorialPref] = useState<
-    "" | "quantum" | "ai_coding" | "ai_trading" | "na"
+    "" | "quantum" | "ai_coding" | "na"
   >("");
   const [formError, setFormError] = useState<string | null>(null);
 
@@ -423,16 +423,15 @@ export default function IntelligenceX2026Registration() {
                   value={handsOnTutorialPref}
                   onChange={(e) =>
                     setHandsOnTutorialPref(
-                      e.target.value as "" | "quantum" | "ai_coding" | "ai_trading" | "na",
+                      e.target.value as "" | "quantum" | "ai_coding" | "na",
                     )
                   }
                   className="w-full max-w-xl px-3 py-2 border border-gray-300 rounded-md bg-white focus:ring-[#ee7c01] focus:border-[#ee7c01]"
                 >
                   
-                  <option value="quantum">Hands-on tutorial Quantum Computing</option>
-                  <option value="ai_coding">Hands-on tutorial Agentic Coding</option>
-                  {/* <option value="ai_trading">Hands-on tutorial AI Algorithmic Trading</option> */}
-                  <option value="na">NA</option>
+                  <option value="quantum">Quantum Computing — Vishal Bajpe (IBM Quantum)</option>
+                  <option value="ai_coding">Agentic Coding — Prof. Dr. Thorsten Koch (TU Berlin &amp; ZIB)</option>
+                  <option value="na">No preference / Not attending tutorial</option>
                 </select>
                 <p className="mt-2 text-xs text-gray-600 leading-relaxed max-w-3xl">
                   While we will do our best to accommodate preferences, we cannot guarantee placement in your selected

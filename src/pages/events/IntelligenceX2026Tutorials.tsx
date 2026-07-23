@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import vishalImg from "@/assets/IntelligenceX/Vishal.png";
 
 export default function IntelligenceX2026Tutorials() {
   return (
@@ -41,15 +42,27 @@ export default function IntelligenceX2026Tutorials() {
             <ol className="list-decimal pl-6 space-y-4 text-gray-800 leading-relaxed text-sm md:text-base">
               <li>
                 <span className="font-semibold text-gray-900">Quantum Computing: 3-Hour Hands-On Tutorial</span>
-                <span className="block mt-1">From Fundamentals to Algorithms &amp; Implementation</span>
+                <span className="block mt-1 text-gray-600">From Fundamentals to Algorithms &amp; Implementation</span>
+                <span className="block mt-0.5 text-sm text-[#003d7b] font-medium">
+                  Led by Vishal Bajpe — IBM Quantum, Singapore
+                </span>
                 <span className="block mt-1 font-normal">
                   This session provides a structured and practical introduction to quantum computing, bridging theory
-                  and real-world applications.
+                  and real-world applications — from core principles through live experiments on IBM quantum hardware.
                 </span>
+                <a
+                  href="#vishal-qc-tutorial-post"
+                  className="mt-2 inline-flex text-sm font-semibold text-[#003d7b] hover:underline"
+                >
+                  Read tutorial spotlight: Quantum Computing with Vishal Bajpe (IBM Quantum)
+                </a>
               </li>
               <li>
                 <span className="font-semibold text-gray-900">AI for Coding: 3-Hour Hands-On Tutorial</span>
-                <span className="block mt-1">Build Your Own Intelligent Development Workflows</span>
+                <span className="block mt-1 text-gray-600">Build Your Own Intelligent Development Workflows</span>
+                <span className="block mt-0.5 text-sm text-[#003d7b] font-medium">
+                  Led by Prof. Dr. Thorsten Koch — TU Berlin &amp; Zuse Institute Berlin, Germany
+                </span>
                 <span className="block mt-1 font-normal">
                   This tutorial focuses on using AI coding agents for code generation, debugging, and optimization,
                   enabling you to leverage AI as a coding co-pilot to significantly improve productivity and code quality.
@@ -172,6 +185,61 @@ export default function IntelligenceX2026Tutorials() {
                 confidence to prototype their own agentic coding systems for real-world applications. This course is ideal
                 for developers, technical product builders, and AI enthusiasts looking to move from passive AI use to
                 active system design.
+              </p>
+            </div>
+          </section>
+
+          {/* Tutorial Spotlight — Vishal Bajpe */}
+          <section
+            id="vishal-qc-tutorial-post"
+            className="space-y-6 rounded-lg border border-[#cddcf0] bg-[#f4f8ff] p-6 md:p-8 scroll-mt-28"
+          >
+            <div className="flex flex-col gap-5 md:flex-row md:items-start">
+              <img
+                src={vishalImg}
+                alt="Vishal Bajpe"
+                className="h-56 w-56 rounded-lg object-cover shadow-sm"
+                loading="lazy"
+              />
+              <div className="space-y-3">
+                <p className="text-sm font-semibold uppercase tracking-wide text-[#003d7b]">
+                  Tutorial Spotlight
+                </p>
+                <h2 className="text-2xl font-semibold text-gray-900">
+                  Quantum Computing: From Fundamentals to Algorithms &amp; Implementation (3-hour course)
+                </h2>
+                <p className="text-gray-700 text-sm md:text-base">
+                  Led by <span className="font-semibold">Vishal Bajpe</span> (IBM Quantum, Singapore)
+                </p>
+                <p className="text-gray-800 leading-relaxed text-sm md:text-base">
+                  This hands-on tutorial bridges quantum theory and real-world implementation, taking participants from
+                  core principles through practical algorithms and live experiments on IBM quantum hardware via the
+                  Qiskit ecosystem.
+                </p>
+                <a
+                  href="https://www.linkedin.com/in/vishal-bajpe/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#003d7b] hover:underline"
+                >
+                  LinkedIn →
+                </a>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold text-gray-900">About Vishal Bajpe</h3>
+              <p className="text-gray-800 leading-relaxed text-sm md:text-base">
+                Vishal Bajpe is a Quantum Algorithm Engineer at IBM Quantum, based in Singapore. His work spans quantum
+                optimization, quantum chemistry, and quantum machine learning, with a focus on the error mitigation
+                needed to trust results from today's quantum processors. Alongside the algorithm work, he helps
+                universities and research groups elevate their projects into utility-scale experiments on IBM hardware,
+                and contributes tutorials to the Qiskit ecosystem.
+              </p>
+              <p className="text-gray-800 leading-relaxed text-sm md:text-base">
+                He got his start at IBM building quantum communities, leading IBM Quantum Challenges and driving partner
+                engagement for Quantum Innovation Centers across APAC and EMEA. Community has stayed part of the job
+                ever since.
               </p>
             </div>
           </section>
