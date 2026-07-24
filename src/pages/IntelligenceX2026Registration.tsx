@@ -32,6 +32,8 @@ export default function IntelligenceX2026Registration() {
   const [handsOnTutorialPref, setHandsOnTutorialPref] = useState<
     "" | "quantum" | "ai_coding" | "na"
   >("");
+  const [dietary, setDietary] = useState("");
+  const [dietaryOther, setDietaryOther] = useState("");
   const [formError, setFormError] = useState<string | null>(null);
 
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
@@ -150,6 +152,9 @@ export default function IntelligenceX2026Registration() {
             : {}),
           ...(handsOnTutorialPref
             ? { hands_on_tutorial_preference: handsOnTutorialPref }
+            : {}),
+          ...(dietary
+            ? { dietary_requirements: dietary === "other" && dietaryOther.trim() ? `other: ${dietaryOther.trim()}` : dietary }
             : {}),
         },
       });
@@ -441,6 +446,34 @@ export default function IntelligenceX2026Registration() {
               </div>
 
               <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Dietary requirements
+                </label>
+                <select
+                  value={dietary}
+                  onChange={(e) => { setDietary(e.target.value); setDietaryOther(""); }}
+                  className="w-full max-w-xl px-3 py-2 border border-gray-300 rounded-md bg-white focus:ring-[#ee7c01] focus:border-[#ee7c01]"
+                >
+                  <option value="">None / No special requirements</option>
+                  <option value="vegetarian">Vegetarian</option>
+                  <option value="vegan">Vegan</option>
+                  <option value="halal">Halal / Muslim</option>
+                  <option value="no_seafood">No seafood</option>
+                  <option value="no_beef">No beef</option>
+                  <option value="other">Other (please specify)</option>
+                </select>
+                {dietary === "other" && (
+                  <input
+                    type="text"
+                    value={dietaryOther}
+                    onChange={(e) => setDietaryOther(e.target.value)}
+                    placeholder="Please describe your dietary requirements"
+                    className="mt-2 w-full max-w-xl px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ee7c01] focus:border-[#ee7c01]"
+                  />
+                )}
+              </div>
+
+              <div className="md:col-span-2">
                 <Button type="submit" disabled={isBusy}>
                   {isBusy ? "Processing..." : "Register"}
                 </Button>
@@ -492,24 +525,34 @@ export default function IntelligenceX2026Registration() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {intelligenceX2026Prices.map((tier) => (
-                    <TableRow key={tier.key} className="border-gray-100">
-                      <TableCell className="px-4 py-3.5 text-gray-800">
-                        <span className="font-medium">{tier.label}</span>
-                        {tier.deadline && (
-                          <span className="block text-sm text-gray-500 mt-0.5">
-                            {tier.deadline}
+                  {intelligenceX2026Prices.map((tier) => {
+                    const banquetIncluded = tier.key === "early";
+                    const label =
+                      tier.key === "early" ? "Early Bird Registration" :
+                      tier.key === "regular" ? "Regular Registration" :
+                      "On-site Registration";
+                    return (
+                      <TableRow key={tier.key} className="border-gray-100">
+                        <TableCell className="px-4 py-3.5 text-gray-800">
+                          <span className="font-medium">{label}</span>
+                          <span className={`block text-xs mt-0.5 font-medium ${banquetIncluded ? "text-green-600" : "text-gray-400"}`}>
+                            {banquetIncluded ? "✓ Conference Banquet Included" : "Conference Banquet Not Included"}
                           </span>
-                        )}
-                      </TableCell>
-                      <TableCell className="px-4 py-3.5 text-right font-medium text-gray-900">
-                        {formatPrice(tier.member)}
-                      </TableCell>
-                      <TableCell className="px-4 py-3.5 text-right font-medium text-gray-900">
-                        {formatPrice(tier.nonMember)}
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                          {tier.deadline && (
+                            <span className="block text-xs text-gray-400 mt-0.5">
+                              {tier.deadline}
+                            </span>
+                          )}
+                        </TableCell>
+                        <TableCell className="px-4 py-3.5 text-right font-medium text-gray-900">
+                          {formatPrice(tier.member)}
+                        </TableCell>
+                        <TableCell className="px-4 py-3.5 text-right font-medium text-gray-900">
+                          {formatPrice(tier.nonMember)}
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
                 </TableBody>
                 <TableCaption className="px-4 pb-3 text-left text-sm text-gray-500">
                   All prices shown in SGD.
