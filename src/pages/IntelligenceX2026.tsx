@@ -620,6 +620,32 @@ export default function IntelligenceX2026() {
               foundations.
             </p>
 
+            <div className="space-y-1">
+              <p className="text-sm font-semibold text-gray-700">Organisers</p>
+              <ul className="list-disc pl-6 space-y-1 text-gray-800 text-sm md:text-base">
+                <li>
+                  <a
+                    href="https://www.nus.edu.sg/about/management/george-loh"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-medium text-[#003d7b] underline hover:text-[#002a57]"
+                  >
+                    George Loh Chee Ping
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://yingchen.org"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-medium text-[#003d7b] underline hover:text-[#002a57]"
+                  >
+                    Ying Chen
+                  </a>
+                </li>
+              </ul>
+            </div>
+
             <Link
                 to="/events/intelligencex-2026/executive-track"
                 className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#003d7b] hover:underline"

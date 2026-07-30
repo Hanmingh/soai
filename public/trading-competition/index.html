@@ -238,7 +238,7 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 80px 2rem 4rem;
+    padding: 130px 2rem 4rem;
     background: radial-gradient(ellipse 70% 60% at 70% 40%, rgba(59,130,246,0.08) 0%, transparent 70%),
                 radial-gradient(ellipse 50% 40% at 20% 80%, rgba(16,185,129,0.06) 0%, transparent 60%),
                 var(--bg-0);
@@ -1304,6 +1304,62 @@
     .pricing-grid { grid-template-columns: 1fr; }
   }
 
+  /* ─── SUBMISSION BANNER ─── */
+  #submission-banner {
+    position: fixed;
+    top: 64px;
+    left: 0; right: 0;
+    z-index: 998;
+    background: linear-gradient(90deg, #059669 0%, #10b981 60%, #059669 100%);
+    background-size: 200% 100%;
+    animation: banner-shimmer 4s linear infinite;
+    padding: 0.65rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 2px 16px rgba(16,185,129,0.35);
+  }
+  @keyframes banner-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  .banner-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .banner-btn {
+    background: #fff;
+    color: #059669;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.45rem 1.35rem;
+    border-radius: 100px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    font-family: var(--font-body);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .banner-btn:hover { background: #f0fdf4; transform: scale(1.04); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+  .banner-deadline {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.9);
+    white-space: nowrap;
+  }
+  @media (max-width: 640px) {
+    #submission-banner { gap: 0.75rem; padding: 0.6rem 1rem; }
+    .banner-deadline { display: none; }
+  }
+
   .btn-primary-lg {
     display: inline-flex;
     align-items: center;
@@ -1492,6 +1548,13 @@
   </button>
 </nav>
 
+<!-- CODE SUBMISSION BANNER -->
+<div id="submission-banner">
+  <span class="banner-label">📩 Code Submission Open</span>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfSxDcuKqAvLBCo7LQeqKHjLpBUmnluHjKrL8iMrooPsEr0VA/viewform?usp=dialog" target="_blank" rel="noopener" class="banner-btn">Submit Your Code →</a>
+  <span class="banner-deadline">Deadline: 9 Aug 2026 · 23:59 SGT</span>
+</div>
+
 <div class="mobile-menu" id="mobile-menu">
   <a href="#about" class="mobile-link">About</a>
   <a href="#timeline" class="mobile-link">Timeline</a>
@@ -1516,7 +1579,8 @@
         Design and deploy AI-driven trading strategies in a fair, standardized global simulation. Compete worldwide. Present in Singapore.
       </p>
       <div class="hero-ctas">
-        <a href="/events/intelligencex-2026/hackathon-register" class="btn-primary">Register Now →</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfSxDcuKqAvLBCo7LQeqKHjLpBUmnluHjKrL8iMrooPsEr0VA/viewform?usp=dialog" target="_blank" rel="noopener" class="btn-primary" style="background:var(--green);box-shadow:0 0 24px rgba(16,185,129,0.4);font-size:1rem;padding:0.85rem 2rem;">📩 Submit Your Code →</a>
+        <a href="/events/intelligencex-2026/hackathon-register" class="btn-primary">Register →</a>
         <a href="https://github.com/Society-of-Algorithmic-Intelligence/SoAI-2026-AI-Algorithmic-Trading-Competition" target="_blank" rel="noopener" class="btn-secondary">View GitHub Template ↗</a>
       </div>
       <div class="countdown-label">Code Submission Deadline</div>
