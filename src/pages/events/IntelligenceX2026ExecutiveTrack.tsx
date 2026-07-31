@@ -168,6 +168,33 @@ export default function IntelligenceX2026ExecutiveTrack() {
             </p>
           </section>
 
+          {/* Organisers */}
+          <section className="space-y-3">
+            <h2 className="text-xl font-semibold text-gray-900">Organisers</h2>
+            <ul className="list-disc pl-6 space-y-1.5 text-gray-800 text-sm md:text-base">
+              <li>
+                <a
+                  href="https://www.nus.edu.sg/about/management/george-loh"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-medium text-[#003d7b] underline hover:text-[#002a57]"
+                >
+                  George Loh Chee Ping
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://yingchen.org"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-medium text-[#003d7b] underline hover:text-[#002a57]"
+                >
+                  Ying Chen
+                </a>
+              </li>
+            </ul>
+          </section>
+
           {/* Back link bottom */}
           <div className="pt-2">
             <Link to="/events/intelligencex-2026" className="text-sm text-[#003d7b] hover:underline">
