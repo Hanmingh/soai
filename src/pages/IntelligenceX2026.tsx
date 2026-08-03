@@ -27,6 +27,7 @@ const sectionLinks = [
   { id: "travel-support", label: "Travel Support" },
   { id: "premeeting", label: "Switzerland–Singapore Pre-meeting" },
   { id: "conference-highlights", label: "Conference Highlights" },
+  { id: "showcase", label: "Showcase" },
   { id: "panel-discussions", label: "Panel Discussions" },
   { id: "executive-track", label: "Executive Track" },
   { id: "scientific-committee", label: "Scientific Committee" },
@@ -204,6 +205,12 @@ export default function IntelligenceX2026() {
                 >
                   Accommodation
                 </Link>
+                <Link
+                  to="/events/intelligencex-2026/showcase"
+                  className="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-[#003d7b]/10 hover:text-[#003d7b]"
+                >
+                  Showcase
+                </Link>
               </div>
             </div>
           </details>
@@ -247,6 +254,12 @@ export default function IntelligenceX2026() {
                   className="block rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-[#003d7b]/10 hover:text-[#003d7b]"
                 >
                   Accommodation
+                </Link>
+                <Link
+                  to="/events/intelligencex-2026/showcase"
+                  className="block rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-[#003d7b]/10 hover:text-[#003d7b]"
+                >
+                  Showcase
                 </Link>
               </div>
             </aside>
@@ -620,6 +633,27 @@ export default function IntelligenceX2026() {
               </li>
 
             </ul>
+          </section>
+
+          {/* Showcase */}
+          <section id="showcase" className="scroll-mt-24 space-y-4">
+            <h2 className="text-2xl font-semibold text-gray-900">Showcase</h2>
+            <div className="rounded-xl border border-[#003d7b]/20 bg-[#f0f6ff] px-6 py-5 space-y-3">
+              <p className="text-sm text-gray-700 leading-relaxed">
+                Leading organisations present the projects and platforms moving
+                Quantum × AI from the lab into industry — from quantum hardware
+                roadmaps to production-ready applications.
+              </p>
+              <Link
+                to="/events/intelligencex-2026/showcase"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#003d7b] hover:underline"
+              >
+                View showcase projects &amp; presenters
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
           </section>
 
           {/* Panel Discussions */}
