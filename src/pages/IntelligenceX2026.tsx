@@ -20,12 +20,14 @@ import qhealthLogo from "@/logo/QHealth_logo.jpg.jpeg";
 
 const sectionLinks = [
   { id: "registration", label: "Registration" },
+  { id: "guest-of-honour", label: "Guest of Honour" },
   { id: "overview", label: "Overview" },
   { id: "invited-session", label: "Call for Invited Session" },
   { id: "contributed-talks", label: "Call for Contributed Talks" },
   { id: "travel-support", label: "Travel Support" },
   { id: "premeeting", label: "Switzerland–Singapore Pre-meeting" },
   { id: "conference-highlights", label: "Conference Highlights" },
+  { id: "panel-discussions", label: "Panel Discussions" },
   { id: "executive-track", label: "Executive Track" },
   { id: "scientific-committee", label: "Scientific Committee" },
 ] as const;
@@ -386,6 +388,34 @@ export default function IntelligenceX2026() {
             </dl>
           </section>
 
+          {/* Guest of Honour */}
+          <section id="guest-of-honour" className="scroll-mt-24 space-y-4">
+            <h2 className="text-2xl font-semibold text-gray-900">Guest of Honour (Main Conference)</h2>
+            <div className="rounded-xl border border-[#003d7b]/20 bg-gradient-to-br from-[#003d7b] to-[#002a57] px-6 py-8 md:px-10 md:py-10">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#ffcf8c] mb-3">
+                Guest of Honour
+              </p>
+              <p className="text-3xl md:text-5xl font-bold text-white leading-tight">
+                Ms Rahayu Mahzam
+              </p>
+              <p className="mt-3 text-lg md:text-xl text-white/90">
+                Minister of State, Ministry of Digital Development and Information (MDDI)
+              </p>
+              <p className="mt-5 text-sm text-white/60">
+                Photo and biography to be added, pending confirmation from MDDI.
+              </p>
+              <Link
+                to="/events/intelligencex-2026/guest-of-honour"
+                className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#ffcf8c] hover:underline"
+              >
+                View full profile
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+          </section>
+
           {/* Overview */}
           <section id="overview" className="scroll-mt-24 space-y-4">
             <h2 className="text-2xl font-semibold text-gray-900">Overview</h2>
@@ -590,6 +620,35 @@ export default function IntelligenceX2026() {
               </li>
 
             </ul>
+          </section>
+
+          {/* Panel Discussions */}
+          <section id="panel-discussions" className="scroll-mt-24 space-y-4">
+            <h2 className="text-2xl font-semibold text-gray-900">Panel Discussions</h2>
+            <div className="rounded-xl border border-[#003d7b]/20 bg-[#f0f6ff] px-6 py-5 space-y-3">
+              <p className="text-sm text-gray-700 leading-relaxed">
+                Six panels bringing together leading voices from academia, industry, and policy to debate the
+                frontiers of Quantum × AI — spanning quantum computing, agentic AI, healthcare, finance,
+                education, and the reality of quantum advantage.
+              </p>
+              <ul className="grid gap-1.5 text-sm text-gray-700 sm:grid-cols-2">
+                <li>The Future of Quantum × AI</li>
+                <li>Agentic AI and Autonomous Systems</li>
+                <li>Quantum × AI for Healthcare and Life Sciences</li>
+                <li>Quantum × AI for Finance and Risk</li>
+                <li>Research, Education, and Talent for the Intelligence Era</li>
+                <li>The Quantum Advantage and Quantum Supremacy: Myth or Reality?</li>
+              </ul>
+              <Link
+                to="/events/intelligencex-2026/panel-discussions"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#003d7b] hover:underline"
+              >
+                View panel themes, moderators &amp; panelists
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
           </section>
 
 
