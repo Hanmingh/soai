@@ -27,6 +27,7 @@ const sectionLinks = [
   { id: "travel-support", label: "Travel Support" },
   { id: "premeeting", label: "Switzerland–Singapore Pre-meeting" },
   { id: "conference-highlights", label: "Conference Highlights" },
+  { id: "keynote-speakers", label: "Keynote Speakers" },
   { id: "showcase", label: "Showcase" },
   { id: "panel-discussions", label: "Panel Discussions" },
   { id: "executive-track", label: "Executive Track" },
@@ -206,6 +207,12 @@ export default function IntelligenceX2026() {
                   Accommodation
                 </Link>
                 <Link
+                  to="/events/intelligencex-2026/keynote-speakers"
+                  className="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-[#003d7b]/10 hover:text-[#003d7b]"
+                >
+                  Keynote Speakers
+                </Link>
+                <Link
                   to="/events/intelligencex-2026/showcase"
                   className="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-[#003d7b]/10 hover:text-[#003d7b]"
                 >
@@ -254,6 +261,12 @@ export default function IntelligenceX2026() {
                   className="block rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-[#003d7b]/10 hover:text-[#003d7b]"
                 >
                   Accommodation
+                </Link>
+                <Link
+                  to="/events/intelligencex-2026/keynote-speakers"
+                  className="block rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-[#003d7b]/10 hover:text-[#003d7b]"
+                >
+                  Keynote Speakers
                 </Link>
                 <Link
                   to="/events/intelligencex-2026/showcase"
@@ -633,6 +646,27 @@ export default function IntelligenceX2026() {
               </li>
 
             </ul>
+          </section>
+
+          {/* Keynote Speakers */}
+          <section id="keynote-speakers" className="scroll-mt-24 space-y-4">
+            <h2 className="text-2xl font-semibold text-gray-900">Keynote Speakers</h2>
+            <div className="rounded-xl border border-[#003d7b]/20 bg-[#f0f6ff] px-6 py-5 space-y-3">
+              <p className="text-sm text-gray-700 leading-relaxed">
+                World-leading researchers and industry pioneers set the stage for
+                the Quantum × AI frontier — spanning quantum computing, engineering
+                education, industry, and investment promotion.
+              </p>
+              <Link
+                to="/events/intelligencex-2026/keynote-speakers"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#003d7b] hover:underline"
+              >
+                View keynote speakers &amp; talks
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
           </section>
 
           {/* Showcase */}
