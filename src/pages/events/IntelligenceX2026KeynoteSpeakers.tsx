@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
 import intelligenceXBg from "@/assets/IntelligenceX/IntelligenceX_bg.jpg";
 import latorreImg from "@/assets/IntelligenceX/Pro.Latorre.png";
-import wilhelmImg from "@/assets/IntelligenceX/Dirk-Wilhelm_2026.jpg";
-import julianTanImg from "@/assets/IntelligenceX/Julian_Tan.png";
-import lukasHuberImg from "@/assets/IntelligenceX/Lukas Huber Portrait.jpg";
 import satoImg from "@/assets/IntelligenceX/sato.png";
 
 interface KeynoteSpeaker {
@@ -30,32 +27,6 @@ const keynoteSpeakers: KeynoteSpeaker[] = [
     abstract:
       "A novel idea for factorization using a quantum computer is presented. The aim is to address factorization from an angle, different from modular arithmetics, related to quadratic Gauss sums.",
     bio: "José Ignacio Latorre is the Director of the Centre for Quantum Technologies in Singapore. He got his PhD in elementary particle physics and has worked extensively in quantum field theory, particle phenomenology, renormalization group, quantum information and artificial intelligence. His outreach activity includes the writing of three popular books, one theater play, and the production of two documentaries. He has also co-founded Qilimanjaro Quantum Tech. He also produces some nice wine.",
-  },
-  {
-    id: "dirk-wilhelm",
-    name: "Prof Dr. Dirk Wilhelm",
-    role: "Dean of the School of Engineering",
-    affiliation: "ZHAW Zurich University of Applied Sciences",
-    photo: wilhelmImg,
-    weblink: "https://www.zhaw.ch/en/about-us/person/wilk",
-    bio: "Dirk Wilhelm is professor of Medical Physics and Dean of the ZHAW School of Engineering. He has more than 10 years of industrial experience and more than 20 years of academic experience in a variety of operational, managerial, and academic positions. During his industrial career he has developed several innovative products for chemical and biomedical analysis, e.g. Nuclear Magnetic Resonance (NMR) probes. In academia, he has continued his research with industrial partners and is involved in teaching bachelor, master and doctoral students at ZHAW and University of Zurich. He has initiated and directed the collaborative PhD program in Data Science between University of Zurich (UZH) and ZHAW. Furthermore, he initiated the collaborative PhD program in Biomedical Science and Health Innovation with ETH Zurich. Thanks to his initiative, ZHAW became a full member of the European University Alliance EELISA. He was instrumental in setting up the DIZH (Digitalization Initiative of the Canton of Zurich) Innovation Program, as chair of the Innovation Panel. He is member of the ZHAW university board and dean of one of the largest Engineering Schools of any Swiss University of Applied Sciences. Moreover, he is Head of the ZHAW Resort International (function of vice rector for international). His focus is on practice-orientated, high-quality engineering education for Swiss industry and economy. He is involved in the promotion of young talents through his work at the Swiss Academy of Sciences' STEM Commission (Fachkommission MINT). He is a full member of the Swiss Academy of Engineering Sciences (SATW) and patron of the Swiss Engineers' Day.",
-  },
-  {
-    id: "julian-tan",
-    name: "Julian Tan",
-    role: "Quantum Business Development Executive, ASEAN/India",
-    affiliation: "IBM",
-    photo: julianTanImg,
-    bio: "Julian has a strong passion for harnessing leading edge technologies in building Next-Gen enterprise capabilities. Over the course of his career, he has held several technical and management leadership roles, such as in Quantum, AI, Semiconductor and Electronics technology qualification, Supplier Management, New Product Introduction and Quality. He has won many global awards. In 2025, he led the IBM Supply Chain Transformation team as Gold Stevie Winner for Technology Team of the Year. He was also recognized as Global 2024 National Association of Manufacturer's Manufacturing Leadership Council (MLC) Digital Transformation Leadership Award, Global 2017 Frost & Sullivan (F&S) Visionary Leadership Award, and 2018 F&S Transformation award for his work around AI in the quality practice, which also contributed to IBM being named 2018 F&S Large Enterprise Manufacturer of the Year Award. Julian is a committee member in SemiconSEA's Smart Manufacturing council, owns 8 patents around technology and analytics, and has also published 9 technical papers. He is a recognized IBM Outstanding People Manager and is also IBM 2021 Recognition Experience Honoree.",
-  },
-  {
-    id: "lukas-huber",
-    name: "Lukas Huber",
-    role: "Managing Director (CEO)",
-    affiliation: "Greater Zurich Area AG",
-    photo: lukasHuberImg,
-    weblink: "https://www.greaterzuricharea.com/en",
-    bio: "Lukas Huber is Managing Director at Greater Zurich Area AG, the Investment Promotion Agency for Zurich, Switzerland, with over 20 years in investment promotion and business development, overseeing global operations across Switzerland, the U.S., and China. He has advised companies and entrepreneurs on global expansion and market entry into Europe, supporting incorporation and technology partnerships, with deep expertise in Technology and Life Sciences and over a decade working with Chinese companies as Executive Director China. He studied economics and business administration at the University of Zurich and HWZ University of Applied Sciences Zurich, holding an MBA and Executive MBA in International Management. He joined Greater Zurich Area AG in 2003, working on U.S. market activities, then heading the Life Sciences Division, before serving over 10 years as Executive Director China and Deputy Managing Director. He previously worked as a strategy consultant.",
   },
   {
     id: "mitsuhisa-sato",
@@ -109,15 +80,11 @@ export default function IntelligenceX2026KeynoteSpeakers() {
 
           {/* Keynote speaker cards */}
           <div className="space-y-10">
-            {keynoteSpeakers.map((speaker, index) => (
+            {keynoteSpeakers.map((speaker) => (
               <section
                 key={speaker.id}
                 className="rounded-xl border border-[#cddcf0] bg-[#f4f8ff] p-6 md:p-10 scroll-mt-28 space-y-6"
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#ee7c01]">
-                  Keynote Speaker {index + 1}
-                </p>
-
                 {speaker.talkTitle && (
                   <div className="space-y-4">
                     <h2 className="text-2xl md:text-[1.7rem] font-semibold leading-snug text-gray-900">

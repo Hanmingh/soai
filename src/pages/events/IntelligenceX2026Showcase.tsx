@@ -25,6 +25,7 @@ interface ShowcaseProject {
   abstract: string;
   organization: string;
   organizationLogo?: string;
+  organizationLogoHeight?: number;
   presenters: ShowcasePresenter[];
 }
 
@@ -91,6 +92,7 @@ const showcases: ShowcaseProject[] = [
       "We present an AI-driven multimodal framework that integrates genome-wide genetic variation with medical imaging for high-precision risk prediction and biological discovery in type 2 diabetes (T2D). Built on one of the world's largest genetic–imaging resources from the Taiwan Biobank, our framework combines polygenic risk scores, deep learning–derived imaging representations, and foundation models to achieve outstanding predictive performance while uncovering novel disease mechanisms. We have also developed a mobile application for personalized T2D risk assessment. This showcase demonstrates how multimodal AI and biomedical big data can advance precision medicine through early risk stratification, personalized prevention, and scalable clinical translation.",
     organization: "Institute of Statistical Science, Academia Sinica",
     organizationLogo: sinicaLogo,
+    organizationLogoHeight: 64,
     presenters: [
       {
         name: "Dr. Hsin-Chou Yang",
@@ -167,21 +169,19 @@ export default function IntelligenceX2026Showcase() {
 
           {/* Showcase projects */}
           <div className="space-y-10">
-            {showcases.map((showcase, index) => (
+            {showcases.map((showcase) => (
               <section
                 key={showcase.id}
                 className="rounded-xl border border-[#cddcf0] bg-[#f4f8ff] p-6 md:p-10 scroll-mt-28 space-y-8"
               >
                 {/* Organization header */}
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#ee7c01]">
-                    Showcase {index + 1}
-                  </p>
+                <div className="flex items-center justify-end">
                   {showcase.organizationLogo ? (
                     <img
                       src={showcase.organizationLogo}
                       alt={`${showcase.organization} logo`}
-                      className="h-10 w-auto object-contain"
+                      style={{ height: `${showcase.organizationLogoHeight ?? 40}px` }}
+                      className="w-auto object-contain"
                       loading="lazy"
                     />
                   ) : (
