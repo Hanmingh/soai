@@ -411,6 +411,19 @@ export default function IntelligenceX2026() {
                 <dt className="font-medium">Executive Track</dt>
                 <dd>28 September 2026 · Singapore · By invitation only</dd>
               </div>
+              <div className="md:col-span-2">
+                <dt className="font-medium">Venue</dt>
+                <dd>
+                  <a
+                    href="https://maps.google.com/?q=Auditorium+1+(UT-AUD1),+Town+Plaza,+University+Town+(UTown),+National+University+of+Singapore,+1+Create+Way,+Singapore+138602"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[#003d7b] hover:underline"
+                  >
+                    Auditorium 1 (UT-AUD1), Town Plaza, University Town (UTown), National University of Singapore, 1 Create Way, Singapore 138602
+                  </a>
+                </dd>
+              </div>
             </dl>
           </section>
 
