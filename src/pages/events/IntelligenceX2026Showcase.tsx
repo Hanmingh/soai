@@ -95,6 +95,13 @@ const showcases: ShowcaseProject[] = [
     organizationLogoHeight: 64,
     presenters: [
       {
+        name: "Prof. Chun-houh Chen",
+        title: "Distinguished Research Fellow",
+        affiliation: "Institute of Statistical Science, Academia Sinica",
+        bio: "Dr. Chun-houh Chen is a Distinguished Research Fellow at the Institute of Statistical Science, Academia Sinica. His areas of expertise include multivariate statistics, exploratory data analysis (EDA), high-dimensional data visualization, machine/deep learning, bioinformatics, and precision health. He developed Generalized Association Plots (GAP), a widely recognized matrix visualization framework and software suite capable of analyzing complex, high-dimensional data across various formats. Dr. Chen is currently President of the Chinese Statistical Association (Taiwan). His international leadership roles include serving as President of the International Association for Statistical Computation (IASC, 2023–2025) and Council Member of the International Statistical Institute (ISI, 2015–2019). He was also Co-PI leading the Informatics group for the Taiwan Biobank (2018–2022) and continues to serve as Co-PI for the Taiwan Precision Medicine Initiative (TPMI).",
+        photo: "/leadership/Chun-houh.png",
+      },
+      {
         name: "Dr. Hsin-Chou Yang",
         title: "Full Research Fellow and Director",
         affiliation: "Institute of Statistical Science, Academia Sinica",
