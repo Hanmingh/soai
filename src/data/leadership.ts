@@ -30,7 +30,7 @@ export const steeringCouncil: Person[] = [
 
 export const advisoryBoard: Person[] = [
   { name: "Agostino Capponi", title: "Prof.", position:"Director, Center for Digital Finance and Technologies", affiliation:"Columbia University, USA", photoFileName: "Ago.jpg", github: "", linkedin: "", dribbble: "https://www.columbia.edu/~ac3827/" },
-  { name: "Chun-houh Chen", title: "Prof.", position:"Secretary-General", affiliation:"Academia Sinica, Taiwan", photoFileName: "Chun-houh.png", github: "", linkedin: "", dribbble: "https://www.sinica.edu.tw/en/tab/23" },
+  { name: "Chun-houh Chen", title: "Prof.", position:"Distinguished Research Fellow", affiliation:"Academia Sinica, Taiwan", photoFileName: "Chun-houh.png", github: "", linkedin: "", dribbble: "https://gap.stat.sinica.edu.tw/" },
   { name: "Will Cong", title: "Prof.", position:"President's Chair Professor", affiliation:"Nanyang Technological University, Singapore", photoFileName: "Cong.jpeg", github: "", linkedin: "", dribbble: "https://www.linwilliamcong.com" },
   { name: "Xin Guo", title: "Prof.", position:"Head, Department of IEOR", affiliation:"University of California, Berkeley, USA", photoFileName: "xinguo.jpg", github: "", linkedin: "", dribbble: "https://radaresearchlab.github.io/Xin/index.html" },
   { name: "Nikolaus Hautsch", title: "Prof. Dr.", position:"Vice Rector", affiliation:"University of Vienna, Austria", photoFileName: "Nikolaus.png", github: "", linkedin: "", dribbble: "https://homepage.univie.ac.at/nikolaus.hautsch/" },
