@@ -1,9 +1,8 @@
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import intelligenceXBg from "@/assets/IntelligenceX/IntelligenceX_bg.jpg";
 import masahiroImg from "@/assets/IntelligenceX/masahiro.png";
 import huaxingImg from "@/assets/IntelligenceX/huaxing.jpg";
+import { ExpandableBio } from "@/components/ui/ExpandableBio";
 
 type Panel = {
   id: string;
@@ -131,45 +130,6 @@ function initialsOf(name: string) {
     .toUpperCase();
 }
 
-function ExpandableBio({ text }: { text: string }) {
-  const [expanded, setExpanded] = useState(false);
-  const isLong = text.length > 200;
-
-  if (!isLong) {
-    return <p className="text-gray-800 leading-relaxed text-sm md:text-base">{text}</p>;
-  }
-
-  return (
-    <div>
-      <div className="relative">
-        <p
-          className={`text-gray-800 leading-relaxed text-sm md:text-base ${
-            expanded ? "" : "line-clamp-3"
-          }`}
-        >
-          {text}
-        </p>
-        {!expanded && (
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[#f4f8ff] to-transparent" />
-        )}
-      </div>
-      <button
-        type="button"
-        onClick={() => setExpanded((value) => !value)}
-        className="mt-1.5 inline-flex items-center gap-1 text-sm font-semibold text-[#003d7b] transition-colors hover:text-[#002a57]"
-        aria-expanded={expanded}
-      >
-        {expanded ? "Show less" : "Read more"}
-        <ChevronDown
-          className={`h-4 w-4 transition-transform duration-200 ${
-            expanded ? "rotate-180" : ""
-          }`}
-        />
-      </button>
-    </div>
-  );
-}
-
 export default function IntelligenceX2026PanelDiscussions() {
   return (
     <div className="min-h-screen bg-white">
@@ -295,7 +255,7 @@ export default function IntelligenceX2026PanelDiscussions() {
                         {panelist.affiliation && ` · ${panelist.affiliation}`}
                       </p>
                       <p className="text-xs text-gray-500">Panel: {panelist.panelTitle}</p>
-                      <ExpandableBio text={panelist.bio} />
+                      <ExpandableBio text={panelist.bio} fadeFrom="#f4f8ff" />
                       {panelist.weblink && (
                         <a
                           href={panelist.weblink}

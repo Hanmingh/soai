@@ -3,6 +3,10 @@ import intelligenceXBg from "@/assets/IntelligenceX/IntelligenceX_bg.jpg";
 import wilhelmImg from "@/assets/IntelligenceX/Dirk-Wilhelm_2026.jpg";
 import julianTanImg from "@/assets/IntelligenceX/Julian_Tan.png";
 import lukasHuberImg from "@/assets/IntelligenceX/Lukas Huber Portrait.jpg";
+import larryImg from "@/assets/IntelligenceX/larry.jpeg";
+import teoImg from "@/assets/IntelligenceX/teo.jpg";
+import danielImg from "@/assets/IntelligenceX/daniel.jpeg";
+import { ExpandableBio } from "@/components/ui/ExpandableBio";
 
 interface PremeetingSpeaker {
   name: string;
@@ -14,6 +18,13 @@ interface PremeetingSpeaker {
 }
 
 const speakers: PremeetingSpeaker[] = [
+  {
+    name: "Prof. Teo Chung Piaw",
+    role: "Dean, NUS Business School",
+    affiliation: "National University of Singapore (NUS)",
+    photo: teoImg,
+    bio: "Professor Teo Chung Piaw is Dean of the NUS Business School and Stephen Riady Professor in Business at the National University of Singapore (NUS). He leads the School's strategic direction across education, research, industry engagement and global partnerships, with a vision of building an AI-native business school that equips future leaders to thrive in an increasingly AI-enabled world. Prior to his appointment as Dean, Prof Teo served as Executive Director of the NUS Institute of Operations Research and Analytics (IORA), where he spearheaded interdisciplinary research in optimisation, artificial intelligence, supply chain resilience and public sector analytics. He also co-directed the SIA–NUS Digital Aviation Corporate Laboratory, advancing research and innovation at the intersection of AI, operations research and aviation. An internationally recognised scholar in operations research and management science, Prof Teo's research focuses on optimisation under uncertainty, large-scale optimisation, revenue management, supply chain management, transportation, healthcare, and AI-driven decision making. His work has been published extensively in leading journals and has influenced both academic research and industry practice. Prof Teo has provided editorial leadership as a Department Editor for Management Science and Operations Research, two of the leading journals in the field of operations research and management science. He is a Fellow of the Institute for Operations Research and the Management Sciences (INFORMS), in recognition of his sustained contributions to research, practice and professional service. As Dean, Prof Teo is leading the transformation of NUS Business School into an AI-native business school by integrating artificial intelligence across education, research and industry engagement. He is committed to developing innovative programmes, strengthening interdisciplinary research, fostering deeper partnerships with industry, and preparing graduates to lead responsibly in an AI-driven global economy.",
+  },
   {
     name: "Prof Dr. Dirk Wilhelm",
     role: "Dean of the School of Engineering",
@@ -30,12 +41,27 @@ const speakers: PremeetingSpeaker[] = [
     bio: "Julian has a strong passion for harnessing leading edge technologies in building Next-Gen enterprise capabilities. Over the course of his career, he has held several technical and management leadership roles, such as in Quantum, AI, Semiconductor and Electronics technology qualification, Supplier Management, New Product Introduction and Quality. He has won many global awards. In 2025, he led the IBM Supply Chain Transformation team as Gold Stevie Winner for Technology Team of the Year. He was also recognized as Global 2024 National Association of Manufacturer's Manufacturing Leadership Council (MLC) Digital Transformation Leadership Award, Global 2017 Frost & Sullivan (F&S) Visionary Leadership Award, and 2018 F&S Transformation award for his work around AI in the quality practice, which also contributed to IBM being named 2018 F&S Large Enterprise Manufacturer of the Year Award. Julian is a committee member in SemiconSEA's Smart Manufacturing council, owns 8 patents around technology and analytics, and has also published 9 technical papers. He is a recognized IBM Outstanding People Manager and is also IBM 2021 Recognition Experience Honoree.",
   },
   {
+    name: "Dr. Daniel Dobos",
+    role: "Head of Research",
+    affiliation: "Swisscom",
+    photo: danielImg,
+    weblink: "https://www.linkedin.com/in/danieldobos/?locale=de",
+    bio: "Dr. Daniel Dobos co-chairs the ITU AI for Good Impact Initiative, chairs the Swiss AI Standardisation Commission and he bridges cutting-edge research with real-world customer solutions, most recently as Research Director at Swisscom. Previously, he led AI and data analysis projects at CERN — contributing to the landmark Higgs boson discovery — and at the United Nations. His research spans artificial intelligence, quantum computing, graph neural networks, and particle physics, with publications cited tens of thousands of times. Educated at TU Dortmund with affiliations at Lancaster University and CERN, he is a leading voice at the intersection of science, AI, and societal impact.",
+  },
+  {
     name: "Lukas Huber",
     role: "Managing Director (CEO)",
     affiliation: "Greater Zurich Area AG",
     photo: lukasHuberImg,
     weblink: "https://www.greaterzuricharea.com/en",
     bio: "Lukas Huber is Managing Director at Greater Zurich Area AG, the Investment Promotion Agency for Zurich, Switzerland, with over 20 years in investment promotion and business development, overseeing global operations across Switzerland, the U.S., and China. He has advised companies and entrepreneurs on global expansion and market entry into Europe, supporting incorporation and technology partnerships, with deep expertise in Technology and Life Sciences and over a decade working with Chinese companies as Executive Director China. He studied economics and business administration at the University of Zurich and HWZ University of Applied Sciences Zurich, holding an MBA and Executive MBA in International Management. He joined Greater Zurich Area AG in 2003, working on U.S. market activities, then heading the Life Sciences Division, before serving over 10 years as Executive Director China and Deputy Managing Director. He previously worked as a strategy consultant.",
+  },
+  {
+    name: "Prof. Dr. Lawrence Carin",
+    role: "Director of AI for Health",
+    affiliation: "A*STAR, Singapore",
+    photo: larryImg,
+    bio: "Lawrence Carin was a professor at Duke University for nearly 30 years, where he engaged in AI research and teaching. He served as the Chair of the Duke department of electrical and computer engineering, and he was the Vice President for Research at Duke for 7 years. He also founded two AI companies, each of which was ultimately acquired by a larger corporation. He recently joined A*STAR, where he is the Deputy Executive Director of two institutes: the Institute for AI and Computing and for the Bioinformatics Institute. He is also involved in several elements of A*STAR's AI transformation. He has worked with IonQ in developing AI algorithms for implementation on quantum computers.",
   },
 ];
 
@@ -163,9 +189,7 @@ export default function SwitzerlandSingaporePremeeting() {
                       {speaker.role}
                       {speaker.affiliation && ` · ${speaker.affiliation}`}
                     </p>
-                    <p className="text-gray-800 leading-relaxed text-sm md:text-base">
-                      {speaker.bio}
-                    </p>
+                    <ExpandableBio text={speaker.bio} />
                     {speaker.weblink && (
                       <a
                         href={speaker.weblink}
