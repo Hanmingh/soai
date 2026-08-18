@@ -68,20 +68,20 @@ const panels: Panel[] = [
 
 const moderators: Moderator[] = [
   {
-    name: "Philippe Codognet",
-    affiliation: "CNRS / Sorbonne University / University of Tokyo, France",
-    panelTitle: "The Future of Quantum × AI",
-  },
-  {
-    name: "Thorsten Koch",
-    affiliation: "Zuse Institute Berlin & TU Berlin, Germany",
-    panelTitle: "Agentic AI and Autonomous Systems",
-    photo: "/leadership/Thorsten.png",
+    name: "Ying Chen",
+    affiliation: "National University of Singapore, Singapore",
+    panelTitle: "Research, Education, and Talent for the Intelligence Era",
+    photo: "/leadership/chenying.jpg",
   },
   {
     name: "Patrick Chia",
     affiliation: "National University Health System, Singapore",
     panelTitle: "Quantum × AI for Healthcare and Life Sciences",
+  },
+  {
+    name: "Philippe Codognet",
+    affiliation: "CNRS / Sorbonne University / University of Tokyo, France",
+    panelTitle: "The Future of Quantum × AI",
   },
   {
     name: "Paolo Giudici",
@@ -90,23 +90,20 @@ const moderators: Moderator[] = [
     photo: "/leadership/Giudici.jpg",
   },
   {
-    name: "Ying Chen",
-    affiliation: "National University of Singapore, Singapore",
-    panelTitle: "Research, Education, and Talent for the Intelligence Era",
-    photo: "/leadership/chenying.jpg",
+    name: "Thorsten Koch",
+    affiliation: "Zuse Institute Berlin & TU Berlin, Germany",
+    panelTitle: "Agentic AI and Autonomous Systems",
+    photo: "/leadership/Thorsten.png",
   },
 ];
 
-const pendingModeratorPanel =
-  "The Quantum Advantage and Quantum Supremacy: Myth or Reality?";
-
 const panelists: Panelist[] = [
   {
-    name: "Chen Huaxing",
+    name: "Huaxing Chen",
     designation: "Senior Data Analytics and AI Leader, Regional Bank Wholesale Division",
     affiliation: "Adjunct Faculty, National University of Singapore (NUS) Business School",
     photo: huaxingImg,
-    bio: "Chen Huaxing is a senior data analytics and AI leader with extensive experience applying quantitative methods, advanced analytics, machine learning and artificial intelligence to complex financial and business problems. He currently leads data and analytics initiatives in a regional bank wholesale division across areas including client analytics, risk, transaction banking, financial markets and AI-enabled decision support. His career has spanned a diverse range of industries and institutions. Earlier in his career, he worked with the SMU–Carnegie Mellon University Living Analytics Research Centre, focusing on applied optimisation and analytics research, before taking on analytics and revenue optimisation roles with organisations including Marina Bay Sands and Visa, where he worked extensively with large-scale customer, transaction and commercial data. His experience has also included technology, operations research and entrepreneurial leadership roles in quantitative trading before moving into wholesale banking. Alongside his industry career, Huaxing has been an Adjunct Faculty member at the National University of Singapore (NUS) Business School since 2018, teaching postgraduate students in analytics and data engineering with applications in financial services. He is also a regular speaker and panel participant at universities, industry conferences and professional forums, sharing perspectives on quantitative analytics, AI, data and the transformation of financial services. His interests lie at the intersection of artificial intelligence, optimisation and real-world financial decision-making, particularly in translating rigorous quantitative research and emerging technologies into scalable business impact.",
+    bio: "Huaxing Chen is a senior data analytics and AI leader with extensive experience applying quantitative methods, advanced analytics, machine learning and artificial intelligence to complex financial and business problems. He currently leads data and analytics initiatives in a regional bank wholesale division across areas including client analytics, risk, transaction banking, financial markets and AI-enabled decision support. His career has spanned a diverse range of industries and institutions. Earlier in his career, he worked with the SMU–Carnegie Mellon University Living Analytics Research Centre, focusing on applied optimisation and analytics research, before taking on analytics and revenue optimisation roles with organisations including Marina Bay Sands and Visa, where he worked extensively with large-scale customer, transaction and commercial data. His experience has also included technology, operations research and entrepreneurial leadership roles in quantitative trading before moving into wholesale banking. Alongside his industry career, Huaxing has been an Adjunct Faculty member at the National University of Singapore (NUS) Business School since 2018, teaching postgraduate students in analytics and data engineering with applications in financial services. He is also a regular speaker and panel participant at universities, industry conferences and professional forums, sharing perspectives on quantitative analytics, AI, data and the transformation of financial services. His interests lie at the intersection of artificial intelligence, optimisation and real-world financial decision-making, particularly in translating rigorous quantitative research and emerging technologies into scalable business impact.",
     panelTitle: "Quantum × AI for Finance and Risk",
   },
   {
@@ -218,17 +215,6 @@ export default function IntelligenceX2026PanelDiscussions() {
                   </div>
                 </div>
               ))}
-
-              {/* Pending moderator */}
-              <div className="rounded-xl border border-dashed border-gray-300 bg-white p-6 flex flex-col items-center text-center gap-3">
-                <div className="h-28 w-28 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center text-4xl font-bold ring-2 ring-white shadow">
-                  ?
-                </div>
-                <div className="space-y-1">
-                  <p className="text-base font-semibold text-gray-500">To be announced</p>
-                  <p className="text-xs text-gray-500">Moderates: {pendingModeratorPanel}</p>
-                </div>
-              </div>
             </div>
           </section>
 

@@ -34,6 +34,21 @@ const speakers: PremeetingSpeaker[] = [
     bio: "Dirk Wilhelm is professor of Medical Physics and Dean of the ZHAW School of Engineering. He has more than 10 years of industrial experience and more than 20 years of academic experience in a variety of operational, managerial, and academic positions. During his industrial career he has developed several innovative products for chemical and biomedical analysis, e.g. Nuclear Magnetic Resonance (NMR) probes. In academia, he has continued his research with industrial partners and is involved in teaching bachelor, master and doctoral students at ZHAW and University of Zurich. He has initiated and directed the collaborative PhD program in Data Science between University of Zurich (UZH) and ZHAW. Furthermore, he initiated the collaborative PhD program in Biomedical Science and Health Innovation with ETH Zurich. Thanks to his initiative, ZHAW became a full member of the European University Alliance EELISA. He was instrumental in setting up the DIZH (Digitalization Initiative of the Canton of Zurich) Innovation Program, as chair of the Innovation Panel. He is member of the ZHAW university board and dean of one of the largest Engineering Schools of any Swiss University of Applied Sciences. Moreover, he is Head of the ZHAW Resort International (function of vice rector for international). His focus is on practice-orientated, high-quality engineering education for Swiss industry and economy. He is involved in the promotion of young talents through his work at the Swiss Academy of Sciences' STEM Commission (Fachkommission MINT). He is a full member of the Swiss Academy of Engineering Sciences (SATW) and patron of the Swiss Engineers' Day.",
   },
   {
+    name: "Prof. Dr. Lawrence Carin",
+    role: "Director of AI for Health",
+    affiliation: "A*STAR, Singapore",
+    photo: larryImg,
+    bio: "Lawrence Carin was a professor at Duke University for nearly 30 years, where he engaged in AI research and teaching. He served as the Chair of the Duke department of electrical and computer engineering, and he was the Vice President for Research at Duke for 7 years. He also founded two AI companies, each of which was ultimately acquired by a larger corporation. He recently joined A*STAR, where he is the Deputy Executive Director of two institutes: the Institute for AI and Computing and for the Bioinformatics Institute. He is also involved in several elements of A*STAR's AI transformation. He has worked with IonQ in developing AI algorithms for implementation on quantum computers.",
+  },
+  {
+    name: "Lukas Huber",
+    role: "Managing Director (CEO)",
+    affiliation: "Greater Zurich Area AG",
+    photo: lukasHuberImg,
+    weblink: "https://www.greaterzuricharea.com/en",
+    bio: "Lukas Huber is Managing Director at Greater Zurich Area AG, the Investment Promotion Agency for Zurich, Switzerland, with over 20 years in investment promotion and business development, overseeing global operations across Switzerland, the U.S., and China. He has advised companies and entrepreneurs on global expansion and market entry into Europe, supporting incorporation and technology partnerships, with deep expertise in Technology and Life Sciences and over a decade working with Chinese companies as Executive Director China. He studied economics and business administration at the University of Zurich and HWZ University of Applied Sciences Zurich, holding an MBA and Executive MBA in International Management. He joined Greater Zurich Area AG in 2003, working on U.S. market activities, then heading the Life Sciences Division, before serving over 10 years as Executive Director China and Deputy Managing Director. He previously worked as a strategy consultant.",
+  },
+  {
     name: "Julian Tan",
     role: "Quantum Business Development Executive, ASEAN/India",
     affiliation: "IBM",
@@ -47,21 +62,6 @@ const speakers: PremeetingSpeaker[] = [
     photo: danielImg,
     weblink: "https://www.linkedin.com/in/danieldobos/?locale=de",
     bio: "Dr. Daniel Dobos co-chairs the ITU AI for Good Impact Initiative, chairs the Swiss AI Standardisation Commission and he bridges cutting-edge research with real-world customer solutions, most recently as Research Director at Swisscom. Previously, he led AI and data analysis projects at CERN — contributing to the landmark Higgs boson discovery — and at the United Nations. His research spans artificial intelligence, quantum computing, graph neural networks, and particle physics, with publications cited tens of thousands of times. Educated at TU Dortmund with affiliations at Lancaster University and CERN, he is a leading voice at the intersection of science, AI, and societal impact.",
-  },
-  {
-    name: "Lukas Huber",
-    role: "Managing Director (CEO)",
-    affiliation: "Greater Zurich Area AG",
-    photo: lukasHuberImg,
-    weblink: "https://www.greaterzuricharea.com/en",
-    bio: "Lukas Huber is Managing Director at Greater Zurich Area AG, the Investment Promotion Agency for Zurich, Switzerland, with over 20 years in investment promotion and business development, overseeing global operations across Switzerland, the U.S., and China. He has advised companies and entrepreneurs on global expansion and market entry into Europe, supporting incorporation and technology partnerships, with deep expertise in Technology and Life Sciences and over a decade working with Chinese companies as Executive Director China. He studied economics and business administration at the University of Zurich and HWZ University of Applied Sciences Zurich, holding an MBA and Executive MBA in International Management. He joined Greater Zurich Area AG in 2003, working on U.S. market activities, then heading the Life Sciences Division, before serving over 10 years as Executive Director China and Deputy Managing Director. He previously worked as a strategy consultant.",
-  },
-  {
-    name: "Prof. Dr. Lawrence Carin",
-    role: "Director of AI for Health",
-    affiliation: "A*STAR, Singapore",
-    photo: larryImg,
-    bio: "Lawrence Carin was a professor at Duke University for nearly 30 years, where he engaged in AI research and teaching. He served as the Chair of the Duke department of electrical and computer engineering, and he was the Vice President for Research at Duke for 7 years. He also founded two AI companies, each of which was ultimately acquired by a larger corporation. He recently joined A*STAR, where he is the Deputy Executive Director of two institutes: the Institute for AI and Computing and for the Bioinformatics Institute. He is also involved in several elements of A*STAR's AI transformation. He has worked with IonQ in developing AI algorithms for implementation on quantum computers.",
   },
 ];
 
@@ -170,7 +170,7 @@ export default function SwitzerlandSingaporePremeeting() {
 
           {/* Speakers */}
           <section className="space-y-6">
-            <h2 className="text-2xl font-semibold text-gray-900">Speakers</h2>
+            <h2 className="text-2xl font-semibold text-gray-900">Panelists</h2>
             <div className="space-y-6">
               {speakers.map((speaker) => (
                 <div

@@ -418,7 +418,7 @@ export default function IntelligenceX2026() {
                     href="https://maps.google.com/?q=Auditorium+1+(UT-AUD1),+Town+Plaza,+University+Town+(UTown),+National+University+of+Singapore,+1+Create+Way,+Singapore+138602"
                     target="_blank"
                     rel="noreferrer"
-                    className="text-[#003d7b] hover:underline"
+                    className="font-semibold text-[#002a57] hover:underline"
                   >
                     Auditorium 1 (UT-AUD1), Town Plaza, University Town (UTown), National University of Singapore, 1 Create Way, Singapore 138602
                   </a>
@@ -491,77 +491,58 @@ export default function IntelligenceX2026() {
           {/* Call for Invited Session */}
           <section id="invited-session" className="scroll-mt-24 space-y-4">
             <h2 className="text-2xl font-semibold text-gray-900">Call for Invited Session</h2>
-            <div className="rounded-lg border border-amber-200 bg-amber-50 px-5 py-4 text-sm text-amber-900">
-              Details on the Call for Invited Session will be announced shortly. Please check back for updates.
+            <div className="rounded-xl border border-[#003d7b]/20 bg-[#f0f6ff] px-6 py-5 space-y-3">
+              <p className="text-sm text-amber-900">
+                Details on the Call for Invited Session will be announced shortly. Please check back for updates.
+              </p>
             </div>
           </section>
 
           {/* Call for Contributed Talks */}
           <section id="contributed-talks" className="scroll-mt-24 space-y-5">
             <h2 className="text-2xl font-semibold text-gray-900">Call for Contributed Talks</h2>
-            <p className="text-gray-800 leading-relaxed">
-              The Organising Committee of IntelligenceX 2026 invites proposals for Contributed Talks
-              to be held during the main conference on 24–26 September 2026 in Singapore. Each
-              Contributed Session is expected to last about 20 minutes. Complimentary SoAI membership
-              will be offered to all participants of the contributed session.
-            </p>
+            <div className="rounded-xl border border-[#003d7b]/20 bg-[#f0f6ff] px-6 py-5 space-y-4">
+              <p className="text-gray-800 leading-relaxed text-sm md:text-base">
+                The Organising Committee of IntelligenceX 2026 invites proposals for Contributed Talks
+                to be held during the main conference on 24–26 September 2026 in Singapore. Each
+                Contributed Session is expected to last about 20 minutes. Complimentary SoAI membership
+                will be offered to all participants of the contributed session.
+              </p>
 
-            <div className="space-y-2">
-              <h3 className="text-base font-semibold text-gray-900">Themes of Contributed Sessions</h3>
-              <p className="text-sm text-gray-700">Contributed Sessions may cover theory, methods, applications, and/or industry showcases, including:</p>
-              <ul className="list-disc pl-6 space-y-1.5 text-gray-800 text-sm md:text-base">
-                <li>Theoretical foundations of AI, quantum computing, optimization, and data science</li>
-                <li>Algorithmic and methodological advances in AI, ML, optimization, and statistics</li>
-                <li>Hybrid Quantum×AI systems, architectures, and applications</li>
-                <li>Applications in, but not limited to, finance, engineering, logistics, healthcare, and energy</li>
-                <li>Industry showcases, real-world deployments, and emerging use cases</li>
-              </ul>
-            </div>
-
-            <div className="rounded-lg border border-gray-200 bg-[#f9fafb] px-5 py-4 space-y-3">
-              <div className="flex flex-wrap gap-x-10 gap-y-2 text-sm">
-                <div>
-                  <span className="font-semibold text-gray-700">Early-bird rate (until 31 Jul 2026):</span>
-                  <span className="ml-2 text-gray-800">SGD 600 · SoAI members SGD 300</span>
-                </div>
-                <div>
-                  <span className="font-semibold text-gray-700">Regular rate:</span>
-                  <span className="ml-2 text-gray-800">SGD 800</span>
-                </div>
+              <div className="space-y-2">
+                <h3 className="text-base font-semibold text-gray-900">Themes of Contributed Sessions</h3>
+                <p className="text-sm text-gray-700">Contributed Sessions may cover theory, methods, applications, and/or industry showcases, including:</p>
+                <ul className="list-disc pl-6 space-y-1.5 text-gray-800 text-sm md:text-base">
+                  <li>Theoretical foundations of AI, quantum computing, optimization, and data science</li>
+                  <li>Algorithmic and methodological advances in AI, ML, optimization, and statistics</li>
+                  <li>Hybrid Quantum×AI systems, architectures, and applications</li>
+                  <li>Applications in, but not limited to, finance, engineering, logistics, healthcare, and energy</li>
+                  <li>Industry showcases, real-world deployments, and emerging use cases</li>
+                </ul>
               </div>
-              <div className="flex flex-wrap gap-x-10 gap-y-2 text-sm">
-                <div>
-                  <span className="font-semibold text-gray-700">Submission deadline:</span>
-                  <span className="ml-2 text-gray-800">31 August 2026</span>
-                </div>
-                <div>
-                  <span className="font-semibold text-gray-700">Acceptance:</span>
-                  <span className="ml-2 text-gray-800">Rolling basis, subject to programme capacity</span>
-                </div>
-              </div>
-            </div>
 
-            <div className="flex flex-wrap items-center gap-4">
-              <a
-                href="https://forms.gle/3SbT3HyngBfWRKXx8"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full bg-[#003d7b] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#002a57]"
-              >
-                Submit a Talk →
-              </a>
-              <a
-                href="/events/Call%20for%20Contributed%20Talks.pdf"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#003d7b] hover:underline"
-              >
-                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                  <path d="M14 2v6h6" />
-                </svg>
-                Download Call (PDF)
-              </a>
+              <div className="flex flex-wrap items-center gap-4">
+                <a
+                  href="https://forms.gle/3SbT3HyngBfWRKXx8"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center rounded-full bg-[#003d7b] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#002a57]"
+                >
+                  Submit a Talk →
+                </a>
+                <a
+                  href="/events/Call%20for%20Contributed%20Talks.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#003d7b] hover:underline"
+                >
+                  <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <path d="M14 2v6h6" />
+                  </svg>
+                  Download Call (PDF)
+                </a>
+              </div>
             </div>
           </section>
 
@@ -640,7 +621,7 @@ export default function IntelligenceX2026() {
               </li>
               <li>
                 <Link to="/events/intelligencex-2026/tutorials" className="text-[#003d7b] font-medium hover:underline">
-                  Hands-on tutorials: Quantum Computing (Vishal Bajpe, IBM Quantum) &amp; Agentic Coding (Prof. Dr. Thorsten Koch, TU Berlin &amp; ZIB) — Limited Seats!
+                  Hands-on tutorials: Agentic Coding (Prof. Dr. Thorsten Koch, TU Berlin &amp; ZIB) &amp; Quantum Computing (Vishal Bajpe, IBM Quantum) — Limited Seats!
                 </Link>
               </li>
               <li>
