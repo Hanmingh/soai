@@ -26,7 +26,7 @@ import SwitzerlandSingaporePremeeting from './pages/events/SwitzerlandSingaporeP
 import IntelligenceX2026TravelSupport from './pages/events/IntelligenceX2026TravelSupport';
 import IntelligenceX2026ExecutiveTrack from './pages/events/IntelligenceX2026ExecutiveTrack';
 import IntelligenceX2026PanelDiscussions from './pages/events/IntelligenceX2026PanelDiscussions';
-import IntelligenceX2026GuestOfHonour from './pages/events/IntelligenceX2026GuestOfHonour';
+import IntelligenceX2026Review from './pages/IntelligenceX2026Review';
 import IntelligenceX2026KeynoteSpeakers from './pages/events/IntelligenceX2026KeynoteSpeakers';
 import PaymentSuccess from './pages/PaymentSuccess';
 
@@ -57,7 +57,8 @@ function App() {
           <Route path="events/intelligencex-2026/travel-support" element={<IntelligenceX2026TravelSupport />} />
           <Route path="events/intelligencex-2026/executive-track" element={<IntelligenceX2026ExecutiveTrack />} />
           <Route path="events/intelligencex-2026/panel-discussions" element={<IntelligenceX2026PanelDiscussions />} />
-          <Route path="events/intelligencex-2026/guest-of-honour" element={<IntelligenceX2026GuestOfHonour />} />
+          {/* Internal review only — deliberately obscure, not linked anywhere on the site */}
+          <Route path="events/intelligencex-2026/internal-review/7xk9q2" element={<IntelligenceX2026Review />} />
           <Route path="events/intelligencex-2026/keynote-speakers" element={<IntelligenceX2026KeynoteSpeakers />} />
           <Route path="events/quantum-ai-risk-management" element={<QuantumAIAndRiskManagement />} />
           <Route path="payment-success" element={<PaymentSuccess />} />

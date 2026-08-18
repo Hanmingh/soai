@@ -18,6 +18,17 @@ import rmiLogo from "@/logo/0244cc1c-d6ea-4544-bde5-50acfeb75831.jpg";
 import zibLogo from "@/logo/ZIB-Primary-Logo_Blue-RGB.png";
 import qhealthLogo from "@/logo/QHealth_logo.jpg.jpeg";
 import nusQaIconLogo from "@/assets/IntelligenceX/NUS_Integrated_Quatum_AI_Computing_Consortium.png";
+import rahayuImg from "@/assets/IntelligenceX/MOS Rahayu Mahzam.jpg";
+import { ExpandableBio } from "@/components/ui/ExpandableBio";
+
+// Full Guest of Honour (MOS) biography — used by the private review page.
+const guestOfHonourBio = [
+  "Mdm Rahayu Mahzam is the Minister of State at the Ministry of Digital Development and Information, where she focuses on the Ministry's digital inclusivity efforts and protection of Singaporeans against online harms. She is concurrently the Minister of State at the Ministry of Health. Her area of work includes healthcare financing, promotion of healthy lifestyle and child and maternal health.",
+  "She previously served at the Ministry of Law and then-Ministry of Communications and Information (renamed as Ministry of Digital Development and Information on 8 July 2024). Prior to her political appointment in September 2020, Mdm Rahayu was a lawyer, specialising in family law.",
+  "Mdm Rahayu is a Member of Parliament for Jurong GRC and oversees the Bukit Batok East Division. She is passionate about supporting residents in need and developing opportunities for people to come together to help one another. She has introduced many social programmes in Bukit Batok East, to help families, support students and uplift women. Her initiatives with volunteers have also led to Bukit Batok East being recognised as a Dementia-Friendly Community in Singapore.",
+  "In Parliament, Mdm Rahayu has championed the interests of the special needs' community, youth development, as well as efforts in empowering women and preserving a strong multi-racial and multi-religious community.",
+  "As Deputy Chairperson of the REACH Supervisory Panel, Mdm Rahayu is closely involved in REACH's efforts in seeking feedback from the public on national policies and issues. She also contributes nationally through other committees, including the OnePeople.SG Executive Committee and the National Youth Council. She leads the M3 Youth empowerment and mentoring efforts as well as the promotion of healthy lifestyle in the Malay/Muslim community. Mdm Rahayu was one of the co-chairs leading the efforts of the Conversations on Women's Development. The discussions culminated in a White Paper which was presented in Parliament in May 2022. She also co-chaired the Singapore Together Alliance for Action to tackle online harms, especially those targeted at women and girls. Mdm Rahayu was also involved in the Child and Maternal Health and Well-being Taskforce, as well as the Inter-agency Taskforce on Mental Health and Well-being.",
+];
 
 const sectionLinks = [
   { id: "registration", label: "Registration" },
@@ -37,7 +48,12 @@ const sectionLinks = [
 
 type SectionId = (typeof sectionLinks)[number]["id"];
 
-export default function IntelligenceX2026() {
+type IntelligenceX2026Props = {
+  /** When true, renders the full Guest of Honour profile (used by the private review page). */
+  showFullGuestOfHonour?: boolean;
+};
+
+export default function IntelligenceX2026({ showFullGuestOfHonour = false }: IntelligenceX2026Props) {
   const bgUrl = intelligenceXBg;
   const [activeSection, setActiveSection] = useState<SectionId>(sectionLinks[0].id);
 
@@ -432,29 +448,51 @@ export default function IntelligenceX2026() {
           {/* Guest of Honour */}
           <section id="guest-of-honour" className="scroll-mt-24 space-y-4">
             <h2 className="text-2xl font-semibold text-gray-900">Guest of Honour (Main Conference)</h2>
-            <div className="rounded-xl border border-[#003d7b]/20 bg-gradient-to-br from-[#003d7b] to-[#002a57] px-6 py-8 md:px-10 md:py-10">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#ffcf8c] mb-3">
-                Guest of Honour
-              </p>
-              <p className="text-3xl md:text-5xl font-bold text-white leading-tight">
-                Ms Rahayu Mahzam
-              </p>
-              <p className="mt-3 text-lg md:text-xl text-white/90">
-                Minister of State, Ministry of Digital Development and Information (MDDI)
-              </p>
-              <p className="mt-5 text-sm text-white/60">
-                Photo and biography to be added, pending confirmation from MDDI.
-              </p>
-              <Link
-                to="/events/intelligencex-2026/guest-of-honour"
-                className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#ffcf8c] hover:underline"
-              >
-                View full profile
-                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
+            {showFullGuestOfHonour ? (
+              <div className="rounded-xl border border-[#003d7b]/20 bg-gradient-to-br from-[#003d7b] to-[#002a57] px-6 py-8 md:px-10 md:py-10 space-y-6">
+                <div className="flex flex-col gap-6 md:flex-row md:items-start">
+                  <img
+                    src={rahayuImg}
+                    alt="Mdm Rahayu Mahzam"
+                    className="h-52 w-44 md:h-64 md:w-52 shrink-0 rounded-lg object-cover shadow-lg"
+                    loading="lazy"
+                  />
+                  <div className="space-y-2">
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#ffcf8c]">
+                      Guest of Honour
+                    </p>
+                    <p className="text-3xl md:text-5xl font-bold text-white leading-tight">
+                      Mdm Rahayu Mahzam
+                    </p>
+                    <p className="text-lg md:text-xl text-white/90">
+                      Minister of State, Ministry of Digital Development and Information
+                    </p>
+                    <p className="text-base text-white/80">
+                      Minister of State, Ministry of Health
+                    </p>
+                    <p className="text-sm text-white/60">Republic of Singapore</p>
+                  </div>
+                </div>
+                <div className="border-t border-white/10 pt-6">
+                  <ExpandableBio text={guestOfHonourBio.join(" ")} fadeFrom="#002a57" dark />
+                </div>
+              </div>
+            ) : (
+              <div className="rounded-xl border border-[#003d7b]/20 bg-gradient-to-br from-[#003d7b] to-[#002a57] px-6 py-8 md:px-10 md:py-10">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#ffcf8c] mb-3">
+                  Guest of Honour
+                </p>
+                <p className="text-3xl md:text-5xl font-bold text-white leading-tight">
+                  Ms Rahayu Mahzam
+                </p>
+                <p className="mt-3 text-lg md:text-xl text-white/90">
+                  Minister of State, Ministry of Digital Development and Information (MDDI)
+                </p>
+                <p className="mt-5 text-sm text-white/60">
+                  Photo and biography to be added, pending confirmation from MDDI.
+                </p>
+              </div>
+            )}
           </section>
 
           {/* Overview */}

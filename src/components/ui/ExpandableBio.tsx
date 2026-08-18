@@ -5,21 +5,28 @@ type ExpandableBioProps = {
   text: string;
   /** CSS color used for the collapse fade gradient — should match the surrounding card background. */
   fadeFrom?: string;
+  /** When true, styles the bio for dark backgrounds (light text + light toggle button). */
+  dark?: boolean;
 };
 
-export function ExpandableBio({ text, fadeFrom = "#ffffff" }: ExpandableBioProps) {
+export function ExpandableBio({ text, fadeFrom = "#ffffff", dark = false }: ExpandableBioProps) {
   const [expanded, setExpanded] = useState(false);
   const isLong = text.length > 200;
 
+  const textClass = dark ? "text-white/85" : "text-gray-800";
+  const buttonClass = dark
+    ? "text-[#ffcf8c] hover:text-white"
+    : "text-[#003d7b] hover:text-[#002a57]";
+
   if (!isLong) {
-    return <p className="text-gray-800 leading-relaxed text-sm md:text-base">{text}</p>;
+    return <p className={`${textClass} leading-relaxed text-sm md:text-base`}>{text}</p>;
   }
 
   return (
     <div>
       <div className="relative">
         <p
-          className={`text-gray-800 leading-relaxed text-sm md:text-base ${
+          className={`${textClass} leading-relaxed text-sm md:text-base ${
             expanded ? "" : "line-clamp-3"
           }`}
         >
@@ -35,7 +42,7 @@ export function ExpandableBio({ text, fadeFrom = "#ffffff" }: ExpandableBioProps
       <button
         type="button"
         onClick={() => setExpanded((value) => !value)}
-        className="mt-1.5 inline-flex items-center gap-1 text-sm font-semibold text-[#003d7b] transition-colors hover:text-[#002a57]"
+        className={`mt-1.5 inline-flex items-center gap-1 text-sm font-semibold transition-colors ${buttonClass}`}
         aria-expanded={expanded}
       >
         {expanded ? "Show less" : "Read more"}
