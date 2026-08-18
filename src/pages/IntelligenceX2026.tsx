@@ -464,13 +464,13 @@ export default function IntelligenceX2026({ showFullGuestOfHonour = false }: Int
                     <p className="text-3xl md:text-5xl font-bold text-white leading-tight">
                       Mdm Rahayu Mahzam
                     </p>
-                    <p className="text-lg md:text-xl text-white/90">
+                    <p className="text-base text-white/90">
                       Minister of State
                     </p>
-                    <p className="text-base text-white/80">
+                    <p className="text-base text-white/90">
                       Ministry of Digital Development and Information &amp; Ministry of Health
                     </p>
-                    <p className="text-sm text-white/60">Republic of Singapore</p>
+                    <p className="text-base text-white/90">Republic of Singapore</p>
                   </div>
                 </div>
                 <div className="border-t border-white/10 pt-6">
@@ -572,30 +572,15 @@ export default function IntelligenceX2026({ showFullGuestOfHonour = false }: Int
                 </ul>
               </div>
 
-              <div className="space-y-2">
-                <h3 className="text-base font-semibold text-gray-900">Registration</h3>
-                <ul className="list-disc pl-6 space-y-1.5 text-gray-800 text-sm md:text-base">
-                  <li>The early-bird conference registration fee until 31 July 2026 is SGD 600</li>
-                  <li>SoAI members enjoy a discounted early-bird rate of SGD 300</li>
-                  <li>Regular conference registration fee is SGD 800</li>
-                </ul>
-              </div>
-
-              <div className="space-y-2">
-                <h3 className="text-base font-semibold text-gray-900">Submission and Review</h3>
-                <ul className="list-disc pl-6 space-y-1.5 text-gray-800 text-sm md:text-base">
-                  <li>Submission deadline: 31 July 2026</li>
-                  <li>Acceptance: Invited Sessions will be accepted on a rolling (rotation) basis, subject to programme capacity.</li>
-                </ul>
-              </div>
-
-              <div className="space-y-2">
-                <h3 className="text-base font-semibold text-gray-900">Invited Session proposals should include:</h3>
-                <ul className="list-disc pl-6 space-y-1.5 text-gray-800 text-sm md:text-base">
-                  <li>Session title</li>
-                  <li>Name, affiliation, and contact details of the session organiser</li>
-                  <li>List of proposed speakers and tentative talk titles</li>
-                </ul>
+              <div className="flex flex-wrap items-center gap-4">
+                <a
+                  href="https://forms.gle/kKcYxG6PDgyvrSNk8"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center rounded-full bg-[#003d7b] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#002a57]"
+                >
+                  Submit an Invited Session Proposal →
+                </a>
               </div>
             </div>
           </section>
