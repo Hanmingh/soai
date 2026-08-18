@@ -447,7 +447,7 @@ export default function IntelligenceX2026({ showFullGuestOfHonour = false }: Int
 
           {/* Guest of Honour */}
           <section id="guest-of-honour" className="scroll-mt-24 space-y-4">
-            <h2 className="text-2xl font-semibold text-gray-900">Guest of Honour (Main Conference)</h2>
+            <h2 className="text-2xl font-semibold text-gray-900">Guest of Honour</h2>
             {showFullGuestOfHonour ? (
               <div className="rounded-xl border border-[#003d7b]/20 bg-gradient-to-br from-[#003d7b] to-[#002a57] px-6 py-8 md:px-10 md:py-10 space-y-6">
                 <div className="flex flex-col gap-6 md:flex-row md:items-start">
@@ -465,10 +465,10 @@ export default function IntelligenceX2026({ showFullGuestOfHonour = false }: Int
                       Mdm Rahayu Mahzam
                     </p>
                     <p className="text-lg md:text-xl text-white/90">
-                      Minister of State, Ministry of Digital Development and Information
+                      Minister of State
                     </p>
                     <p className="text-base text-white/80">
-                      Minister of State, Ministry of Health
+                      Ministry of Digital Development and Information &amp; Ministry of Health
                     </p>
                     <p className="text-sm text-white/60">Republic of Singapore</p>
                   </div>
@@ -531,10 +531,72 @@ export default function IntelligenceX2026({ showFullGuestOfHonour = false }: Int
           {/* Call for Invited Session */}
           <section id="invited-session" className="scroll-mt-24 space-y-4">
             <h2 className="text-2xl font-semibold text-gray-900">Call for Invited Session</h2>
-            <div className="rounded-xl border border-[#003d7b]/20 bg-[#f0f6ff] px-6 py-5 space-y-3">
-              <p className="text-sm text-amber-900">
-                Details on the Call for Invited Session will be announced shortly. Please check back for updates.
+            <div className="rounded-xl border border-[#003d7b]/20 bg-[#f0f6ff] px-6 py-5 space-y-4">
+              <div className="space-y-1">
+                <h3 className="text-lg font-bold text-[#003d7b]">
+                  IntelligenceX 2026 – The Global Quantum × AI Frontier
+                </h3>
+                <p className="text-sm font-medium text-gray-700">24–26 September 2026 | Singapore</p>
+              </div>
+
+              <p className="text-gray-800 leading-relaxed text-sm md:text-base">
+                The Organising Committee of IntelligenceX 2026 invites proposals for Invited Sessions to be held
+                during the main conference on 24–26 September 2026 in Singapore.
               </p>
+              <p className="text-gray-800 leading-relaxed text-sm md:text-base">
+                IntelligenceX 2026 is the flagship global conference of the Society of Algorithmic Intelligence
+                (SoAI), co-organised with the National University of Singapore (NUS). The conference brings
+                together researchers, practitioners, and industry leaders to exchange ideas and advances in
+                quantum computing, artificial intelligence, data science, optimization, statistics, and hybrid
+                Quantum×AI systems.
+              </p>
+
+              <div className="space-y-2">
+                <h3 className="text-base font-semibold text-gray-900">Themes of Invited Sessions</h3>
+                <p className="text-sm text-gray-700">Invited Sessions may cover theory, methods, applications, and/or industry showcases, including:</p>
+                <ul className="list-disc pl-6 space-y-1.5 text-gray-800 text-sm md:text-base">
+                  <li>Theoretical foundations of AI, quantum computing, optimization, and data science</li>
+                  <li>Algorithmic and methodological advances in AI, ML, optimization, and statistics</li>
+                  <li>Hybrid Quantum×AI systems, architectures, and applications</li>
+                  <li>Applications in, but not limited to, finance, engineering, logistics, healthcare, and energy</li>
+                  <li>Industry showcases, real-world deployments, and emerging use cases</li>
+                </ul>
+              </div>
+
+              <div className="space-y-2">
+                <h3 className="text-base font-semibold text-gray-900">Organizing Sessions</h3>
+                <ul className="list-disc pl-6 space-y-1.5 text-gray-800 text-sm md:text-base">
+                  <li>Each Invited Session is expected to include four registered speakers.</li>
+                  <li>Complimentary SoAI membership will be offered to all participants of the invited session.</li>
+                  <li>Participation as a SoAI member is entirely optional, and attendees are welcome to join the conference without any obligation to become members.</li>
+                </ul>
+              </div>
+
+              <div className="space-y-2">
+                <h3 className="text-base font-semibold text-gray-900">Registration</h3>
+                <ul className="list-disc pl-6 space-y-1.5 text-gray-800 text-sm md:text-base">
+                  <li>The early-bird conference registration fee until 31 July 2026 is SGD 600</li>
+                  <li>SoAI members enjoy a discounted early-bird rate of SGD 300</li>
+                  <li>Regular conference registration fee is SGD 800</li>
+                </ul>
+              </div>
+
+              <div className="space-y-2">
+                <h3 className="text-base font-semibold text-gray-900">Submission and Review</h3>
+                <ul className="list-disc pl-6 space-y-1.5 text-gray-800 text-sm md:text-base">
+                  <li>Submission deadline: 31 July 2026</li>
+                  <li>Acceptance: Invited Sessions will be accepted on a rolling (rotation) basis, subject to programme capacity.</li>
+                </ul>
+              </div>
+
+              <div className="space-y-2">
+                <h3 className="text-base font-semibold text-gray-900">Invited Session proposals should include:</h3>
+                <ul className="list-disc pl-6 space-y-1.5 text-gray-800 text-sm md:text-base">
+                  <li>Session title</li>
+                  <li>Name, affiliation, and contact details of the session organiser</li>
+                  <li>List of proposed speakers and tentative talk titles</li>
+                </ul>
+              </div>
             </div>
           </section>
 
