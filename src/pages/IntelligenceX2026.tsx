@@ -17,6 +17,7 @@ import chuoLogo from "@/logo/logo_chuo.svg";
 import rmiLogo from "@/logo/0244cc1c-d6ea-4544-bde5-50acfeb75831.jpg";
 import zibLogo from "@/logo/ZIB-Primary-Logo_Blue-RGB.png";
 import qhealthLogo from "@/logo/QHealth_logo.jpg.jpeg";
+import nusQaIconLogo from "@/assets/IntelligenceX/NUS_Integrated_Quatum_AI_Computing_Consortium.png";
 
 const sectionLinks = [
   { id: "registration", label: "Registration" },
@@ -94,6 +95,7 @@ export default function IntelligenceX2026() {
     // ── NUS first ──────────────────────────────────────────────────────────
     { abbr: "NUS",      name: "National University of Singapore",           src: "https://nus.edu.sg/images/default-source/base/logo.png",                                                     gridPx: 40, href: "https://www.nus.edu.sg" },
     { abbr: "RMI",      name: "NUS Risk Management Institute",               src: rmiLogo,                                                                                                     gridPx: 68, href: "https://rmi.nus.edu.sg/" },
+    { abbr: "NUS-QAIC", name: "NUS Integrated Quantum AI Computing Consortium", src: nusQaIconLogo,                                                                                             gridPx: 44 },
     // ── Universities / research institutes A–Z ────────────────────────────
     { abbr: "AS",       name: "Academia Sinica",                            src: "https://upload.wikimedia.org/wikipedia/en/2/21/Academia_Sinica_logo.svg",                                  gridPx: 40, href: "https://www.sinica.edu.tw/en" },
     { abbr: "ANL",      name: "Argonne National Laboratory",                src: sfp("ArgonneLaboratoryLogo.png"),                                                                             gridPx: 41, href: "https://www.anl.gov" },
