@@ -6,6 +6,8 @@ import lukasHuberImg from "@/assets/IntelligenceX/Lukas Huber Portrait.jpg";
 import larryImg from "@/assets/IntelligenceX/larry.jpeg";
 import teoImg from "@/assets/IntelligenceX/teo.jpg";
 import danielImg from "@/assets/IntelligenceX/daniel.jpeg";
+import yingImg from "@/assets/IntelligenceX/ying.jpeg";
+import nikolaImg from "@/assets/IntelligenceX/nikola.jpeg";
 import { ExpandableBio } from "@/components/ui/ExpandableBio";
 
 interface PremeetingSpeaker {
@@ -62,6 +64,31 @@ const speakers: PremeetingSpeaker[] = [
     photo: danielImg,
     weblink: "https://www.linkedin.com/in/danieldobos/?locale=de",
     bio: "Dr. Daniel Dobos co-chairs the ITU AI for Good Impact Initiative, chairs the Swiss AI Standardisation Commission and he bridges cutting-edge research with real-world customer solutions, most recently as Research Director at Swisscom. Previously, he led AI and data analysis projects at CERN — contributing to the landmark Higgs boson discovery — and at the United Nations. His research spans artificial intelligence, quantum computing, graph neural networks, and particle physics, with publications cited tens of thousands of times. Educated at TU Dortmund with affiliations at Lancaster University and CERN, he is a leading voice at the intersection of science, AI, and societal impact.",
+  },
+];
+
+interface PremeetingModerator {
+  name: string;
+  role: string;
+  affiliation: string;
+  photo: string;
+  bio: string;
+}
+
+const moderators: PremeetingModerator[] = [
+  {
+    name: "Prof. Dr. Nikola Pascher",
+    role: "Head of the Institute for Data Science",
+    affiliation: "ZHAW Zurich University of Applied Sciences",
+    photo: nikolaImg,
+    bio: "Prof. Dr. Nikola Pascher is Head of the Institute for Data Science at ZHAW School of Engineering, with over a decade of senior technology leadership spanning academia and global industry. She began at ETH Zurich and IBM Research – Zurich, building a deep technical foundation in quantum physics and nanotechnology, later complemented by an Executive MBA from the University of St. Gallen (HSG) — bridging technical expertise and strategic business thinking. In industry, she progressed at Nanosurf from senior research scientist to CTO and executive board member, then founded and headed the Innovation Lab at Kistler Instrumente, before serving as Head of R&D for a strategic business unit at Mettler-Toledo — driving digital and AI transformation, product innovation, and data-driven strategy across engineering and manufacturing. She returned to academia at ZHAW as Head of the Institute for Data Science, where this blend of industry leadership and academic rigor shapes her research and teaching, with a strategic focus on AI, data science, and quantum computing.",
+  },
+  {
+    name: "Ying Chen",
+    role: "Director of the Centre for Quantitative Finance; Co-Director of the SIA–NUS Digital Aviation Corporate Laboratory",
+    affiliation: "National University of Singapore (NUS)",
+    photo: yingImg,
+    bio: "Ying Chen is Director of the Centre for Quantitative Finance and Co-Director of the SIA–NUS Digital Aviation Corporate Laboratory at the National University of Singapore (NUS). She is an Associate Professor in the Department of Mathematics, with interdisciplinary appointments and affiliations across the Institute of Operations Research and Analytics (IORA), Risk Management Institute (RMI), Department of Economics, and Department of Statistics and Data Science. Her interdisciplinary research spans quantitative finance, artificial intelligence, time-series analysis, optimization, and quantum computing, and she has initiated and led research at the intersection of Quantum Computing × AI. She is an Associate Editor of Management Science (Finance Department), President of the Society of Algorithmic Intelligence, and Chairperson of the Asian Regional Section of the International Association for Statistical Computing.",
   },
 ];
 
@@ -206,13 +233,32 @@ export default function SwitzerlandSingaporePremeeting() {
             </div>
           </section>
 
-          {/* Organisers */}
-          <section className="space-y-3">
-            <h2 className="text-2xl font-semibold text-gray-900">Organisers</h2>
-            <ul className="space-y-1 text-gray-800 text-sm md:text-base">
-              <li><span className="font-semibold">Prof. Dr. Nikola Pascher</span>, ZHAW</li>
-              <li><span className="font-semibold">A/Prof. Ying Chen</span>, NUS</li>
-            </ul>
+          {/* Moderators */}
+          <section className="space-y-6">
+            <h2 className="text-2xl font-semibold text-gray-900">Moderators</h2>
+            <div className="space-y-6">
+              {moderators.map((moderator) => (
+                <div
+                  key={moderator.name}
+                  className="rounded-xl border border-gray-200 p-5 md:p-6 flex flex-col gap-5 md:flex-row md:items-start"
+                >
+                  <img
+                    src={moderator.photo}
+                    alt={moderator.name}
+                    className="h-40 w-40 shrink-0 rounded-lg object-cover shadow-sm"
+                    loading="lazy"
+                  />
+                  <div className="space-y-2">
+                    <p className="text-lg font-semibold text-gray-900">{moderator.name}</p>
+                    <p className="text-sm font-medium text-[#003d7b]">
+                      {moderator.role}
+                      {moderator.affiliation && ` · ${moderator.affiliation}`}
+                    </p>
+                    <ExpandableBio text={moderator.bio} />
+                  </div>
+                </div>
+              ))}
+            </div>
           </section>
 
           {/* Back link */}
