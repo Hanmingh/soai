@@ -77,18 +77,18 @@ interface PremeetingModerator {
 
 const moderators: PremeetingModerator[] = [
   {
+    name: "Prof. Dr. Ying Chen",
+    role: "Director of the Centre for Quantitative Finance; Co-Director of the SIA–NUS Digital Aviation Corporate Laboratory",
+    affiliation: "National University of Singapore (NUS)",
+    photo: yingImg,
+    bio: "Ying Chen is Director of the Centre for Quantitative Finance and Co-Director of the SIA–NUS Digital Aviation Corporate Laboratory at the National University of Singapore (NUS). She is an Associate Professor in the Department of Mathematics, with interdisciplinary appointments and affiliations across the Institute of Operations Research and Analytics (IORA), Risk Management Institute (RMI), Department of Economics, and Department of Statistics and Data Science. Her interdisciplinary research spans quantitative finance, artificial intelligence, time-series analysis, optimization, and quantum computing, and she has initiated and led research at the intersection of Quantum Computing × AI. She is an Associate Editor of Management Science (Finance Department), President of the Society of Algorithmic Intelligence, and Chairperson of the Asian Regional Section of the International Association for Statistical Computing.",
+  },
+  {
     name: "Prof. Dr. Nikola Pascher",
     role: "Head of the Institute for Data Science",
     affiliation: "ZHAW Zurich University of Applied Sciences",
     photo: nikolaImg,
     bio: "Prof. Dr. Nikola Pascher is Head of the Institute for Data Science at ZHAW School of Engineering, with over a decade of senior technology leadership spanning academia and global industry. She began at ETH Zurich and IBM Research – Zurich, building a deep technical foundation in quantum physics and nanotechnology, later complemented by an Executive MBA from the University of St. Gallen (HSG) — bridging technical expertise and strategic business thinking. In industry, she progressed at Nanosurf from senior research scientist to CTO and executive board member, then founded and headed the Innovation Lab at Kistler Instrumente, before serving as Head of R&D for a strategic business unit at Mettler-Toledo — driving digital and AI transformation, product innovation, and data-driven strategy across engineering and manufacturing. She returned to academia at ZHAW as Head of the Institute for Data Science, where this blend of industry leadership and academic rigor shapes her research and teaching, with a strategic focus on AI, data science, and quantum computing.",
-  },
-  {
-    name: "Ying Chen",
-    role: "Director of the Centre for Quantitative Finance; Co-Director of the SIA–NUS Digital Aviation Corporate Laboratory",
-    affiliation: "National University of Singapore (NUS)",
-    photo: yingImg,
-    bio: "Ying Chen is Director of the Centre for Quantitative Finance and Co-Director of the SIA–NUS Digital Aviation Corporate Laboratory at the National University of Singapore (NUS). She is an Associate Professor in the Department of Mathematics, with interdisciplinary appointments and affiliations across the Institute of Operations Research and Analytics (IORA), Risk Management Institute (RMI), Department of Economics, and Department of Statistics and Data Science. Her interdisciplinary research spans quantitative finance, artificial intelligence, time-series analysis, optimization, and quantum computing, and she has initiated and led research at the intersection of Quantum Computing × AI. She is an Associate Editor of Management Science (Finance Department), President of the Society of Algorithmic Intelligence, and Chairperson of the Asian Regional Section of the International Association for Statistical Computing.",
   },
 ];
 
@@ -195,6 +195,34 @@ export default function SwitzerlandSingaporePremeeting() {
             </div>
           </section>
 
+          {/* Moderators */}
+          <section className="space-y-6">
+            <h2 className="text-2xl font-semibold text-gray-900">Moderators</h2>
+            <div className="space-y-6">
+              {moderators.map((moderator) => (
+                <div
+                  key={moderator.name}
+                  className="rounded-xl border border-gray-200 p-5 md:p-6 flex flex-col gap-5 md:flex-row md:items-start"
+                >
+                  <img
+                    src={moderator.photo}
+                    alt={moderator.name}
+                    className="h-40 w-40 shrink-0 rounded-lg object-cover shadow-sm"
+                    loading="lazy"
+                  />
+                  <div className="space-y-2">
+                    <p className="text-lg font-semibold text-gray-900">{moderator.name}</p>
+                    <p className="text-sm font-medium text-[#003d7b]">
+                      {moderator.role}
+                      {moderator.affiliation && ` · ${moderator.affiliation}`}
+                    </p>
+                    <ExpandableBio text={moderator.bio} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
           {/* Speakers */}
           <section className="space-y-6">
             <h2 className="text-2xl font-semibold text-gray-900">Panelists</h2>
@@ -227,34 +255,6 @@ export default function SwitzerlandSingaporePremeeting() {
                         Learn more →
                       </a>
                     )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Moderators */}
-          <section className="space-y-6">
-            <h2 className="text-2xl font-semibold text-gray-900">Moderators</h2>
-            <div className="space-y-6">
-              {moderators.map((moderator) => (
-                <div
-                  key={moderator.name}
-                  className="rounded-xl border border-gray-200 p-5 md:p-6 flex flex-col gap-5 md:flex-row md:items-start"
-                >
-                  <img
-                    src={moderator.photo}
-                    alt={moderator.name}
-                    className="h-40 w-40 shrink-0 rounded-lg object-cover shadow-sm"
-                    loading="lazy"
-                  />
-                  <div className="space-y-2">
-                    <p className="text-lg font-semibold text-gray-900">{moderator.name}</p>
-                    <p className="text-sm font-medium text-[#003d7b]">
-                      {moderator.role}
-                      {moderator.affiliation && ` · ${moderator.affiliation}`}
-                    </p>
-                    <ExpandableBio text={moderator.bio} />
                   </div>
                 </div>
               ))}
