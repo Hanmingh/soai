@@ -18,6 +18,7 @@ import rmiLogo from "@/logo/0244cc1c-d6ea-4544-bde5-50acfeb75831.jpg";
 import zibLogo from "@/logo/ZIB-Primary-Logo_Blue-RGB.png";
 import qhealthLogo from "@/logo/QHealth_logo.jpg.jpeg";
 import nusQaIconLogo from "@/assets/IntelligenceX/NUS_Integrated_Quatum_AI_Computing_Consortium.png";
+import ibmLogo from "@/assets/IntelligenceX/ibm.png";
 import rahayuImg from "@/assets/IntelligenceX/MOS Rahayu Mahzam.jpg";
 import { ExpandableBio } from "@/components/ui/ExpandableBio";
 
@@ -140,6 +141,7 @@ export default function IntelligenceX2026({ showFullGuestOfHonour = false }: Int
     // ── ISI ───────────────────────────────────────────────────────────────
     { abbr: "ISI",      name: "International Statistical Institute",        src: isiLogo,                                                                                                     gridPx: 40, href: "https://isi-web.org/" },
     // ── Startups / industry partners ─────────────────────────────────────
+    { abbr: "IBM",      name: "IBM",                                       src: ibmLogo,                                                                                                     gridPx: 60, href: "https://www.ibm.com/quantum" },
     { abbr: "iOF",      name: "iOF Algorithmic Solutions",                  src: iofLogo,                                                                                                     gridPx: 45, href: "https://www.iof.sg" },
     { abbr: "Fuelture",  name: "Fuelture",                                  src: fuelttureLogo,                                                                                               gridPx: 60, href: "https://www.fuelture.tech/" },
     { abbr: "I2DAMO",   name: "I²DAMO",                                     src: i2damoLogo,                                                                                                  gridPx: 45, href: "https://www.i2damo.de/en" },
