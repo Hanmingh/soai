@@ -18,20 +18,31 @@ export function ExpandableBio({ text, fadeFrom = "#ffffff", dark = false }: Expa
     ? "text-[#ffcf8c] hover:text-white"
     : "text-[#003d7b] hover:text-[#002a57]";
 
+  // Preserve blank-line paragraph breaks (e.g. "\n\n") as visually spaced paragraphs.
+  const paragraphs = text.split(/\n\s*\n/);
+
   if (!isLong) {
-    return <p className={`${textClass} leading-relaxed text-sm md:text-base`}>{text}</p>;
+    return (
+      <div className="space-y-3">
+        {paragraphs.map((paragraph, index) => (
+          <p key={index} className={`${textClass} leading-relaxed text-sm md:text-base`}>
+            {paragraph}
+          </p>
+        ))}
+      </div>
+    );
   }
 
   return (
     <div>
       <div className="relative">
-        <p
-          className={`${textClass} leading-relaxed text-sm md:text-base ${
-            expanded ? "" : "line-clamp-3"
-          }`}
-        >
-          {text}
-        </p>
+        <div className={`space-y-3 ${expanded ? "" : "line-clamp-3"}`}>
+          {paragraphs.map((paragraph, index) => (
+            <p key={index} className={`${textClass} leading-relaxed text-sm md:text-base`}>
+              {paragraph}
+            </p>
+          ))}
+        </div>
         {!expanded && (
           <div
             className="pointer-events-none absolute inset-x-0 bottom-0 h-8"
