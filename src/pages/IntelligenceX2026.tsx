@@ -22,7 +22,7 @@ import ibmLogo from "@/assets/IntelligenceX/ibm.png";
 import rahayuImg from "@/assets/IntelligenceX/MOS Rahayu Mahzam.jpg";
 import { ExpandableBio } from "@/components/ui/ExpandableBio";
 
-// Full Guest of Honour (MOS) biography — used by the private review page.
+// Full Guest of Honour (MOS) biography.
 const guestOfHonourBio = [
   "Mdm Rahayu Mahzam is the Minister of State at the Ministry of Digital Development and Information, where she focuses on the Ministry’s digital inclusivity efforts and protection of Singaporeans against online harms. She is concurrently the Minister of State at the Ministry of Health. Her area of work includes healthcare financing, promotion of healthy lifestyle and child and maternal health.",
   "She previously served at the Ministry of Law and then-Ministry of Communications and Information (renamed as Ministry of Digital Development and Information on 8 July 2024). Prior to her political appointment in September 2020, Mdm Rahayu was a lawyer, specialising in family law.",
@@ -49,12 +49,7 @@ const sectionLinks = [
 
 type SectionId = (typeof sectionLinks)[number]["id"];
 
-type IntelligenceX2026Props = {
-  /** When true, renders the full Guest of Honour profile (used by the private review page). */
-  showFullGuestOfHonour?: boolean;
-};
-
-export default function IntelligenceX2026({ showFullGuestOfHonour = false }: IntelligenceX2026Props) {
+export default function IntelligenceX2026() {
   const bgUrl = intelligenceXBg;
   const [activeSection, setActiveSection] = useState<SectionId>(sectionLinks[0].id);
 
@@ -450,51 +445,34 @@ export default function IntelligenceX2026({ showFullGuestOfHonour = false }: Int
           {/* Guest of Honour */}
           <section id="guest-of-honour" className="scroll-mt-24 space-y-4">
             <h2 className="text-2xl font-semibold text-gray-900">Guest of Honour</h2>
-            {showFullGuestOfHonour ? (
-              <div className="rounded-xl border border-[#003d7b]/20 bg-gradient-to-br from-[#003d7b] to-[#002a57] px-6 py-8 md:px-10 md:py-10 space-y-6">
-                <div className="flex flex-col gap-6 md:flex-row md:items-start">
-                  <img
-                    src={rahayuImg}
-                    alt="Mdm Rahayu Mahzam"
-                    className="h-52 w-44 md:h-64 md:w-52 shrink-0 rounded-lg object-cover shadow-lg"
-                    loading="lazy"
-                  />
-                  <div className="space-y-2">
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#ffcf8c]">
-                      Guest of Honour
-                    </p>
-                    <p className="text-3xl md:text-5xl font-bold text-white leading-tight">
-                      Mdm Rahayu Mahzam
-                    </p>
-                    <p className="text-base text-white/90">
-                      Minister of State
-                    </p>
-                    <p className="text-base text-white/90">
-                      Ministry of Digital Development and Information &amp; Ministry of Health
-                    </p>
-                    <p className="text-base text-white/90">Republic of Singapore</p>
-                  </div>
-                </div>
-                <div className="border-t border-white/10 pt-6">
-                  <ExpandableBio text={guestOfHonourBio.join("\n\n")} fadeFrom="#002a57" dark />
+            <div className="rounded-xl border border-[#003d7b]/20 bg-gradient-to-br from-[#003d7b] to-[#002a57] px-6 py-8 md:px-10 md:py-10 space-y-6">
+              <div className="flex flex-col gap-6 md:flex-row md:items-start">
+                <img
+                  src={rahayuImg}
+                  alt="Mdm Rahayu Mahzam"
+                  className="h-52 w-44 md:h-64 md:w-52 shrink-0 rounded-lg object-cover shadow-lg"
+                  loading="lazy"
+                />
+                <div className="space-y-2">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#ffcf8c]">
+                    Guest of Honour
+                  </p>
+                  <p className="text-3xl md:text-5xl font-bold text-white leading-tight">
+                    Mdm Rahayu Mahzam
+                  </p>
+                  <p className="text-base text-white/90">
+                    Minister of State
+                  </p>
+                  <p className="text-base text-white/90">
+                    Ministry of Digital Development and Information &amp; Ministry of Health
+                  </p>
+                  <p className="text-base text-white/90">Republic of Singapore</p>
                 </div>
               </div>
-            ) : (
-              <div className="rounded-xl border border-[#003d7b]/20 bg-gradient-to-br from-[#003d7b] to-[#002a57] px-6 py-8 md:px-10 md:py-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#ffcf8c] mb-3">
-                  Guest of Honour
-                </p>
-                <p className="text-3xl md:text-5xl font-bold text-white leading-tight">
-                  Ms Rahayu Mahzam
-                </p>
-                <p className="mt-3 text-lg md:text-xl text-white/90">
-                  Minister of State, Ministry of Digital Development and Information (MDDI)
-                </p>
-                <p className="mt-5 text-sm text-white/60">
-                  Photo and biography to be added, pending confirmation from MDDI.
-                </p>
+              <div className="border-t border-white/10 pt-6">
+                <ExpandableBio text={guestOfHonourBio.join("\n\n")} fadeFrom="#002a57" dark />
               </div>
-            )}
+            </div>
           </section>
 
           {/* Overview */}
