@@ -62,9 +62,9 @@ const keynoteSpeakers: KeynoteSpeaker[] = [
     id: "stefan-woerner",
     name: "Stefan Woerner",
     role: "Principal Research Scientist & Senior Manager, Applied Quantum Optimization Research",
-    affiliation: "IBM Research, Zurich, Switzerland",
+    affiliation: "IBM Research, Switzerland",
     photo: stefanImg,
-    bio: "Stefan Woerner is a Principal Research Scientist and Senior Manager of Applied Quantum Optimization Research at IBM Research, based in Zurich, Switzerland. He leads a global team advancing quantum optimization algorithms and their applications to deliver practical quantum advantage for real-world challenges in industry and science. Stefan received his PhD from ETH Zurich and is internationally recognized for his contributions to quantum optimization, quantum finance, and quantum machine learning. He has authored influential scientific publications and collaborates extensively with leading partners in academia and industry.",
+    bio: "Stefan Woerner is a Principal Research Scientist and Senior Manager of Applied Quantum Optimization Research at IBM Research, Switzerland. He leads a global team advancing quantum optimization algorithms and their applications to deliver practical quantum advantage for real-world challenges in industry and science. Stefan received his PhD from ETH Zurich and is internationally recognized for his contributions to quantum optimization, quantum finance, and quantum machine learning. He has authored influential scientific publications and collaborates extensively with leading partners in academia and industry.",
   },
 ];
 
