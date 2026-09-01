@@ -4,6 +4,8 @@ import intelligenceXBg from "@/assets/IntelligenceX/IntelligenceX_bg.jpg";
 import spmpLogo from "@/assets/IntelligenceX/SPMP_Logo.jpg";
 import secbLogo from "@/assets/IntelligenceX/SECB_Logo.png";
 import isiLogo from "@/assets/IntelligenceX/isi_logo.png";
+import cdsmlLogo from "@/assets/IntelligenceX/cdsml_logo.jpeg";
+import cqfLogo from "@/assets/IntelligenceX/cqf_logo.png";
 import modalLogo    from "@/logo/Logo_MODAL.png";
 import columbiaLogo from "@/logo/logo_columbia.png";
 import iofLogo      from "@/logo/logo_IOF.jpg.jpeg";
@@ -100,14 +102,25 @@ export default function IntelligenceX2026() {
   /* Wikimedia Commons Special:FilePath — browser follows 302 redirect, no hash needed */
   const sfp = (f: string) => `https://commons.wikimedia.org/wiki/Special:FilePath/${f}`;
 
-  // SOC institution logos — NUS first, then universities A–Z, then startups
+  // SOC institution logos — displayed sorted A–Z by name
   // gridPx: pixel height for the static grid; marquee always uses 36px
   // Values calibrated by natural image dimensions (aspect ratio) + visual weight
-  const institutionLogos = [
+  interface InstitutionLogo {
+    abbr: string;
+    name: string;
+    src: string;
+    gridPx: number;
+    href?: string;
+    bottomOnly?: boolean;
+  }
+
+  const institutionLogos: InstitutionLogo[] = [
     // ── NUS first ──────────────────────────────────────────────────────────
     { abbr: "NUS",      name: "National University of Singapore",           src: "https://nus.edu.sg/images/default-source/base/logo.png",                                                     gridPx: 40, href: "https://www.nus.edu.sg" },
     { abbr: "RMI",      name: "NUS Risk Management Institute",               src: rmiLogo,                                                                                                     gridPx: 68, href: "https://rmi.nus.edu.sg/" },
     { abbr: "NUS-QAIC", name: "NUS Integrated Quantum AI Computing Consortium", src: nusQaIconLogo,                                                                                             gridPx: 44 },
+    { abbr: "CDSML",    name: "NUS Centre for Data Science and Machine Learning (CDSML)", src: cdsmlLogo,                                                                                     gridPx: 50, bottomOnly: true },
+    { abbr: "CQF",      name: "NUS Centre for Quantitative Finance (CQF)", src: cqfLogo,                                                                                                     gridPx: 50, bottomOnly: true },
     // ── Universities / research institutes A–Z ────────────────────────────
     { abbr: "AS",       name: "Academia Sinica",                            src: "https://upload.wikimedia.org/wikipedia/en/2/21/Academia_Sinica_logo.svg",                                  gridPx: 40, href: "https://www.sinica.edu.tw/en" },
     { abbr: "ANL",      name: "Argonne National Laboratory",                src: sfp("ArgonneLaboratoryLogo.png"),                                                                             gridPx: 41, href: "https://www.anl.gov" },
@@ -146,10 +159,11 @@ export default function IntelligenceX2026() {
     // ── Singapore tourism / convention partners ───────────────────────────
     { abbr: "SECB",     name: "Singapore Exhibition & Convention Bureau",   src: secbLogo,                                                                                                    gridPx: 65, href: "https://www.visitsingapore.com/mice/en/" },
     { abbr: "SPMP",     name: "Singapore – Passion Made Possible",          src: spmpLogo,                                                                                                    gridPx: 85, href: "https://www.visitsingapore.com" },
-  ];
+  ].sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" }));
 
-  // Marquee reuses the same source as the grid — always in sync
-  const marqueeLogos = institutionLogos;
+  // Marquee reuses the same source as the grid — always in sync.
+  // CDSML & CQF (bottomOnly) are shown only in the bottom grid, not the marquee.
+  const marqueeLogos = institutionLogos.filter((logo) => !logo.bottomOnly);
 
   return (
     <div className="min-h-screen bg-white">
