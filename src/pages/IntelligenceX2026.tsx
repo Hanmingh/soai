@@ -520,6 +520,18 @@ export default function IntelligenceX2026() {
               designed to bridge frontier research and practical deployment, combining scientific rigor with
               methodological and strategic relevance.
             </p>
+            <a
+              href="/events/Program.xlsx"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 text-base font-semibold text-[#003d7b] hover:text-[#002a57]"
+            >
+              <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <path d="M14 2v6h6" />
+              </svg>
+              Download Conference Program
+            </a>
           </section>
 
           {/* Call for Invited Session */}
