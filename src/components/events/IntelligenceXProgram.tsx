@@ -155,7 +155,6 @@ const days: DayProgram[] = [
         time: "11:00–11:30",
         tracks: [
           { venue: "Auditorium 1", type: "showcase", title: "Showcase 4", speaker: "ETH / Singapore-ETH Centre" },
-          { venue: "SR4", type: "contributed", title: "Contributed Session 1: AI for Decision-Making and Optimization", speakers: ["Lukas Voss", "Peng Liu", "Merliza Fernandez Libao"] },
         ],
       },
       {
@@ -165,6 +164,7 @@ const days: DayProgram[] = [
           { venue: "SR1", type: "invited", title: "AI & Data-Driven Methods for Quantitative Finance", speaker: "Qinxin Yan" },
           { venue: "SR2", type: "invited", title: "Theoretical & Algorithmic Frontiers in Hybrid Quantum–AI Systems", speaker: "Hongrui Zhang" },
           { venue: "SR3", type: "invited", title: "Logistics", speaker: "Ralf Borndörfer" },
+          { venue: "SR4", type: "contributed", title: "Contributed Session 1: AI for Decision-Making and Optimization", speakers: ["Lukas Voss", "Peng Liu", "Merliza Fernandez Libao"] },
         ],
       },
       {
