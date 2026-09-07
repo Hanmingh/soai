@@ -65,6 +65,11 @@ const days: DayProgram[] = [
         time: "13:30–14:30",
         tracks: [
           { venue: "Auditorium 1", type: "panel", title: "Panel 2: Quantum × AI for Healthcare & Life Sciences", moderator: "Patrick Chia" },
+        ],
+      },
+      {
+        time: "13:30–15:00",
+        tracks: [
           { venue: "SR12 – Global Learning Room", type: "invited", title: "Quantum Computing for Risk Management", speaker: "Paolo Giudici (with Alessandro Bisio, Vasily Kolesnikov, Yash Rastogi, Osamu Takahashi)" },
           { venue: "SR1", type: "invited", title: "Advances in Bayesian Optimization & Sequential Decision-Making", speaker: "Ray-Bing Chen" },
           { venue: "SR2", type: "invited", title: "Exact Computation and Parallel Methods in Combinatorial Optimization", speaker: "Koichi Fujii" },
@@ -100,6 +105,11 @@ const days: DayProgram[] = [
         time: "11:00–11:30",
         tracks: [
           { venue: "Auditorium 1", type: "showcase", title: "Showcase 3", speaker: "UBS / Swiss AI" },
+        ],
+      },
+      {
+        time: "11:00–12:30",
+        tracks: [
           { venue: "SR12 – Global Learning Room", type: "invited", title: "Advanced Optimization, Vision & LLMs", speaker: "Katsuki Fujisawa" },
           { venue: "SR1", type: "invited", title: "Reservoir Computing & Dynamics Learning", speaker: "Juan-Pablo Ortega / Florian Rossmannek" },
           { venue: "SR2", type: "invited", title: "Reliable & Adaptive AI", speaker: "Chuan-Ju Wang" },
@@ -145,11 +155,16 @@ const days: DayProgram[] = [
         time: "11:00–11:30",
         tracks: [
           { venue: "Auditorium 1", type: "showcase", title: "Showcase 4", speaker: "ETH / Singapore-ETH Centre" },
+          { venue: "SR4", type: "contributed", title: "Contributed Session 1: AI for Decision-Making and Optimization", speakers: ["Lukas Voss", "Peng Liu", "Merliza Fernandez Libao"] },
+        ],
+      },
+      {
+        time: "11:00–12:30",
+        tracks: [
           { venue: "SR12 – Global Learning Room", type: "invited", title: "Quantum Computing for Engineering", speaker: "Philippe Codognet & Francisco Chinesta" },
           { venue: "SR1", type: "invited", title: "AI & Data-Driven Methods for Quantitative Finance", speaker: "Qinxin Yan" },
           { venue: "SR2", type: "invited", title: "Theoretical & Algorithmic Frontiers in Hybrid Quantum–AI Systems", speaker: "Hongrui Zhang" },
           { venue: "SR3", type: "invited", title: "Logistics", speaker: "Ralf Borndörfer" },
-          { venue: "SR4", type: "contributed", title: "Contributed Session 1: AI for Decision-Making and Optimization", speakers: ["Lukas Voss", "Peng Liu", "Merliza Fernandez Libao"] },
         ],
       },
       {
